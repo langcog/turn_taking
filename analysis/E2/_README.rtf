@@ -1,0 +1,201 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red0\green128\blue64;\red0\green128\blue0;
+\red255\green0\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16020\viewh20640\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx14800\ql\qnatural\pardirnatural
+
+\f0\fs28 \cf0 Hello!\
+\
+This set of scripts represents the whole of the analysis from the English-only eye-tracking experiment reported in Casillas & Frank (in prep). These scripts are meant to be run one-by-one because some of the steps between raw data and results take quite some time and memory (i.e., getting random baselines; step 3). Thus, each script starts fresh by removing old objects and loading up the necessary libraries and source files for the code to come. A note about script names: scripts containing only supplementary functions are labeled with a '0' at their start, while main scripts are labeled with '1' through '3' at their starts. These scripts were written by an amateur 
+\i and
+\i0  they were developed over a long and scattered period of time, so improvements to their efficiency and readability are most welcome! Any comments you might have regarding the methods, analysis, and interpretation of the data should be directed to Marisa Casillas (see contact info below). Thanks for your interest.\
+\
+\
+----------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+The scripts are designed to get from raw data to results in four steps:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b\fs38 \cf0 \
+\
+1. Import data
+\b0\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li560\fi-560\ql\qnatural\pardirnatural
+
+\fs26 \cf0 	Run all lines in 
+\f1\b \cf2 1-read.dataset.R
+\f0\b0 \cf0 . This will (a) read in the raw tracker data from the 
+\f1\b \cf3 tracker_data/
+\f0\b0 \cf0  directory and (b) write out one large .csv with the imported data batched together. The batched .csv will only have the columns needed for the analyses in Casillas & Frank (in prep), though the read function could be changed to include more/less of the raw tracker data. For more information on the read function, see 
+\f1\b \cf2 0-helper.R
+\f0\b0 \cf0 .\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b\fs38 \cf0 2. Prepare data for statistical analysis and graphing
+\b0\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li560\fi-560\ql\qnatural\pardirnatural
+
+\fs26 \cf0 	Run all lines in 
+\f1\b \cf2 2-prep.analysis.R
+\f0\b0 \cf0 . This script does a number of critical preparations to the tracker data before we can start analyses. If you've already run one version of this script set and want to run another, e.g., first you ran it with short reaction time assumptions and now you want to run it with longer ones, start with this step rather than at step 1.\
+\
+	First it prepares the data to be checked for anticipatory gazes: (a) it reads in the tracker data and starts merging it with the video segment data in the 
+\f1\b \cf4 info/
+\f0\b0 \cf0  directory, (b) it writes out a version of the data to a .csv that will be used as the seed data for the random baseline analyses (step 3), (c) it merges the data with the gap and subject data from the 
+\f1\b \cf4 info/
+\f0\b0 \cf0  directory, and (d) it labels each gaze measurement as looking at the Male or Female character (or neither).\
+\
+	Then it begins checking for anticipatory gazes. Because adults and children are assumed to have different baseline action times needed to plan an eye movement, the script first splits the data into children and adults. Then it does the following on each group individually: (a) it subsets the data to include only those points in time during the analysis window (around each turn transition), (b) it then feeds that subset into the anticipatory gaze check function (
+\f1\b grab.transition.info
+\f0\b0 ) to see whether each participant made an anticipatory gaze or not for each turn transition in the data.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li1260\fi-1260\ql\qnatural\pardirnatural
+\cf0 		- 
+\b \cf5 \ul \ulc5 NOTE:
+\b0 \cf0 \ulnone  The assumed gaze planning reaction time for children and adults is set by 
+\f1\b utt1.overlap
+\f0\b0  and 
+\f1\b utt2.overlap
+\f0\b0 . Change these to, e.g., see looks the occurred in anticipation vs. reaction to the responder's speech.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li1100\fi-1100\ql\qnatural\pardirnatural
+\cf0 		- Most of the grunt work in checking for anticipatory gazes is done by functions defined in 
+\f1\b \cf2 0-helper.R
+\f0\b0 \cf0  and 
+\f1\b \cf2 0-find.transitions.R
+\f0\b0 \cf0 .\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li560\fi-560\ql\qnatural\pardirnatural
+\cf0 \
+	Then the script prepares the data for statistical analysis and plotting: (a) it recombines the results from the adult and child gaze checks, and (b) merges this with subject, gap, and video segment information. The analysis in this paper used 2-year age-group bins, so (c) the script also adds a coarse version of age to the data. (d) It then adds a correction to the transition type coding (question or non-question) before (e) writing the analysis-ready data out to .csv (
+\f1\b switch.final
+\f0\b0  and 
+\f1\b switch.final.coarse
+\f0\b0 ).\
+\
+	What we get in the end is a .csv of switch values (1 or 0) for each participant and each transition, with a numerical value indicating when a switch in gaze occurred, if it occurred at all.\
+\
+	There is also a bit of code at the end that creates a .csv for plotting cumulative switches over time.\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b\fs38 \cf0 3. Getting random baseline values
+\b0\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li560\fi-560\ql\qnatural\pardirnatural
+
+\fs26 \cf0 	If you're not interested in the random baseline, skip ahead to step 4. The creation of random baselines data happens in a parallel script set from the normal data (
+\f1\b \cf2 2-random.runs.R
+\f0\b0 \cf0  and 
+\f1\b \cf2 0-make.random.windows.R
+\f0\b0 \cf0 ). To create random baseline data, you'll first need to create randomly-shuffled versions of the turn transitions (i.e., 
+\f1\b gap.info
+\f0\b0 ). This can be done in 
+\f1\b \cf2 0-make.random.windows.R
+\f0\b0 \cf0 , which shuffles the set of gap durations from the real turn transitions within the start and stop times for each video stimulus. It saves the new, shuffled gap info to .csvs in the 
+\f1\b \cf4 info/
+\f0\b0 \cf0  directory. Once you have a set of random gap info files (e.g., GapInfoRandom1.csv ... GapInfoRandom100.csv), you can move onto 
+\f1\b \cf2 2-random.runs.R
+\f0\b0 \cf0 .\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li1280\fi-1280\ql\qnatural\pardirnatural
+\cf0 		- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone  The loop at the end determines how many random gap files you'll make in your 
+\f1\b \cf4 info/
+\f0\b0 \cf0  directory. 100 is the default.\
+		- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone  The value of give.win adjusts the random window creator function to account for longer or shorter assumed gaze planning reaction times. Its default value is for the children's setting (333 ms) and, at the least, it should match the largest value set in step 2 for 
+\f1\b utt1.overlap
+\f0\b0  and 
+\f1\b utt2.overlap
+\f0\b0 .\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li520\fi-520\ql\qnatural\pardirnatural
+\cf0 	
+\f1\b \cf2 2-random.runs.R
+\f0\b0 \cf0  helps you to re-run the analyses from step 2 but now over the many random versions of the data. Briefly, it uses the 
+\b real
+\b0  gaze data with the 
+\b randomized
+\b0  turn transitions, and repeats this 100 times (or for however many random gap files you made). Each time it finishes the analysis of a random gap file, it writes the results out to the 
+\f1\b \cf4 processed_data/
+\f0\b0 \cf0  directory.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li1280\fi-1280\ql\qnatural\pardirnatural
+\cf0 \
+		- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone  The loop at the start determines how many random gap files you'll analyze. 100 is the default.\
+		- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone   Assumed gaze planning RT is set at the start of this section with 
+\f1\b utt1.overlap
+\f0\b0  and 
+\f1\b utt2.overlap
+\f0\b0 . These should match the values used in step 2.\
+		- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone   This will take a very long time.\
+		- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone   This will make a lot of new .csv files in your 
+\f1\b \cf4 processed_data/
+\f0\b0 \cf0  directory.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li560\fi-560\ql\qnatural\pardirnatural
+\cf0 	At the end of 
+\f1\b \cf2 2-random.runs.R
+\f0\b0 \cf0 , the script reads in all the random result .csvs and creates a single summary .csv with all of the random output in it. This is the ready-for-analysis version of the random data.\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b\fs38 \cf0 4. Get descriptive statistics, make plots, and run models
+\b0\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li560\fi-560\ql\qnatural\pardirnatural
+
+\fs26 \cf0 	The data can be summarized using 
+\f1\b \cf2 3-plots.stats.analysis.R
+\f0\b0 \cf0 . This script assumes you might want a few things:\
+	\
+	- A table summarizing what proportion of participants are looking at the current speaker (vs. the addressee) while speech is ongoing in the videos\
+\
+	- Graphs showing the proportion of anticipatory gaze switches for each age, condition, and turn transition type, plotting the actual data against the baseline data, and separately plotting the baseline-corrected totals in these cases\
+\
+	- Graphs showing the effect of gap duration on anticipatory gaze switches (and for each condition)\
+\
+	- Graphs of cumulative gaze switches over the transition space, taking reaction time into account, showing differences between ages and conditions\
+\
+	- Statistical models of the effect of age, gap duration, turn transition type, and condition on the proportion of gaze switches that include maximal random effects allowable for model convergence.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li1280\fi-1280\ql\qnatural\pardirnatural
+\cf0 		\
+	- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone  The plots will be written out to the 
+\f1\b \cf4 plots/ 
+\f0\b0 \cf0 directory once R is closed, and are specified for a large format.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li700\fi-700\ql\qnatural\pardirnatural
+\cf0 	- 
+\b \cf5 \ul NOTE:
+\b0 \cf0 \ulnone  Uncomment the read.csv command for all.data if you want the table values for proportion gaze to the current speaker in each condition and age group.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+\cf0 \
+\
+
+\b \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\fs38 \cf0 Questions?
+\b0\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\fs26 \cf0 	Email: middycasillas@gmail.com\
+	Website: {\field{\*\fldinst{HYPERLINK "http://www.mpi.nl/people/casillas-marisa"}}{\fldrslt http://www.mpi.nl/people/casillas-marisa}}\
+\
+\
+Last updated May 2014}
