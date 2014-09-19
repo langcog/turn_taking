@@ -469,7 +469,7 @@ limits <- aes(ymax = m + se, ymin= m - se)
 
 p2 <- qplot(Age,m, group=Condition, ylim=c(-0.1,0.5),
     ymin= m - se, ymax= m + se, color=Condition,
-    xlab="Age (years)", ylab="Proportion gaze switches",
+    xlab="Age (years)", ylab="Baseline-corrected proportion switches",
     position=position_dodge(width=.1), data=df) +
     geom_line(size=2, position=position_dodge(width=.1)) +
     geom_pointrange(size=1, position=position_dodge(width=.1)) +
@@ -492,7 +492,7 @@ dev.off()
 
 p2bars <- qplot(Age,m, group=Condition, ylim=c(-0.1,0.5),
     ymin= m - se, ymax= m + se, fill=Condition,
-    xlab="Age (years)", ylab="Proportion gaze switches",
+    xlab="Age (years)", ylab="Baseline-corrected proportion switches",
     geom="bar", stat="identity", position=position_dodge(), data=df) +
     geom_errorbar(limits, position=position_dodge(width=0.9), width=0.25) +
     scale_fill_manual(name = "", values=stoplightPalette, labels = c("English  ", "Non-English")) +
@@ -592,7 +592,7 @@ limits <- aes(ymax = m + se, ymin= m - se)
 
 p4 <- qplot(Age,m,facets = . ~ Condition, group=Transition, ylim=c(-0.1,0.5),
     ymin= m - se, ymax= m + se, color=Condition, linetype=Transition,
-    xlab="Age (years)",ylab="Proportion gaze switches",
+    xlab="Age (years)",ylab="Baseline-corrected proportion switches",
     position=position_dodge(width=.1), data=df) +
     geom_line(size=2, position=position_dodge(width=.1)) +
     geom_pointrange(size=1, position=position_dodge(width=.1)) +
