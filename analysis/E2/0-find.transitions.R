@@ -1,193 +1,176 @@
+################################################################################
 # Returns a data frame of transition info (whether or not switches were made
-# and, if so, when they started) for all subjects and transitions
+# and, if so, when they started) for all subjects and transitions in obs
 grab.transition.info <- function(obs, fixation.window) {
     # Preset the total number of rows needed
     subs <- unique(obs$Subject)
     gaps <- sort(as.integer(unique(obs$GapNum)))
     N <- length(subs) * length(gaps)
-    # Make the empty data frame
-    proportion.data <- data.frame(Subject=rep(NA, N), Gap=rep(NA, N),
-        Switch=rep(NA, N), Start.Time=rep(NA, N))
-    # Iterate through data frame rows, filling in transition information for
-    # each subject and gap
-    df.row = 1
+    # Make an empty data frame
+    proportion.data <- data.table(
+    	Subject=rep("", N),
+    	Gap=rep(0, N),
+        Switch=rep(0, N),
+        Start.Time=rep(0, N))
+    # Iterate through data frame rows, filling in
+    # transition information for each subject and gap
+    df.row <- 1
     # Grab a subject's data
-    for (i in 1:length(subs)) {
-        sub.data <- subset(obs, Subject == subs[i])
+    for (sub in subs) {
+        sub.data <- subset(obs, Subject == sub)
         # Grab data for a particular gap
-        for (j in 1:length(gaps)) {
-            # Find the transition information (is there a switch? where?)
+        sub.gaps <- unique(sub.data$GapNum)
+        for (gap in sub.gaps) {
+            # Find the transition information. Returns two parts:
+            # 1 - Was there a switch in the analysis window
+            # 2 - If so, when in the window did the switch occur?
             gap.transition <- find.transition(subset(sub.data,
-                GapNum == gaps[j]), fixation.window)
-            # Add the result to the data frame
-            proportion.data[df.row,] <- c(as.character(subs[i]),
-                gaps[j], gap.transition[1], gap.transition[2])
+                GapNum == gap), fixation.window)
+            # Add the transition info to the data frame
+            proportion.data[df.row,] <- c(as.character(sub),
+                gap, gap.transition[1], gap.transition[2])
             # Move onto the next row in the ouput data frame
             df.row = df.row + 1
         }
     }
-    return(proportion.data)
+    # Return the output data frame,
+    # minus any remaining empty rows
+    return(proportion.data[1:df.row])
 }
 
-
-# Parent function, linking the results of fixation.check and
-# find.transition.start together
+################################################################################
+# Called by grab.transition.info
+# Parent function to fixation.check
+# Sets up data to check for fixations and switch start times
+# Returns the result to grab.transition.info
 find.transition <- function(obs, fixation.window) {
-    if(nrow(obs) < 1) {
+	# In case there are no eye tracking measurements in this
+	# particular analysis window
+    if (nrow(obs) == 0) {
         return(list(NA,NA))
-    } 
-    # Dummy minstart
-    minstart <- "NA"
-    # Search for a 100 msec fixation on the origin speaker during
-    # the ANCHOR period
-    anchor <- fixation.check(subset(obs, Anchor.Window == "ANCHOR"), "ANCHOR",
-        fixation.window, minstart)
-    minstart <- anchor[2]
-    # Search for a 100 msec fixation on the response speaker during
-    # the TRANSITION period
-    transition <- fixation.check(subset(obs, Transition.Window == "TRANSITION"),
-        "TRANSITION", fixation.window, minstart)
-    # Return the results of the search
-    if(anchor[1] == "Y" & transition[1] == "Y") {
-    	# If you found fixations on the ANCHOR and TRANSITION, find the starting
-        # point of the transition
-        return(list(1, find.transition.start(obs, transition[2])))
     }
-    else {
-        # Otherwise there's no valid switch being made
+    
+    # Dummy minstart; will set later
+    minstart <- "NA"
+    
+    # Find the subset of the total analysis window that is just
+    # linked to the Anchor window
+    anchorobs <- subset(obs, Anchor.Window == "ANCHOR")
+    # If there is none, exit without success
+    if (nrow(anchorobs) == 0) {
+    	anchor <- c("N", "NA")
+    } else { # Otherwise search for fixation on the
+    	# prior speaker in this window
+    	anchor <- fixation.check(anchorobs, "ANCHOR",
+    	fixation.window, minstart)
+    }
+    
+    # Minstart now becomes the result from the anchor search
+    # This way we don't waste time looking earlier in the
+    # analysis window than needed when finding fixations
+    # in the Transition window (below)
+    minstart <- anchor[2]
+
+    # Find the subset of the total analysis window that is just
+    # linked to the Transition window
+    transitionobs <- subset(obs, Transition.Window == "TRANSITION")
+    if (nrow(transitionobs) == 0) {
+    	transition <- c("N", "NA")
+    # If there is none, exit without success
+    } else { # Otherwise search for fixation on the upcoming speaker
+    	# in this window
+   		transition <- fixation.check(transitionobs, "TRANSITION",
+   		fixation.window, minstart)	
+    }
+    
+    # Return the results of the search in the Anchor and Transition windows
+    if (anchor[1] == "Y" && transition[1] == "Y") {
+    	# If there were fixations in both the Anchor and Transition windows,
+    	# find the starting point of the look away from the prior speaker
+        switch.time <- max(obs[Looks.Origin == "1" &
+        	TimeSec < transition[2], Cumulative.Time])
+        return(list(1, switch.time))
+    } else { # If there weren't fixations in both the Anchor and Transition
+    	# windows, there was no valid switch
         return(list(0,0))
     }
 }
 
 
-# Searches 100 msec windows of time for 90%+ fixation on a speaker (origin or
-# responder) during a pre-set analysis window (ANCHOR or TRANSITION)
+################################################################################
+# Subfunction of find.transition: Searches for fixations on a speaker that
+# last at least 100ms and returns (a) whether there is such a fixation and
+# (b) if so, when it started
 fixation.check <- function(obs, window.type, fixation.window, minstart) {
-    # The maximum starting point for a 100 msec window
-    maxstart <- max(obs$TimeSec) - fixation.window
-    # Start value for the 90%+ looking criteria
-    looking <- 0
-    # Smallest possible time increment in the eye measurements
-    ms.increment <- min(obs$MS.Increment)
 
-    # For fixation checks on anchors...
-    if(window.type == "ANCHOR") {
-        # Set the start time for incrementing forward with 100 msec windows
-        start <- min(obs$TimeSec)
-        # Increment forward until there are no more 100 msec segments to check
-        # or until 90%+ fixation is found
-        while((start < maxstart) && (looking < 0.9)) {
-            # Get the mean of looks to the origin speaker during the current 100 
-            # msec window
-            looks.origin <- obs$Looks.Origin[which(obs$TimeSec >= start &
-                obs$TimeSec <= start + fixation.window)]
-            if (length(looks.origin) > 0) {
-                looks.origin[is.na(looks.origin)] <- 0
-                # Reset "looking" to the current mean
-                looking <- mean(looks.origin)
-            } else {
-                looking <- 0
-            }
-            # Increment forward to next minimum fixation window
-            start = start + ms.increment
-        }
-        # Return the findings: was there a fixation or not?
-        if (looking >= 0.9) {
-        	# Return the current start time to help find fixation during the 
-            # TRANSITION region (coming up next)
-            return(list("Y", start))
-        } else {
-            return(list("N", "NA"))
-        }
-    }
-    # For fixation checks on transitions...
-    if(window.type == "TRANSITION") {
-        # If there was no fixation during the ANCHOR region, don't continue
-        if (minstart == "NA") {return(list("N","NA"))}
-
-        # Start time for incrementing must be after the fixation on the origin
-        # started (from the ANCHOR region)
-        # Needs to be converted from the list format to numeric
-        start <- as.numeric(minstart)
-        # Increment forward until there are no more 100 msec segments to check
-        # or until 90%+ fixation is found
-        while((start < maxstart) && (looking < 0.9)) {
-            # Get the mean of looks to the origin speaker during the current 100 
-            # msec window
-            looks.destination <- obs$Looks.Destination[which(
-                obs$TimeSec >= start & obs$TimeSec <= start + fixation.window)]
-            if (length(looks.destination) > 0) {
-                looks.destination[is.na(looks.destination)] <- 0
-                # Reset "looking" to the current mean
-                looking <- mean(looks.destination)
-            } else {
-                looking <- 0
-            }
-            # Increment forward to next minimum fixation window
-            start = start + ms.increment
-        }
-        # Return the findings: was there a fixation or not?
-        if (looking >= 0.9) {
-        	# Return the current start time to help find the beginning of the 
-            # transition time (coming up next)
-            return(list("Y", start))
-        } else {
-            return(list("N", "NA"))
-        }
-    }
-}
-
-
-# Working backwards from the start time of fixations to the responder, find the 
-# last look to the origin speaker
-find.transition.start <- function(obs, start) {
-    # Create a subset of the rows: where the participant is looking at the
-    # origin speaker before the fixation on the responder begins
-    # (handed down from fixation.check)
-    looks.to.origin <- subset(obs, Looks.Origin == "1" & TimeSec < start)
-    # Find the latest time in that subset, and retrieve it's equivalent in 
-    # Cumulative Time
-    return(obs[which.max(looks.to.origin$TimeSec),]$Cumulative.Time)
-}
-
-
-# Creates a summary of the switch data using Cumulative Time to enable us to 
-# easily plot and analyze cumulative switches over the transition window
-cumulative.switches.by.cond <- function(obs) {
-    # Create an empty output data frame
-	obs <- subset(obs, Switch != "NA")
-	conditions <- unique(obs$Condition)
-	ages <- sort(unique(obs$Age))
-	df.row <- 1
-	increment <- 0.025
-	maxtime.all <- max(obs$Start.Time)
-	N <- ceiling(maxtime.all/increment)*length(ages)*length(conditions)
-	cumulative.prob <- data.frame(TimeIncrement=rep(NA, N),
-	    Proportion=rep(NA, N), Age=rep(NA, N), Condition=rep(NA, N))
-    # Loops through the language groups
-	for (i in 1:length(conditions)) {
-	sub.data.c <- subset(obs, Condition == conditions[i])
-    # Finds the max time needed
-	maxtime <- max(sub.data.c$Start.Time)
-		# Grab data for a particular age
-		for (j in 1:length(ages)) {
-			start <- 0
-			total.looks <- nrow(sub.data.c[sub.data.c$Age == as.character(ages[j]),])
-            # Excludes cases where no switch was made (Start.Time == 0.0)
-			sub.data.a <- subset(sub.data.c, Age == ages[j] & Start.Time > 0)
-            # Change value for adults
-            agenum <- ifelse(ages[j] == "21", "Adult", as.character(ages[j]))
-			cond <- as.character(sub.data.a[1,]$Condition)
-            # For each increment (set above), find the proportion of the total 
-            # who have made switches by that point in time
-			while(start < maxtime) {
-                prop.looks <- sum(sub.data.a$Start.Time < start) / total.looks
-                cumulative.prob[df.row,] <- c(start, prop.looks, agenum, cond)
-                # Record the proportion in the data frame and increment forward
-				df.row = df.row + 1
-				start = start + increment
-			}
+    # For fixation checks on Anchor windows
+    if (window.type == "ANCHOR") {
+		# Dummy start values
+		# (assumes no switch)
+    	max.time <- NA
+		yn <- "N"
+		# Compile the looks to the previous
+		# speaker into runs of values (1/NA/0) 
+    	numruns <- rle(obs$Looks.Origin)
+    	# Convert the runs into a data table that gives
+    	# run length and start time
+    	run.vals <- data.table(Length = numruns[['lengths']],
+    		Value = numruns[['values']])
+		run.vals[, Start := cumsum(Length)-Length+1]
+    	# Find the runs looking at the previous speaker (val:1)
+    	# that are at least 13 measurements long because:
+    	# 13 * 8 ms (avg measurement interval) = 104ms
+    	# Returned value is the timestamp of the last
+    	# measurement in the run
+		max.orig <- run.vals[Length >= 13 & Value == 1, Start+Length-1]
+		# If there's at least one run that meets this criteria,
+		# grab the time value for the last measurement at the
+		# previous speaker in the first fixation longer than 100ms
+		if (length(max.orig) > 0) {
+			max.time <- obs[max.orig[1], TimeSec]
+			yn <- "Y"
 		}
-	}
-	return(cumulative.prob)
+		# Return this time along with
+		# an affirmative code for fixation
+		return(list(yn, max.time))
+    }
+    # For fixation checks on Transition windows
+    if(window.type == "TRANSITION") {
+        # If there was no fixation during
+        # the ANCHOR region, don't continue
+        if (minstart == "NA") {
+        	return(list("N","NA"))
+        }
+		# Dummy start values
+		# (assumes no switch)
+    	min.time <- NA
+		yn <- "N"
+		# Only look at data from the minstart to the end of the window
+		# (minstart is the end of the known fixation on the prior speaker
+		# in the Anchor window, so we only need to look *after* that point
+		# for a fixation on the upcoming speaker)
+		sub.obs <- obs[TimeSec > minstart,]
+		# Compile the looks to the previous
+		# speaker into runs of values (1/NA/0) 
+    	numruns <- rle(sub.obs$Looks.Destination)
+    	run.vals <- data.table(Length = numruns[['lengths']],
+    		Value = numruns[['values']])
+		run.vals[, Start := cumsum(Length)-Length+1]
+    	# Find the runs looking at the previous speaker (val:1)
+    	# that are at least 13 measurements long because:
+    	# 13 * 8 ms (avg measurement interval) = 104ms
+    	# Returned value is the timestamp of the first
+    	# measurement in the run
+		min.dest <- run.vals[Length >= 12 & Value == 1, Start]
+		# If there's at least one run that meets this criteria,
+		# grab the time value for the first look at the
+		# upcoming speaker in the first fixation longer than 100ms
+		if (length(min.dest) > 0) {
+			min.time <- sub.obs[min.dest[1], TimeSec]
+			yn <- "Y"
+		}
+		# Return this time along with
+		# an affirmative code for fixation
+		return(list(yn, min.time))
+    }
 }
