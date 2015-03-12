@@ -1,0 +1,7 @@
+*.swp
+.R*
+.DS_Store
+processed_data
+tracker_data
+info
+plots
