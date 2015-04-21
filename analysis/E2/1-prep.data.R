@@ -136,7 +136,7 @@ all.data[, Look.Dir := ifelse(
 	M.looks > F.looks, "M", "0"))]
 
 # Re-order the data table
-setkeyv(all.data, c("Subject", "Segment", "Onset"))
+setkeyv(all.data, c("Subject", "Segment", "TimeSec"))
 
 # Smooth gaps in the tracker measurements	
 all.data <- smoothLD(all.data)

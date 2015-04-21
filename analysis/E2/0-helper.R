@@ -344,3 +344,126 @@ get.windows.categorical <- function(obs, gap.info, utt1.window,
     df.out <- df.out[order(Subject, GapNum, Cumulative.Time),]
     return(df.out)
 }
+
+findFixations <- function(dt) {
+	# Create a data table with as many rows as we could possibly need. We'll
+	# prune the unused rows before returning. This is supposed to be much more
+	# efficient than building a data frame row by row.
+	n <- nrow(dt)
+	fixations <- data.table(
+		Subject=rep("", n),
+		Segment=rep("", n),
+	    	Version=rep("", n),
+    		Condition=rep("", n),
+    		Conversation=rep("", n),
+    		Target=rep("", n),
+    		TSSOnset=rep(0, n),
+    		TSSOffset=rep(0, n))
+      fix_idx <- 1
+      subjects <- unique(dt$Subject)
+	for (sub in subjects) {
+		print(sub)
+		version <- unlist(strsplit(sub, "[-_.]"))[2]
+		subdata <- which(dt$Subject == sub)
+		segments <- unique(dt[subdata, ]$Segment)
+		for (seg in segments) {
+			print(seg)
+			segdata <- which(dt[subdata, ]$Segment == seg) + subdata[1] - 1
+			if (length(segdata) <= 1) {
+				next
+			}
+			cond <- vid.info[Segment == seg, Condition]
+			conv <- vid.info[Segment == seg, Conversation]
+			smoothLD <- dt[segdata, Look.Dir]
+			timeSecSeg <- dt[segdata, TimeSecSeg]
+			msDur <- dt[segdata, MS.Increment]
+			startidx <- 1
+			curfix <- smoothLD[startidx]
+			for (i in 2:length(segdata)) {
+				if (smoothLD[i] != curfix) {
+					# NOTE: The columns of the data frame are set by index,
+					# and NOT BY NAME.
+					# We're using a list to give the fields names, but the
+					# order MUST match the order of the columns in the data
+					# frame defined above.
+					fixations[fix_idx, ] <- list(
+						Subject=sub,
+						Segment=seg,
+						Version=version,
+						Condition=cond,
+						Conversation=conv,
+						Target=curfix,
+						TSSOnset=timeSecSeg[startidx],
+						TSSOffset=timeSecSeg[i-1] + msDur[i-1])
+					startidx <- i
+					curfix <- smoothLD[startidx]
+					fix_idx <- fix_idx + 1
+				}
+			}
+			# By this point, there is always at least one fixation. We add
+			# the final fixation unconditionally.
+			fixations[fix_idx, ] <- list(
+				Subject=sub,
+				Segment=seg,
+				Version=version,
+				Condition=cond,
+				Conversation=conv,
+				Target=curfix,
+				TSSOnset=timeSecSeg[startidx],
+				TSSOffset=timeSecSeg[i] + msDur[i])
+			fix_idx <- fix_idx + 1
+		}
+	}
+	fixations <- fixations[1:fix_idx-1]
+	# We need to convert the character columns to factors.
+	return(factorizeDT(fixations))
+}
+
+findSwitches <- function(df) {
+	# Create a data frame of switches. We use a copy of the passed-in fixations
+	# data frame, renaming the "Target" column to "Origin". We'll replace rows
+	# starting from 1.
+	switches <- df
+	names(switches)[names(switches) == "Target"] <- 'Origin'
+	switch_idx <- 1
+	subjects <- levels(df$Subject)
+	for (sub in subjects) {
+		print(sub)
+		subdata <- which(df$Subject == sub)
+		version <- unlist(strsplit(sub, "[-_.]"))[2]
+		segments <- unique(df[subdata, ]$Segment)
+		for (seg in segments) {
+			print(seg)
+			segdata <- which(df[subdata, ]$Segment == seg) + subdata[1] - 1
+			if (length(segdata) <= 1) {
+				next
+			}
+			cond <- as.character(subset(vid.info, Segment == seg)$Condition)
+			conv <- as.character(subset(vid.info, Segment == seg)$Conversation)
+			for (i in 2:length(segdata)) {
+				if (df[segdata, ]$Target[i-1] != df[segdata, ]$Target[i]) {
+					# Note that the order of these columns MUST match the order in
+					# the data frame. They're NOT set by name.
+					switches[switch_idx, ] <- list(
+						Subject = sub,
+						Segment = seg,
+						Version = version,
+						Condition = cond,
+						Conversation = conv,
+						Origin = df[segdata, ]$Target[i-1],
+						TSSOnset = df[segdata, ]$TSSOffset[i-1],
+						TSSOffset = df[segdata, ]$TSSOnset[i])
+					switch_idx <- switch_idx + 1
+				}
+			}
+		}
+	}
+	switches <- switches[1:switch_idx-1, ]
+	return(switches)
+}
+
+factorizeDT <- function(dt) {
+	idxs <- names(dt)[sapply(dt, is.character)]
+	dt[, (idxs) := lapply(dt[, idxs, with=FALSE], as.factor)]
+	return(dt)
+}
