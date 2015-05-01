@@ -7,6 +7,8 @@ library(plotrix)
 library(reshape)
 library(plyr)
 library(car)
+library(data.table)
+library(bit64)
 
 # Add some style elements for ggplot2
 plot.style <- theme(panel.grid.major = element_blank(),

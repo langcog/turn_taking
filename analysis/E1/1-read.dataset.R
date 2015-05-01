@@ -2,9 +2,9 @@ rm(list = ls())
 source("0-useful.R")
 source("0-helper.R")
 
-raw.data.path <- "tracker_data/"
-info.path <- "info/"
-processed.data.path <- "processed_data/"
+raw.data.path <- "../../data/E1/tracker_data/"
+info.path <- "../../data/E1/info/"
+processed.data.path <- "../../data/E1/processed_data/"
 
 files <- dir(raw.data.path, pattern="*.txt")
 all.data <- data.frame()

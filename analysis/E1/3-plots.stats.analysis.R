@@ -6,9 +6,9 @@ library(scales)
 library(Hmisc)
 source("0-useful.R")
 
-raw.data.path <- "tracker_data/"
-info.path <- "info/"
-processed.data.path <- "processed_data/"
+raw.data.path <- "../../data/E1/tracker_data/"
+info.path <- "../../data/E1/info/"
+processed.data.path <- "../../data/E1/processed_data/"
 plot.path <- "plots/"
 
 # Color and line palettes
@@ -32,7 +32,7 @@ all.data <- 0
 
 # Read in gaze switch proportions
 # Actual data
-switch.final <- read.csv(paste(processed.data.path, "switch.final.csv", sep=""))
+switch.final <- fread(paste(processed.data.path, "switch.final.csv", sep=""))
 sw.f.drop <- c("X", "X.1", "notes", "Ttype")
 switch.final <- switch.final[,!(names(switch.final) %in% sw.f.drop)]
 # Random baseline

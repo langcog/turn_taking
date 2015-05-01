@@ -3,9 +3,9 @@ source("0-useful.R")
 source("0-helper.R")
 source("0-find.transitions.R")
 
-raw.data.path <- "tracker_data/"
-info.path <- "info/"
-processed.data.path <- "processed_data/"
+raw.data.path <- "../../data/E1/tracker_data/"
+info.path <- "../../data/E1/info/"
+processed.data.path <- "../../data/E1/processed_data/"
 
 # Read in supplemental data and prep
 vid.info <- read.csv(paste(info.path,"VideoSegmentInfo.csv",sep=""))
@@ -28,7 +28,7 @@ gap.info = within(gap.info, {
 # First we'll merge the gaze data with the information about the stimuli
 
 # Read in main datafile
-all.data <- read.csv(paste(processed.data.path,"imported.data.csv",sep=""))
+all.data <- fread(paste(processed.data.path,"imported.data.csv",sep=""))
 
 # Merge in condition sites, using onsets
 all.data$Onset <- rep(NA, nrow(all.data))
