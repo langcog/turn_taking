@@ -1,0 +1,8 @@
+*.swp
+.R*
+.DS_Store
+processed_data
+processed_data_boredom
+tracker_data
+info
+plots
