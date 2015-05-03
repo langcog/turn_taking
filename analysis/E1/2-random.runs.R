@@ -106,10 +106,10 @@ library(doParallel)
 start <- Sys.time()
 
 #setup parallel backend 
-cl<-makeCluster(4)
+cl<-makeCluster(4, method="FORK")
 registerDoParallel(cl, cores = 4)
 
-foreach (i = 1:4) %dopar% {
+foreach (i = 1:4, .packages = "dplyr") %dopar% {
   make.replicate(all.data.A, all.data.C, i, info.path, processed.data.path) 
 }
 

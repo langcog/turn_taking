@@ -126,8 +126,7 @@ get.gap2 <- function(condition, onset, offset, speakerprev, type, gap,
            QS = type,
            Gap = gap,
            Cumulative.Time = round(TimeSec - min(TimeSec),3))
-}  
-
+}   
 
 ## get gap original function
 get.gap <- function(condition, onset, offset, speakerprev, type, gap,
@@ -246,14 +245,17 @@ grab.transition.info2 <- function(obs, fixation.window) {
            transition.filter = as.numeric(stats::filter(idt, filter = rep(1, 12), 
                                                         side = 1)))  %>%
     summarise(Anchor = any(anchor.filter > .09, na.rm = TRUE),
-              Transition = any(transition.filter > .09, na.rm = TRUE),
-              Switch = Anchor & Transition, 
-              # find start time, which is last look to origin before transition.
+              Transition = any(transition.filter > .09, na.rm = TRUE),              
+              Switch = Anchor & Transition,               
+              # first look to destination is corrected by 100ms for filter
+              Transition.Time = Cumulative.Time[transition.filter > .09 & 
+                                                  !is.na(transition.filter)][1] - .1,              
+              # last look to origin before first look to transition
               Start = ifelse(Switch, 
                              max(Cumulative.Time[Looks.Origin & 
-                                                   (transition.filter < .09 | 
-                                                      is.na(transition.filter))], 
-                                 na.rm=TRUE), 0)) %>%
+                                                   Cumulative.Time < Transition.Time], 
+                                 na.rm=TRUE),
+                             0)) %>%
     arrange(Gap) # arrange nicely, not necessary
 }
 
