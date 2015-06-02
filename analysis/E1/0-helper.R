@@ -1,398 +1,159 @@
-# Reads in the raw tracker data files and converts some basic raw values for us.
+library(data.table)
+library(grid)
+library(ggplot2)
+library(bootstrap)
+library(lme4)
+library(stringr)
+library(plotrix)
+library(reshape)
+library(plyr)
+library(car)
+
+################################################################################
+# Misc helper functions
+################################################################################
+# Add some style elements for ggplot2
+plot.style <- theme(panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.line = element_line(colour="black",size=.5),
+    axis.ticks = element_line(size=.5),
+    axis.title.x = element_text(vjust=-.5),
+    axis.title.y = element_text(angle=90,vjust=0.25),
+    panel.margin = unit(1.5,"lines"))
+
+theme_set(theme_bw())
+
+# Standard error of the mean
+sem <- function (x) {
+    sd(x) / sqrt(length(x))
+}
+
+na.mean <- function(x) {mean(x,na.rm=T)}
+
+to.n <- function(x) {
+    as.numeric(as.character(x))
+}
+
+# Number of unique subs
+n.unique <- function (x) {
+    length(unique(x))
+}
+
+# For bootstrapping 95% confidence intervals
+theta <- function(x,xdata) {mean(xdata[x])}
+ci.low <- function(x) {
+    mean(x) - quantile(bootstrap(1:length(x),1000,theta,x)$thetastar,.025)}
+ci.high <- function(x) {
+    quantile(bootstrap(1:length(x),1000,theta,x)$thetastar,.975) - mean(x)}
+ci95 <- function(x) {sem(x)*1.96}
+
+# For basic plots, add linear models with correlations
+lm.txt <- function (p1,p2,x=7.5,yoff=.05,lt=2,c="black",data=data) {
+    l <- lm(p2 ~ p1)
+    regLine(l,lty=lt,col=c)
+    cl <- coef(l)
+    text(x,cl[1] + cl[2] * x + yoff,
+        paste("r = ",sprintf("%2.2f",sqrt(summary(l)$r.squared)),
+        getstars(anova(l)$"Pr(>F)"[1]),sep=""), xpd="n")
+}
+
+getstars <- function(x) {
+    if (x > .1) {return("")}
+    if (x < .001) {return("***")}
+    if (x < .01) {return("**")}
+    if (x < .05) {return("*")}
+}
+
+################################################################################
+# Data preparation functions
+################################################################################
+# Reads in the raw tracker data files and converts them to the basic
+# information we need to proceed with analyses
 read.data <- function(path,file.name) {
     # E.g., A-ADU-P01.txt (for condition A, ADULT, and participant 01)
-    name.parts <- unlist(strsplit(file.name, "[-_.]"))
-    data <- read.csv(paste(path,file.name,sep=""))
-    # Within the tracker data for this participant...
-    data <- within(data, {
-        L.POR.X..px. <- to.n(L.POR.X..px.)
-        R.POR.X..px. <- to.n(R.POR.X..px.)
-        L.POR.Y..px. <- to.n(L.POR.Y..px.)
-        R.POR.Y..px. <- to.n(R.POR.Y..px.)
-        # Average x and y positions
-        x.pos <- rowMeans(data[, c("L.POR.X..px.", "R.POR.X..px.")])
-        y.pos <- rowMeans(data[, c("L.POR.Y..px.", "R.POR.Y..px.")])
-        # Object.Hits are when the eyes are looking in an area of interest
-        L.looks <- L.Object.Hit == "LEFT" | R.Object.Hit == "LEFT"
-        R.looks <- L.Object.Hit == "RIGHT" | R.Object.Hit == "RIGHT"
-        # Events are what the eyes are doing (e.g., fixating, saccading, etc.)
-        Events <- L.Event.Info != "Blink" & L.Event.Info != "-" &
-            R.Event.Info != "Blink" & R.Event.Info != "-"
-        Saccades <- L.Event.Info == "Saccade" | R.Event.Info == "Saccade"
-        Fixations <- L.Event.Info == "Fixation" | R.Event.Info == "Fixation"
-        # Add a version/agegroup/subject column based on the file name
-        Condition <- rep(name.parts[1], nrow(data))
-        AgeGroup <- rep(name.parts[2], nrow(data))
-        Subject <- rep(paste(name.parts[1], name.parts[3], name.parts[2],
-            sep = "-"), nrow(data))
-        # Make the time into seconds
-        TimeSec <- round((Time - Time[1])/(1000000), 3)
-        MS.Increment <- c(0, diff(TimeSec))
-    })
+    name.parts <- unlist(strsplit(file.name, "[-.]"))
+    subname <- unlist(strsplit(file.name, "[.]"))[1]
+    # Read in a tracker data file
+    data <- fread(paste(path,file.name,sep=""))
+    # Make the colnames readable in R
+    newnames <- chartr(" []°", "....", names(data))
+    setnames(data, names(data), newnames)
+    # First timepoint in file (for initializing a new time col)
+    t1 <- data$Time[1]
+    # Reset the values from the following columns to
+    # something more useful for analysis:
+    # - Make target hit (Left vs. Right) summaries
+    data[, L.looks := L.Object.Hit == "LEFT" |
+    R.Object.Hit == "LEFT"]
+    data[, R.looks := L.Object.Hit == "RIGHT" |
+    R.Object.Hit == "RIGHT"]
+    # - Make eye event summaries
+    data[, Events := L.Event.Info != "Blink" & L.Event.Info != "-" &
+        R.Event.Info != "Blink" & R.Event.Info != "-"]
+    data[, Saccades := L.Event.Info == "Saccade" |
+        R.Event.Info == "Saccade"]
+    data[, Fixations := L.Event.Info == "Fixation" |
+        R.Event.Info == "Fixation"]
+    # Add the experiment version, age group, and subject number
+    data[, Condition := name.parts[1]]
+    # data[, AgeGroup := name.parts[2]]
+    data[, Subject := subname]
+    # Add a new column for time from the start of the experiment
+    data[, TimeSec := round((Time - t1)/(1000000), 3)]
+    data[, MS.Increment := c(0, diff(TimeSec))]
+    # Return the newly converted tracker data
     return (data)
 }
 
 
-# Adds annotations to those measurements that are within the analysis windows
-# |--------A----|-|                     # Speaker A's turn
-#                      |-|----B-----|   # Speaker B's turn
-# Anchor:      |--|
-# Transition:   |---------|
-# Gap:            |----|
-#
-get.windows.categorical <- function(obs, gap.info, utt1.window,
-                                    utt2.window, fixation.window) {
-  # Get rid of gaps over 550 ms (marked as 0 in the spreadsheet)
-  gaps <- subset(gap.info, Gap != "na" & Gap != "0")
-  df.out = data.frame()
-  for (i in 1:nrow(gaps)) {
-    gap <- gaps[i,]
-    rows <- subset(obs,
-                   Condition == toString(gap$Condition) & 
-                     (TimeSec >= gap$Onset - utt1.window - fixation.window) & 
-                     (TimeSec <= gap$Offset + utt2.window + fixation.window))           
-    if (nrow(rows) == 0) {
-      next
-    }
-    # Set the anchor window measurements to "ANCHOR"
-    anchor.window.idx <- which(
-      (rows$TimeSec >= gap$Onset - utt1.window - fixation.window) &
-        rows$TimeSec <= gap$Onset)
-    rows$Anchor.Window <- rep(NA, nrow(rows))
-    rows$Anchor.Window[anchor.window.idx] <- "ANCHOR"
-    # Set the transition window measurements to "TRANSITION"
-    transition.window.idx <- which(
-      (rows$TimeSec >= gap$Onset - utt1.window) &
-        (rows$TimeSec <= gap$Offset + utt2.window + fixation.window))
-    rows$Transition.Window <- rep(NA, nrow(rows))
-    rows$Transition.Window[transition.window.idx] <- "TRANSITION"
-    # Set the gap window measurements to "GAP"
-    gap.window.idx <- which(rows$TimeSec >= gap$Onset &
-                              rows$TimeSec <= gap$Offset)
-    rows$Gap.Window <- rep(NA, nrow(rows))
-    rows$Gap.Window[gap.window.idx] <- "GAP"
-    # Set the origin to the previous speaker at that gap
-    rows$Origin <- rep(as.character(gap$SpeakerPrev), nrow(rows))
-    # Set the QS status to the transition type (question or non-question)
-    rows$QS <- rep(as.character(gap$Type), nrow(rows))
-    # Set the gap number
-    rows$GapNum <- rep(toString(gap$Gap), nrow(rows))
-    # Create a "cumulative" time to plot the analysis window from t=0    
-    minTime <- min(rows$TimeSec)
-    rows$Cumulative.Time <- round((rows$TimeSec - minTime), 3) 
-    df.out <- rbind(df.out, rows)
-  }
-  # Re-order data and return it
-  df.out <- df.out[order(df.out$Subject, as.integer(df.out$GapNum),
-                         df.out$Cumulative.Time), ]
-  return(df.out)
-}
-
-
-
-# optimized version of the above function, should perform identically
-# mcf 4/30/15
-get.windows.categorical2 <- function(obs, gap.info, utt1.window,
-                                    utt2.window, fixation.window) {
-  
-  # Get rid of gaps over 550 ms (marked as 0 in the spreadsheet)
-  gaps <- gap.info %>% 
-    filter(Gap != "na", Gap != "0")
- 
-  # shuffle and then rearrange
-  df.out <- gaps %>% 
-    group_by(order) %>% 
-    do(get.gap2(.$Condition, .$Onset, .$Offset, .$SpeakerPrev, .$Type, .$Gap,
-               obs, utt1.window, utt2.window, fixation.window)) %>%
-    arrange(Subject, order, Cumulative.Time)     
-  
-   return(df.out)
-}
-
-## helper function for optimized get.windows.categorical
-get.gap2 <- function(condition, onset, offset, speakerprev, type, gap,
-                    obs, utt1.window, utt2.window, fixation.window) {
-  
-  obs %>% 
-    filter(Condition == condition,
-           (TimeSec >= onset - utt1.window - fixation.window), 
-           (TimeSec <= offset + utt2.window + fixation.window)) %>%
-    mutate(Anchor.Window = TimeSec >= onset - utt1.window - fixation.window &
-             TimeSec <= onset,
-           Transition.Window = TimeSec >= onset - utt1.window &
-             TimeSec <= offset + utt2.window + fixation.window,
-           Gap.Window = TimeSec >= onset & TimeSec <= offset,
-           Origin = speakerprev,
-           QS = type,
-           Gap = gap,
-           Cumulative.Time = round(TimeSec - min(TimeSec),3))
-}   
-
-## get gap original function
-get.gap <- function(condition, onset, offset, speakerprev, type, gap,
-                    obs, utt1.window, utt2.window, fixation.window) {
-  
-  rows <- subset(obs,
-                 Condition == toString(condition) & 
-                   (TimeSec >= onset - utt1.window - fixation.window) & 
-                   (TimeSec <= offset + utt2.window + fixation.window))           
-  if (nrow(rows) == 0) {
-    next
-  }
-  # Set the anchor window measurements to "ANCHOR"
-  anchor.window.idx <- which(
-    (rows$TimeSec >= onset - utt1.window - fixation.window) &
-      rows$TimeSec <= onset)
-  rows$Anchor.Window <- rep(NA, nrow(rows))
-  rows$Anchor.Window[anchor.window.idx] <- "ANCHOR"
-  # Set the transition window measurements to "TRANSITION"
-  transition.window.idx <- which(
-    (rows$TimeSec >= onset - utt1.window) &
-      (rows$TimeSec <= offset + utt2.window + fixation.window))
-  rows$Transition.Window <- rep(NA, nrow(rows))
-  rows$Transition.Window[transition.window.idx] <- "TRANSITION"
-  # Set the gap window measurements to "GAP"
-  gap.window.idx <- which(rows$TimeSec >= onset &
-                            rows$TimeSec <= offset)
-  rows$Gap.Window <- rep(NA, nrow(rows))
-  rows$Gap.Window[gap.window.idx] <- "GAP"
-  # Set the origin to the previous speaker at that gap
-  rows$Origin <- rep(as.character(speakerprev), nrow(rows))
-  # Set the QS status to the transition type (question or non-question)
-  rows$QS <- rep(as.character(type), nrow(rows))
-  # Set the gap number
-  rows$GapNum <- rep(toString(gap), nrow(rows))
-  # Create a "cumulative" time to plot the analysis window from t=0    
-  minTime <- min(rows$TimeSec)
-  rows$Cumulative.Time <- round((rows$TimeSec - minTime), 3) 
-  
-  return(rows)
-}
-
-# Returns a data frame of transition info (whether or not switches were made
-# and, if so, when they started) for all subjects and transitions
-grab.transition.info <- function(obs, fixation.window) {
-  # Preset the total number of rows needed
-  subs <- unique(obs$Subject)
-  gaps <- sort(as.integer(unique(obs$GapNum)))
-  N <- length(subs) * length(gaps)
-  # Make the empty data frame
-  proportion.data <- data.frame(Subject=rep(NA, N), Gap=rep(NA, N),
-                                Switch=rep(NA, N), Start.Time=rep(NA, N))
-  # Iterate through data frame rows, filling in transition information for
-  # each subject and gap
-  df.row = 1
-  # Grab a subject's data
-  for (i in 1:length(subs)) {
-    sub.data <- subset(obs, Subject == subs[i])
-    # Grab data for a particular gap
-    for (j in 1:length(gaps)) {
-      # Find the transition information (is there a switch? where?)
-      gap.transition <- find.transition(subset(sub.data,
-                                               GapNum == gaps[j]), fixation.window)
-      # Add the result to the data frame
-      proportion.data[df.row,] <- c(as.character(subs[i]),
-                                    gaps[j], gap.transition[1], gap.transition[2])
-      # Move onto the next row in the ouput data frame
-      df.row = df.row + 1
-    }
-  }
-  return(proportion.data)
-}
-
-
-# Parent function, linking the results of fixation.check and
-# find.transition.start together
-find.transition <- function(obs, fixation.window) {
-  if(nrow(obs) < 1) {
-    return(list(NA,NA))
-  } 
-  # Dummy minstart
-  minstart <- "NA"
-  # Search for a 100 msec fixation on the origin speaker during
-  # the ANCHOR period
-  anchor <- fixation.check(subset(obs, Anchor.Window == "ANCHOR"), "ANCHOR",
-                           fixation.window, minstart)
-  minstart <- anchor[2]
-  # Search for a 100 msec fixation on the response speaker during
-  # the TRANSITION period
-  transition <- fixation.check(subset(obs, Transition.Window == "TRANSITION"),
-                               "TRANSITION", fixation.window, minstart)
-  # Return the results of the search
-  if(anchor[1] == "Y" & transition[1] == "Y") {
-    # If you found fixations on the ANCHOR and TRANSITION, find the starting
-    # point of the transition
-    return(list(1, find.transition.start(obs, transition[2])))
-  }
-  else {
-    # Otherwise there's no valid switch being made
-    return(list(0,0))
-  }
-}
-
-# optimized version of the above
-# note, makes use of linear filter that depends on equal spacing of points
-# .0083 msec * 12 = 100 msec, of which > 90 msec need to be looks. 
-# note: GapNum is factor, oddly, so we cast back to numeric. 
-grab.transition.info2 <- function(obs, fixation.window) {
-  
-  obs %>%  
-    group_by(Subject, Gap) %>% 
-    mutate(iow = Looks.Origin * MS.Increment * Anchor.Window, 
-           idt = Looks.Destination * MS.Increment * Transition.Window,
-           anchor.filter = as.numeric(stats::filter(iow, filter = rep(1, 12), 
-                                                    side = 1)),
-           transition.filter = as.numeric(stats::filter(idt, filter = rep(1, 12), 
-                                                        side = 1)))  %>%
-    summarise(Anchor = any(anchor.filter > .09, na.rm = TRUE),
-              Transition = any(transition.filter > .09, na.rm = TRUE),              
-              Switch = Anchor & Transition,               
-              # first look to destination is corrected by 100ms for filter
-              Transition.Time = Cumulative.Time[transition.filter > .09 & 
-                                                  !is.na(transition.filter)][1] - .1,              
-              # last look to origin before first look to transition
-              Start = ifelse(Switch, 
-                             max(Cumulative.Time[Looks.Origin & 
-                                                   Cumulative.Time < Transition.Time], 
-                                 na.rm=TRUE),
-                             0)) %>%
-    arrange(Gap) # arrange nicely, not necessary
-}
-
-# looks.to.origin <- subset(obs, Looks.Origin == "1" & TimeSec < start)
-# # Find the latest time in that subset, and retrieve it's equivalent in 
-# # Cumulative Time
-# return(obs[which.max(looks.to.origin$TimeSec),]$Cumulative.Time))
-
-
-# Searches 100 msec windows of time for 90%+ fixation on a speaker (origin or
-# responder) during a pre-set analysis window (ANCHOR or TRANSITION)
-fixation.check <- function(obs, window.type, fixation.window, minstart) {
-  # The maximum starting point for a 100 msec window
-  maxstart <- max(obs$TimeSec) - fixation.window
-  # Start value for the 90%+ looking criteria
-  looking <- 0
-  # Smallest possible time increment in the eye measurements
-  ms.increment <- min(obs$MS.Increment)
-  
-  # For fixation checks on anchors...
-  if(window.type == "ANCHOR") {
-    # Set the start time for incrementing forward with 100 msec windows
-    start <- min(obs$TimeSec)
-    # Increment forward until there are no more 100 msec segments to check
-    # or until 90%+ fixation is found
-    while((start < maxstart) && (looking < 0.9)) {
-      # Get the mean of looks to the origin speaker during the current 100 
-      # msec window
-      looks.origin <- obs$Looks.Origin[which(obs$TimeSec >= start &
-                                               obs$TimeSec <= start + fixation.window)]
-      if (length(looks.origin) > 0) {
-        looks.origin[is.na(looks.origin)] <- 0
-        # Reset "looking" to the current mean
-        looking <- mean(looks.origin)
-      } else {
-        looking <- 0
-      }
-      # Increment forward to next minimum fixation window
-      start = start + ms.increment
-    }
-    # Return the findings: was there a fixation or not?
-    if (looking >= 0.9) {
-      # Return the current start time to help find fixation during the 
-      # TRANSITION region (coming up next)
-      return(list("Y", start))
-    } else {
-      return(list("N", "NA"))
-    }
-  }
-  # For fixation checks on transitions...
-  if(window.type == "TRANSITION") {
-    # If there was no fixation during the ANCHOR region, don't continue
-    if (minstart == "NA") {return(list("N","NA"))}
-    
-    # Start time for incrementing must be after the fixation on the origin
-    # started (from the ANCHOR region)
-    # Needs to be converted from the list format to numeric
-    start <- as.numeric(minstart)
-    # Increment forward until there are no more 100 msec segments to check
-    # or until 90%+ fixation is found
-    while((start < maxstart) && (looking < 0.9)) {
-      # Get the mean of looks to the origin speaker during the current 100 
-      # msec window
-      looks.destination <- obs$Looks.Destination[which(
-        obs$TimeSec >= start & obs$TimeSec <= start + fixation.window)]
-      if (length(looks.destination) > 0) {
-        looks.destination[is.na(looks.destination)] <- 0
-        # Reset "looking" to the current mean
-        looking <- mean(looks.destination)
-      } else {
-        looking <- 0
-      }
-      # Increment forward to next minimum fixation window
-      start = start + ms.increment
-    }
-    # Return the findings: was there a fixation or not?
-    if (looking >= 0.9) {
-      # Return the current start time to help find the beginning of the 
-      # transition time (coming up next)
-      return(list("Y", start))
-    } else {
-      return(list("N", "NA"))
-    }
-  }
-}
-
-
-# Working backwards from the start time of fixations to the responder, find the 
-# last look to the origin speaker
-find.transition.start <- function(obs, start) {
-  # Create a subset of the rows: where the participant is looking at the
-  # origin speaker before the fixation on the responder begins
-  # (handed down from fixation.check)
-  looks.to.origin <- subset(obs, Looks.Origin == "1" & TimeSec < start)
-  # Find the latest time in that subset, and retrieve it's equivalent in 
-  # Cumulative Time
-  return(obs[which.max(looks.to.origin$TimeSec),]$Cumulative.Time)
-}
-
-
-# Creates a summary of the switch data using Cumulative Time to enable us to 
-# easily plot and analyze cumulative switches over the transition window
-cumulative.switches.by.cond <- function(obs) {
-  # Create an empty output data frame
-  obs <- subset(obs, Switch != "NA")
-  lgrps <- unique(obs$LgGroup)
-  ages <- sort(unique(obs$Age))
-  df.row <- 1
-  increment <- 0.025
-  maxtime.all <- max(obs$Start.Time)
-  N <- ceiling(maxtime.all/increment)*length(ages)*length(lgrps)
-  cumulative.prob <- data.frame(TimeIncrement=rep(NA, N),
-                                Proportion=rep(NA, N), Age=rep(NA, N), Condition=rep(NA, N))
-  # Loops through the language groups
-  for (i in 1:length(lgrps)) {
-    sub.data.g <- subset(obs, LgGroup == lgrps[i])
-    # Finds the max time needed
-    maxtime <- max(sub.data.g$Start.Time)
-    # Grab data for a particular age
-    for (j in 1:length(ages)) {
-      start <- 0
-      total.looks <- sum(sub.data.g$Age == ages[j])
-      # Excludes cases where no switch was made (Start.Time == 0.0)
-      sub.data.a <- subset(sub.data.g, Age == ages[j] & Start.Time > 0)
-      # Change value for adults
-      agenum <- ifelse(ages[j] == "A", "Adult", as.character(ages[j]))
-      cond <- as.character(lgrps[i])
-      # For each increment (set above), find the proportion of the total 
-      # who have made switches by that point in time
-      while(start < maxtime) {
-        prop.looks <- sum(sub.data.a$Start.Time < start) / total.looks
-        cumulative.prob[df.row,] <- c(start, prop.looks, agenum, cond)
-        # Record the proportion in the data frame and increment forward
-        df.row = df.row + 1
-        start = start + increment
-      }
-    }
-  }
-  return(cumulative.prob)
+# Finds gaps in tracker measurements of less than 100ms and, if the participant
+# was looking at the same target object before and after the <100ms gap, fills
+# in the missing calues as looking at the same target object
+smoothLD <- function(dt) {
+	subjects <- unique(dt$Subject)
+	for (sub in subjects) {
+		segments <- unique(dt[Subject == sub, Segment])
+		for (seg in segments) {
+			# Create a vector of Look.Dir value runs
+			numruns <- rle(dt[Subject == sub & Segment == seg, Look.Dir])
+			# Convert the runs into a data table that gives
+			# run length and start time
+			run.vals <- data.table(Length = numruns[['lengths']],
+			    Value = numruns[['values']])
+			if (nrow(run.vals) > 1) {
+				run.vals[, Start := cumsum(Length) - Length + 1]
+				run.vals[, Prior := c("0", run.vals[1:(nrow(run.vals) - 1), Value])]
+				run.vals[, Next := c(run.vals[2:nrow(run.vals), Value], "0")]
+				# Find runs of NAs 96ms or less between looks to the same object
+				to.smooth <- which(run.vals$Length < 12 & run.vals$Value == "0"
+				    & run.vals$Prior == run.vals$Next)
+				# Smooth the gaps; this is about where I would use inverse.rle()
+				# if I could figure out how to make an rle object from this altered
+				# version of the data. Ideas?
+				run.vals[to.smooth, Value := Next]
+				smoothed.LD <- c()
+				curr.dir <- "L"
+				count <- 0
+				for (i in 1:nrow(run.vals)) {
+					if (i == nrow(run.vals)) {
+						last.count <- run.vals[i, Length]
+						new.input <- c(rep(curr.dir, count),
+						    rep(run.vals[i, Value], last.count))
+						smoothed.LD <- c(smoothed.LD, new.input)
+					} else if (run.vals[i, Value] != curr.dir) {
+						new.input <- rep(curr.dir, count)
+						smoothed.LD <- c(smoothed.LD, new.input)
+						curr.dir <- run.vals[i, Value]
+						count <- run.vals[i, Length]
+					} else {
+						count <- count + run.vals[i, Length]
+					}
+				}
+				# Add the smoothed values back into the data table
+				dt[Subject == sub & Segment == seg, Look.Dir := smoothed.LD]
+			}
+		}
+	}
+	# Return the smoothed data
+	return(dt)
 }
