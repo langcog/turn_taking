@@ -1,3 +1,4 @@
+source("0-helper.R")
 library(dplyr)
 library(ggplot2)
 library(lme4)
@@ -5,7 +6,6 @@ library(gridExtra)
 library(scales)  
 library(Hmisc)
 library(data.table)
-source("0-helper.R")
 
 ################################################################################
 # Read in data in processed_data/ path and set plotting variables
@@ -31,7 +31,7 @@ lines2 <- c("longdash", "dotted")
 # Read in all the random runs and combine them
 files <- dir(processed.data.path, pattern="switch.final.rand.[0-9]+.csv")
 # Initialize an empty data table
-N <- length(files) * 3737 # maximum length of a switch.final.rand csv file
+N <- length(files) * 4000 # > max length of a switch.final.rand csv file
 switch.final.r <- data.table(
 	Subject = rep("", N),
 	Gap = rep(0, N),

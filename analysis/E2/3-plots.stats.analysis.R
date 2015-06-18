@@ -1,20 +1,24 @@
-rm(list = ls())
+source("0-helper.R")
+library(dplyr)
 library(ggplot2)
 library(lme4)
 library(gridExtra)
 library(scales)  
 library(Hmisc)
 library(data.table)
-source("0-helper.R")
 
 ################################################################################
 # Read in data in processed_data/ path and set plotting variables
 ################################################################################
 # Set paths
-raw.data.path <- "tracker_data/"
-info.path <- "info/"
-processed.data.path <- "processed_data/"
-plot.path <- "plots/"
+raw.data.path <- "tracker_data/" #"../../data/E1/tracker_data/"
+info.path <- "info/" # "../../data/E1/info/"
+processed.data.path <- "processed_data/" #"../../data/E1/processed_data/"
+plot.path <- "plots/" #"plots/"
+
+# Read in supplemental data and prepped data
+gap.info <- fread(paste(info.path,"GapInfo.csv", sep=""))
+subject.info <- fread(paste(info.path,"SubjectInfo.csv",sep=""))
 
 # Color and line palettes
 stoplightPalette <- c("dodgerblue3", "forestgreen",
@@ -29,38 +33,12 @@ lines2 <- c("longdash", "dotted")
 # Read in all the random runs and combine them
 files <- dir(processed.data.path, pattern="switch.final.rand.[0-9]+.csv")
 # Initialize an empty data table
-N <- length(files) * 3737 # maximum length of a switch.final.rand csv file
+N <- length(files) * 4000 # > max length of a switch.final.rand csv file
 switch.final.r <- data.table(
-	Segment = rep("", N),
-	StimulusGroup = rep("", N),
-	Condition = rep("", N),
-	Conversation = rep("", N),
 	Subject = rep("", N),
-	SubjectNum = rep(0, N),
-	TestDate = rep("", N),
-	TestTime = rep("", N),
-	Gender = rep("", N),
-	Birthdate = rep("", N),
-	AgeMonths = rep(0, N),
-	Age = rep(0, N),
-	AgeGroup = rep("", N),
-	include = rep(0, N),
-	includemonoling = rep(0, N),
-	OldSubject = rep("", N),
 	Gap = rep(0, N),
-	Duration = rep(0, N),
-	Offset = rep(0, N),
-	Onset = rep(0, N),
-	QType = rep("", N),
-	SpeakerNext = rep("", N),
-	SpeakerPrev = rep("", N),
-	TranscriptNext = rep("", N),
-	TranscriptPrev = rep("", N),
-	Type = rep("", N),
 	Switch = rep(0, N),
-	Start.Time = rep(0, N),
-	Sample = rep("", N),
-	Ttype = rep("", N),
+	Start = rep(0, N),
 	Run = rep(0,N))
 # Fill the data table with the random runs
 curr.row <- 1
@@ -76,7 +54,8 @@ for (file in files) {
 }
 # Get rid of empty rows and re-order data
 switch.final.r <- switch.final.r[1:(curr.row-1),]
-setkeyv(switch.final.r, c("Run", "Subject", "Segment", "Gap"))
+switch.final.r[, Sample := "Random"]
+setkeyv(switch.final.r, c("Run", "Subject", "Gap"))
 # Write it out
 write.csv(switch.final.r, paste(processed.data.path,
 	"random.runs.csv",sep=""), row.names=FALSE)
@@ -84,25 +63,38 @@ write.csv(switch.final.r, paste(processed.data.path,
 # Read in real transition data and set Run number (0)
 switch.final <- fread(paste(processed.data.path, "switch.final.csv", sep=""))
 switch.final[, Run := 0]
+switch.final[, Sample := "Transition"]
 
 # Combine the two data sets (real and random)
 switch.all <- rbind(switch.final, switch.final.r)
+
+# Add in supplementary Gap and Subject information
+gap.info <- gap.info %>%
+            filter(Exclude == 0) %>%
+            select(Gap, Duration, Type, QType, Segment) %>%
+            left_join(select(vid.info, Segment, Condition), by = "Segment") %>%
+            mutate(Type = ifelse(QType == "wh" &
+            	Condition == "muffled", "S", Type))
+
+sub.info <- select(subject.info, Subject, Age) %>%
+            filter(Age != "NA")
+
+switch.all <- switch.all %>%
+        inner_join(gap.info, by = "Gap") %>%
+        inner_join(sub.info, by = "Subject")
 
 
 ################################################################################
 # Create plots
 ################################################################################
 ###### DIFF BETWEEN RANDOM AND TRANSITION SAMPLE SETS ##########################
-errs.agg <- aggregate(Switch ~ Condition + Sample + Age,
-    switch.all, sem)
-errs <- errs.agg$Switch
-means.agg <- aggregate(Switch ~ Condition + Sample + Age,
-    switch.all, mean)
-means <- means.agg$Switch
-ages <- as.character(means.agg$Age)
+mean.agg <- aggregate(Switch ~ Condition + Sample + Age, switch.all, mean)
+conds <- mean.agg$Condition
+ages <- mean.agg$Age
 ages[ages == "21"] <- "A"
-conds <- means.agg$Condition
-samples <- means.agg$Sample
+samples <- mean.agg$Sample
+means <- mean.agg$Switch
+errs <- aggregate(Switch ~ Condition + Sample + Age, switch.all, sem)$Switch
 linecolors <- c(
 	"black", "black", "black", "black",
 	"blue", "green1", "green2", "red",
@@ -129,7 +121,6 @@ df <- data.frame(
 )
 df$Condition <- factor(df$Condition, labels=c("No speech", "Prosody only",
     "Normal speech", "Words only"))
-df$Sample <- factor(df$Sample, labels=c("Transition", "Random"))
 df$Condition <- factor(df$Condition, levels=c("Normal speech", "Prosody only",
     "Words only", "No speech"))
 
@@ -162,93 +153,27 @@ png(paste(plot.path, "samples-by-conditions.png", sep=""),
     width=2000,height=600,units="px", bg = "transparent")
 print(p1)
 dev.off()    
-
-
-###### CORRECTED CONDITION MEANS ###############################################
-# get random values to subtract from transition values
-means.agg.r <- subset(means.agg, Sample == "RANDOM")
-means.agg.t <- subset(means.agg, Sample == "TRANSITION")
-errs <- subset(errs.agg, Sample == "TRANSITION")$Switch
-means <- means.agg.t$Switch - means.agg.r$Switch
-ages <- as.character(means.agg.t$Age)
-ages[ages == "21"] <- "A"
-conds <- means.agg.t$Condition
-
-df <- data.frame(
-    Age = factor(ages),
-    Condition = factor(conds),
-    m = means,
-    se = errs
-)
-df$Condition <- factor(df$Condition, labels=c("No speech", "Prosody only",
-    "Normal speech", "Words only"))
-df$Condition <- factor(df$Condition, levels=c("Normal speech", "Prosody only",
-    "Words only", "No speech"))
-
-limits <- aes(ymax = m + se, ymin= m - se)
-
-p2 <- qplot(Age,m, group=Condition, ylim=c(-0.1,0.6),
-    ymin= m - se, ymax= m + se, color=Condition,
-    xlab="Age (years)", ylab="Baseline-corrected proportion switches",
-    position=position_dodge(width=.1), data=df) +
-	geom_line(size=2, position=position_dodge(width=.1)) +
-	geom_pointrange(size=1, position=position_dodge(width=.1)) +
-    scale_colour_manual(name = "Condition", values=stoplightPalette) +
-    plot.style + theme(
-    panel.background = element_rect(fill = "transparent",colour = NA),
-  	axis.text.x = element_text(size=30, color="gray40"),
-	axis.text.y = element_text(size=30, color="gray40"),
-	axis.title.x = element_text(size=30, color="gray20"),
-	axis.title.y = element_text(size=30, color="gray20"),
-    plot.background = element_rect(fill = "transparent",colour = NA),
-    legend.position = "none", plot.margin=unit(c(10,10,10,10),"mm"))      
-png(paste(plot.path, "all-conditions.png", sep=""),
-    width=900,height=700,units="px", bg = "transparent")
-print(p2)
-dev.off()
-
-
-p2bars <- qplot(Age,m, group=Condition, ylim=c(-0.1,0.6),
-    ymin= m - se, ymax= m + se, fill=Condition,
-    xlab="Age (years)", ylab="Baseline-corrected proportion switches",
-    geom="bar", stat="identity", position=position_dodge(), data=df) +
-    geom_errorbar(limits, position=position_dodge(width=0.9), width=0.25) +
-    scale_fill_manual(name="", values=stoplightPalette) +
-    plot.style + theme(
-    panel.background = element_rect(fill = "transparent",colour = NA),
-  	axis.text.x = element_text(size=30, color="gray40"),
-	axis.text.y = element_text(size=30, color="gray40"),
-	axis.title.x = element_text(size=30, color="gray20"),
-	axis.title.y = element_text(size=30, color="gray20"),
-    plot.background = element_rect(fill = "transparent",colour = NA),
-    legend.justification=c(0.05,0.95), legend.position=c(0.05,0.95),
-    legend.text = element_text(colour="gray20", size=26),
-    legend.key = element_rect(fill = "transparent", colour = "transparent"),
-    legend.background = element_rect(fill="transparent"),
-    legend.key.height = unit(12, "mm"),
-    plot.margin=unit(c(10,10,10,10),"mm"))
-png(paste(plot.path, "all-conditions-bars.png", sep=""),
-    width=900,height=700,units="px", bg = "transparent")
-print(p2bars)
-dev.off()
+################################################################################
 
 
 ###### BY CONDITION & CONDENSED AGE & Q-EFFECTS SWITCHES #######################
-errs.agg <- aggregate(Switch ~ Ttype + Condition + Age,
-    switch.final, sem)
+switch.real <- filter(switch.all, Sample == "Transition") %>%
+               select(-Sample)
+errs.agg <- aggregate(Switch ~ Type + Condition + Age,
+    switch.real, sem)
 errs <- errs.agg$Switch
-means.agg <- aggregate(Switch ~ Ttype + Condition + Age,
-    switch.final, mean)
+means.agg <- aggregate(Switch ~ Type + Condition + Age,
+    switch.real, mean)
 means <- means.agg$Switch
-ages <- as.character(means.agg$Age)
+ages <- means.agg$Age
 ages[ages == "21"] <- "A"
 conds <- means.agg$Condition
-ttypes <- means.agg$Ttype
+types <- means.agg$Type
 
 df <- data.frame(
     Age = factor(ages),
     Condition = factor(conds),
-    Transition = factor(ttypes),
+    Transition = factor(types),
     m = means,
     se = errs
 )
@@ -292,166 +217,132 @@ dev.off()
 ################################################################################
 # Run statistics
 ################################################################################
-# Create a releveled version of the conditions (to compare effects with both
-# the babble and normal conditions as the reference level)
-switch.final$ConditionN <- factor(switch.final$Condition, levels=c("normal",
-    "muffled", "robot", "babble"))
 # Split the data into adults and children for separate models
-switch.final.C <- subset(switch.final, Age < 7)
-switch.final.A <- subset(switch.final, Age == 21)
+switch.real <- switch.real %>%
+	mutate(Condition = as.factor(Condition),
+		   Type = as.factor(Type))
+switch.real.C <- filter(switch.real, Age != 21) %>%
+                 mutate(Age = as.numeric(Age))
+switch.real.A <- filter(switch.real, Age == 21)
 
 # Models
 # Children
-chi.max.b <- glmer(Switch ~ Age * Condition * Ttype + Duration + 
-    (Ttype|Subject) + (1|Gap), data=switch.final.C, family=binomial,
+chi.max <- glmer(Switch ~ Age * Condition * Type + Duration + 
+    (Type|Subject) + (1|Gap), data= switch.real.C, family=binomial,
     control = glmerControl(optimizer="bobyqa"))
-chi.b.coefs <- data.frame(t(sapply(fixef(chi.max.b),c)))
-
-chi.max.n <- glmer(Switch ~ Age * ConditionN * Ttype + Duration + 
-    (Ttype|Subject) + (1|Gap), data=switch.final.C, family=binomial,
-    control = glmerControl(optimizer="bobyqa"))
-chi.n.coefs <- data.frame(t(sapply(fixef(chi.max.n),c)))
+chi.coefs <- data.frame(t(sapply(fixef(chi.max),c)))
+chi.coefs$Sample <- "real"
 
 # Adults
-adu.max.b <- glmer(Switch ~ Condition * Ttype + Duration + 
-    (Ttype|Subject) + (1|Gap), data=switch.final.A, family=binomial,
+adu.max <- glmer(Switch ~ Condition * Type + Duration + 
+    (Type|Subject) + (1|Gap), data=switch.real.A, family=binomial,
     control = glmerControl(optimizer="bobyqa"))
-adu.b.coefs <- data.frame(t(sapply(fixef(adu.max.b),c)))
-
-adu.max.n <- glmer(Switch ~ ConditionN * Ttype + Duration + 
-    (Ttype|Subject) + (1|Gap), data=switch.final.A, family=binomial,
-    control = glmerControl(optimizer="bobyqa"))
-adu.n.coefs <- data.frame(t(sapply(fixef(adu.max.n),c)))
-
-# Initialize coefficient data frames
-# for collecting random run results
-chi.b.coefs.r <- chi.b.coefs[0,]
-adu.b.coefs.r <- adu.b.coefs[0,]
-chi.n.coefs.r <- chi.n.coefs[0,]
-adu.n.coefs.r <- adu.n.coefs[0,]
-
-switch.final.r$ConditionN <- factor(switch.final.r$Condition, levels=c("normal",
-	"muffled", "robot", "babble"))
-switch.final.r.C <- switch.final.r[Age < 7,]
-switch.final.r.A <- switch.final.r[Age == 21,]
-# Number of random runs to model
-NumRand <- 10#00
-for (i in 1:NumRand) {
-	print(i) # Update
-	# Retrieve the random gap info data consistent with the random run being modeled (i)
-	rand.data.C <- switch.final.r.C[Run == i,]
-	rand.data.A <- switch.final.r.A[Run == i,]	
-	# Models
-	# Children
-	chi.max.b.r <- glmer(Switch ~ Age * Condition * Ttype + Duration + 
-	    (Ttype|Subject) + (1|Gap), data=rand.data.C, family=binomial,
-	    control = glmerControl(optimizer="bobyqa"))
-	chi.b.coefs.r <- rbind(chi.b.coefs.r, data.frame(t(sapply(fixef(chi.max.b.r),c))))
-	
-	chi.max.n.r <- glmer(Switch ~ Age * ConditionN * Ttype + Duration + 
-	    (Ttype|Subject) + (1|Gap), data=rand.data.C, family=binomial,
-	    control = glmerControl(optimizer="bobyqa"))
-	chi.n.coefs.r <- rbind(chi.n.coefs.r, data.frame(t(sapply(fixef(chi.max.n.r),c))))
-
-	# Adults
-	adu.max.b.r <- glmer(Switch ~ Condition * Ttype + Duration + 
-	    (Ttype|Subject) + (1|Gap), data=rand.data.A, family=binomial,
-	    control = glmerControl(optimizer="bobyqa"))
-	adu.b.coefs.r <- rbind(adu.b.coefs.r, data.frame(t(sapply(fixef(adu.max.b.r),c))))
-	
-	adu.max.n.r <- glmer(Switch ~ ConditionN * Ttype + Duration + 
-	    (Ttype |Subject) + (1|Gap), data=rand.data.A, family=binomial,
-	    control = glmerControl(optimizer="bobyqa"))
-	adu.n.coefs.r <- rbind(adu.n.coefs.r, data.frame(t(sapply(fixef(adu.max.n.r),c))))
-}
-
-# Add a label to the coefficient tables
-chi.b.coefs.r$Sample <- "random"
-adu.b.coefs.r$Sample <- "random"
-chi.n.coefs.r$Sample <- "random"
-adu.n.coefs.r$Sample <- "random"
-chi.b.coefs$Sample <- "real"
-adu.b.coefs$Sample <- "real"
-chi.n.coefs$Sample <- "real"
-adu.n.coefs$Sample <- "real"
-# And then bind them together
-chi.b <- rbind(chi.b.coefs.r, chi.b.coefs)
-adu.b <- rbind(adu.b.coefs.r, adu.b.coefs)
-chi.n <- rbind(chi.n.coefs.r, chi.n.coefs)
-adu.n <- rbind(adu.n.coefs.r, adu.n.coefs)
-# And write them out
-write.csv(chi.b, paste(processed.data.path, "chi.ref-babble.csv", sep=""), row.names=FALSE)
-write.csv(adu.b, paste(processed.data.path, "adu.ref-babble.csv", sep=""), row.names=FALSE)
-write.csv(chi.n, paste(processed.data.path, "chi.ref-normal.csv", sep=""), row.names=FALSE)
-write.csv(adu.n, paste(processed.data.path, "adu.ref-normal.csv", sep=""), row.names=FALSE)
+adu.coefs <- data.frame(t(sapply(fixef(adu.max),c)))
+adu.coefs$Sample <- "real"
 
 # Write out the real data model results
-write.csv(summary(chi.max.b)$coefficients, paste(
-	processed.data.path, "chi.ref-babble.model.csv", sep=""),
+write.csv(summary(chi.max)$coefficients, paste(
+	processed.data.path, "chi.model.csv", sep=""),
 	row.names=FALSE)
-write.csv(summary(chi.max.n)$coefficients, paste(
-	processed.data.path, "chi.ref-normal.model.csv", sep=""),
+write.csv(summary(adu.max)$coefficients, paste(
+	processed.data.path, "adu.model.csv", sep=""),
 	row.names=FALSE)
-write.csv(summary(adu.max.b)$coefficients, paste(
-	processed.data.path, "adu.ref-babble.model.csv", sep=""),
-	row.names=FALSE)
-write.csv(summary(adu.max.n)$coefficients, paste(
-	processed.data.path, "adu.ref-normal.model.csv", sep=""),
-	row.names=FALSE)
-
-# Derive the absolute values of the coefficients for
-# The real data and
-chi.b <- abs(chi.b[,1:(length(chi.b)-1)])
-adu.b <- abs(adu.b[,1:(length(adu.b)-1)])
-chi.n <- abs(chi.n[,1:(length(chi.n)-1)])
-adu.n <- abs(adu.n[,1:(length(adu.n)-1)])
-
-# Check, for each model (2 ea for children and adults), how many random coefficients
-# are less than the real coefficients (with absolute values), and print the results
-
-print("Child model: 'No spech' lx condition reference level ")
-for (i in 1:length(chi.b)) {
-	pred <- names(chi.b)[i]
-	trueval <- as.numeric(chi.b[nrow(chi.b),i])
-	percunder <- (1 - sum(chi.b[(1:nrow(chi.b)-1),i] > trueval)/(nrow(chi.b)-1))*100
-	print(paste(pred, " absB=", round(trueval,3), "; more than ", round(percunder,3), "% of random absBs.", sep=""))
-}
-print("Adult model: 'No spech' lx condition reference level ")
-for (i in 1:length(adu.b)) {
-	pred <- names(adu.b)[i]
-	trueval <- as.numeric(adu.b[nrow(adu.b),i])
-	percunder <- (1 - sum(adu.b[(1:nrow(adu.b)-1),i] > trueval)/(nrow(adu.b)-1))*100
-	print(paste(pred, " absB=", round(trueval,3), "; more than ", round(percunder,3), "% of random absBs.", sep=""))
-}
-print("Child model: 'Normal spech' lx condition reference level ")
-for (i in 1:length(chi.n)) {
-	pred <- names(chi.n)[i]
-	trueval <- as.numeric(chi.n[nrow(chi.n),i])
-	percunder <- (1 - sum(chi.n[(1:nrow(chi.n)-1),i] > trueval)/(nrow(chi.n)-1))*100
-	print(paste(pred, " absB=", round(trueval,3), "; more than ", round(percunder,3), "% of random absBs.", sep=""))
-}
-print("Adult model: 'Normal spech' lx condition reference level ")
-for (i in 1:length(adu.n)) {
-	pred <- names(adu.n)[i]
-	trueval <- as.numeric(adu.n[nrow(adu.n),i])
-	percunder <- (1 - sum(adu.n[(1:nrow(adu.n)-1),i] > trueval)/(nrow(adu.n)-1))*100
-	print(paste(pred, " absB=", round(trueval,3), "; more than ", round(percunder,3), "% of random absBs.", sep=""))
-}
 
 # Post hoc test of difference from random in 1- and 2-year-olds'
 # performance in the lex-only and pros-only conditions
-# Could be improved :)
-u3.r <- subset(switch.final.r, Age < 3)
-u3.a <- subset(switch.final, Age < 3)
-u3.lex.r <- subset(u3.r, Condition == "robot")
-u3.lex.a <- subset(u3.a, Condition == "robot")
-u3.pro.r <- subset(u3.r, Condition == "muffled")
-u3.pro.a <- subset(u3.a, Condition == "muffled")
+# u3.r <- subset(switch.final.r, Age < 3)
+# u3.a <- subset(switch.final, Age < 3)
+# u3.lex.r <- subset(u3.r, Condition == "robot")
+# u3.lex.a <- subset(u3.a, Condition == "robot")
+# u3.pro.r <- subset(u3.r, Condition == "muffled")
+# u3.pro.a <- subset(u3.a, Condition == "muffled")
 
-u3.lex.r.agg <- aggregate(Switch ~ Subject, u3.lex.r, mean)
-u3.lex.a.agg <- aggregate(Switch ~ Subject, u3.lex.a, mean)
-u3.pro.r.agg <- aggregate(Switch ~ Subject, u3.pro.r, mean)
-u3.pro.a.agg <- aggregate(Switch ~ Subject, u3.pro.a, mean)
+# u3.lex.r.agg <- aggregate(Switch ~ Subject, u3.lex.r, mean)
+# u3.lex.a.agg <- aggregate(Switch ~ Subject, u3.lex.a, mean)
+# u3.pro.r.agg <- aggregate(Switch ~ Subject, u3.pro.r, mean)
+# u3.pro.a.agg <- aggregate(Switch ~ Subject, u3.pro.a, mean)
 
-ttest1 <- t.test(u3.lex.r.agg$Switch, u3.lex.a.agg$Switch)
-ttest2 <- t.test(u3.pro.r.agg$Switch, u3.pro.a.agg$Switch)
+# ttest1 <- t.test(u3.lex.r.agg$Switch, u3.lex.a.agg$Switch)
+# ttest2 <- t.test(u3.pro.r.agg$Switch, u3.pro.a.agg$Switch)
+
+run.models <- function(ns) {
+    # Split the data into adults and children for separate models
+    switch.rand <- filter(switch.all, Sample == "Random") %>%
+                   select(-Sample) %>%
+				   mutate(Condition = as.factor(Condition),
+		   		          Type = as.factor(Type))
+
+	switch.rand.C <- filter(switch.rand, Age != 21) %>%
+         			        mutate(Age = as.numeric(Age))
+	switch.rand.A <- filter(switch.rand, Age == 21)
+
+    # Initialize coefficient data frames
+    # for collecting random run results
+    chi.coefs.r <- chi.coefs[0,]
+    adu.coefs.r <- adu.coefs[0,]
+
+	for (i in ns) {
+		# Update
+		print(i)
+		
+		# Retrieve the random gap info data for this particular run
+		rand.data.C <- switch.rand.C[Run == i,]
+		rand.data.A <- switch.rand.A[Run == i,]	
+		# Models
+		# Children
+		chi.max.r <- glmer(Switch ~ Age * Condition * Type + Duration + 
+            (Type|Subject) + (1|Gap), data=rand.data.C, family=binomial,
+            control = glmerControl(optimizer="bobyqa"))
+		chi.coefs.r <- rbind(chi.coefs.r, data.frame(t(sapply(fixef(chi.max.r),c))))
+		
+		# Adults
+		adu.max.r <- glmer(Switch ~ Condition * Type + Duration + 
+            (Type|Subject) + (1|Gap), data=rand.data.A, family=binomial,
+            control = glmerControl(optimizer="bobyqa"))
+		adu.coefs.r <- rbind(adu.coefs.r, data.frame(t(sapply(fixef(adu.max.r),c))))
+		
+	}
+	
+	chi.coefs.r$Sample <- "random"
+	adu.coefs.r$Sample <- "random"
+
+    # Add a label to the coefficient tables
+    # And then bind them together
+    all.chi.coefs <- rbind(chi.coefs.r, chi.coefs)
+    all.adu.coefs <- rbind(adu.coefs.r, adu.coefs)
+
+    # And write them out
+    write.csv(all.chi.coefs, paste(processed.data.path,
+        "chi.coefs.csv", sep=""), row.names=FALSE)
+    write.csv(all.adu.coefs, paste(processed.data.path,
+        "adu.coefs.csv", sep=""), row.names=FALSE)
+
+	# Derive the absolute values of the coefficients for
+	# The real data and
+	all.chi.coefs <- abs(all.chi.coefs[,1:(length(all.chi.coefs)-1)])
+	all.adu.coefs <- abs(all.adu.coefs[,1:(length(all.adu.coefs)-1)])
+	
+	# Print, for each model, how many random coefficients
+	# are less than the real data coefficients (with absolute values)
+	print("Child model: ")
+	for (i in 1:length(all.chi.coefs)) {
+		pred <- names(all.chi.coefs)[i]
+		trueval <- as.numeric(all.chi.coefs[nrow(all.chi.coefs),i])
+		percunder <- (1 - sum(all.chi.coefs[(1:nrow(all.chi.coefs)-1),i] > trueval)/
+		             (nrow(all.chi.coefs)-1))*100
+		print(paste(pred, " absB=", round(trueval,3),
+		            ";more than ", round(percunder,3),
+		            "% of random absBs.", sep=""))
+	}
+	
+	print("Adult model: ")
+	for (i in 1:length(all.adu.coefs)) {
+		pred <- names(all.adu.coefs)[i]
+		trueval <- as.numeric(all.adu.coefs[nrow(all.adu.coefs),i])
+		percunder <- (1 - sum(all.adu.coefs[(1:nrow(all.adu.coefs)-1),i] > trueval)/
+		             (nrow(all.adu.coefs)-1))*100
+		print(paste(pred, " absB=", round(trueval,3),
+		            "; more than ", round(percunder,3),
+		            "% of random absBs.", sep=""))
+	}
+}

@@ -1,12 +1,78 @@
+###############################################################################
+# Prepare randomized gap info files
+###############################################################################
+make.rand.gaps <- function(ns) {
+	NumRand <- ns # Number of random gap files desired
+	# Read in the info files we need to create the random gaps
+	vid.info <- fread(paste(info.path, "VideoSegmentInfo.csv", sep=""))
+	vid.info <- subset(vid.info, StimulusGroup == "target")
+	vids <- sort(unique(vid.info$Segment))
+
+	# Round the time values for gaps
+	gap.info <- fread(paste(info.path,"GapInfo.csv",sep=""))
+	gap.info = within(gap.info, {
+	  Onset = round(Onset, 5)
+	  Offset = round(Offset, 5)
+	})
+	exclude.info <- distinct(select(gap.info, Gap, Exclude))
+
+	# List of gap durations
+	dur.data <- fread(paste(info.path, "duration.data.csv", sep=""))	
+	N <- nrow(dur.data) * 2 + length(vids)
+	
+	# Remove unneeded columns from gap info
+	rem.cols <- c("SwitchType", "notes")
+	gap.info[, (rem.cols) := NULL]
+	setkeyv(gap.info, c("Segment", "Onset"))
+	
+	# Pre-set variables for the loop below
+	ngaps <- nrow(gap.info)
+	rem.cols.loop <- c("Onset", "Offset", "Duration", "Segment", "Gap")
+	
+	# Make NumRand random versions of the gaps and save them as a numbered .csv
+	for (i in NumRand) {
+	    # Randomize gap order and onset for each video
+	    # while inserting buffer rows between gaps
+		new.durs <- data.table(
+	    Onset=rep(0, N),
+	    Offset=rep(0, N),
+	    Duration=rep(0, N),
+	    Gap=rep(0, N),
+	    Segment=rep("", N))
+	
+	    row = 1
+	    for (vid in vids) {
+	        vid.dur <- max(gap.info[Segment == vid, Offset])
+	        new.rows <- length(which(dur.data$Segment == vid))*2
+	        new.durs[row:(row + new.rows),] <-
+	        	find.rand.windows(0, vid.dur,
+	            	subset(dur.data, Segment == vid))
+	        row <- row + new.rows + 1
+	    }
+
+		# Add other information, re-order it, and write it out
+		final.durs <- new.durs %>%
+		    left_join(exclude.info, by = "Gap") %>%
+		    arrange(Segment, Onset) %>%
+		    mutate(order = 1:nrow(new.durs))
+		 
+		write.csv(final.durs, paste(info.path, paste(
+		    "GapInfoRandom", i, ".csv", sep=""), sep=""),
+		    row.names = FALSE)
+	}
+}
+
 ################################################################################
-# Takes in a vector of gap durations associated with each stimulus and returns 
-# a data.table with the same set of gap durations, only now shuffled into 
-# random time points within each stimulus. The output is a set of gaps with the
-# same durations, but whose onsets have been shuffled throughout the stimulus,
-# with no overlaps between gaps
-find.rand.windows <- function(min, max, vecdur) {
+# Helper functions
+################################################################################
+
+# Takes in a vector of gap durations associated with each stimulus and returns a 
+# data frame of with the same set of gap durations, only shuffled at random 
+# within the time boundaries of the associated stimulus.
+find.rand.windows <- function(min, max, durs) {
 	# Number of gaps being shuffled
-    N <- length(vecdur)
+    N <- length(durs$Gap)
+    seg <- durs$Segment[1]
     # Set the maximum stop time for a gap as
     # 0.433 msec before the end of the stimulus
     give.win <- 0.433
@@ -14,24 +80,26 @@ find.rand.windows <- function(min, max, vecdur) {
     new.windows <- data.frame(
     	Onset=rep(NA, N),
     	Offset=rep(NA, N),
-        Duration=rep(NA, N))
+        Duration=rep(NA, N),
+        Gap=rep(0,N))
     # Iterate through the gaps, filling in the new
     # information for each gap duration one-by-one
     df.row = 1
     # For each gap...
-    for (i in 1:length(vecdur)) {
-        success=0
+    for (i in 1:N) {
+        success = 0
         # Until you've found a successful random placement,
         while(success < 1) {
         	# The new gap will have the same duration as the old one
-            dur = vecdur[i]
+            dur = durs$Duration[i]
+            gap = durs$Gap[i]
             # Generate a random start value within the video stimulus
             try.start <- runif(1, min + give.win, max - give.win - dur)
             # If this is the first start value for the new.windows
             # data frame, just fill it in:
             if (is.numeric(new.windows[1,1]) == FALSE) {
             	# Add the randomized gap to the data frame
-                new.windows[df.row,] <- c(try.start, try.start + dur, dur)
+                new.windows[df.row,] <- c(try.start, try.start + dur, dur, gap)
                 # Move onto the next row
                 df.row = df.row + 1
                 # Successful placement, move on to next iteration
@@ -41,16 +109,18 @@ find.rand.windows <- function(min, max, vecdur) {
             else {		
                 # Check to see if the new proposed random gap
                 # overlaps with one we have already:
-                #    Create a mini data frame with the old and new (proposed) gaps 
+                #    Create a mini data frame with the old and
+                #    new (proposed) gaps 
                 try.win <- c(try.start, try.start + dur)
                 used.win <- subset(new.windows[,1:2], Onset != "NA")
                 temp.win <- rbind(try.win, used.win)
-                #    Order mini data frame by onset (crucial for check.overlap)
+                #    Order mini data frame by onset
+                #    (crucial for the check.overlap function)
                 temp.win <- temp.win[order(temp.win$Onset),]
                 # If there's no overlap with existing gaps,
                 # add this new random gap to the data frame
                 if (check.overlap(temp.win) == 0) {
-                    new.windows[df.row,] <- c(try.start, try.start + dur, dur)
+                    new.windows[df.row,] <- c(try.start, try.start + dur, dur, gap)
                     new.windows <- new.windows[order(new.windows$Onset),]
                     df.row = df.row + 1
                     success = 1
@@ -65,19 +135,19 @@ find.rand.windows <- function(min, max, vecdur) {
     }
     # Return newly shuffled gaps, filling in the space between
     # with "na" gap rows (matches the original gap info)
-    return(fill.in(min, max, new.windows))
+    return(cbind(fill.in(min, max, new.windows),
+        data.frame(Segment = rep(seg, (nrow(new.windows)*2+1)))))
 }
 
 
-################################################################################
 # Takes in a set of onsets and offsets and checks to see if they overlap
 check.overlap <- function(vec) {
     overlap = 0
-    max=nrow(vec)-1
+    max = nrow(vec) - 1
     # Check row-by-row
     for(i in 1:max) {
         # Tests to see if the offsets are ordered; if not, there is an overlap
-        if(vec[i+1,1]-vec[i,2] < 0) {
+        if(vec[i + 1, 1] - vec[i, 2] < 0) {
             overlap = 1
         }
     }
@@ -85,7 +155,6 @@ check.overlap <- function(vec) {
 }
 
 
-################################################################################
 # Inserts "na" rows between each gap row to match the original gap info;
 # this format is assumed in the way other functions are designed
 fill.in <- function(min, max, timesvec) {
@@ -99,7 +168,7 @@ fill.in <- function(min, max, timesvec) {
 		if (row == 1) {
 			end.val <- timesvec$Onset[row]
 			ins.row <- data.frame(Onset=min, Offset=end.val,
-			    Duration=end.val-min)
+			    Duration=end.val-min, Gap=NA)
 			timesvec <- rbind(ins.row, timesvec)
 			# Renumber row names
 			row.names(timesvec)<-1:nrow(timesvec)
@@ -109,12 +178,12 @@ fill.in <- function(min, max, timesvec) {
         # For the last row:
 		# Insert a row between the end of the 
 		# last gap and the end of the stimulus
-		else if (row == stop.row-1) {
-			start.val <- timesvec$Offset[row-1]
+		else if (row == stop.row - 1) {
+			start.val <- timesvec$Offset[row - 1]
 			ins.row <- data.frame(Onset=start.val, Offset=max,
-			    Duration=max-start.val)
+			    Duration=max-start.val, Gap=NA)
 			timesvec <- rbind(timesvec,ins.row)
-			row.names(timesvec)<-1:nrow(timesvec)
+			row.names(timesvec) <- 1:nrow(timesvec)
             # Move forward to end the loop
 			row <- row + 1
 		}
@@ -122,10 +191,10 @@ fill.in <- function(min, max, timesvec) {
 		# Insert a row between the end of the prior
 		# gap and the start of the next one
 		else {
-			start.val <- timesvec$Offset[row-1]
+			start.val <- timesvec$Offset[row - 1]
 			end.val <- timesvec$Onset[row]
 			ins.row <- data.frame(Onset=start.val, Offset=end.val,
-			    Duration=end.val-start.val)
+			    Duration=end.val-start.val, Gap=NA)
 			timesvec <- rbind(timesvec[1:row-1,], ins.row,
 			    timesvec[row:nrow(timesvec),])
 			# Renumber row names

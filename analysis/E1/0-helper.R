@@ -88,12 +88,12 @@ read.data <- function(path,file.name) {
     data[, R.looks := L.Object.Hit == "RIGHT" |
     R.Object.Hit == "RIGHT"]
     # - Make eye event summaries
-    data[, Events := L.Event.Info != "Blink" & L.Event.Info != "-" &
-        R.Event.Info != "Blink" & R.Event.Info != "-"]
-    data[, Saccades := L.Event.Info == "Saccade" |
-        R.Event.Info == "Saccade"]
-    data[, Fixations := L.Event.Info == "Fixation" |
-        R.Event.Info == "Fixation"]
+    # data[, Events := L.Event.Info != "Blink" & L.Event.Info != "-" &
+        # R.Event.Info != "Blink" & R.Event.Info != "-"]
+    # data[, Saccades := L.Event.Info == "Saccade" |
+        # R.Event.Info == "Saccade"]
+    # data[, Fixations := L.Event.Info == "Fixation" |
+        # R.Event.Info == "Fixation"]
     # Add the experiment version, age group, and subject number
     data[, Condition := name.parts[1]]
     # data[, AgeGroup := name.parts[2]]
@@ -108,7 +108,7 @@ read.data <- function(path,file.name) {
 
 # Finds gaps in tracker measurements of less than 100ms and, if the participant
 # was looking at the same target object before and after the <100ms gap, fills
-# in the missing calues as looking at the same target object
+# in the missing values as looking at the same target object
 smoothLD <- function(dt) {
 	subjects <- unique(dt$Subject)
 	for (sub in subjects) {
@@ -129,7 +129,7 @@ smoothLD <- function(dt) {
 				    & run.vals$Prior == run.vals$Next)
 				# Smooth the gaps; this is about where I would use inverse.rle()
 				# if I could figure out how to make an rle object from this altered
-				# version of the data. Ideas?
+				# version of the data.
 				run.vals[to.smooth, Value := Next]
 				smoothed.LD <- c()
 				curr.dir <- "L"

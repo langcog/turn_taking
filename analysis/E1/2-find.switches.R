@@ -1,4 +1,5 @@
 source("0-helper.R")
+source("0-make.random.gaps.R")
 library(data.table) # can upgrade to later version with Mavericks
 library(bit64)
 library(dplyr)
@@ -56,7 +57,7 @@ get.switches <- function (ns, random = c(FALSE, TRUE)) {
 
     for (run in ns) {
     	
-        # Copy the main data table
+        # Copy the by-age data tables
         data.C3 <- copy(all.data.C3)
         data.C4 <- copy(all.data.C4)
         data.C5 <- copy(all.data.C5)

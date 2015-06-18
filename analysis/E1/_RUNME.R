@@ -4,7 +4,7 @@ source("2-find.switches.R")
 # Find switches in the real data
 get.switches(1, FALSE)
 
-# Find switches in 10 randomly-shuffled gap versions
+# Find switches in randomly-shuffled gap versions
 rand.runs <- 1:50
 make.rand.gaps(rand.runs)
 get.switches(rand.runs, TRUE)

@@ -219,7 +219,7 @@ fill.in <- function(min, max, timesvec) {
         else if (row == stop.row - 1) {
         	start.val <- timesvec$Offset[row - 1]
         	ins.row <- data.frame(Onset=start.val, Offset=max,
-        	    Duration =max-start.val, Gap=NA)
+        	    Duration=max-start.val, Gap=NA)
         	timesvec <- rbind(timesvec, ins.row)
         	row.names(timesvec) <- 1:nrow(timesvec)
         	# Move forward to end the loop

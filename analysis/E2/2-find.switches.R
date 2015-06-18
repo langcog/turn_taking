@@ -1,7 +1,8 @@
 source("0-helper.R")
-source("0-find.transitions.R")
+source("0-make.random.gaps.R")
 library(data.table) # can upgrade to later version with Mavericks
 library(bit64)
+library(dplyr)
 
 ################################################################################
 # Read in processed data and set paths and assumed saccadic RTs
@@ -12,260 +13,253 @@ info.path <- "info/"
 processed.data.path <- "processed_data/"
 
 # Read in supplemental data and prepped data
+real.gap.info <- fread(paste(info.path,"GapInfo.csv", sep=""))
+spk.prevs <- distinct(select(real.gap.info, Gap, SpeakerPrev))
 vid.info <- fread(paste(info.path,"VideoSegmentInfo.csv",sep=""))
 subject.info <- fread(paste(info.path,"SubjectInfo.csv",sep=""))
+age.info <- select(subject.info, Subject, Age)
 all.data <- fread(paste(processed.data.path,"prepped.data.csv",sep=""))
 
+# Re-order the data set
+setkeyv(all.data, c("Subject", "Segment", "TimeSecSeg"))
+
+# Merge in age data
+setkey(age.info, "Subject")
+setkey(all.data, "Subject")
+all.data <- age.info[all.data]
+
+# Separate adult and child data for finding anticipatory switches:
+# We assume that adults have faster gaze planning time (200 ms)
+# compared to younger children (see saccadic RT settings above).
+all.data.A <- filter(all.data, Age == 21)
+all.data.C1 <- filter(all.data, Age == 1)
+all.data.C2 <- filter(all.data, Age == 2)
+all.data.C3 <- filter(all.data, Age == 3)
+all.data.C4 <- filter(all.data, Age == 4)
+all.data.C5 <- filter(all.data, Age == 5)
+all.data.C6 <- filter(all.data, Age == 6)
+
 # Anticipatory switch identification variables:
-# Fixation window
-fixation.window = 0.1
+fix.window <- 0.1
 # Saccadic RTs set for...
-# Adults
-utt1.overlap.A = 0.2
-utt2.overlap.A = 0.2
+saccadeRTs <- c(0.33, 0.304, 0.278, 0.252, 0.226, 0.2, 0.2)
 # 1-year-olds
-utt1.overlap.C1 = 0.33
-utt2.overlap.C1 = 0.33
+utt.overlap.C1 = saccadeRTs[1]
 # 2-year-olds
-utt1.overlap.C2 = 0.304
-utt2.overlap.C2 = 0.304
+utt.overlap.C2 = saccadeRTs[2]
 # 3-year-olds
-utt1.overlap.C3 = 0.278
-utt2.overlap.C3 = 0.278
+utt.overlap.C3 = saccadeRTs[3]
 # 4-year-olds
-utt1.overlap.C4 = 0.252
-utt2.overlap.C4 = 0.252
+utt.overlap.C4 = saccadeRTs[4]
 # 5-year-olds
-utt1.overlap.C5 = 0.226
-utt2.overlap.C5 = 0.226
+utt.overlap.C5 = saccadeRTs[5]
 # 6-year-olds
-utt1.overlap.C6 = 0.2
-utt2.overlap.C6 = 0.2
+utt.overlap.C6 = saccadeRTs[6]
+# Adults
+utt.overlap.A = saccadeRTs[7]
 
 ################################################################################
 # Main analysis function: get.switches
 ################################################################################
-# Analyzes the input observations for:
-# 1 - fixation on the prior speaker in the Anchor window
-# 2 - fixation on the upcoming speaker in the Transition window
-# 3 - If "y" for 1 and 2, when the first look away from the prior speaker
-#     occurred after the initial fixation
-# Returns a data table with the results for each subject and gap:
-# Switch/No switch + Switch onset (or NA if no switch)
-#
-# Takes in:
-# - A vector of indices - a sequence of integers representing which
-#   runs should be done in a loop, e.g., 1:10 to do 10 runs, with i as 1-10
-# - A "sample" value - 1 for random runs, anything else for a real run
-#
-get.switches <- function (indices, sample) {
-	# loop through the runs given in the indices
-    for (i in indices) {
-        # Start with a clean copy of the data
-        data <- copy(all.data)
+get.switches <- function (ns, random = c(FALSE, TRUE)) {
+
+    for (run in ns) {
+
+        # Copy the by-age data tables
+        data.C1 <- copy(all.data.C1)
+        data.C2 <- copy(all.data.C2)
+        data.C3 <- copy(all.data.C3)
+        data.C4 <- copy(all.data.C4)
+        data.C5 <- copy(all.data.C5)
+        data.C6 <- copy(all.data.C6)
+        data.A <- copy(all.data.A)
+        
         # Read in a version of the gaps consistent with the index and sample values
         # Set the colnames and round the onset/offset values
-        if (sample == 1) {
-	        gap.info <- fread(paste(info.path,"GapInfoRandom",i,".csv", sep=""))
+        if (random == TRUE) {
+	        gap.info <- fread(paste(info.path,"GapInfoRandom",run,".csv", sep=""))
+	        gap.info <- left_join(gap.info, spk.prevs, by = "Gap") %>%
+	            arrange(order)
 			setcolorder(gap.info, order(names(gap.info)))
 	    } else {
-	    	gap.info <- fread(paste(info.path,"GapInfo.csv", sep=""))
-	        rem.cols <- c("SwitchType", "order", "notes")
+	    	gap.info <- copy(real.gap.info)
+	        rem.cols <- c("SwitchType", "notes")
     	    gap.info[,(rem.cols) := NULL]
+	        gap.info <- arrange(gap.info, order)
 			setcolorder(gap.info, order(names(gap.info)))
 	    }
         gap.info[, Onset := round(Onset,5)]
         gap.info[, Offset := round(Offset,5)]
-
-        # Merge in random gap sites, using the onsets
-        #print(paste("Merging info files"))
-        data[, Onset := 0]
-        for (vid in unique(data$Segment)) {
-            # For each TimeSecSeg measurement, find the onset of the utterance
-            # (from gap.info) within which it lies
-            onsets <- gap.info[Segment == vid, Onset]
-            # REMINDER: example use of findInterval:
-            # findInterval(c(2,5,7,8), c(4,5,6,8,9,10)) => [1] 0 2 3 4
-            # In this case it returns a list as long as all.data$TimeSecSeg, with
-            # the index of the video onset that the each time measurement falls within
-            # (e.g., t = 5, vid[2] and t=7, vid[3] in the above example)
-        	vid.idx <- which(data$Segment == vid)
-            vid.gap.indices <- findInterval(
-            	data[vid.idx, TimeSecSeg], onsets)
-            # Maps these values onto the subset of times it was derived from
-            data[vid.idx, Onset := onsets[vid.gap.indices]]
-        }
-        # Merge in gap.info data
-		setkeyv(data, c("Segment", "Onset"))
-		setkeyv(gap.info, c("Segment", "Onset"))
-		data <- gap.info[data]
-
-        # Merge in subject.info data
-        setkey(subject.info, "Subject")
-        setkey(data, "Subject")
-        data <- subject.info[data]
-        
-        # Re-order the data set
-        setkeyv(data, c("Subject", "Segment", "TimeSecSeg"))
-
-        # Remove uneeded columns
-        rem.cols <- c("Row", "Offset.1")
-        data[,(rem.cols) := NULL]
-        
-        # Separate adult and child data for finding anticipatory switches:
-        # We assume that adults have faster gaze planning time (200 ms)
-        # compared to younger children (see saccadic RT settings above).
-        data.A <- subset(data, AgeGroup == "ADU")
-        data.C1 <- subset(data, Age == 1)
-        data.C2 <- subset(data, Age == 2)
-        data.C3 <- subset(data, Age == 3)
-        data.C4 <- subset(data, Age == 4)
-        data.C5 <- subset(data, Age == 5)
-        data.C6 <- subset(data, Age == 6)
+        gap.info[, Gap := as.numeric(Gap)]
 
         # Extract time windows for switch analysis and prepare looking columns
         # to origin (prior speaker) and destination (upcoming speaker) for all
         # subject age groups
-        #print("Getting windows")
+        # For 1-year-olds
+        target.windows.C1 <- get.windows.categorical(data.C1,
+            gap.info, utt.overlap.C1, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
+        # For 2-year-olds
+        target.windows.C2 <- get.windows.categorical(data.C2,
+            gap.info, utt.overlap.C2, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
+        # For 3-year-olds
+        target.windows.C3 <- get.windows.categorical(data.C3,
+            gap.info, utt.overlap.C3, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
+        # For 4-year-olds
+        target.windows.C4 <- get.windows.categorical(data.C4,
+            gap.info, utt.overlap.C4, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
+        # For 5-year-olds
+        target.windows.C5 <- get.windows.categorical(data.C5,
+            gap.info, utt.overlap.C5, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
+        # For 6-year-olds
+        target.windows.C6 <- get.windows.categorical(data.C6,
+            gap.info, utt.overlap.C6, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
         # For adults
         target.windows.A <- get.windows.categorical(data.A,
-            gap.info, utt1.overlap.A, utt2.overlap.A, fixation.window)
-        target.windows.A[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.A[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 1 and 2
-        target.windows.C1 <- get.windows.categorical(data.C1,
-            gap.info, utt1.overlap.C1, utt2.overlap.C1, fixation.window)
-        target.windows.C1[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C1[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 3 and 4
-        target.windows.C2 <- get.windows.categorical(data.C2,
-            gap.info, utt1.overlap.C2, utt2.overlap.C2, fixation.window)
-        target.windows.C2[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C2[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 5 and 6
-        target.windows.C3 <- get.windows.categorical(data.C3,
-            gap.info, utt1.overlap.C3, utt2.overlap.C3, fixation.window)
-        target.windows.C3[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C3[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 1 and 2
-        target.windows.C1 <- get.windows.categorical(data.C1,
-            gap.info, utt1.overlap.C1, utt2.overlap.C1, fixation.window)
-        target.windows.C1[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C1[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 3 and 4
-        target.windows.C2 <- get.windows.categorical(data.C2,
-            gap.info, utt1.overlap.C2, utt2.overlap.C2, fixation.window)
-        target.windows.C2[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C2[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 5 and 6
-        target.windows.C3 <- get.windows.categorical(data.C3,
-            gap.info, utt1.overlap.C3, utt2.overlap.C3, fixation.window)
-        target.windows.C3[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C3[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 5 and 6
-        target.windows.C4 <- get.windows.categorical(data.C4,
-            gap.info, utt1.overlap.C4, utt2.overlap.C4, fixation.window)
-        target.windows.C4[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C4[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 5 and 6
-        target.windows.C5 <- get.windows.categorical(data.C5,
-            gap.info, utt1.overlap.C5, utt2.overlap.C5, fixation.window)
-        target.windows.C5[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C5[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-        # For children ages 5 and 6
-        target.windows.C6 <- get.windows.categorical(data.C6,
-            gap.info, utt1.overlap.C6, utt2.overlap.C6, fixation.window)
-        target.windows.C6[, Looks.Origin := as.integer(Origin == Look.Dir)]
-        target.windows.C6[, Looks.Destination := ifelse(
-        	(Origin == "F" & Look.Dir == "M") |
-        	(Origin == "M" & Look.Dir == "F"), 1, 0)]
-
-
+            gap.info, utt.overlap.A, fix.window)  %>%
+        mutate(Looks.Origin = Origin == Look.Dir, 
+            Looks.Destination = ifelse(((Origin == "F" & Look.Dir == "M") |
+                                       (Origin == "M" & Look.Dir == "F")),
+                                       TRUE, FALSE))
+                                       
         # Identify anticipatory switches in the data and combine the groups again
-        #print("Grabbing transition data")
-        trans.info.A <- grab.transition.info(target.windows.A, fixation.window)
-        trans.info.C1 <- grab.transition.info(target.windows.C1, fixation.window)
-        trans.info.C2 <- grab.transition.info(target.windows.C2, fixation.window)
-        trans.info.C3 <- grab.transition.info(target.windows.C3, fixation.window)
-        trans.info.C4 <- grab.transition.info(target.windows.C4, fixation.window)
-        trans.info.C5 <- grab.transition.info(target.windows.C5, fixation.window)
-        trans.info.C6 <- grab.transition.info(target.windows.C6, fixation.window)
-        trans.info <- rbind(trans.info.A, trans.info.C1, trans.info.C2,
-        	trans.info.C3, trans.info.C4, trans.info.C5, trans.info.C6)
-
-        # Merge gap and subject info back in for analysis
-        #print("Prepping csv")
-        # Gap info merge
-        gap.info <- subset(gap.info, Gap != "na")
-        gap.info$Gap <- as.numeric(gap.info$Gap)        
-        setkey(trans.info, "Gap")
-        setkey(gap.info, "Gap")
-        trans.info <- gap.info[trans.info]
-
-		# Subject info merge
-        setkey(trans.info, "Subject")
-        setkey(subject.info, "Subject")
-        trans.info <- subject.info[trans.info]
+        trans.info <- bind_rows(grab.transition.info(target.windows.C1, fix.window), 
+                          grab.transition.info(target.windows.C2, fix.window),
+                          grab.transition.info(target.windows.C3, fix.window),
+                          grab.transition.info(target.windows.C4, fix.window),
+                          grab.transition.info(target.windows.C5, fix.window),
+                          grab.transition.info(target.windows.C6, fix.window),
+                          grab.transition.info(target.windows.A, fix.window)) %>%
+                          arrange(Subject, Gap)
         
-        # Re-order data
-        setkeyv(trans.info, c("Subject", "Segment", "Onset"))
-        
-        # Set column with sample type (Random vs. Transition)
-        if (sample == 1) {
-	        trans.info[, Sample := "RANDOM"]
-	    } else {
-	    	trans.info[, Sample := "TRANSITION"]
-	    }
-        
-        # Merge video stimulus info back in
-        setkey(trans.info, "Segment")
-        setkey(vid.info, "Segment")
-        trans.info <- vid.info[trans.info]
-        
-        # Limit the data set to transitions with gaps longer than 0.09 sec
-        trans.info <- subset(trans.info, Duration > 0.09)
-		
-		# Create a column for the transition type (Ttype: question/statement)
-		trans.info[, Ttype := Type]
-		# WH-questions in the muffled condition sound like declaratives,
-		# so their Ttype becomes "S" (statement)
-		trans.info[QType == "wh" & Condition == "muffled", Ttype := "S"]
-		
-        # Write out the data, which is now ready for plotting and
-        # statistical analysis; name according to index and sample value
-        if (sample == 1) {
+        # Write out the data; name according to index and sample value
+        if (random == TRUE) {
 	        write.csv(trans.info, paste(processed.data.path,
-	        	"switch.final.rand.", i, ".csv", sep=""), row.names=FALSE)
+	        	"switch.final.rand.", run, ".csv", sep=""), row.names=FALSE)
 	    } else {
 	    	write.csv(trans.info, paste(processed.data.path,
 	        	"switch.final.csv", sep=""), row.names=FALSE)
 	    }
     }
+}
+
+################################################################################
+# Sub-functions
+################################################################################
+# Retrieve samples from analysis-relevant time windows:
+# This function adds annotations to those measurements that are
+# within the analysis windows
+# |--------A----|-|                     # Speaker A's turn
+#                      |-|----B-----|   # Speaker B's turn
+# Anchor:      |--|
+# Transition:   |---------|
+# Gap:            |----|
+get.windows.categorical <- function(obs, gap.info, utt.window, fixation.window) {
+
+  # Get rid of gaps under 90ms and over 550 ms (marked as 0 in the spreadsheet)
+  vids.used <- distinct(select(obs, Segment))
+  gaps <- gap.info %>% 
+    filter(Gap != "NA", Exclude == 0, Segment != "NA") %>%
+    right_join(vids.used, by = "Segment") %>%
+	arrange(order)
+    
+  # shuffle and then rearrange
+  df.out <- gaps %>% 
+    group_by(order) %>% 
+    do(get.gap(.$Segment, .$Onset, .$Offset, .$SpeakerPrev, .$Gap,
+               obs, utt.window, fixation.window)) %>%
+    arrange(Subject, order, Cumulative.Time)     
+  
+   return(df.out)
+}
+
+
+
+# Helper function for get.windows.categorical
+get.gap <- function(segment, onset, offset, speakerprev, gap,
+                    obs, utt.window, fixation.window) {
+  obs %>% 
+    filter(Segment == segment,
+           (TimeSecSeg >= onset - utt.window - fixation.window), 
+           (TimeSecSeg <= offset + utt.window + fixation.window)) %>%
+    mutate(Anchor.Window = TimeSecSeg >= onset - utt.window - fixation.window &
+             TimeSecSeg <= onset,
+           Transition.Window = TimeSecSeg >= onset - utt.window &
+             TimeSecSeg <= offset + utt.window + fixation.window,
+           Gap.Window = TimeSecSeg >= onset & TimeSecSeg <= offset,
+           Origin = speakerprev,
+           Gap = gap,
+           Cumulative.Time = round(TimeSecSeg - min(TimeSecSeg),3))
+}   
+
+
+
+# Checks for transitions in analysis windows
+# Note: makes use of linear filter that depends on equal spacing of points
+# .0083 msec * 12 = 100 msec, of which > 90 msec need to be looks. 
+# Note: GapNum is a factor, so we cast it back to numeric. 
+grab.transition.info <- function(obs, fixation.window) {
+  obs %>%
+    group_by(Subject, Gap) %>%
+    mutate(
+      iow = Looks.Origin * MS.Increment * Anchor.Window,
+      idt = Looks.Destination * MS.Increment * Transition.Window,
+      anchor.filter = apply.filter(iow),
+      transition.filter = apply.filter(idt),
+      transition.times = transition.filter > .09 & !is.na(transition.filter)) %>%
+    group_by(Subject, Gap) %>%
+    summarise(
+      Anchor = any(anchor.filter > .09, na.rm = TRUE),
+      Transition = any(transition.filter > .09, na.rm = TRUE),
+      Transition.Time = Cumulative.Time[transition.times][1],
+      Start = conditional.max(Cumulative.Time[
+        Looks.Origin & Cumulative.Time < Cumulative.Time[transition.times][1]])) %>%
+    ungroup() %>%
+    mutate(Switch = ifelse(Start == 0, FALSE, Anchor & Transition)) %>%
+    select(Subject, Gap, Switch, Start) %>%
+    arrange(Gap)
+}
+
+
+
+# Helper functions for grab.transition.info:
+# Ensures the filter isn't applied to too-small time series
+apply.filter <- function(ns) {
+  if (length(ns) >= 12) {
+    as.numeric(stats::filter(ns, filter = rep(1, 12), side = 1))
+  } else {
+    rep(0, length(ns))
+  }
+}
+# Returns a maximum value for non-empty non-NA vectors and 0 otherwise
+conditional.max <- function(ns) {
+	ns = ns[!is.na(ns)]
+	if (length(ns) > 0) {
+		max(ns)
+	} else {
+		0
+	}
 }
