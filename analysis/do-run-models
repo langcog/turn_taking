@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+main() {
+    exp="$1"
+    start="${2:-1}"
+    length="${3:-100}"
+    let end=start+length
+    chunk_size=10
+    for (( i="$start"; i < "$end"; i+="$chunk_size" )); do
+        let chunk_end=i+chunk_size-1
+        queue "$exp" "$i" "$chunk_end"
+    done
+}
+
+queue() {
+    exp="$1"
+    i="$2"
+    chunk_end="$3"
+    ns=$(seq -s" " "$i" "$chunk_end")
+    qsub <<EOT
+#!/bin/sh
+#$ -N run-models-$i-$chunk_end
+#$ -cwd
+#$ -q all.q
+#$ -S /bin/bash
+dir=\$HOME/turn-taking-analysis/$exp
+binary=/usr/local/bin/Rscript
+cd \$dir
+\$binary ../run.models.R $ns
+EOT
+}
+
+main "$@"

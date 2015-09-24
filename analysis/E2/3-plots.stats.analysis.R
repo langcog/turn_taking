@@ -232,6 +232,8 @@ chi.max <- glmer(Switch ~ Age * Condition * Type + Duration +
     control = glmerControl(optimizer="bobyqa"))
 chi.coefs <- data.frame(t(sapply(fixef(chi.max),c)))
 chi.coefs$Sample <- "real"
+chi.coefs$Error <- ""
+chi.coefs$Run <- 0
 
 # Adults
 adu.max <- glmer(Switch ~ Condition * Type + Duration + 
@@ -239,6 +241,8 @@ adu.max <- glmer(Switch ~ Condition * Type + Duration +
     control = glmerControl(optimizer="bobyqa"))
 adu.coefs <- data.frame(t(sapply(fixef(adu.max),c)))
 adu.coefs$Sample <- "real"
+adu.coefs$Error <- ""
+adu.coefs$Run <- 0
 
 # Write out the real data model results
 write.csv(summary(chi.max)$coefficients, paste(
@@ -247,6 +251,16 @@ write.csv(summary(chi.max)$coefficients, paste(
 write.csv(summary(adu.max)$coefficients, paste(
 	processed.data.path, "adu.model.csv", sep=""),
 	row.names=FALSE)
+	
+# Write out the real model results for combination with
+# the random runs
+write.csv(chi.coefs, paste(
+	processed.data.path, "chi.coefs-0.csv", sep=""),
+	row.names=FALSE)
+write.csv(adu.coefs, paste(
+	processed.data.path, "adu.coefs-0.csv", sep=""),
+	row.names=FALSE)
+
 
 # Post hoc test of difference from random in 1- and 2-year-olds'
 # performance in the lex-only and pros-only conditions
@@ -276,73 +290,109 @@ run.models <- function(ns) {
          			        mutate(Age = as.numeric(Age))
 	switch.rand.A <- filter(switch.rand, Age == 21)
 
-    # Initialize coefficient data frames
-    # for collecting random run results
-    chi.coefs.r <- chi.coefs[0,]
-    adu.coefs.r <- adu.coefs[0,]
+    withCallingHandlers({
+        for(i in ns){
+            w <- length(warnings())
+            errors <- ""
+	    	# Update
+    	    print(i)
 
-	for (i in ns) {
-		# Update
-		print(i)
-		
-		# Retrieve the random gap info data for this particular run
-		rand.data.C <- switch.rand.C[Run == i,]
-		rand.data.A <- switch.rand.A[Run == i,]	
-		# Models
-		# Children
-		chi.max.r <- glmer(Switch ~ Age * Condition * Type + Duration + 
-            (Type|Subject) + (1|Gap), data=rand.data.C, family=binomial,
-            control = glmerControl(optimizer="bobyqa"))
-		chi.coefs.r <- rbind(chi.coefs.r, data.frame(t(sapply(fixef(chi.max.r),c))))
-		
-		# Adults
-		adu.max.r <- glmer(Switch ~ Condition * Type + Duration + 
-            (Type|Subject) + (1|Gap), data=rand.data.A, family=binomial,
-            control = glmerControl(optimizer="bobyqa"))
-		adu.coefs.r <- rbind(adu.coefs.r, data.frame(t(sapply(fixef(adu.max.r),c))))
-		
-	}
-	
-	chi.coefs.r$Sample <- "random"
-	adu.coefs.r$Sample <- "random"
+    		# Retrieve the random gap info data for this particular run
+	    	rand.data.C <- switch.rand.C[Run == i,]
+	    	chi.coefs.r <- chi.coefs[0,]
 
-    # Add a label to the coefficient tables
-    # And then bind them together
-    all.chi.coefs <- rbind(chi.coefs.r, chi.coefs)
-    all.adu.coefs <- rbind(adu.coefs.r, adu.coefs)
+    		# Models
+	    	# Children
+	    	chi.max.r <- glmer(Switch ~ Age * Condition * Type + Duration + 
+                (Type|Subject) + (1|Gap), data=rand.data.C, family=binomial,
+                control = glmerControl(optimizer="bobyqa"))
+    		chi.coefs.r <- rbind(chi.coefs.r,
+    			cbind(data.frame(t(sapply(fixef(chi.max.r),c))),
+    			data.frame(Sample = "random", Error = errors, Run = i)))
+    		write.csv(chi.coefs.r, paste(
+				processed.data.path, "chi.coefs.r-", i, ".csv", sep=""),
+				row.names=FALSE)
+        }
+    }, warning = function(w){
+	    if (errors == "") {
+	        errors <<- w$message
+        }
+        invokeRestart("muffleWarning")
+    })
 
-    # And write them out
-    write.csv(all.chi.coefs, paste(processed.data.path,
-        "chi.coefs.csv", sep=""), row.names=FALSE)
-    write.csv(all.adu.coefs, paste(processed.data.path,
-        "adu.coefs.csv", sep=""), row.names=FALSE)
+    withCallingHandlers({
+        for(i in ns){
+            w <- length(warnings())
+            errors <- ""
+    		# Update
+        	print(i)
+
+    		# Retrieve the random gap info data for this particular run
+	    	rand.data.A <- switch.rand.A[Run == i,]	
+	    	adu.coefs.r <- adu.coefs[0,]
+
+		    # Models
+    		# Adults
+	    	adu.max.r <- glmer(Switch ~ Condition * Type + Duration + 
+                (Type|Subject) + (1|Gap), data=rand.data.A, family=binomial,
+                control = glmerControl(optimizer="bobyqa"))
+    		adu.coefs.r <- rbind(adu.coefs.r,
+    			cbind(data.frame(t(sapply(fixef(adu.max.r),c))),
+    			data.frame(Sample = "random", Error = errors, Run = i)))
+    		write.csv(adu.coefs.r, paste(
+				processed.data.path, "adu.coefs.r-", i, ".csv", sep=""),
+				row.names=FALSE)
+
+        }
+    }, warning = function(w){
+	    if (errors == "") {
+	        errors <<- w$message
+        }
+        invokeRestart("muffleWarning")
+    })
+}
+
+compare.models <- function() {
+	chi.models <- do.call("rbind", lapply(list.files(
+		path="processed_data/", pattern="chi.coefs*", full.names=TRUE),
+		read.csv, header=TRUE))
+	write.csv(chi.models, paste(processed.data.path,
+        "chi.models.csv", sep=""), row.names=FALSE)
+
+		
+	adu.models <- do.call("rbind", lapply(list.files(
+		path="processed_data/", pattern="adu.coefs*", full.names=TRUE),
+		read.csv, header=TRUE))
+	write.csv(adu.models, paste(processed.data.path,
+        "adu.models.csv", sep=""), row.names=FALSE)
 
 	# Derive the absolute values of the coefficients for
 	# The real data and
-	all.chi.coefs <- abs(all.chi.coefs[,1:(length(all.chi.coefs)-1)])
-	all.adu.coefs <- abs(all.adu.coefs[,1:(length(all.adu.coefs)-1)])
-	
+	abs.chi.coefs <- cbind(abs(chi.models[,1:(length(chi.models)-3)]),
+		chi.models[,(length(chi.models)-2):length(chi.models)])
+	abs.adu.coefs <- cbind(abs(adu.models[,1:(length(adu.models)-3)]),
+		adu.models[,(length(adu.models)-2):length(adu.models)])
+
 	# Print, for each model, how many random coefficients
 	# are less than the real data coefficients (with absolute values)
-	print("Child model: ")
-	for (i in 1:length(all.chi.coefs)) {
-		pred <- names(all.chi.coefs)[i]
-		trueval <- as.numeric(all.chi.coefs[nrow(all.chi.coefs),i])
-		percunder <- (1 - sum(all.chi.coefs[(1:nrow(all.chi.coefs)-1),i] > trueval)/
-		             (nrow(all.chi.coefs)-1))*100
-		print(paste(pred, " absB=", round(trueval,3),
-		            ";more than ", round(percunder,3),
-		            "% of random absBs.", sep=""))
+	print("### Child model: ")
+	for (i in 1:(length(abs.chi.coefs)-3)) {
+		pred <- names(abs.chi.coefs)[i]
+		trueval <- as.numeric(abs.chi.coefs[abs.chi.coefs$Sample == "real",i])
+		gtrthn <- sum(trueval > abs.chi.coefs[
+			abs.chi.coefs$Sample == "random",i])/(nrow(abs.chi.coefs)-1)*100
+		print(paste(pred, " B=", round(trueval,3),
+		            " > ", round(gtrthn,3), "%", sep=""))
 	}
-	
-	print("Adult model: ")
-	for (i in 1:length(all.adu.coefs)) {
-		pred <- names(all.adu.coefs)[i]
-		trueval <- as.numeric(all.adu.coefs[nrow(all.adu.coefs),i])
-		percunder <- (1 - sum(all.adu.coefs[(1:nrow(all.adu.coefs)-1),i] > trueval)/
-		             (nrow(all.adu.coefs)-1))*100
-		print(paste(pred, " absB=", round(trueval,3),
-		            "; more than ", round(percunder,3),
-		            "% of random absBs.", sep=""))
+	print(" ")
+	print("### Adult model: ")
+	for (i in 1:(length(abs.adu.coefs)-3)) {
+		pred <- names(abs.adu.coefs)[i]
+		trueval <- as.numeric(abs.adu.coefs[abs.adu.coefs $Sample == "real",i])
+		gtrthn <- sum(trueval > abs.adu.coefs[
+			abs.adu.coefs$Sample == "random",i])/(nrow(abs.adu.coefs)-1)*100
+		print(paste(pred, " B=", round(trueval,3),
+		            " > ", round(gtrthn,3), "%", sep=""))
 	}
+
 }
