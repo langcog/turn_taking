@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: CasillasFrank-Anticip.aux
+The style file: elsarticle-harv.bst
+Database file #1: anticip.bib
+Warning--I'm ignoring magyari2014's extra "title" field
+--line 492 of file anticip.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty pages in casillas2013
+Warning--empty pages in hedberg2010
+Warning--empty pages in TiceHenetz11
+Warning--empty pages in ELAN
+You've used 64 entries,
+            2990 wiz_defined-function locations,
+            1002 strings with 15887 characters,
+and the built_in function-call counts, 42096 in all, are:
+= -- 3194
+> -- 1602
+< -- 34
++ -- 633
+- -- 551
+* -- 4550
+:= -- 6102
+add.period$ -- 186
+call.type$ -- 64
+change.case$ -- 503
+chr.to.int$ -- 64
+cite$ -- 68
+duplicate$ -- 3222
+empty$ -- 3163
+format.name$ -- 753
+if$ -- 7817
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 617
+newline$ -- 329
+num.names$ -- 262
+pop$ -- 1194
+preamble$ -- 1
+purify$ -- 437
+quote$ -- 0
+skip$ -- 919
+stack$ -- 0
+substring$ -- 1815
+swap$ -- 2258
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 564
+warning$ -- 4
+while$ -- 285
+width$ -- 0
+write$ -- 899
+(There were 5 warnings)
