@@ -5,7 +5,7 @@ library(bootstrap)
 library(lme4)
 library(stringr)
 library(plotrix)
-library(reshape)
+library(reshape2)
 library(plyr)
 library(car)
 
@@ -165,4 +165,95 @@ smoothLD <- function(dt) {
 	}
 	# Return the smoothed data
 	return(dt)
+}
+
+
+################################################################################
+# Random run plot functions
+################################################################################
+
+combine.runs <- function(DT, filelist, name) {
+	curr.row <- 1
+	for (file in filelist) {
+		# Read in a file
+		data <- fread(paste(processed.data.path, file, sep=""))
+		# Add the data to the big data table
+		DT[curr.row, names(DT) := data]
+		curr.row <- curr.row + 1
+	}
+	setkeyv(DT, "Run")
+	# Write it out
+	write.csv(DT, paste(processed.data.path,
+		name, ".random.runs.csv",sep=""), row.names=FALSE)
+	# Return it
+	return(DT)
+}
+
+get95ths <- function(meltdf, tails, origdf) {
+	variables <- unique(meltdf$variable)
+	if (tails == 1) {
+		idx95 <- round((nrow(origdf) - 1)*.95)
+		ninetyfifths <- data.frame(
+			variable=variables,
+			tvalue=rep(0,length(variables)))
+		for (v in variables) {
+			ninetyfifths$tvalue[which(ninetyfifths$variable == v)] <-
+				sort(subset(meltdf, variable == v)$tvalue)[idx95]
+		}
+	}
+	else if (tails == 2) {
+		idx95.l <- round((nrow(origdf) - 1)*.025)
+		idx95.u <- round((nrow(origdf) - 1)*.975)
+		ninetyfifths <- data.frame(
+			variable=variables,
+			tvalue.l=rep(0,length(variables)),
+			tvalue.u=rep(0,length(variables)))
+		for (v in variables) {
+			ninetyfifths$tvalue.l[which(ninetyfifths$variable == v)] <-
+				sort(subset(meltdf, variable == v)$tvalue)[idx95.l]
+			ninetyfifths$tvalue.u[which(ninetyfifths$variable == v)] <-
+				sort(subset(meltdf, variable == v)$tvalue)[idx95.u]
+		}
+
+	}
+	return(ninetyfifths)
+}
+
+getPercentile <- function(realvals, randvals, tails) {
+	variables <- unique(randvals$variable)
+	if (tails == 1) {
+		percentiles <- data.frame(
+			variable=variables,
+			percent=rep(0,length(variables)))
+		for (v in variables) {
+			percentiles$percent[which(percentiles$variable == v)] <-
+			round((nrow(subset(subset(randvals, variable == v), tvalue <
+				abs(subset(realvals, variable == v)$tvalue))) /
+				nrow(subset(randvals, variable == v)))*100,1)
+		}
+	}
+	else if (tails == 2) {
+		percentiles <- data.frame(
+			variable=variables,
+			percent=rep(0,length(variables)))
+		for (v in variables) {
+			tval <- subset(realvals, variable == v)$tvalue
+			pos <- ifelse(tval > 0, 1, 0)
+			if (pos == 1) {
+				percentiles$percent[which(percentiles$variable == v)] <-
+				round((nrow(subset(subset(randvals, variable == v &
+					tvalue > 0), tvalue < tval))) /
+					nrow(subset(randvals, variable == v &
+					tvalue > 0))*100,1)
+			}
+			else {
+				percentiles$percent[which(percentiles$variable == v)] <-
+				round((nrow(subset(subset(randvals, variable == v &
+					tvalue < 0), tvalue > tval))) /
+					nrow(subset(randvals, variable == v &
+					tvalue < 0))*100,1)
+			}
+		}
+	}
+	return(percentiles)	
 }

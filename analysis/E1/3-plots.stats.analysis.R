@@ -34,17 +34,17 @@ files <- dir(processed.data.path, pattern="switch.final.rand.[0-9]+.csv")
 N <- length(files) * 4000 # > max length of a switch.final.rand csv file
 switch.final.r <- data.table(
 	Subject = rep("", N),
-	Gap = rep(0, N),
-	Switch = rep(0, N),
+	Gap = rep(as.integer(0), N),
+	Switch = rep(FALSE, N),
 	Start = rep(0, N),
-	Run = rep(0,N))
+	Run = rep(as.integer(0),N))
 # Fill the data table with the random runs
 curr.row <- 1
 for (file in files) {
 	# Read in a file
 	data <- fread(paste(processed.data.path, file, sep=""))
 	# Record the random run number
-	data[, Run := unlist(strsplit(file, "[.]"))[4]]
+	data[, Run := as.integer(unlist(strsplit(file, "[.]"))[4])]
 	# Add the data to the big data table
 	curr.rows <- curr.row:(curr.row + nrow(data) - 1)
 	switch.final.r[curr.rows, names(switch.final.r) := data]
@@ -78,6 +78,9 @@ switch.all <- switch.all %>%
         inner_join(gap.info, by = "Gap") %>%
         inner_join(sub.info, by = "Subject")
 
+# Write combined data
+write.csv(switch.all, paste(processed.data.path,
+	"SwitchAll.csv", sep=""), row.names=FALSE)
 
 ################################################################################
 # Create plots
@@ -139,6 +142,71 @@ p1 <- qplot(Age,m,facets = . ~ Language, group=Sample, ylim=c(-0.1,0.6),
 png(paste(plot.path, "samples-by-lang-groups.png", sep=""),
     width=1100,height=600,units="px", bg = "transparent")
 print(p1)
+dev.off()    
+################################################################################
+
+
+###### DIFF BETWEEN RANDOM AND TRANSITION w/ TYPE  #############################
+mean.agg <- aggregate(Switch ~ LgGroup + Sample + Type + Age, switch.all, mean)
+langs <- mean.agg$LgGroup
+ages <- mean.agg$Age
+samples <- mean.agg$Sample
+types <- mean.agg$Type
+means <- mean.agg$Switch
+errs <- aggregate(Switch ~ LgGroup + Sample + Type + Age, switch.all, sem)$Switch
+linecolors <- c(
+	"Random (both)", "Random (both)",
+	"English", "Non-English",
+	"Random (both)", "Random (both)",
+	"English", "Non-English",
+	"Random (both)", "Random (both)",
+	"English", "Non-English",
+	"Random (both)", "Random (both)",
+	"English", "Non-English")
+
+df <- data.frame(
+    Age = factor(ages),
+    Sample = factor(samples),
+    Type = factor(types),
+    Language = factor(langs),
+    m = means,
+    se = errs,
+    Condition = factor(linecolors)
+)
+df$Sample <- factor(df$Sample, levels=rev(levels(df$Sample)))
+df$Language <- factor(df$Language, labels=c("English", "Non-English"))
+
+limits <- aes(ymax = m + se, ymin= m - se)
+dodge <- position_dodge(width=0.9)
+
+p2 <- qplot(Age,m,facets = . ~ Language, group=interaction(Sample,Type),
+	ylim=c(-0.1,0.6), ymin= m - se, ymax= m + se,
+	color=Condition, linetype=Type,
+    xlab="Age (years)",ylab="Proportion gaze switches",
+    position=position_dodge(width=.1), data=df) +
+	geom_line(size=2, position=position_dodge(width=.1)) +
+	geom_pointrange(size=1, position=position_dodge(width=.1)) +
+    scale_colour_manual(name="Condition",
+    	values=c("dodgerblue3", "firebrick2", "gray26")) +
+    scale_linetype_manual(name="Sample", values=lines) +
+    plot.style + theme(
+    panel.background = element_rect(fill = "transparent",colour = NA),
+  	axis.text.x = element_text(size=30, color="gray40"),
+	axis.text.y = element_text(size=30, color="gray40"),
+	axis.title.x = element_text(size=30, color="gray20"),
+	axis.title.y = element_text(size=30, color="gray20", vjust=2),
+    plot.background = element_rect(fill = "transparent",colour = NA),
+    strip.text.x = element_text(size=30, color="gray20"),
+#    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.title = element_text(colour="gray20", size=24),
+    legend.text = element_text(colour="gray20", size=26),
+    legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
+    legend.key = element_rect(fill = "transparent", colour = "transparent"),
+    legend.background = element_rect(fill="transparent"),
+    plot.margin=unit(c(10,10,10,10),"mm"))
+png(paste(plot.path, "samples-by-lang-groups-trans-types.png", sep=""),
+    width=1200,height=600,units="px", bg = "transparent")
+print(p2)
 dev.off()    
 ################################################################################
 
@@ -208,23 +276,31 @@ switch.real.A <- filter(switch.real, Age == "A")
 # Models
 # Children
 chi.max <- glmer(Switch ~ Age * LgGroup * Type + Duration + 
-    (Type * LgGroup|Subject) + (1|Gap), data= switch.real.C, family=binomial,
-    control = glmerControl(optimizer="bobyqa"))
+    (Type * LgGroup|Subject) + (1|Gap), data=switch.real.C,
+    family=binomial, control = glmerControl(optimizer="bobyqa"))
+#	Notes:
+#		- Random slopes maximized but don't make qualitative difference
+#		- Does not converge w/ duration interaction in fixed effects
+
+# Adults
+adu.max <- glmer(Switch ~ LgGroup * Type * Duration + 
+    (Type * LgGroup|Subject) + (1|Gap), data=switch.real.A,
+    family=binomial, control = glmerControl(optimizer="bobyqa"))
+#	Notes:
+#		- Random slopes maximized but don't make qualitative difference
+
+# Export the model values for use in the random runs
 chi.coefs <- data.frame(t(sapply(fixef(chi.max),c)))
 chi.coefs$Sample <- "real"
 chi.coefs$Error <- ""
 chi.coefs$Run <- 0
 
-# Adults
-adu.max <- glmer(Switch ~ LgGroup * Type + Duration + 
-    (Type * LgGroup|Subject) + (1|Gap), data= switch.real.A, family=binomial,
-    control = glmerControl(optimizer="bobyqa"))
 adu.coefs <- data.frame(t(sapply(fixef(adu.max),c)))
 adu.coefs$Sample <- "real"
 adu.coefs$Error <- ""
 adu.coefs$Run <- 0
 
-# Write out the real data model results
+# Model results
 write.csv(summary(chi.max)$coefficients, paste(
 	processed.data.path, "chi.model.csv", sep=""),
 	row.names=FALSE)
@@ -232,8 +308,7 @@ write.csv(summary(adu.max)$coefficients, paste(
 	processed.data.path, "adu.model.csv", sep=""),
 	row.names=FALSE)
 
-# Write out the real model results for combination with
-# the random runs
+# Model coefficients
 write.csv(chi.coefs, paste(
 	processed.data.path, "chi.coefs-0.csv", sep=""),
 	row.names=FALSE)
@@ -241,116 +316,27 @@ write.csv(adu.coefs, paste(
 	processed.data.path, "adu.coefs-0.csv", sep=""),
 	row.names=FALSE)
 
-run.models <- function(ns) {
-    # Split the data into adults and children for separate models
-    switch.rand <- filter(switch.all, Sample == "Random") %>%
-                   select(-Sample)
-                   
-    switch.rand.C <- filter(switch.rand, Age != "A") %>%
-                     mutate(Age = as.numeric(Age))
-    switch.rand.A <- filter(switch.rand, Age == "A")
+# Overall random rate comparison by age, transition type, and condition
+age3 <- filter(switch.all, Age == 3)
+age3.eng <- filter(age3, LgGroup == "E")
+age3.non <- filter(age3, LgGroup == "NE")
+age3.eng.q <- filter(age3.eng, Type == "Q")
+age3.non.q <- filter(age3.non, Type == "Q")
+age3.eng.n <- filter(age3.eng, Type == "S")
+age3.non.n <- filter(age3.non, Type == "S")
 
-    withCallingHandlers({
-        for(i in ns){
-            w <- length(warnings())
-            errors <- ""
-	    	# Update
-    	    print(i)
-
-    		# Retrieve the random gap info data for this particular run
-	    	rand.data.C <- switch.rand.C[Run == i,]
-	    	chi.coefs.r <- chi.coefs[0,]
-
-    		# Models
-	    	# Children
-			chi.max.r <- glmer(Switch ~ Age * LgGroup * Type + Duration + 
-    	        (Type * LgGroup|Subject) + (1|Gap), data= rand.data.C, family=binomial,
-        	    control = glmerControl(optimizer="bobyqa"))
-    		chi.coefs.r <- rbind(chi.coefs.r,
-    			cbind(data.frame(t(sapply(fixef(chi.max.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(chi.coefs.r, paste(
-				processed.data.path, "chi.coefs.r-", i, ".csv", sep=""),
-				row.names=FALSE)		
-        }
-    }, warning = function(w){
-	    if (errors == "") {
-	        errors <<- w$message
-        }
-        invokeRestart("muffleWarning")
-    })
-
-    withCallingHandlers({
-        for(i in ns){
-            w <- length(warnings())
-            errors <- ""
-    		# Update
-        	print(i)
-
-    		# Retrieve the random gap info data for this particular run
-	    	rand.data.A <- switch.rand.A[Run == i,]	
-	    	adu.coefs.r <- adu.coefs[0,]
-		
-		    # Models
-    		# Adults
-			adu.max.r <- glmer(Switch ~ LgGroup * Type + Duration + 
-    	        (Type * LgGroup|Subject) + (1|Gap), data= rand.data.A, family=binomial,
-        	    control = glmerControl(optimizer="bobyqa"))
-    		adu.coefs.r <- rbind(adu.coefs.r,
-    			cbind(data.frame(t(sapply(fixef(adu.max.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(adu.coefs.r, paste(
-				processed.data.path, "adu.coefs.r-", i, ".csv", sep=""),
-				row.names=FALSE)
-        }
-    }, warning = function(w){
-	    if (errors == "") {
-	        errors <<- w$message
-        }
-        invokeRestart("muffleWarning")
-    })
-}
-
-compare.models <- function() {
-	chi.models <- do.call("rbind", lapply(list.files(
-		path="processed_data/", pattern="chi.coefs*", full.names=TRUE),
-		read.csv, header=TRUE))
-	write.csv(chi.models, paste(processed.data.path,
-        "chi.models.csv", sep=""), row.names=FALSE)
-		
-	adu.models <- do.call("rbind", lapply(list.files(
-		path="processed_data/", pattern="adu.coefs*", full.names=TRUE),
-		read.csv, header=TRUE))
-	write.csv(adu.models, paste(processed.data.path,
-        "adu.models.csv", sep=""), row.names=FALSE)
-
-	# Derive the absolute values of the coefficients for
-	# The real data and
-	abs.chi.coefs <- cbind(abs(chi.models[,1:(length(chi.models)-3)]),
-		chi.models[,(length(chi.models)-2):length(chi.models)])
-	abs.adu.coefs <- cbind(abs(adu.models[,1:(length(adu.models)-3)]),
-		adu.models[,(length(adu.models)-2):length(adu.models)])
-
-	# Print, for each model, how many random coefficients
-	# are less than the real data coefficients (with absolute values)
-	print("### Child model: ")
-	for (i in 1:(length(abs.chi.coefs)-3)) {
-		pred <- names(abs.chi.coefs)[i]
-		trueval <- as.numeric(abs.chi.coefs[abs.chi.coefs$Sample == "real",i])
-		gtrthn <- sum(trueval > abs.chi.coefs[
-			abs.chi.coefs$Sample == "random",i])/(nrow(abs.chi.coefs)-1)*100
-		print(paste(pred, " B=", round(trueval,3),
-		            " > ", round(gtrthn,3), "%", sep=""))
-	}
-	print(" ")
-	print("### Adult model: ")
-	for (i in 1:(length(abs.adu.coefs)-3)) {
-		pred <- names(abs.adu.coefs)[i]
-		trueval <- as.numeric(abs.adu.coefs[abs.adu.coefs $Sample == "real",i])
-		gtrthn <- sum(trueval > abs.adu.coefs[
-			abs.adu.coefs$Sample == "random",i])/(nrow(abs.adu.coefs)-1)*100
-		print(paste(pred, " B=", round(trueval,3),
-		            " > ", round(gtrthn,3), "%", sep=""))
-	}
-
-}
+# a3 <- glmer(Switch ~ Sample + 
+    # (1|Subject) + (1|Gap), data=age3,
+    # family=binomial, control = glmerControl(optimizer="bobyqa"))
+a3.e.q <- glmer(Switch ~ Sample + 
+    (1|Subject) + (1|Gap), data=age3.eng.q,
+    family=binomial, control = glmerControl(optimizer="bobyqa"))
+a3.n.q <- glmer(Switch ~ Sample + 
+    (1|Subject) + (1|Gap), data=age3.non.q,
+    family=binomial, control = glmerControl(optimizer="bobyqa"))
+a3.e.n <- glmer(Switch ~ Sample + 
+    (1|Subject) + (1|Gap), data=age3.eng.n,
+    family=binomial, control = glmerControl(optimizer="bobyqa"))
+a3.n.n <- glmer(Switch ~ Sample + 
+    (1|Subject) + (1|Gap), data=age3.non.n,
+    family=binomial, control = glmerControl(optimizer="bobyqa"))

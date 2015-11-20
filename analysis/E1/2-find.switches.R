@@ -39,7 +39,7 @@ all.data.C5 <- filter(all.data, Age == "5")
 # Anticipatory switch identification variables:
 fix.window <- 0.1
 # Saccadic RTs set for...
-saccadeRTs <- c(0.278, 0.252, 0.226, 0.2)
+saccadeRTs <- c(0.2, 0.2, 0.2, 0.2)
 # 3-year-olds
 utt.overlap.C3 = saccadeRTs[1]
 # 4-year-olds
