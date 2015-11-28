@@ -1,4 +1,4 @@
-This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  28 NOV 2015 01:00
+This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  28 NOV 2015 09:57
  restricted \write18 enabled.
  file:line:error style messages enabled.
 **CasillasFrank-Anticip.tex
@@ -277,370 +277,26 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-)
+) [1
 
-Package natbib Warning: Citation `de-vos2015' on page 1 undefined on input line
- 46.
 
-
-Package natbib Warning: Citation `dingemanse2013' on page 1 undefined on input 
-line 46.
-
-
-Package natbib Warning: Citation `stivers2009' on page 1 undefined on input lin
-e 46.
-
-[1
-
-
-{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-Package natbib Warning: Citation `bateson1975' on page 2 undefined on input lin
-e 48.
-
-
-Package natbib Warning: Citation `hilbrink2015' on page 2 undefined on input li
-ne 48.
-
-
-Package natbib Warning: Citation `jaffe2001' on page 2 undefined on input line 
-48.
-
-
-Package natbib Warning: Citation `snow1977' on page 2 undefined on input line 4
-8.
-
-
-Package natbib Warning: Citation `hilbrink2015' on page 2 undefined on input li
-ne 48.
-
-
-Package natbib Warning: Citation `jaffe2001' on page 2 undefined on input line 
-48.
-
-
-Package natbib Warning: Citation `ratner1978' on page 2 undefined on input line
- 54.
-
-
-Package natbib Warning: Citation `ross1987' on page 2 undefined on input line 5
-4.
-
-
-Package natbib Warning: Citation `lemasson2011' on page 2 undefined on input li
-ne 54.
-
-
-Package natbib Warning: Citation `takahashi2013' on page 2 undefined on input l
-ine 54.
-
-
-Package natbib Warning: Citation `schegloff2007' on page 2 undefined on input l
-ine 56.
-
-[2]
-
-Package natbib Warning: Citation `stivers2009' on page 3 undefined on input lin
-e 58.
-
-
-Package natbib Warning: Citation `griffin2000' on page 3 undefined on input lin
-e 58.
-
-
-Package natbib Warning: Citation `levelt1989' on page 3 undefined on input line
- 58.
-
-
-Package natbib Warning: Citation `levinson2013' on page 3 undefined on input li
-ne 58.
-
-
-Package natbib Warning: Citation `de-ruiter2006' on page 3 undefined on input l
-ine 62.
-
-
-Package natbib Warning: Citation `duncan1972' on page 3 undefined on input line
- 62.
-
-
-Package natbib Warning: Citation `ford1996' on page 3 undefined on input line 6
-2.
-
-
-Package natbib Warning: Citation `torreira2015' on page 3 undefined on input li
-ne 62.
-
-
-Package natbib Warning: Citation `rossano2009' on page 3 undefined on input lin
-e 62.
-
-
-Package natbib Warning: Citation `stivers2010' on page 3 undefined on input lin
-e 62.
-
-
-Package natbib Warning: Citation `schegloff2007' on page 3 undefined on input l
-ine 62.
-
-
-Package natbib Warning: Citation `de-ruiter2006' on page 3 undefined on input l
-ine 64.
-
-
-Package natbib Warning: Citation `de-ruiter2006' on page 3 undefined on input l
-ine 64.
-
-
-Package natbib Warning: Citation `magyari2012' on page 3 undefined on input lin
-e 64.
-
-
-Package natbib Warning: Citation `magyari2014' on page 3 undefined on input lin
-e 64.
-
-
-Package natbib Warning: Citation `gisladottir2015' on page 3 undefined on input
- line 64.
-
-
-Package natbib Warning: Citation `bogels2015' on page 3 undefined on input line
- 64.
-
-[3]
-
-Package natbib Warning: Citation `ford1996' on page 4 undefined on input line 6
-6.
-
-
-Package natbib Warning: Citation `torreira2015' on page 4 undefined on input li
-ne 66.
-
-
-Package natbib Warning: Citation `de-ruiter2006' on page 4 undefined on input l
-ine 66.
-
-
-Package natbib Warning: Citation `duncan1972' on page 4 undefined on input line
- 66.
-
-
-Package natbib Warning: Citation `ford1996' on page 4 undefined on input line 6
-6.
-
-
-Package natbib Warning: Citation `hirvenkari2013' on page 4 undefined on input 
-line 66.
-
-[4]
-
-Package natbib Warning: Citation `bruner1975' on page 5 undefined on input line
- 74.
-
-
-Package natbib Warning: Citation `bruner1985' on page 5 undefined on input line
- 74.
-
-
-Package natbib Warning: Citation `bateson1975' on page 5 undefined on input lin
-e 74.
-
-
-Package natbib Warning: Citation `jaffe2001' on page 5 undefined on input line 
-74.
-
-
-Package natbib Warning: Citation `snow1977' on page 5 undefined on input line 7
-4.
-
-
-Package natbib Warning: Citation `k-bloom1988' on page 5 undefined on input lin
-e 74.
-
-
-Package natbib Warning: Citation `masataka1993' on page 5 undefined on input li
-ne 74.
-
-
-Package natbib Warning: Citation `rochat1998' on page 5 undefined on input line
- 74.
-
-
-Package natbib Warning: Citation `toda1993' on page 5 undefined on input line 7
-4.
-
-
-Package natbib Warning: Citation `hilbrink2015' on page 5 undefined on input li
-ne 76.
-
-
-Package natbib Warning: Citation `garvey1984' on page 5 undefined on input line
- 76.
-
-
-Package natbib Warning: Citation `ervin-tripp1979' on page 5 undefined on input
- line 76.
-
-[5]
-
-Package natbib Warning: Citation `casillas2016' on page 6 undefined on input li
-ne 78.
-
-
-Package natbib Warning: Citation `augusti2010' on page 6 undefined on input lin
-e 82.
-
-
-Package natbib Warning: Citation `beier2012' on page 6 undefined on input line 
-82.
-
-
-Package natbib Warning: Citation `thorgrimsson2015' on page 6 undefined on inpu
-t line 82.
-
-
-Package natbib Warning: Citation `bakker2011' on page 6 undefined on input line
- 84.
-
-
-Package natbib Warning: Citation `hofsten2009' on page 6 undefined on input lin
-e 84.
-
-
-Package natbib Warning: Citation `keitel2013' on page 6 undefined on input line
- 86.
-
-
-Package natbib Warning: Citation `de-ruiter2006' on page 6 undefined on input l
-ine 86.
-
-[6]
-
-Package natbib Warning: Citation `keitel2013' on page 7 undefined on input line
- 88.
-
-
-Package natbib Warning: Citation `hirvenkari2013' on page 7 undefined on input 
-line 88.
-
-
-Package natbib Warning: Citation `stivers2009' on page 7 undefined on input lin
-e 90.
-
-
-Package natbib Warning: Citation `keitel2013' on page 7 undefined on input line
- 92.
-
-
-Package natbib Warning: Citation `casillas2012' on page 7 undefined on input li
-ne 92.
-
-
-Package natbib Warning: Citation `casillas2013' on page 7 undefined on input li
-ne 92.
-
-[7]
-
-Package natbib Warning: Citation `mehler1988' on page 8 undefined on input line
- 95.
-
-
-Package natbib Warning: Citation `moon1993' on page 8 undefined on input line 9
-5.
-
-
-Package natbib Warning: Citation `nazzi2003' on page 8 undefined on input line 
-95.
-
-
-Package natbib Warning: Citation `jusczyk1995' on page 8 undefined on input lin
-e 95.
-
-
-Package natbib Warning: Citation `soderstrom2003' on page 8 undefined on input 
-line 95.
-
-
-Package natbib Warning: Citation `johnson2001' on page 8 undefined on input lin
-e 95.
-
-
-Package natbib Warning: Citation `jusczyk1993' on page 8 undefined on input lin
-e 95.
-
-
-Package natbib Warning: Citation `morgan1995' on page 8 undefined on input line
- 95.
-
-
-Package natbib Warning: Citation `bergelson2013' on page 8 undefined on input l
-ine 95.
-
-
-Package natbib Warning: Citation `shi2010' on page 8 undefined on input line 95
-.
-
-
-Package natbib Warning: Citation `mandel1996' on page 8 undefined on input line
- 95.
-
-
-Package natbib Warning: Citation `de-ruiter2006' on page 8 undefined on input l
-ine 99.
-
-
-Package natbib Warning: Citation `keitel2013' on page 8 undefined on input line
- 99.
-
-
-Package natbib Warning: Citation `torreira2015' on page 8 undefined on input li
-ne 99.
-
-
-Package natbib Warning: Citation `mehler1988' on page 8 undefined on input line
- 99.
-
-
-Package natbib Warning: Citation `moon1993' on page 8 undefined on input line 9
-9.
-
-
-Package natbib Warning: Citation `nazzi2003' on page 8 undefined on input line 
-99.
-
-[8] [9] <figures/FIG-FL-stim.png, id=43, 848.16875pt x 477.785pt>
+{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4] [5]
+[6] [7] [8] [9] <figures/FIG-FL-stim.png, id=42, 848.16875pt x 477.785pt>
 File: figures/FIG-FL-stim.png Graphic file (type png)
 
 <use figures/FIG-FL-stim.png>
 Package pdftex.def Info: figures/FIG-FL-stim.png used on input line 119.
 (pdftex.def)             Requested size: 234.00238pt x 131.81776pt.
- [10 <./figures/FIG-FL-stim.png>]
-
-Package natbib Warning: Citation `sacks1974' on page 11 undefined on input line
- 135.
-
-[11] [12]
-
-Package natbib Warning: Citation `TiceHenetz11' on page 13 undefined on input l
-ine 151.
-
-
-Package natbib Warning: Citation `kamide2003' on page 13 undefined on input lin
-e 151.
-
-[13]
-
-Package natbib Warning: Citation `de-ruiter2006' on page 14 undefined on input 
-line 155.
-
-<figures/FIG-AnticipCriteria.png, id=57, 2085.7925pt x 697.60625pt>
+ [10] [11 <./figures/FIG-FL-stim.png>] [12]
+[13] [14] <figures/FIG-AnticipCriteria.png, id=59, 2085.7925pt x 697.60625pt>
 File: figures/FIG-AnticipCriteria.png Graphic file (type png)
 
 <use figures/FIG-AnticipCriteria.png>
 Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 159
 .
 (pdftex.def)             Requested size: 272.99881pt x 91.29874pt.
- [14 <./figures/FIG-AnticipCriteria.png>]
+ [15 <./figures/FIG-AnticipCriteria.png>]
 Overfull \hbox (15.06186pt too wide) in paragraph at lines 175--190
  [] 
  []
@@ -653,31 +309,15 @@ Overfull \hbox (14.20049pt too wide) in paragraph at lines 197--234
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Package natbib Warning: Citation `lme4' on page 15 undefined on input line 242.
-
-
-
-Package natbib Warning: Citation `R' on page 15 undefined on input line 242.
-
-
-Package natbib Warning: Citation `carlson2005' on page 15 undefined on input li
-ne 242.
-
-
-Package natbib Warning: Citation `barr2013' on page 15 undefined on input line 
-242.
-
-[15] [16] [17]
-<figures/FIG-ShuffledWindows.png, id=74, 2484.28125pt x 966.61125pt>
+[16] [17] <figures/FIG-ShuffledWindows.png, id=73, 2484.28125pt x 966.61125pt>
 File: figures/FIG-ShuffledWindows.png Graphic file (type png)
 
 <use figures/FIG-ShuffledWindows.png>
 Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 255
 .
 (pdftex.def)             Requested size: 312.00119pt x 121.38658pt.
- [18 <./figures/FIG-ShuffledWindows.png>]
-<figures/E1-chi-randrun-t-vals-absolute.png, id=79, 1304.875pt x 1304.875pt>
+ [18]
+<figures/E1-chi-randrun-t-vals-absolute.png, id=77, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-t-vals-absolute.png>
@@ -685,255 +325,203 @@ Package pdftex.def Info: figures/E1-chi-randrun-t-vals-absolute.png used on inp
 ut line 267.
 (pdftex.def)             Requested size: 191.10214pt x 191.1035pt.
 
-<figures/E1-adu-randrun-t-vals-absolute.png, id=80, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-t-vals-absolute.png, id=78, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-t-vals-absolute.png used on inp
 ut line 269.
 (pdftex.def)             Requested size: 191.10214pt x 191.1035pt.
- [19 <./figures/E1-chi-randrun-t-vals-absolute.png> <./figures/E1-adu-randrun-t
--vals-absolute.png>]
-<figures/E1-samples-by-lang-groups-trans-types.png, id=87, 1204.5pt x 602.25pt>
+ [19 <./figures/FIG-ShuffledWindows.png>]
+<figures/E1-samples-by-lang-groups-trans-types.png, id=84, 1204.5pt x 602.25pt>
 File: figures/E1-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
 <use figures/E1-samples-by-lang-groups-trans-types.png>
 Package pdftex.def Info: figures/E1-samples-by-lang-groups-trans-types.png used
  on input line 280.
 (pdftex.def)             Requested size: 312.00119pt x 156.00235pt.
-
-<figures/E1-child-randvsreal-ttest-agebylg.png, id=88, 1304.875pt x 602.25pt>
+ [20 <./figures/E1-chi-randrun-t-vals-absolute.png> <./figures/E1-adu-randrun-t
+-vals-absolute.png>]
+<figures/E1-child-randvsreal-ttest-agebylg.png, id=90, 1304.875pt x 602.25pt>
 File: figures/E1-child-randvsreal-ttest-agebylg.png Graphic file (type png)
 
 <use figures/E1-child-randvsreal-ttest-agebylg.png>
 Package pdftex.def Info: figures/E1-child-randvsreal-ttest-agebylg.png used on 
 input line 288.
 (pdftex.def)             Requested size: 312.00119pt x 144.00076pt.
+ [21 <./figures/E1-samples-by-lang-groups-trans-types.png> <./figures/E1-child-
+randvsreal-ttest-agebylg.png>] [22] [23] [24]
+Overfull \hbox (3.45564pt too wide) in paragraph at lines 324--325
+\OT1/cmr/m/n/12 helped par-tic-i-pants make pre-dic-tions about up-com-ing turn
+ struc-ture (Rossano
+ []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[20 <./figures/E1-samples-by-lang-groups-trans-types.png>]
-
-Package natbib Warning: Citation `de-ruiter2006' on page 21 undefined on input 
-line 302.
-
-
-Package natbib Warning: Citation `magyari2012' on page 21 undefined on input li
-ne 302.
-
-
-Package natbib Warning: Citation `keitel2013' on page 21 undefined on input lin
-e 302.
-
-[21 <./figures/E1-child-randvsreal-ttest-agebylg.png>] [22]
-
-Package natbib Warning: Citation `gisladottir2015' on page 23 undefined on inpu
-t line 317.
-
-
-Package natbib Warning: Citation `bogels2015' on page 23 undefined on input lin
-e 317.
-
-[23]
-
-Package natbib Warning: Citation `rossano2009' on page 24 undefined on input li
-ne 326.
-
-
-Package natbib Warning: Citation `stivers2010' on page 24 undefined on input li
-ne 326.
-
-[24] <figures/FIG-EN-stim.png, id=106, 705.63625pt x 359.3425pt>
+<figures/FIG-EN-stim.png, id=105, 705.63625pt x 359.3425pt>
 File: figures/FIG-EN-stim.png Graphic file (type png)
 
 <use figures/FIG-EN-stim.png>
-Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 338.
+Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 336.
 (pdftex.def)             Requested size: 350.99762pt x 178.74416pt.
- [25 <./figures/FIG-EN-stim.png>]
-
-Package natbib Warning: Citation `Praat' on page 26 undefined on input line 351
-.
-
-[26]
-
-Package natbib Warning: Citation `thorgrimsson2015' on page 27 undefined on inp
-ut line 359.
-
-
-Package natbib Warning: Citation `ELAN' on page 27 undefined on input line 365.
-
-
-[27]
-
-Package natbib Warning: Citation `hedberg2010' on page 28 undefined on input li
-ne 374.
-
-
-Overfull \hbox (9.75685pt too wide) in paragraph at lines 374--375
+ [25] [26 <./figures/FIG-EN-stim.png>] [27]
+[28]
+Overfull \hbox (9.75685pt too wide) in paragraph at lines 372--373
 \OT1/cmr/m/it/12 only\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 prosody only\OT1/cmr/m/
 n/12 , and \OT1/cmr/m/it/12 no speech\OT1/cmr/m/n/12 ) and tran-si-tion type (q
 ues-tion/non-question)[]
  []
 
-[28]
-Overfull \hbox (2.36882pt too wide) in paragraph at lines 428--476
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (2.36882pt too wide) in paragraph at lines 426--474
  [] 
  []
 
 
-LaTeX Warning: Float too large for page by 72.39934pt on input line 479.
+LaTeX Warning: Float too large for page by 72.39934pt on input line 477.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Package natbib Warning: Citation `lme4' on page 29 undefined on input line 484.
-
-
-
-Package natbib Warning: Citation `R' on page 29 undefined on input line 484.
-
-
-Package natbib Warning: Citation `barr2013' on page 29 undefined on input line 
-484.
-
-[29]
-
-LaTeX Warning: Reference `sec:models' on page 30 undefined on input line 486.
-
-
-Overfull \hbox (0.14456pt too wide) in paragraph at lines 488--489
+[29] [30]
+Overfull \hbox (0.14456pt too wide) in paragraph at lines 486--487
 [][]\OT1/cmr/m/n/12 Adults' an-tic-i-pa-tory gaze switches showed ef-fects of g
 ap du-ra-tion ($\OML/cmm/m/it/12 $\OT1/cmr/m/n/12 =4.75,
  []
 
 
-Overfull \hbox (19.0433pt too wide) in paragraph at lines 488--489
+Overfull \hbox (19.0433pt too wide) in paragraph at lines 486--487
 \OML/cmm/m/it/12 $\OT1/cmr/m/n/12 =1.256, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =
 0.563, \OT1/cmr/m/it/12 t\OT1/cmr/m/n/12 =2.229, \OT1/cmr/m/it/12 p$\OML/cmm/m/
 it/12 <$\OT1/cmr/m/n/12 05. and words only speech $\OML/cmm/m/it/12 $\OT1/cmr/
 m/n/12 =1.594, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =0.721,
  []
 
-<figures/E2-chi-randrun-t-vals-absolute.png, id=125, 1304.875pt x 2007.5pt>
+<figures/E2-chi-randrun-t-vals-absolute.png, id=127, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-t-vals-absolute.png used on inp
-ut line 492.
+ut line 490.
 (pdftex.def)             Requested size: 191.10214pt x 294.0054pt.
 
-<figures/E2-adu-randrun-t-vals-absolute.png, id=126, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-t-vals-absolute.png, id=128, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-t-vals-absolute.png used on inp
-ut line 494.
+ut line 492.
 (pdftex.def)             Requested size: 191.10214pt x 191.1035pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[30]
-<figures/E2-samples-by-lang-groups-trans-types.png, id=130, 2007.5pt x 602.25pt
+ [31 <./figures/E2-chi-randrun-t-vals-absolute.png> <./figures/E2-adu-randrun-t
+-vals-absolute.png>]
+<figures/E2-samples-by-lang-groups-trans-types.png, id=135, 2007.5pt x 602.25pt
 >
 File: figures/E2-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
  <use figures/E2-samples-by-lang-groups-trans-types.png>
 Package pdftex.def Info: figures/E2-samples-by-lang-groups-trans-types.png used
- on input line 508.
+ on input line 506.
 (pdftex.def)             Requested size: 350.99762pt x 105.29424pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-<figures/E2-child-randvsreal-ttest-muffledages.png, id=131, 1706.375pt x 602.25
+<figures/E2-child-randvsreal-ttest-muffledages.png, id=136, 1706.375pt x 602.25
 pt>
 File: figures/E2-child-randvsreal-ttest-muffledages.png Graphic file (type png)
 
  <use figures/E2-child-randvsreal-ttest-muffledages.png>
 Package pdftex.def Info: figures/E2-child-randvsreal-ttest-muffledages.png used
- on input line 516.
+ on input line 514.
 (pdftex.def)             Requested size: 350.99762pt x 123.87558pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=132, 2007.5pt x 602.
+<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=137, 2007.5pt x 602.
 25pt>
 File: figures/E2-child-randvsreal-ttest-normaltypesages.png Graphic file (type 
 png)
  <use figures/E2-child-randvsreal-ttest-normaltypesages.png>
 Package pdftex.def Info: figures/E2-child-randvsreal-ttest-normaltypesages.png 
-used on input line 524.
+used on input line 522.
 (pdftex.def)             Requested size: 350.99762pt x 105.29424pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[31 <./figures/E2-chi-randrun-t-vals-absolute.png> <./figures/E2-adu-randrun-t-
-vals-absolute.png>] [32 <./figures/E2-samples-by-lang-groups-trans-types.png> <
-./figures/E2-child-randvsreal-ttest-muffledages.png>]
+[32 <./figures/E2-samples-by-lang-groups-trans-types.png>] [33 <./figures/E2-ch
+ild-randvsreal-ttest-muffledages.png> <./figures/E2-child-randvsreal-ttest-norm
+altypesages.png>]
 
-Package natbib Warning: Citation `casillas2012' on page 33 undefined on input l
-ine 699.
-
-
-Package natbib Warning: Citation `casillas2013' on page 33 undefined on input l
-ine 699.
+LaTeX Warning: Reference `tab:e2_look' on page 34 undefined on input line 535.
 
 
-Overfull \hbox (24.13751pt too wide) in paragraph at lines 699--700
+Overfull \hbox (0.29178pt too wide) in paragraph at lines 535--536
+\OT1/cmr/m/n/12 struc-ture of the con-ver-sa-tions, mak-ing an-tic-i-pa-tory ga
+ze switches at an above-
+ []
+
+[34]
+Overfull \hbox (24.13751pt too wide) in paragraph at lines 709--710
 \OT1/cmr/m/n/12 ported by an ERC Ad-vanced Grant to Stephen C. Levin-son (26948
 4-INTERACT),
  []
 
-[33 <./figures/E2-child-randvsreal-ttest-normaltypesages.png>]
-No file CasillasFrank-Anticip.bbl.
+(./CasillasFrank-Anticip.bbl [35]
+Underfull \hbox (badness 3291) in paragraph at lines 42--51
+[][]\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lm
+e4:
+ []
 
-Package natbib Warning: There were undefined citations.
 
-[34] [35] (./CasillasFrank-Anticip.aux)
+Underfull \hbox (badness 10000) in paragraph at lines 42--51
+\OT1/cmr/m/n/12 Lin-ear mixed-effects mod-els us-ing Eigen and S4.  URL:
+ []
+
+
+Overfull \hbox (14.03893pt too wide) in paragraph at lines 42--51
+\OT1/cmtt/m/n/12 https://github.com/lme4/lme4/http://lme4.r-forge.r-project.org
+/\OT1/cmr/m/n/12 .
+ []
+
+[36] [37] [38] [39] [40]) [41] [42] (./CasillasFrank-Anticip.aux)
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 
 Here is how much of LuaTeX's memory you used:
- 5101 strings out of 494982
+ 5259 strings out of 494982
  100000,128383 words of node,token memory allocated
- 399 words of node memory still in use:
+ 403 words of node memory still in use:
    2 hlist, 1 vlist, 1 rule, 2 glue, 48 glue_spec, 1 write nodes
-   avail lists: 2:21,3:132,4:2680,5:297,6:4841,7:247,9:394,10:368
- 8361 multiletter control sequences out of 65536+200000
+   avail lists: 2:21,3:140,4:2884,5:299,6:4807,7:265,9:417,10:340
+ 8514 multiletter control sequences out of 65536+200000
  62 fonts using 2447847 bytes
- 44i,9n,46p,2134b,362s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/201
+ 44i,9n,46p,2125b,362s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
+exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/
+2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/201
 2/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (35 pages, 2862031 bytes).
+Output written on CasillasFrank-Anticip.pdf (42 pages, 2876376 bytes).
 
-PDF statistics: 206 PDF objects out of 1000 (max. 8388607)
- 126 compressed objects within 2 object streams
+PDF statistics: 230 PDF objects out of 1000 (max. 8388607)
+ 143 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
