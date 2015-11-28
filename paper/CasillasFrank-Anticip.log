@@ -1,22 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  20 NOV 2015 19:33
-entering extended mode
+This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  28 NOV 2015 01:00
  restricted \write18 enabled.
  file:line:error style messages enabled.
- %&-line parsing enabled.
 **CasillasFrank-Anticip.tex
 (./CasillasFrank-Anticip.tex
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
-ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
-rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
-kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
- polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
-lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
-welsh, loaded.
+LuaTeX adaptation of babel <v3.8m-luatex-1.5> and hyphenation patterns for engl
+ish, dumylang, nohyphenation, loaded.
 (./elsarticle.cls
 Document Class: elsarticle 2009/09/17, 1.20b: Elsevier Ltd
 \@bls=\dimen102
@@ -64,6 +53,28 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX detected.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/luatex-loader.sty
+Package: luatex-loader 2010/03/09 v0.4 Lua module loader (HO)
+
+(/usr/local/texlive/2012/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua))
+\pdftexcmds@toks=\toks15
+)
 \Gread@gobject=\count87
 ))
 \Gin@req@height=\dimen104
@@ -86,7 +97,7 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 \c@cnote=\count90
 \c@ead=\count91
 \c@author=\count92
-\@eadauthor=\toks15
+\@eadauthor=\toks16
 \c@affn=\count93
 \absbox=\box26
 \keybox=\box27
@@ -95,7 +106,7 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 \els@boxa=\box28
 \els@boxb=\box29
 \leftMargin=\dimen108
-\@enLab=\toks16
+\@enLab=\toks17
 \@sep=\skip43
 \@@sep=\skip44
 
@@ -108,8 +119,6 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count94
 )
 \splwrite=\write3
-\openout3 = `CasillasFrank-Anticip.spl'.
-
 \appnamewidth=\dimen109
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -117,7 +126,7 @@ Package: amssymb 2009/06/22 v3.00
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
-\@emptytoks=\toks17
+\@emptytoks=\toks18
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
@@ -128,7 +137,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \WF@size=\dimen111
 \c@WF@wrappedlines=\count95
 \WF@box=\box30
-\WF@everypar=\toks18
+\WF@everypar=\toks19
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/subfig/subfig.sty
@@ -189,14 +198,12 @@ LaTeX Font Info:    Redeclaring font encoding OT1 on input line 43.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count104
-\float@exts=\toks19
+\float@exts=\toks20
 \float@box=\box31
-\@float@everytoks=\toks20
+\@float@everytoks=\toks21
 \@floatcapt=\box32
 )
 (./CasillasFrank-Anticip.aux)
-\openout1 = `CasillasFrank-Anticip.aux'.
-
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
@@ -224,30 +231,13 @@ LaTeX Font Info:    ... okay on input line 13.
 \scratchbox=\box33
 \nofMPsegments=\count106
 \nofMParguments=\count107
-\everyMPshowfont=\toks21
+\everyMPshowfont=\toks22
 \MPscratchCnt=\count108
 \MPscratchDim=\dimen120
 \MPnumerator=\count109
 \makeMPintoPDFobject=\count110
-\everyMPtoPDFconversion=\toks22
-) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+\everyMPtoPDFconversion=\toks23
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -264,10 +254,6 @@ Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
 )))
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
@@ -291,142 +277,663 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
+)
+
+Package natbib Warning: Citation `de-vos2015' on page 1 undefined on input line
+ 46.
 
 
-{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
- [4] [5]
-[6] [7] [8] [9] <figures/FIG-FL-stim.png, id=42, 848.16875pt x 477.785pt>
+Package natbib Warning: Citation `dingemanse2013' on page 1 undefined on input 
+line 46.
+
+
+Package natbib Warning: Citation `stivers2009' on page 1 undefined on input lin
+e 46.
+
+[1
+
+
+{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `bateson1975' on page 2 undefined on input lin
+e 48.
+
+
+Package natbib Warning: Citation `hilbrink2015' on page 2 undefined on input li
+ne 48.
+
+
+Package natbib Warning: Citation `jaffe2001' on page 2 undefined on input line 
+48.
+
+
+Package natbib Warning: Citation `snow1977' on page 2 undefined on input line 4
+8.
+
+
+Package natbib Warning: Citation `hilbrink2015' on page 2 undefined on input li
+ne 48.
+
+
+Package natbib Warning: Citation `jaffe2001' on page 2 undefined on input line 
+48.
+
+
+Package natbib Warning: Citation `ratner1978' on page 2 undefined on input line
+ 54.
+
+
+Package natbib Warning: Citation `ross1987' on page 2 undefined on input line 5
+4.
+
+
+Package natbib Warning: Citation `lemasson2011' on page 2 undefined on input li
+ne 54.
+
+
+Package natbib Warning: Citation `takahashi2013' on page 2 undefined on input l
+ine 54.
+
+
+Package natbib Warning: Citation `schegloff2007' on page 2 undefined on input l
+ine 56.
+
+[2]
+
+Package natbib Warning: Citation `stivers2009' on page 3 undefined on input lin
+e 58.
+
+
+Package natbib Warning: Citation `griffin2000' on page 3 undefined on input lin
+e 58.
+
+
+Package natbib Warning: Citation `levelt1989' on page 3 undefined on input line
+ 58.
+
+
+Package natbib Warning: Citation `levinson2013' on page 3 undefined on input li
+ne 58.
+
+
+Package natbib Warning: Citation `de-ruiter2006' on page 3 undefined on input l
+ine 62.
+
+
+Package natbib Warning: Citation `duncan1972' on page 3 undefined on input line
+ 62.
+
+
+Package natbib Warning: Citation `ford1996' on page 3 undefined on input line 6
+2.
+
+
+Package natbib Warning: Citation `torreira2015' on page 3 undefined on input li
+ne 62.
+
+
+Package natbib Warning: Citation `rossano2009' on page 3 undefined on input lin
+e 62.
+
+
+Package natbib Warning: Citation `stivers2010' on page 3 undefined on input lin
+e 62.
+
+
+Package natbib Warning: Citation `schegloff2007' on page 3 undefined on input l
+ine 62.
+
+
+Package natbib Warning: Citation `de-ruiter2006' on page 3 undefined on input l
+ine 64.
+
+
+Package natbib Warning: Citation `de-ruiter2006' on page 3 undefined on input l
+ine 64.
+
+
+Package natbib Warning: Citation `magyari2012' on page 3 undefined on input lin
+e 64.
+
+
+Package natbib Warning: Citation `magyari2014' on page 3 undefined on input lin
+e 64.
+
+
+Package natbib Warning: Citation `gisladottir2015' on page 3 undefined on input
+ line 64.
+
+
+Package natbib Warning: Citation `bogels2015' on page 3 undefined on input line
+ 64.
+
+[3]
+
+Package natbib Warning: Citation `ford1996' on page 4 undefined on input line 6
+6.
+
+
+Package natbib Warning: Citation `torreira2015' on page 4 undefined on input li
+ne 66.
+
+
+Package natbib Warning: Citation `de-ruiter2006' on page 4 undefined on input l
+ine 66.
+
+
+Package natbib Warning: Citation `duncan1972' on page 4 undefined on input line
+ 66.
+
+
+Package natbib Warning: Citation `ford1996' on page 4 undefined on input line 6
+6.
+
+
+Package natbib Warning: Citation `hirvenkari2013' on page 4 undefined on input 
+line 66.
+
+[4]
+
+Package natbib Warning: Citation `bruner1975' on page 5 undefined on input line
+ 74.
+
+
+Package natbib Warning: Citation `bruner1985' on page 5 undefined on input line
+ 74.
+
+
+Package natbib Warning: Citation `bateson1975' on page 5 undefined on input lin
+e 74.
+
+
+Package natbib Warning: Citation `jaffe2001' on page 5 undefined on input line 
+74.
+
+
+Package natbib Warning: Citation `snow1977' on page 5 undefined on input line 7
+4.
+
+
+Package natbib Warning: Citation `k-bloom1988' on page 5 undefined on input lin
+e 74.
+
+
+Package natbib Warning: Citation `masataka1993' on page 5 undefined on input li
+ne 74.
+
+
+Package natbib Warning: Citation `rochat1998' on page 5 undefined on input line
+ 74.
+
+
+Package natbib Warning: Citation `toda1993' on page 5 undefined on input line 7
+4.
+
+
+Package natbib Warning: Citation `hilbrink2015' on page 5 undefined on input li
+ne 76.
+
+
+Package natbib Warning: Citation `garvey1984' on page 5 undefined on input line
+ 76.
+
+
+Package natbib Warning: Citation `ervin-tripp1979' on page 5 undefined on input
+ line 76.
+
+[5]
+
+Package natbib Warning: Citation `casillas2016' on page 6 undefined on input li
+ne 78.
+
+
+Package natbib Warning: Citation `augusti2010' on page 6 undefined on input lin
+e 82.
+
+
+Package natbib Warning: Citation `beier2012' on page 6 undefined on input line 
+82.
+
+
+Package natbib Warning: Citation `thorgrimsson2015' on page 6 undefined on inpu
+t line 82.
+
+
+Package natbib Warning: Citation `bakker2011' on page 6 undefined on input line
+ 84.
+
+
+Package natbib Warning: Citation `hofsten2009' on page 6 undefined on input lin
+e 84.
+
+
+Package natbib Warning: Citation `keitel2013' on page 6 undefined on input line
+ 86.
+
+
+Package natbib Warning: Citation `de-ruiter2006' on page 6 undefined on input l
+ine 86.
+
+[6]
+
+Package natbib Warning: Citation `keitel2013' on page 7 undefined on input line
+ 88.
+
+
+Package natbib Warning: Citation `hirvenkari2013' on page 7 undefined on input 
+line 88.
+
+
+Package natbib Warning: Citation `stivers2009' on page 7 undefined on input lin
+e 90.
+
+
+Package natbib Warning: Citation `keitel2013' on page 7 undefined on input line
+ 92.
+
+
+Package natbib Warning: Citation `casillas2012' on page 7 undefined on input li
+ne 92.
+
+
+Package natbib Warning: Citation `casillas2013' on page 7 undefined on input li
+ne 92.
+
+[7]
+
+Package natbib Warning: Citation `mehler1988' on page 8 undefined on input line
+ 95.
+
+
+Package natbib Warning: Citation `moon1993' on page 8 undefined on input line 9
+5.
+
+
+Package natbib Warning: Citation `nazzi2003' on page 8 undefined on input line 
+95.
+
+
+Package natbib Warning: Citation `jusczyk1995' on page 8 undefined on input lin
+e 95.
+
+
+Package natbib Warning: Citation `soderstrom2003' on page 8 undefined on input 
+line 95.
+
+
+Package natbib Warning: Citation `johnson2001' on page 8 undefined on input lin
+e 95.
+
+
+Package natbib Warning: Citation `jusczyk1993' on page 8 undefined on input lin
+e 95.
+
+
+Package natbib Warning: Citation `morgan1995' on page 8 undefined on input line
+ 95.
+
+
+Package natbib Warning: Citation `bergelson2013' on page 8 undefined on input l
+ine 95.
+
+
+Package natbib Warning: Citation `shi2010' on page 8 undefined on input line 95
+.
+
+
+Package natbib Warning: Citation `mandel1996' on page 8 undefined on input line
+ 95.
+
+
+Package natbib Warning: Citation `de-ruiter2006' on page 8 undefined on input l
+ine 99.
+
+
+Package natbib Warning: Citation `keitel2013' on page 8 undefined on input line
+ 99.
+
+
+Package natbib Warning: Citation `torreira2015' on page 8 undefined on input li
+ne 99.
+
+
+Package natbib Warning: Citation `mehler1988' on page 8 undefined on input line
+ 99.
+
+
+Package natbib Warning: Citation `moon1993' on page 8 undefined on input line 9
+9.
+
+
+Package natbib Warning: Citation `nazzi2003' on page 8 undefined on input line 
+99.
+
+[8] [9] <figures/FIG-FL-stim.png, id=43, 848.16875pt x 477.785pt>
 File: figures/FIG-FL-stim.png Graphic file (type png)
 
 <use figures/FIG-FL-stim.png>
 Package pdftex.def Info: figures/FIG-FL-stim.png used on input line 119.
 (pdftex.def)             Requested size: 234.00238pt x 131.81776pt.
- [10] [11 <./figures/FIG-FL-stim.png>] [12]
-[13] [14] <figures/FIG-AnticipCriteria.png, id=59, 2085.7925pt x 697.60625pt>
+ [10 <./figures/FIG-FL-stim.png>]
+
+Package natbib Warning: Citation `sacks1974' on page 11 undefined on input line
+ 135.
+
+[11] [12]
+
+Package natbib Warning: Citation `TiceHenetz11' on page 13 undefined on input l
+ine 151.
+
+
+Package natbib Warning: Citation `kamide2003' on page 13 undefined on input lin
+e 151.
+
+[13]
+
+Package natbib Warning: Citation `de-ruiter2006' on page 14 undefined on input 
+line 155.
+
+<figures/FIG-AnticipCriteria.png, id=57, 2085.7925pt x 697.60625pt>
 File: figures/FIG-AnticipCriteria.png Graphic file (type png)
 
 <use figures/FIG-AnticipCriteria.png>
-Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 157
+Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 159
 .
 (pdftex.def)             Requested size: 272.99881pt x 91.29874pt.
- [15 <./figures/FIG-AnticipCriteria.png>]
-Overfull \hbox (15.06186pt too wide) in paragraph at lines 173--188
+ [14 <./figures/FIG-AnticipCriteria.png>]
+Overfull \hbox (15.06186pt too wide) in paragraph at lines 175--190
  [] 
  []
 
-[16]
-Overfull \hbox (41.39482pt too wide) in paragraph at lines 231--261
+
+Overfull \hbox (14.20049pt too wide) in paragraph at lines 197--234
  [] 
  []
 
-<figures/FIG-ShuffledWindows.png, id=68, 2484.28125pt x 966.61125pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package natbib Warning: Citation `lme4' on page 15 undefined on input line 242.
+
+
+
+Package natbib Warning: Citation `R' on page 15 undefined on input line 242.
+
+
+Package natbib Warning: Citation `carlson2005' on page 15 undefined on input li
+ne 242.
+
+
+Package natbib Warning: Citation `barr2013' on page 15 undefined on input line 
+242.
+
+[15] [16] [17]
+<figures/FIG-ShuffledWindows.png, id=74, 2484.28125pt x 966.61125pt>
 File: figures/FIG-ShuffledWindows.png Graphic file (type png)
 
 <use figures/FIG-ShuffledWindows.png>
-Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 277
+Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 255
 .
 (pdftex.def)             Requested size: 312.00119pt x 121.38658pt.
- [17 <./figures/FIG-ShuffledWindows.png>]
-[18] <figures/E1-chi-randrun-dist.png, id=79, 1304.875pt x 1304.875pt>
-File: figures/E1-chi-randrun-dist.png Graphic file (type png)
+ [18 <./figures/FIG-ShuffledWindows.png>]
+<figures/E1-chi-randrun-t-vals-absolute.png, id=79, 1304.875pt x 1304.875pt>
+File: figures/E1-chi-randrun-t-vals-absolute.png Graphic file (type png)
 
-<use figures/E1-chi-randrun-dist.png>
-Package pdftex.def Info: figures/E1-chi-randrun-dist.png used on input line 293
-.
+<use figures/E1-chi-randrun-t-vals-absolute.png>
+Package pdftex.def Info: figures/E1-chi-randrun-t-vals-absolute.png used on inp
+ut line 267.
 (pdftex.def)             Requested size: 191.10214pt x 191.1035pt.
 
-<figures/E1-adu-randrun-dist.png, id=80, 1304.875pt x 1304.875pt>
-File: figures/E1-adu-randrun-dist.png Graphic file (type png)
+<figures/E1-adu-randrun-t-vals-absolute.png, id=80, 1304.875pt x 1304.875pt>
+File: figures/E1-adu-randrun-t-vals-absolute.png Graphic file (type png)
 
-<use figures/E1-adu-randrun-dist.png>
-Package pdftex.def Info: figures/E1-adu-randrun-dist.png used on input line 295
-.
+<use figures/E1-adu-randrun-t-vals-absolute.png>
+Package pdftex.def Info: figures/E1-adu-randrun-t-vals-absolute.png used on inp
+ut line 269.
 (pdftex.def)             Requested size: 191.10214pt x 191.1035pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[19]
-<figures/E1-samples-by-lang-groups-trans-types.png, id=85, 1204.5pt x 602.25pt>
+ [19 <./figures/E1-chi-randrun-t-vals-absolute.png> <./figures/E1-adu-randrun-t
+-vals-absolute.png>]
+<figures/E1-samples-by-lang-groups-trans-types.png, id=87, 1204.5pt x 602.25pt>
 File: figures/E1-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
 <use figures/E1-samples-by-lang-groups-trans-types.png>
 Package pdftex.def Info: figures/E1-samples-by-lang-groups-trans-types.png used
- on input line 303.
+ on input line 280.
 (pdftex.def)             Requested size: 312.00119pt x 156.00235pt.
+
+<figures/E1-child-randvsreal-ttest-agebylg.png, id=88, 1304.875pt x 602.25pt>
+File: figures/E1-child-randvsreal-ttest-agebylg.png Graphic file (type png)
+
+<use figures/E1-child-randvsreal-ttest-agebylg.png>
+Package pdftex.def Info: figures/E1-child-randvsreal-ttest-agebylg.png used on 
+input line 288.
+(pdftex.def)             Requested size: 312.00119pt x 144.00076pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[20 <./figures/E1-samples-by-lang-groups-trans-types.png>]
+
+Package natbib Warning: Citation `de-ruiter2006' on page 21 undefined on input 
+line 302.
+
+
+Package natbib Warning: Citation `magyari2012' on page 21 undefined on input li
+ne 302.
+
+
+Package natbib Warning: Citation `keitel2013' on page 21 undefined on input lin
+e 302.
+
+[21 <./figures/E1-child-randvsreal-ttest-agebylg.png>] [22]
+
+Package natbib Warning: Citation `gisladottir2015' on page 23 undefined on inpu
+t line 317.
+
+
+Package natbib Warning: Citation `bogels2015' on page 23 undefined on input lin
+e 317.
+
+[23]
+
+Package natbib Warning: Citation `rossano2009' on page 24 undefined on input li
+ne 326.
+
+
+Package natbib Warning: Citation `stivers2010' on page 24 undefined on input li
+ne 326.
+
+[24] <figures/FIG-EN-stim.png, id=106, 705.63625pt x 359.3425pt>
+File: figures/FIG-EN-stim.png Graphic file (type png)
+
+<use figures/FIG-EN-stim.png>
+Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 338.
+(pdftex.def)             Requested size: 350.99762pt x 178.74416pt.
+ [25 <./figures/FIG-EN-stim.png>]
+
+Package natbib Warning: Citation `Praat' on page 26 undefined on input line 351
+.
+
+[26]
+
+Package natbib Warning: Citation `thorgrimsson2015' on page 27 undefined on inp
+ut line 359.
+
+
+Package natbib Warning: Citation `ELAN' on page 27 undefined on input line 365.
+
+
+[27]
+
+Package natbib Warning: Citation `hedberg2010' on page 28 undefined on input li
+ne 374.
+
+
+Overfull \hbox (9.75685pt too wide) in paragraph at lines 374--375
+\OT1/cmr/m/it/12 only\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 prosody only\OT1/cmr/m/
+n/12 , and \OT1/cmr/m/it/12 no speech\OT1/cmr/m/n/12 ) and tran-si-tion type (q
+ues-tion/non-question)[]
+ []
+
+[28]
+Overfull \hbox (2.36882pt too wide) in paragraph at lines 428--476
+ [] 
+ []
+
+
+LaTeX Warning: Float too large for page by 72.39934pt on input line 479.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package natbib Warning: Citation `lme4' on page 29 undefined on input line 484.
+
+
+
+Package natbib Warning: Citation `R' on page 29 undefined on input line 484.
+
+
+Package natbib Warning: Citation `barr2013' on page 29 undefined on input line 
+484.
+
+[29]
+
+LaTeX Warning: Reference `sec:models' on page 30 undefined on input line 486.
+
+
+Overfull \hbox (0.14456pt too wide) in paragraph at lines 488--489
+[][]\OT1/cmr/m/n/12 Adults' an-tic-i-pa-tory gaze switches showed ef-fects of g
+ap du-ra-tion ($\OML/cmm/m/it/12 $\OT1/cmr/m/n/12 =4.75,
+ []
+
+
+Overfull \hbox (19.0433pt too wide) in paragraph at lines 488--489
+\OML/cmm/m/it/12 $\OT1/cmr/m/n/12 =1.256, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =
+0.563, \OT1/cmr/m/it/12 t\OT1/cmr/m/n/12 =2.229, \OT1/cmr/m/it/12 p$\OML/cmm/m/
+it/12 <$\OT1/cmr/m/n/12 05. and words only speech $\OML/cmm/m/it/12 $\OT1/cmr/
+m/n/12 =1.594, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =0.721,
+ []
+
+<figures/E2-chi-randrun-t-vals-absolute.png, id=125, 1304.875pt x 2007.5pt>
+File: figures/E2-chi-randrun-t-vals-absolute.png Graphic file (type png)
+
+<use figures/E2-chi-randrun-t-vals-absolute.png>
+Package pdftex.def Info: figures/E2-chi-randrun-t-vals-absolute.png used on inp
+ut line 492.
+(pdftex.def)             Requested size: 191.10214pt x 294.0054pt.
+
+<figures/E2-adu-randrun-t-vals-absolute.png, id=126, 1304.875pt x 1304.875pt>
+File: figures/E2-adu-randrun-t-vals-absolute.png Graphic file (type png)
+
+<use figures/E2-adu-randrun-t-vals-absolute.png>
+Package pdftex.def Info: figures/E2-adu-randrun-t-vals-absolute.png used on inp
+ut line 494.
+(pdftex.def)             Requested size: 191.10214pt x 191.1035pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[30]
+<figures/E2-samples-by-lang-groups-trans-types.png, id=130, 2007.5pt x 602.25pt
+>
+File: figures/E2-samples-by-lang-groups-trans-types.png Graphic file (type png)
+
+ <use figures/E2-samples-by-lang-groups-trans-types.png>
+Package pdftex.def Info: figures/E2-samples-by-lang-groups-trans-types.png used
+ on input line 508.
+(pdftex.def)             Requested size: 350.99762pt x 105.29424pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (3.45564pt too wide) in paragraph at lines 333--334
-\OT1/cmr/m/n/12 helped par-tic-i-pants make pre-dic-tions about up-com-ing turn
- struc-ture (Rossano
+<figures/E2-child-randvsreal-ttest-muffledages.png, id=131, 1706.375pt x 602.25
+pt>
+File: figures/E2-child-randvsreal-ttest-muffledages.png Graphic file (type png)
+
+ <use figures/E2-child-randvsreal-ttest-muffledages.png>
+Package pdftex.def Info: figures/E2-child-randvsreal-ttest-muffledages.png used
+ on input line 516.
+(pdftex.def)             Requested size: 350.99762pt x 123.87558pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=132, 2007.5pt x 602.
+25pt>
+File: figures/E2-child-randvsreal-ttest-normaltypesages.png Graphic file (type 
+png)
+ <use figures/E2-child-randvsreal-ttest-normaltypesages.png>
+Package pdftex.def Info: figures/E2-child-randvsreal-ttest-normaltypesages.png 
+used on input line 524.
+(pdftex.def)             Requested size: 350.99762pt x 105.29424pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[31 <./figures/E2-chi-randrun-t-vals-absolute.png> <./figures/E2-adu-randrun-t-
+vals-absolute.png>] [32 <./figures/E2-samples-by-lang-groups-trans-types.png> <
+./figures/E2-child-randvsreal-ttest-muffledages.png>]
+
+Package natbib Warning: Citation `casillas2012' on page 33 undefined on input l
+ine 699.
+
+
+Package natbib Warning: Citation `casillas2013' on page 33 undefined on input l
+ine 699.
+
+
+Overfull \hbox (24.13751pt too wide) in paragraph at lines 699--700
+\OT1/cmr/m/n/12 ported by an ERC Ad-vanced Grant to Stephen C. Levin-son (26948
+4-INTERACT),
  []
 
-[20 <./figures/E1-chi-randrun-dist.png> <./figures/E1-adu-randrun-dist.png>]
-[21 <./figures/E1-samples-by-lang-groups-trans-types.png>]
-<figures/FIG-EN-stim.png, id=95, 705.63625pt x 359.3425pt>
-File: figures/FIG-EN-stim.png Graphic file (type png)
+[33 <./figures/E2-child-randvsreal-ttest-normaltypesages.png>]
+No file CasillasFrank-Anticip.bbl.
 
-<use figures/FIG-EN-stim.png>
-Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 345.
-(pdftex.def)             Requested size: 350.99762pt x 178.74416pt.
- [22 <./figures/FIG-EN-stim.png>] [23] [24]
-[25] (./CasillasFrank-Anticip.bbl
-Underfull \hbox (badness 3291) in paragraph at lines 42--51
-[]\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lme4
-:
- []
+Package natbib Warning: There were undefined citations.
 
+[34] [35] (./CasillasFrank-Anticip.aux)
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--51
-\OT1/cmr/m/n/12 Lin-ear mixed-effects mod-els us-ing Eigen and S4.  URL:
- []
+LaTeX Warning: There were undefined references.
 
-
-Overfull \hbox (14.03893pt too wide) in paragraph at lines 42--51
-\OT1/cmtt/m/n/12 https://github.com/lme4/lme4/http://lme4.r-forge.r-project.org
-/\OT1/cmr/m/n/12 .
- []
-
-[26] [27] [28]
-Missing character: There is no Â in font cmr12!
-Missing character: There is no ’ in font cmr12!
- [29] [30]) [31] (./CasillasFrank-Anticip.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- ) 
-Here is how much of TeX's memory you used:
- 4950 strings out of 493488
- 70612 string characters out of 3141326
- 128935 words of memory out of 3000000
- 8173 multiletter control sequences out of 15000+200000
- 13965 words of font info for 52 fonts, out of 3000000 for 9000
- 957 hyphenation exceptions out of 8191
- 44i,9n,46p,2151b,356s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pf
-b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
-/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (31 pages, 1787011 bytes).
-PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 119 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ )
+
+Here is how much of LuaTeX's memory you used:
+ 5101 strings out of 494982
+ 100000,128383 words of node,token memory allocated
+ 399 words of node memory still in use:
+   2 hlist, 1 vlist, 1 rule, 2 glue, 48 glue_spec, 1 write nodes
+   avail lists: 2:21,3:132,4:2680,5:297,6:4841,7:247,9:394,10:368
+ 8361 multiletter control sequences out of 65536+200000
+ 62 fonts using 2447847 bytes
+ 44i,9n,46p,2134b,362s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
+2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/201
+2/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
+Output written on CasillasFrank-Anticip.pdf (35 pages, 2862031 bytes).
+
+PDF statistics: 206 PDF objects out of 1000 (max. 8388607)
+ 126 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

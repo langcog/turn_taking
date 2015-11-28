@@ -11,11 +11,10 @@ library(data.table)
 # Read in data in processed_data/ path and set plotting variables
 ################################################################################
 processed.data.path <- "processed_data/" #"../../data/E1/processed_data/"
+model.path <- "processed_data/models/"
 switch.all <- fread(paste(processed.data.path,"SwitchAll.csv",sep=""))
 chi.coef <- fread(paste(processed.data.path,"chi.coefs-0.csv",sep=""))
-chi.coef.l <- fread(paste(processed.data.path,"chi.coefs.l-0.csv",sep=""))
 adu.coef <- fread(paste(processed.data.path,"adu.coefs-0.csv",sep=""))
-adu.coef.l <- fread(paste(processed.data.path,"adu.coefs.l-0.csv",sep=""))
 
 run.models <- function(ns) {
     # Split the data into adults and children for separate models
@@ -23,9 +22,6 @@ run.models <- function(ns) {
                    select(-Sample) %>%
 				   mutate(Condition = as.factor(Condition),
 		   		          Type = as.factor(Type))
-
-	switch.rand$Cond2 <- ifelse((switch.rand$Condition == "normal" |
-		switch.rand$Condition == "robot"),"lexical", "non-lexical")
 
 	switch.rand.C <- filter(switch.rand, Age != 21) %>%
          			        mutate(Age = as.numeric(Age))
@@ -40,49 +36,38 @@ run.models <- function(ns) {
 
     		# Retrieve the random gap info data for this particular run
 	    	rand.data.C <- switch.rand.C[Run == i,]
-	    	chi.coef.r <- chi.coef[0,]
 
-    		# Models
-	    	# Children
 			chi.max.r <- glmer(Switch ~ Age * Condition * Type + Duration + 
  			   (Type|Subject) + (1|Gap), data=rand.data.C,
  			   family=binomial, control = glmerControl(optimizer="bobyqa"))
-    		chi.coef.r <- rbind(chi.coef.r,
-    			cbind(data.frame(t(sapply(fixef(chi.max.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(chi.coef.r, paste(
-				processed.data.path, "chi.coefs.r-", i, ".csv", sep=""),
+			ll.cmr <- logLik(chi.max.r)
+			    
+			chi.max.r.m <- data.frame(
+				B = fixef(chi.max.r),
+				SE = SEstat(chi.max.r),
+				t = tstat(chi.max.r))
+			chi.max.r.m <- cbind(Predictor = rownames(chi.max.r.m), chi.max.r.m)
+			rownames(chi.max.r.m) <- NULL
+				
+			chi.max.r.i <- data.frame(
+				LogLik = head(ll.cmr), AIC = AIC(ll.cmr),
+				NumObs = as.numeric(unlist(attributes(ll.cmr))[1]),
+				Sample = "random", Error = errors, Run = i)
+				
+			chi.max.r.r <- resid(chi.max.r)
+			 
+    		write.csv(chi.max.r.m, paste(
+				model.path, "chi.max.r.m-", i, ".csv", sep=""),
 				row.names=FALSE)
-        }
-    }, warning = function(w){
-	    if (errors == "") {
-	        errors <<- w$message
-        }
-        invokeRestart("muffleWarning")
-    })
 
-    withCallingHandlers({
-        for(i in ns){
-            w <- length(warnings())
-            errors <- ""
-	    	# Update
-    	    print(i)
-
-    		# Retrieve the random gap info data for this particular run
-	    	rand.data.C <- switch.rand.C[Run == i,]
-	    	chi.coef.l.r <- chi.coef.l[0,]
-
-    		# Models
-	    	# Children
-			chi.max.l.r <- glmer(Switch ~ Age * Cond2 * Type + Duration + 
-			    (Type|Subject) + (1|Gap), data=rand.data.C,
-			    family=binomial, control = glmerControl(optimizer="bobyqa"))
-    		chi.coef.l.r <- rbind(chi.coef.l.r,
-    			cbind(data.frame(t(sapply(fixef(chi.max.l.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(chi.coef.l.r, paste(
-				processed.data.path, "chi.coefs.l.r-", i, ".csv", sep=""),
+    		write.csv(chi.max.r.i, paste(
+				model.path, "chi.max.r.i-", i, ".csv", sep=""),
 				row.names=FALSE)
+
+    		write.csv(chi.max.r.r, paste(
+				model.path, "chi.max.r.r-", i, ".csv", sep=""),
+				row.names=FALSE)
+
         }
     }, warning = function(w){
 	    if (errors == "") {
@@ -100,18 +85,36 @@ run.models <- function(ns) {
 
     		# Retrieve the random gap info data for this particular run
 	    	rand.data.A <- switch.rand.A[Run == i,]	
-	    	adu.coef.r <- adu.coef[0,]
 
-		    # Models
-    		# Adults
 			adu.max.r <- glmer(Switch ~ Condition * Type + Duration + 
 			    (Type+Condition|Subject) + (1|Gap), data=rand.data.A,
 			    family=binomial, control = glmerControl(optimizer="bobyqa"))
-    		adu.coef.r <- rbind(adu.coef.r,
-    			cbind(data.frame(t(sapply(fixef(adu.max.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(adu.coef.r, paste(
-				processed.data.path, "adu.coefs.r-", i, ".csv", sep=""),
+			ll.amr <- logLik(adu.max.r)
+			    
+			adu.max.r.m <- data.frame(
+				B = fixef(adu.max.r),
+				SE = SEstat(adu.max.r),
+				t = tstat(adu.max.r))
+			adu.max.r.m <- cbind(Predictor = rownames(adu.max.r.m), adu.max.r.m)
+			rownames(adu.max.r.m) <- NULL
+				
+			adu.max.r.i <- data.frame(
+				LogLik = head(ll.amr), AIC = AIC(ll.amr),
+				NumObs = as.numeric(unlist(attributes(ll.amr))[1]),
+				Sample = "random", Error = errors, Run = i)
+				
+			adu.max.r.r <- resid(adu.max.r)
+			 
+    		write.csv(adu.max.r.m, paste(
+				model.path, "adu.max.r.m-", i, ".csv", sep=""),
+				row.names=FALSE)
+
+    		write.csv(adu.max.r.i, paste(
+				model.path, "adu.max.r.i-", i, ".csv", sep=""),
+				row.names=FALSE)
+
+    		write.csv(adu.max.r.r, paste(
+				model.path, "adu.max.r.r-", i, ".csv", sep=""),
 				row.names=FALSE)
 
         }
@@ -122,33 +125,4 @@ run.models <- function(ns) {
         invokeRestart("muffleWarning")
     })
 
-    withCallingHandlers({
-        for(i in ns){
-            w <- length(warnings())
-            errors <- ""
-    		# Update
-        	print(i)
-
-    		# Retrieve the random gap info data for this particular run
-	    	rand.data.A <- switch.rand.A[Run == i,]	
-	    	adu.coef.l.r <- adu.coef.l[0,]
-
-		    # Models
-    		# Adults
-			adu.max.l.r <- glmer(Switch ~ Cond2 * Type + Duration + 
-			    (Type*Cond2|Subject) + (1|Gap), data=rand.data.A,
-			    family=binomial, control = glmerControl(optimizer="bobyqa"))
-    		adu.coef.l.r <- rbind(adu.coef.l.r,
-    			cbind(data.frame(t(sapply(fixef(adu.max.l.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(adu.coef.l.r, paste(
-				processed.data.path, "adu.coefs.l.r-", i, ".csv", sep=""),
-				row.names=FALSE)
-        }
-    }, warning = function(w){
-	    if (errors == "") {
-	        errors <<- w$message
-        }
-        invokeRestart("muffleWarning")
-    })
 }

@@ -12,6 +12,10 @@ library(car)
 ################################################################################
 # Misc helper functions (from Mike)
 ################################################################################
+# Stat summary functions
+tstat <- function(m) fixef(m)/sqrt(diag(vcov(m)))
+SEstat <- function(m) sqrt(diag(vcov(m)))
+
 # Add some style elements for ggplot2
 plot.style <- theme(panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
@@ -171,89 +175,159 @@ smoothLD <- function(dt) {
 ################################################################################
 # Random run plot functions
 ################################################################################
-
-combine.runs <- function(DT, filelist, name) {
-	curr.row <- 1
-	for (file in filelist) {
-		# Read in a file
-		data <- fread(paste(processed.data.path, file, sep=""))
-		# Add the data to the big data table
-		DT[curr.row, names(DT) := data]
-		curr.row <- curr.row + 1
+combine.runs <- function(betas, ses, ts, fits,
+	modelfiles, infofiles, realm, reali) {
+	# Random run info
+	for (file in modelfiles) {
+		data <- fread(paste(model.path, file, sep=""))
+		run <- as.numeric(unlist(strsplit(
+			file, "[.-]"))[5])
+		# betas
+		insert <- data.frame(t(data$B))
+		colnames(insert) <- data$Predictor
+		betas[Run == run, (data$Predictor) := insert]
+		# ses
+		insert <- data.frame(t(data$SE))
+		colnames(insert) <- data$Predictor
+		ses[Run == run, (data$Predictor) := insert]
+		# ts
+		insert <- data.frame(t(data$t))
+		colnames(insert) <- data$Predictor
+		ts[Run == run, (data$Predictor) := insert]
 	}
-	setkeyv(DT, "Run")
-	# Write it out
-	write.csv(DT, paste(processed.data.path,
-		name, ".random.runs.csv",sep=""), row.names=FALSE)
-	# Return it
-	return(DT)
+	for (file in infofiles) {
+		data <- fread(paste(model.path, file, sep=""))
+		run <- as.numeric(unlist(strsplit(
+			file, "[.-]"))[5])
+		fits[Run == run, LogLik := data$LogLik]
+		fits[Run == run, AIC := data$AIC]
+		fits[Run == run, Error := data$Error]
+	}
+
+	# Real run info
+	realmodel <- fread(paste(model.path, realm, sep=""))
+	realinfo <- fread(paste(model.path, reali, sep=""))
+	# betas
+	insert <- data.frame(t(realmodel$B))
+	colnames(insert) <- realmodel$Predictor
+	betas[Run == 0, (realmodel$Predictor) := insert]
+	# ses
+	insert <- data.frame(t(realmodel$SE))
+	colnames(insert) <- realmodel$Predictor
+	ses[Run == 0, (realmodel$Predictor) := insert]
+	# ts
+	insert <- data.frame(t(realmodel$t))
+	colnames(insert) <- realmodel$Predictor
+	ts[Run == 0, (realmodel$Predictor) := insert]
+	# fits
+	fits[Run == 0, LogLik := realinfo$LogLik]
+	fits[Run == 0, AIC := realinfo$AIC]
+	fits[Run == 0, Error := realinfo$Error]
+
+	# Return the filled in DTs as a list
+	setDTs <- list(B=betas, SE=ses, T=ts, F=fits)
+	return(setDTs)
 }
 
-get95ths <- function(meltdf, tails, origdf) {
+# combine.runs <- function(DT, filelist, name) {
+	# curr.row <- 1
+	# for (file in filelist) {
+		# # Read in a file
+		# data <- fread(paste(processed.data.path, file, sep=""))
+		# # Add the data to the big data table
+		# DT[curr.row, names(DT) := data]
+		# curr.row <- curr.row + 1
+	# }
+	# setkeyv(DT, "Run")
+	# # Write it out
+	# write.csv(DT, paste(processed.data.path,
+		# name, ".random.runs.csv",sep=""), row.names=FALSE)
+	# # Return it
+	# return(DT)
+# }
+
+getSig <- function(meltdf, type, value) {
 	variables <- unique(meltdf$variable)
-	if (tails == 1) {
-		idx95 <- round((nrow(origdf) - 1)*.95)
-		ninetyfifths <- data.frame(
+	nruns <- nrow(meltdf)/length(variables)
+	if (type == "absolute") {
+		if (value == "SEs") {
+			idx95 <- round(nruns*.05)					
+		} else {
+			idx95 <- round(nruns*.95)		
+		}
+		sigvals <- data.frame(
 			variable=variables,
-			tvalue=rep(0,length(variables)))
+			value=rep(0,length(variables)))
 		for (v in variables) {
-			ninetyfifths$tvalue[which(ninetyfifths$variable == v)] <-
-				sort(subset(meltdf, variable == v)$tvalue)[idx95]
+			sigvals$value[which(sigvals$variable == v)] <-
+				sort(subset(meltdf, variable == v)$value)[idx95]
 		}
 	}
-	else if (tails == 2) {
-		idx95.l <- round((nrow(origdf) - 1)*.025)
-		idx95.u <- round((nrow(origdf) - 1)*.975)
-		ninetyfifths <- data.frame(
+	else if (type == "normal") {
+		idx95.l <- round(nruns*.025)
+		idx95.u <- round(nruns*.975)
+		sigvals <- data.frame(
 			variable=variables,
-			tvalue.l=rep(0,length(variables)),
-			tvalue.u=rep(0,length(variables)))
+			value.l=rep(0,length(variables)),
+			value.u=rep(0,length(variables)))
 		for (v in variables) {
-			ninetyfifths$tvalue.l[which(ninetyfifths$variable == v)] <-
-				sort(subset(meltdf, variable == v)$tvalue)[idx95.l]
-			ninetyfifths$tvalue.u[which(ninetyfifths$variable == v)] <-
-				sort(subset(meltdf, variable == v)$tvalue)[idx95.u]
+			sigvals$value.l[which(sigvals$variable == v)] <-
+				sort(subset(meltdf, variable == v)$value)[idx95.l]
+			sigvals$value.u[which(sigvals$variable == v)] <-
+				sort(subset(meltdf, variable == v)$value)[idx95.u]
 		}
-
 	}
-	return(ninetyfifths)
+	return(sigvals)
 }
 
-getPercentile <- function(realvals, randvals, tails) {
-	variables <- unique(randvals$variable)
-	if (tails == 1) {
+getPercentile <- function(realvals, randvals, tails, value) {
+	variables <- as.character(unique(randvals$variable))
+	if (tails == "normal") {
 		percentiles <- data.frame(
 			variable=variables,
 			percent=rep(0,length(variables)))
 		for (v in variables) {
+			realval <- subset(realvals, variable == v)$value
+			percentless <- round((
+			nrow(subset(subset(randvals, variable == v), value < realval)) /
+			nrow(subset(randvals, variable == v)))*100,1)
 			percentiles$percent[which(percentiles$variable == v)] <-
-			round((nrow(subset(subset(randvals, variable == v), tvalue <
-				abs(subset(realvals, variable == v)$tvalue))) /
-				nrow(subset(randvals, variable == v)))*100,1)
+				ifelse(percentless > 50, percentless, 100-percentless)
 		}
 	}
-	else if (tails == 2) {
+	else if (tails == "absolute") {
 		percentiles <- data.frame(
 			variable=variables,
 			percent=rep(0,length(variables)))
-		for (v in variables) {
-			tval <- subset(realvals, variable == v)$tvalue
-			pos <- ifelse(tval > 0, 1, 0)
-			if (pos == 1) {
-				percentiles$percent[which(percentiles$variable == v)] <-
-				round((nrow(subset(subset(randvals, variable == v &
-					tvalue > 0), tvalue < tval))) /
-					nrow(subset(randvals, variable == v &
-					tvalue > 0))*100,1)
-			}
-			else {
-				percentiles$percent[which(percentiles$variable == v)] <-
-				round((nrow(subset(subset(randvals, variable == v &
-					tvalue < 0), tvalue > tval))) /
-					nrow(subset(randvals, variable == v &
-					tvalue < 0))*100,1)
-			}
+		if (value == "SEs") {
+			for (v in variables) {
+			realval <- subset(realvals, variable == v)$value
+			percentiles$percent[which(percentiles$variable == v)] <- round((
+			nrow(subset(subset(randvals, variable == v), value > realval)) /
+			nrow(subset(randvals, variable == v)))*100,1)
+			}						
+		} else {
+			for (v in variables) {
+			realval <- subset(realvals, variable == v)$value
+			percentiles$percent[which(percentiles$variable == v)] <- round((
+			nrow(subset(subset(randvals, variable == v), value < realval)) /
+			nrow(subset(randvals, variable == v)))*100,1)
+			}			
 		}
 	}
 	return(percentiles)	
+}
+
+getDiffs <- function(intlev1, intlev2, avgs, subs, newname) {
+	lev1 <- avgs[Variable == intlev1, (subs), with=F]
+	lev2 <- avgs[Variable == intlev2, (subs), with=F]
+	sublevs <- lev1 - lev2
+	newlev <- lev1
+	newlev[, (subs) := sublevs]
+	newlev[, (subs) := sublevs]
+	newlev[, Mean := rowMeans(newlev[, subs, with=F], na.rm=T)]
+	infocols <- avgs[Variable == intlev1, c("Variable", "Comparison", "Run"), with=F]
+	newlev <- cbind(infocols, newlev)
+	newlev[, Variable := rep(newname, nrow(newlev))]
+	return(newlev)
 }

@@ -11,6 +11,7 @@ library(data.table)
 # Read in data in processed_data/ path and set plotting variables
 ################################################################################
 processed.data.path <- "processed_data/" #"../../data/E1/processed_data/"
+model.path <- "processed_data/models/"
 switch.all <- fread(paste(processed.data.path,"SwitchAll.csv", sep=""))
 chi.coefs <- fread(paste(processed.data.path,"chi.coefs-0.csv", sep=""))
 adu.coefs <- fread(paste(processed.data.path,"adu.coefs-0.csv", sep=""))
@@ -33,19 +34,38 @@ run.models <- function(ns) {
 
     		# Retrieve the random gap info data for this particular run
 	    	rand.data.C <- switch.rand.C[Run == i,]
-	    	chi.coefs.r <- chi.coefs[0,]
 
-    		# Models
-	    	# Children
 			chi.max.r <- glmer(Switch ~ Age * LgGroup * Type + Duration + 
 			    (Type * LgGroup|Subject) + (1|Gap), data=rand.data.C,
 			    family=binomial, control = glmerControl(optimizer="bobyqa"))
-    		chi.coefs.r <- rbind(chi.coefs.r,
-    			cbind(data.frame(t(sapply(fixef(chi.max.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(chi.coefs.r, paste(
-				processed.data.path, "chi.coefs.r-", i, ".csv", sep=""),
-				row.names=FALSE)		
+			ll.cmr <- logLik(chi.max.r)
+			    
+			chi.max.r.m <- data.frame(
+				B = fixef(chi.max.r),
+				SE = SEstat(chi.max.r),
+				t = tstat(chi.max.r))
+			chi.max.r.m <- cbind(Predictor = rownames(chi.max.r.m), chi.max.r.m)
+			rownames(chi.max.r.m) <- NULL
+				
+			chi.max.r.i <- data.frame(
+				LogLik = head(ll.cmr), AIC = AIC(ll.cmr),
+				NumObs = as.numeric(unlist(attributes(ll.cmr))[1]),
+				Sample = "random", Error = errors, Run = i)
+				
+			chi.max.r.r <- resid(chi.max.r)
+			 
+    		write.csv(chi.max.r.m, paste(
+				model.path, "chi.max.r.m-", i, ".csv", sep=""),
+				row.names=FALSE)
+
+    		write.csv(chi.max.r.i, paste(
+				model.path, "chi.max.r.i-", i, ".csv", sep=""),
+				row.names=FALSE)
+
+    		write.csv(chi.max.r.r, paste(
+				model.path, "chi.max.r.r-", i, ".csv", sep=""),
+				row.names=FALSE)
+
         }
     }, warning = function(w){
 	    if (errors == "") {
@@ -63,19 +83,38 @@ run.models <- function(ns) {
 
     		# Retrieve the random gap info data for this particular run
 	    	rand.data.A <- switch.rand.A[Run == i,]	
-	    	adu.coefs.r <- adu.coefs[0,]
 		
-		    # Models
-    		# Adults
 			adu.max.r <- glmer(Switch ~ LgGroup * Type * Duration + 
-			    (Type * LgGroup|Subject) + (1|Gap), data=rand.data.A,
+			(Type * LgGroup|Subject) + (1|Gap), data=rand.data.A,
     			family=binomial, control = glmerControl(optimizer="bobyqa"))
-    		adu.coefs.r <- rbind(adu.coefs.r,
-    			cbind(data.frame(t(sapply(fixef(adu.max.r),c))),
-    			data.frame(Sample = "random", Error = errors, Run = i)))
-    		write.csv(adu.coefs.r, paste(
-				processed.data.path, "adu.coefs.r-", i, ".csv", sep=""),
+			ll.amr <- logLik(adu.max.r)
+			    
+			adu.max.r.m <- data.frame(
+				B = fixef(adu.max.r),
+				SE = SEstat(adu.max.r),
+				t = tstat(adu.max.r))
+			adu.max.r.m <- cbind(Predictor = rownames(adu.max.r.m), adu.max.r.m)
+			rownames(adu.max.r.m) <- NULL
+				
+			adu.max.r.i <- data.frame(
+				LogLik = head(ll.amr), AIC = AIC(ll.amr),
+				NumObs = as.numeric(unlist(attributes(ll.amr))[1]),
+				Sample = "random", Error = errors, Run = i)
+				
+			adu.max.r.r <- resid(adu.max.r)
+			 
+    		write.csv(adu.max.r.m, paste(
+				model.path, "adu.max.r.m-", i, ".csv", sep=""),
 				row.names=FALSE)
+
+    		write.csv(adu.max.r.i, paste(
+				model.path, "adu.max.r.i-", i, ".csv", sep=""),
+				row.names=FALSE)
+
+    		write.csv(adu.max.r.r, paste(
+				model.path, "adu.max.r.r-", i, ".csv", sep=""),
+				row.names=FALSE)
+
         }
     }, warning = function(w){
 	    if (errors == "") {
