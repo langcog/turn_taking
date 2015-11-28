@@ -1,4 +1,4 @@
-This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  28 NOV 2015 09:57
+This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  28 NOV 2015 11:26
  restricted \write18 enabled.
  file:line:error style messages enabled.
 **CasillasFrank-Anticip.tex
@@ -464,13 +464,19 @@ Overfull \hbox (0.29178pt too wide) in paragraph at lines 535--536
 ze switches at an above-
  []
 
-[34]
-Overfull \hbox (24.13751pt too wide) in paragraph at lines 709--710
+[34] [35]
+Overfull \hbox (5.8709pt too wide) in paragraph at lines 554--555
+[][]\OT1/cmr/m/n/12 Fi-nally, on av-er-age, par-tic-i-pants at all ages made an
+-tic-i-pa-tory gaze switches
+ []
+
+[36]
+Overfull \hbox (24.13751pt too wide) in paragraph at lines 633--634
 \OT1/cmr/m/n/12 ported by an ERC Ad-vanced Grant to Stephen C. Levin-son (26948
 4-INTERACT),
  []
 
-(./CasillasFrank-Anticip.bbl [35]
+(./CasillasFrank-Anticip.bbl
 Underfull \hbox (badness 3291) in paragraph at lines 42--51
 [][]\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lm
 e4:
@@ -487,18 +493,21 @@ Overfull \hbox (14.03893pt too wide) in paragraph at lines 42--51
 /\OT1/cmr/m/n/12 .
  []
 
-[36] [37] [38] [39] [40]) [41] [42] (./CasillasFrank-Anticip.aux)
+[37] [38] [39] [40] [41] [42]) [43] [44] (./CasillasFrank-Anticip.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 
 Here is how much of LuaTeX's memory you used:
  5259 strings out of 494982
  100000,128383 words of node,token memory allocated
- 403 words of node memory still in use:
+ 409 words of node memory still in use:
    2 hlist, 1 vlist, 1 rule, 2 glue, 48 glue_spec, 1 write nodes
-   avail lists: 2:21,3:140,4:2884,5:299,6:4807,7:265,9:417,10:340
+   avail lists: 2:21,3:146,4:2878,5:299,6:4807,7:265,9:417,10:380
  8514 multiletter control sequences out of 65536+200000
  62 fonts using 2447847 bytes
  44i,9n,46p,2125b,362s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -518,10 +527,10 @@ e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
 2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/20
 12/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/201
 2/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (42 pages, 2876376 bytes).
+Output written on CasillasFrank-Anticip.pdf (44 pages, 2881045 bytes).
 
-PDF statistics: 230 PDF objects out of 1000 (max. 8388607)
- 143 compressed objects within 2 object streams
+PDF statistics: 237 PDF objects out of 1000 (max. 8388607)
+ 148 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
