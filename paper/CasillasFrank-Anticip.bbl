@@ -1,4 +1,4 @@
-\begin{thebibliography}{64}
+\begin{thebibliography}{73}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -130,6 +130,11 @@
 \newblock \bibinfo{title}{The development of predictive processes in children's
   discourse understanding}, in: \bibinfo{booktitle}{Proceedings of the 35th
   Annual Meeting of the Cognitive Science Society}.
+%Type = Book
+\bibitem[{Clark(2009)}]{clark2009}
+\bibinfo{author}{Clark, E.V.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{First language acquisition}.
+\newblock \bibinfo{publisher}{Cambridge University Press}.
 %Type = Article
 \bibitem[{De~Ruiter et~al.(2006)De~Ruiter, Mitterer and
   Enfield}]{de-ruiter2006}
@@ -169,6 +174,14 @@
   \bibinfo{editor}{Ochs, E.}, \bibinfo{editor}{Schieffelin, B.B.} (Eds.),
   \bibinfo{booktitle}{Developmental Pragmatics}. \bibinfo{publisher}{Academic
   Press, New York}, pp. \bibinfo{pages}{391--414}.
+%Type = Incollection
+\bibitem[{Fitneva(2012)}]{fitneva2012}
+\bibinfo{author}{Fitneva, S.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Beyond answers: questions and children's learning},
+  in: \bibinfo{editor}{de~Ruiter, J.P.} (Ed.), \bibinfo{booktitle}{Questions:
+  {F}ormal, {F}unctional, and {I}nteractional {P}erspectives}.
+  \bibinfo{publisher}{Cambridge University Press, Cambridge, UK}, pp.
+  \bibinfo{pages}{165--178}.
 %Type = Article
 \bibitem[{Ford and Thompson(1996)}]{ford1996}
 \bibinfo{author}{Ford, C.E.}, \bibinfo{author}{Thompson, S.A.},
@@ -198,6 +211,15 @@
 \newblock \bibinfo{title}{What the eyes say about speaking}.
 \newblock \bibinfo{journal}{Psychological science} \bibinfo{volume}{11},
   \bibinfo{pages}{274--279}.
+%Type = Article
+\bibitem[{Hart and Risley(1992)}]{hart1992}
+\bibinfo{author}{Hart, B.}, \bibinfo{author}{Risley, T.R.},
+  \bibinfo{year}{1992}.
+\newblock \bibinfo{title}{American parenting of language-learning children:
+  {P}ersisting differences in family-child interactions observed in natural
+  home environments.}
+\newblock \bibinfo{journal}{Developmental Psychology} \bibinfo{volume}{28},
+  \bibinfo{pages}{1096}.
 %Type = Inproceedings
 \bibitem[{Hedberg et~al.(2010)Hedberg, Sosa, G{\"o}rg{\"u}l{\"u} and
   Mameni}]{hedberg2010}
@@ -207,6 +229,13 @@
 \newblock \bibinfo{title}{The prosody and meaning of {W}h-questions in
   {A}merican {E}nglish}, in: \bibinfo{booktitle}{Speech Prosody 2010--Fifth
   International Conference}.
+%Type = Article
+\bibitem[{Henning et~al.(2005)Henning, Striano and Lieven}]{henning2005}
+\bibinfo{author}{Henning, A.}, \bibinfo{author}{Striano, T.},
+  \bibinfo{author}{Lieven, E.V.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Maternal speech to infants at 1 and 3 months of age}.
+\newblock \bibinfo{journal}{Infant Behavior and Development}
+  \bibinfo{volume}{28}, \bibinfo{pages}{519--536}.
 %Type = Article
 \bibitem[{Hilbrink et~al.(2015)Hilbrink, Gattis and Levinson}]{hilbrink2015}
 \bibinfo{author}{Hilbrink, E.}, \bibinfo{author}{Gattis, M.},
@@ -234,6 +263,13 @@
 \newblock \bibinfo{title}{How children with autism look at events}.
 \newblock \bibinfo{journal}{Research in Autism Spectrum Disorders}
   \bibinfo{volume}{3}, \bibinfo{pages}{556--569}.
+%Type = Article
+\bibitem[{Holler and Kendrick(2015)}]{holler2015}
+\bibinfo{author}{Holler, J.}, \bibinfo{author}{Kendrick, K.H.},
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Unaddressed participants' gaze in multi-person
+  interaction}.
+\newblock \bibinfo{journal}{Frontiers in Psychology} \bibinfo{volume}{6}.
 %Type = Book
 \bibitem[{Jaffe et~al.(2001)Jaffe, Beebe, Feldstein, Crown, Jasnow, Rochat and
   Stern}]{jaffe2001}
@@ -253,6 +289,11 @@
   count more than statistics}.
 \newblock \bibinfo{journal}{Journal of Memory and Language}
   \bibinfo{volume}{44}, \bibinfo{pages}{548--567}.
+%Type = Book
+\bibitem[{Jusczyk(2000)}]{jusczyk2000}
+\bibinfo{author}{Jusczyk, P.W.}, \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{The Discovery of Spoken Language}.
+\newblock \bibinfo{publisher}{MIT press}.
 %Type = Article
 \bibitem[{Jusczyk et~al.(1993)Jusczyk, Cutler and Redanz}]{jusczyk1993}
 \bibinfo{author}{Jusczyk, P.W.}, \bibinfo{author}{Cutler, A.},
@@ -304,6 +345,13 @@
 \bibinfo{author}{Levelt, W.J.}, \bibinfo{year}{1989}.
 \newblock \bibinfo{title}{Speaking: From intention to articulation}.
 \newblock \bibinfo{publisher}{MIT press}.
+%Type = Incollection
+\bibitem[{Levinson(2006)}]{levinson2006}
+\bibinfo{author}{Levinson, S.C.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{On the human ``interaction engine''}, in:
+  \bibinfo{editor}{Enfield, N.}, \bibinfo{editor}{Levinson, S.} (Eds.),
+  \bibinfo{booktitle}{Roots of human sociality: Culture, cognition and
+  interaction}. \bibinfo{publisher}{Oxford: Berg}, pp. \bibinfo{pages}{39--69}.
 %Type = Incollection
 \bibitem[{Levinson(2013)}]{levinson2013}
 \bibinfo{author}{Levinson, S.C.}, \bibinfo{year}{2013}.
@@ -434,6 +482,13 @@
   primer in conversation analysis}.
 \newblock \bibinfo{publisher}{Cambridge University Press}.
 %Type = Article
+\bibitem[{Shatz(1979)}]{shatz1979}
+\bibinfo{author}{Shatz, M.}, \bibinfo{year}{1979}.
+\newblock \bibinfo{title}{How to do things by asking: Form-function pairings in
+  mothers' questions and their relation to children's responses}.
+\newblock \bibinfo{journal}{Child Development} \bibinfo{volume}{50},
+  \bibinfo{pages}{1093--1099}.
+%Type = Article
 \bibitem[{Shi and Melancon(2010)}]{shi2010}
 \bibinfo{author}{Shi, R.}, \bibinfo{author}{Melancon, A.},
   \bibinfo{year}{2010}.
@@ -458,6 +513,13 @@
   prelinguistic infants}.
 \newblock \bibinfo{journal}{Journal of Memory and Language}
   \bibinfo{volume}{49}, \bibinfo{pages}{249--267}.
+%Type = Article
+\bibitem[{Speer and Ito(2009)}]{speer2009}
+\bibinfo{author}{Speer, S.R.}, \bibinfo{author}{Ito, K.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Prosody in first language acquisition--{A}cquiring
+  intonation as a tool to organize information in conversation}.
+\newblock \bibinfo{journal}{Language and Linguistics Compass}
+  \bibinfo{volume}{3}, \bibinfo{pages}{90--110}.
 %Type = Article
 \bibitem[{Stivers et~al.(2009)Stivers, Enfield, Brown, Englert, Hayashi,
   Heinemann, Hoymann, Rossano, De~Ruiter, Yoon et~al.}]{stivers2009}
