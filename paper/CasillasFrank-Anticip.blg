@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2012)
+This is BibTeX, Version 0.99d (TeX Live 2015/MacPorts 2015_5)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CasillasFrank-Anticip.aux
 The style file: elsarticle-harv.bst
@@ -8,45 +8,45 @@ Warning--empty pages in casillas2013
 Warning--empty pages in hedberg2010
 Warning--empty pages in TiceHenetz11
 Warning--empty pages in ELAN
-You've used 73 entries,
+You've used 64 entries,
             2990 wiz_defined-function locations,
-            1044 strings with 17113 characters,
-and the built_in function-call counts, 47512 in all, are:
-= -- 3619
-> -- 1743
-< -- 44
-+ -- 689
-- -- 596
-* -- 5068
-:= -- 6874
-add.period$ -- 211
-call.type$ -- 73
-change.case$ -- 564
-chr.to.int$ -- 73
-cite$ -- 77
-duplicate$ -- 3669
-empty$ -- 3629
-format.name$ -- 822
-if$ -- 8872
+            1001 strings with 15694 characters,
+and the built_in function-call counts, 41428 in all, are:
+= -- 3151
+> -- 1509
+< -- 42
++ -- 597
+- -- 515
+* -- 4388
+:= -- 5997
+add.period$ -- 184
+call.type$ -- 64
+change.case$ -- 492
+chr.to.int$ -- 64
+cite$ -- 68
+duplicate$ -- 3212
+empty$ -- 3180
+format.name$ -- 710
+if$ -- 7752
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 694
-newline$ -- 372
-num.names$ -- 302
-pop$ -- 1357
+missing$ -- 605
+newline$ -- 327
+num.names$ -- 266
+pop$ -- 1193
 preamble$ -- 1
-purify$ -- 487
+purify$ -- 424
 quote$ -- 0
-skip$ -- 1070
+skip$ -- 952
 stack$ -- 0
-substring$ -- 2062
-swap$ -- 2543
+substring$ -- 1771
+swap$ -- 2212
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 639
+type$ -- 558
 warning$ -- 4
-while$ -- 327
+while$ -- 284
 width$ -- 0
-write$ -- 1023
+write$ -- 898
 (There were 4 warnings)

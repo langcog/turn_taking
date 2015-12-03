@@ -1,4 +1,4 @@
-\begin{thebibliography}{73}
+\begin{thebibliography}{64}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -11,15 +11,6 @@
 \providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
-%Type = Article
-\bibitem[{Augusti et~al.(2010)Augusti, Melinder and
-  Gredeb{\"a}ck}]{augusti2010}
-\bibinfo{author}{Augusti, E.M.}, \bibinfo{author}{Melinder, A.},
-  \bibinfo{author}{Gredeb{\"a}ck, G.}, \bibinfo{year}{2010}.
-\newblock \bibinfo{title}{Look who's talking: {P}re-verbal infants' perception
-  of face-to-face and back- to-back social interactions}.
-\newblock \bibinfo{journal}{Developmental Psychology} \bibinfo{volume}{1},
-  \bibinfo{pages}{161}.
 %Type = Article
 \bibitem[{Bakker et~al.(2011)Bakker, Kochukhova and von Hofsten}]{bakker2011}
 \bibinfo{author}{Bakker, M.}, \bibinfo{author}{Kochukhova, O.},
@@ -54,13 +45,6 @@
   conversational interaction}.
 \newblock \bibinfo{journal}{Annals of the New York Academy of Sciences}
   \bibinfo{volume}{263}, \bibinfo{pages}{101--113}.
-%Type = Article
-\bibitem[{Beier and Spelke(2012)}]{beier2012}
-\bibinfo{author}{Beier, J.S.}, \bibinfo{author}{Spelke, E.S.},
-  \bibinfo{year}{2012}.
-\newblock \bibinfo{title}{Infants' developing understanding of social gaze}.
-\newblock \bibinfo{journal}{Child Development} \bibinfo{volume}{83},
-  \bibinfo{pages}{486--496}.
 %Type = Article
 \bibitem[{Bergelson and Swingley(2013)}]{bergelson2013}
 \bibinfo{author}{Bergelson, E.}, \bibinfo{author}{Swingley, D.},
@@ -295,24 +279,6 @@
 \newblock \bibinfo{title}{The Discovery of Spoken Language}.
 \newblock \bibinfo{publisher}{MIT press}.
 %Type = Article
-\bibitem[{Jusczyk et~al.(1993)Jusczyk, Cutler and Redanz}]{jusczyk1993}
-\bibinfo{author}{Jusczyk, P.W.}, \bibinfo{author}{Cutler, A.},
-  \bibinfo{author}{Redanz, N.J.}, \bibinfo{year}{1993}.
-\newblock \bibinfo{title}{Infants' preference for the predominant stress
-  patterns of {E}nglish words}.
-\newblock \bibinfo{journal}{Child Development} \bibinfo{volume}{64},
-  \bibinfo{pages}{675--687}.
-%Type = Article
-\bibitem[{Jusczyk et~al.(1995)Jusczyk, Hohne, Mandel and Strange}]{jusczyk1995}
-\bibinfo{author}{Jusczyk, P.W.}, \bibinfo{author}{Hohne, E.},
-  \bibinfo{author}{Mandel, D.}, \bibinfo{author}{Strange, W.},
-  \bibinfo{year}{1995}.
-\newblock \bibinfo{title}{Picking up regularities in the sound structure of the
-  native language}.
-\newblock \bibinfo{journal}{Speech perception and linguistic experience:
-  Theoretical and methodological issues in cross-language speech research} ,
-  \bibinfo{pages}{91--119}.
-%Type = Article
 \bibitem[{Kamide et~al.(2003)Kamide, Altmann and Haywood}]{kamide2003}
 \bibinfo{author}{Kamide, Y.}, \bibinfo{author}{Altmann, G.},
   \bibinfo{author}{Haywood, S.L.}, \bibinfo{year}{2003}.
@@ -379,14 +345,6 @@
 \newblock \bibinfo{journal}{Frontiers in Psychology} \bibinfo{volume}{3:376},
   \bibinfo{pages}{1--9}.
 %Type = Article
-\bibitem[{Mandel et~al.(1996)Mandel, Kemler~Nelson and Jusczyk}]{mandel1996}
-\bibinfo{author}{Mandel, D.R.}, \bibinfo{author}{Kemler~Nelson, D.G.},
-  \bibinfo{author}{Jusczyk, P.W.}, \bibinfo{year}{1996}.
-\newblock \bibinfo{title}{Infants remember the order of words in a spoken
-  sentence}.
-\newblock \bibinfo{journal}{Cognitive Development} \bibinfo{volume}{11},
-  \bibinfo{pages}{181--196}.
-%Type = Article
 \bibitem[{Masataka(1993)}]{masataka1993}
 \bibinfo{author}{Masataka, N.}, \bibinfo{year}{1993}.
 \newblock \bibinfo{title}{Effects of contingent and noncontingent maternal
@@ -405,13 +363,6 @@
   infants}.
 \newblock \bibinfo{journal}{Cognition} \bibinfo{volume}{29},
   \bibinfo{pages}{143--178}.
-%Type = Article
-\bibitem[{Moon et~al.(1993)Moon, Cooper and Fifer}]{moon1993}
-\bibinfo{author}{Moon, C.}, \bibinfo{author}{Cooper, R.P.},
-  \bibinfo{author}{Fifer, W.P.}, \bibinfo{year}{1993}.
-\newblock \bibinfo{title}{Two-day-olds prefer their native language}.
-\newblock \bibinfo{journal}{Infant Behavior and Development}
-  \bibinfo{volume}{16}, \bibinfo{pages}{495--500}.
 %Type = Article
 \bibitem[{Morgan and Saffran(1995)}]{morgan1995}
 \bibinfo{author}{Morgan, J.L.}, \bibinfo{author}{Saffran, J.R.},
@@ -444,14 +395,6 @@
   language}.
 \newblock \bibinfo{journal}{Journal of Child Language} \bibinfo{volume}{5},
   \bibinfo{pages}{391--401}.
-%Type = Article
-\bibitem[{Rochat et~al.(1998)Rochat, Neisser and Marian}]{rochat1998}
-\bibinfo{author}{Rochat, P.}, \bibinfo{author}{Neisser, U.},
-  \bibinfo{author}{Marian, V.}, \bibinfo{year}{1998}.
-\newblock \bibinfo{title}{Are young infants sensitive to interpersonal
-  contingency?}
-\newblock \bibinfo{journal}{Infant Behavior and Development}
-  \bibinfo{volume}{21}, \bibinfo{pages}{355--366}.
 %Type = Article
 \bibitem[{Ross and Lollis(1987)}]{ross1987}
 \bibinfo{author}{Ross, H.S.}, \bibinfo{author}{Lollis, S.P.},
@@ -504,16 +447,6 @@
 \newblock \bibinfo{journal}{Journal of Child Language} \bibinfo{volume}{4},
   \bibinfo{pages}{1--22}.
 %Type = Article
-\bibitem[{Soderstrom et~al.(2003)Soderstrom, Seidl, Kemler~Nelson and
-  Jusczyk}]{soderstrom2003}
-\bibinfo{author}{Soderstrom, M.}, \bibinfo{author}{Seidl, A.},
-  \bibinfo{author}{Kemler~Nelson, D.G.}, \bibinfo{author}{Jusczyk, P.W.},
-  \bibinfo{year}{2003}.
-\newblock \bibinfo{title}{The prosodic bootstrapping of phrases: Evidence from
-  prelinguistic infants}.
-\newblock \bibinfo{journal}{Journal of Memory and Language}
-  \bibinfo{volume}{49}, \bibinfo{pages}{249--267}.
-%Type = Article
 \bibitem[{Speer and Ito(2009)}]{speer2009}
 \bibinfo{author}{Speer, S.R.}, \bibinfo{author}{Ito, K.}, \bibinfo{year}{2009}.
 \newblock \bibinfo{title}{Prosody in first language acquisition--{A}cquiring
@@ -565,13 +498,6 @@
 \newblock \bibinfo{title}{Turn-boundary projection: Looking ahead}, in:
   \bibinfo{booktitle}{Proceedings of the 33rd Annual Meeting of the {C}ognitive
   {S}cience {S}ociety}.
-%Type = Article
-\bibitem[{Toda and Fogel(1993)}]{toda1993}
-\bibinfo{author}{Toda, S.}, \bibinfo{author}{Fogel, A.}, \bibinfo{year}{1993}.
-\newblock \bibinfo{title}{Infant response to the still-face situation at 3 and
-  6 months}.
-\newblock \bibinfo{journal}{Developmental Psychology} \bibinfo{volume}{29},
-  \bibinfo{pages}{532}.
 %Type = Article
 \bibitem[{Torreira et~al.(2015)Torreira, B{\"o}gels and
   Levinson}]{torreira2015}
