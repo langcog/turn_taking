@@ -10,6 +10,7 @@
 \usepackage{longtable}
 \usepackage[section]{placeins}
 
+\linespread{2}
 \journal{}
 
 \begin{document}
@@ -95,7 +96,7 @@ Second, the conversation stimuli \citet{keitel2013} used were somewhat unusual. 
 
 Our goal in the current study is to find out when children begin to make predictions about upcoming turn structure and to understand how their predictions are affected by linguistic cues across development. We present two experiments in which we measure children's anticipatory gaze to responders while watching conversation videos with natural (people using English vs. non-English; Experiment 1) and non-natural (puppets with phonetically manipulated speech; Experiment 2) control over the presence of lexical and prosodic cues. We tested children across a wide range of ages (Experiment 1: 3--5 years; Experiment 2: 1--6 years), with adult control participants in each experiment.
 
-Our findings suggest that children and adults use linguistic cues to make predictions about upcoming turn structure, but that they primarily do so to predict speaker transitions after a question. We also find that children make more predictions than  expected by chance, even at age XX, but that it takes several years before they recruit linguistic cues to anticipate responses more often after questions. We found no direct evidence of an early prosody advantage in children's anticipations and, further, no evidence that prosodic or lexical cues alone can substitute for their combination in the full linguistic signal, as is proposed for adults \citep{de-ruiter2006}.
+Our findings suggest that children and adults use linguistic cues to make predictions about upcoming turn structure, but that they primarily do so to predict speaker transitions after a question. We also find that children make more predictions than expected by chance at age two, but that it takes several years before they recruit linguistic cues to anticipate responses more often after questions. We found no direct evidence of an early prosody advantage in children's anticipations and, further, no evidence that prosodic or lexical cues alone can substitute for their combination in the full linguistic signal, as is proposed for adults \citep{de-ruiter2006}.
 
 \section{Experiment 1}
 \label{sec:exp1}
@@ -267,7 +268,7 @@ We completed this baseline procedure on 5,000 random permutations of the origina
 
 We excluded the output of random-permutation models that gave convergence warnings in order to remove unreliable estimates from our analyses (non-converging models were 22.4\% and 24.4\% of all models for children and adults, respectively; see the Supplementary Materials for more information on model exclusion).
 
-Our baseline analyses revealed that none of the significant predictors from models of the original, turn-related data can be explained by random looking (see Figures \ref{fig:E1-ChiTs} and \ref{fig:E1-AduTs} for the full distributional data). For the children's data, the original \textit{t}-values for language condition, gap duration, the age-language condition interaction, and the language condition-transition type interaction were all greater than 95\% of \textit{t}-values for the randomly permuted data (99.9\%, 95.5\%, 99.4\%, and 96\%, respectively). Similarly, the adults' data showed significant differentiation from the randomly permuted data for two of the three originally significant predictors---transition type and the transition type-gap duration interaction (greater than 99.9\% and 99.7\% of random \textit{t}-values, respectively)---with marginal differentiation for the interaction of language condition and transition type (greater than 94.7\% of random \textit{t}-values).
+Our baseline analyses revealed that none of the significant predictors from models of the original, turn-related data can be explained by random looking (see Figures \ref{fig:E1-ChiTs} and \ref{fig:E1-AduTs} for the full distributional data). For the children's data, the original \textit{t}-values for language condition, gap duration, the age-language condition interaction, and the language condition-transition type interaction were all greater than 95\% of \textit{t}-values for the randomly permuted data (99.9\%, 95.5\%, 99.4\%, and 96\%, respectively). Similarly, the adults' data showed significant differentiation from the randomly permuted data for two of the three originally significant predictors---transition type and the transition type-gap duration interaction (greater than 99.9\% and 99.7\% of random \textit{t}-values, respectively)---with marginal differentiation for the interaction of language condition and transition type (greater than 94.6\% of random \textit{t}-values).
 
 \paragraph{Developmental effects}
 The original statistical model of the children's real data revealed a significant interaction of age and language condition (Table \ref{tab:E1-models}) that was highly unlikely to have come from random looking (Figure \ref{fig:E1-randvsreal}). To further explore this effect, we compared the average effect of language condition for each age group: We extracted the average difference score for the two language conditions (English minus non-English) for each subject, computing an overall average for each random permutation of the data. For each random permutation, we then made pairwise comparisons of the average difference scores across pariticipant age groups, finding that, while 3- and 4-year olds showed similarly large effects of language condition, 5-year-olds showed a significantly smaller effect of language condition, compared to both younger age groups. In other words, the difference in the effect of language condition for 5-year-olds compared to younger children was larger than would be expected by chance in 99.52\% of the randomly permuted data sets for 3-year-olds and 99.96\% of the data sets for 4-year-olds---differences of \textit{p}$<$.01 and \textit{p}$<$.001, respectively (see Figure \ref{fig:E1-lgageinteraction} for difference score distributions).
@@ -429,18 +430,18 @@ We identified anticipatory gaze switches for all 85 usable turn transitions, and
     Age*Condition$=$\textit{normal}* &   -0.37542  &   0.16963  & -2.213 &   0.0269 *      \\
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
 	\hline
-    Condition$=$\textit{muffled}         &   -1.63429  &   0.86390 &  -1.892   & 0.0585 .      \\
-    Age*Condition$=$\textit{muffled}       &   0.39317 &     0.18907 &   2.080  &  0.0376 *      \\
-    Condition$=$\textit{muffled}*     &  1.77190  &   1.24864  &  1.419 &   0.1559        \\
+    Condition$=$\textit{prosody}         &   -1.63429  &   0.86390 &  -1.892   & 0.0585 .      \\
+    Age*Condition$=$\textit{prosody}       &   0.39317 &     0.18907 &   2.080  &  0.0376 *      \\
+    Condition$=$\textit{prosody}*     &  1.77190  &   1.24864  &  1.419 &   0.1559        \\
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
-    Age*Condition$=$\textit{muffled}* &  -0.47057 &    0.28703 &  -1.639 &   0.1011        \\
+    Age*Condition$=$\textit{prosody}* &  -0.47057 &    0.28703 &  -1.639 &   0.1011        \\
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
 	\hline
-    Condition$=$\textit{robot}            &  -0.26741 &    0.59071 &  -0.453  &  0.6508        \\
-    Age*Condition$=$\textit{robot}           &   0.13740  &   0.13568   & 1.013  &  0.3112        \\
-    Condition$=$\textit{robot}*     &   -1.02193  &   1.01227  & -1.010  &  0.3127        \\
+    Condition$=$\textit{words}            &  -0.26741 &    0.59071 &  -0.453  &  0.6508        \\
+    Age*Condition$=$\textit{words}           &   0.13740  &   0.13568   & 1.013  &  0.3112        \\
+    Condition$=$\textit{words}*     &   -1.02193  &   1.01227  & -1.010  &  0.3127        \\
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
-    Age*Condition$=$\textit{robot}*  &   0.08946  &   0.22349   & 0.400 &   0.6890        \\
+    Age*Condition$=$\textit{words}*  &   0.08946  &   0.22349   & 0.400 &   0.6890        \\
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
 
     \hline
@@ -457,12 +458,12 @@ We identified anticipatory gaze switches for all 85 usable turn transitions, and
     Condition$=$\textit{normal}* &   -0.9452  &    0.7631 &  -1.239 & 0.215475     \\ 
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
 	\hline
-    Condition$=$\textit{muffled}     &     0.3349  &    0.8965  &  0.374 & 0.708692     \\ 
-    Condition$=$\textit{muffled}*  &  0.6627  &    1.2138 &   0.546 & 0.585108     \\ 
+    Condition$=$\textit{prosody}     &     0.3349  &    0.8965  &  0.374 & 0.708692     \\ 
+    Condition$=$\textit{prosody}*  &  0.6627  &    1.2138 &   0.546 & 0.585108     \\ 
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
 	\hline
-    Condition$=$\textit{robot}       &     1.5938  &    0.7208 &   2.211 & 0.027023 *   \\ 
-    Condition$=$\textit{robot}*   &  -1.1265  &    0.9109  & -1.237 & 0.216201     \\ 
+    Condition$=$\textit{words}       &     1.5938  &    0.7208 &   2.211 & 0.027023 *   \\ 
+    Condition$=$\textit{words}*   &  -1.1265  &    0.9109  & -1.237 & 0.216201     \\ 
     \hspace*{5mm} Type$=$\textit{non-Question} &&&& \\
     \hline
     &&&& \\
@@ -660,11 +661,75 @@ In each of the plots below, the dot represents the original data value for the e
 \begin{center}
 \includegraphics[width=0.9\textwidth]{figures/E2-child-randvsreal-ttest-normaltypesages.png}
 \end{center}
-\caption{Significant pairwise comparisons of the \textit{normal speech}-\textit{no speech} language condition effect for questions status, across ages, in Experiment 2.} 
+\caption{Significant pairwise comparisons of the \textit{normal speech}-\textit{no speech} language condition effect for transition type, across ages, in Experiment 2.} 
 \label{fig:E2-lgagetypeinteraction}
 \end{figure}
 
 \section{Non-convergent models}
+\setcounter{table}{0}  
+
+Non-convergent models made up 22--24\% of the 5,000 models of randomly permuted data in Experiment 1 and 69--70\% of the 5,000 for Experiment 2. We excluded these non-convergent models because they displayed erratic $\beta$ and \textit{SE} estimates, as summarized below in the table of \textit{t}-values from convergent and non-convergent models in Experiment 1. The non-convergent models from Experiment 2 showed similar patterns. The high frequency of problematic models persisted even when we changed optimizers and we suspect the issue derives from data sparsity in some of the random runs.
+
+\begin{table}[h]
+  \begin{scriptsize}
+\centering
+  \begin{tabular}{lccccc}
+    Variable & Mean & Median & \textit{SD} & Minimum & Maximum\\ 
+    \hline
+	\textbf{\textit{Children}} &&&&& \\
+    \hline
+    (Intercept)						&	-2.52 (-458.42)	& -2.54 (-2.86)	& 0.87 (1319.22)		& -5.53 (-8185.36)	& 0.41 (0.97)			\\
+    Age								& -0.51 (-17.83)		& -0.49 (-0.53)	& 0.79 (83.78)		& -3.71 (-672.2)		& 2.3 (342.8)			\\
+    LgCond					& -0.53 (-109.91)		& -0.55 (-0.63)	& 0.93 (564.42)		& -3.93 (-4418.74)	& 3.23 (2296.19)		\\
+    Type							& -0.10 (-29.66)		& -0.09 (-0.1)		& 0.98 (515.12)		& -4.06 (-4383.92)	& 3.23 (2296.19)		\\
+    Duration						& 0.99 (345.53)		& 0.98 (1.15)		& 1.07 (1323.13)		& -2.44 (-5048.24)	& 3.36 (3416.68)		\\
+    Age*LgCond				& 0.19 (10.64)		& 0.2 (0.18)		& 0.9 (109.6)			& -3.31 (-581.61)		& 5.78 (9985.16)		\\
+    Age*Type						& 0.02 (-1.8)			& 0.001 (-0.05)	& 0.9 (98.27)			& -3.36 (-884.36)		& 3.59 (946.81)		\\
+    LgCond*Type			& 0.2 (45.32)			& 0.2 (0.27)		& 0.96 (691.3)		& -3.12 (-4160.06)	& 3.45 (640.43)		\\
+    Age*LgCond*Type		& -0.12 (-14.23)		& -0.12 (-0.15)	& 0.93 (156.72)		& -2.98 (-1318.26)	& 3.39 (5107.64)		\\
+    \hline
+	\textbf{\textit{Adults}} &&&&& \\
+    \hline
+    (Intercept)    					&    -1.63 (-126.14) 	& -1.71 (-1.73)	& 0.97 (713.39)		& -4.08 (-12111.22)	& 2.15 (649.55)		\\
+    LgCond  					&      -0.26 (-679.6) 	& -0.3 (-0.53)		& 1.02 (15894.33)	& -3.45 (-494979.7)	& 3.35 (88581.58)	\\
+    Type 							&       -0.11 (6.29) 	& -0.13 (-0.04)	& 1.11 (501.5)		& -3.85 (-6420.76)	& 3.28 (8177.88)		\\
+    Duration  						&       0.25 (84.09) 	& 0.27 (0.26)		& 1.1 (1152.94)		& -3.25 (-10864.51)	& 3.46 (18540.62)	\\
+    LgCond*Type  			&       0.12 (-242.27) 	& 0.1 (0.34)		& 1.07 (26836.7)		& -3.41 (-62264.27)	& 3.81 (509198.4)	\\
+    LgCond*Duration  		&       0.15 (780.03) 	& 0.16 (0.39)		& 1.04 (44105.02)	& -3.84 (-798498.6)	& 3.55 (1145951)		\\
+    Type*Duration 				&        0.05 (-6.56) 	& 0.05 (0.02)		& 1.13 (1389.9)		& -3.54 (-15979.22)	& 3.87 (16419.46)	\\
+    LgCond*Type*Duration  &      -0.06 (1083.63)	& -0.08 (-0.21)	& 1.1 (63116.54)		& -4.21 (-1201895)	& 4.02 (1284965)		\\
+    \hline
+  \end{tabular}
+  \caption{Estimated \textit{t}-values for each predictor in in the adult and child models from Experiment 1. Converging (`C') and non-converging (`non-C') values are shown as: `C (non-C)'. }
+\label{tab:nonconv_e1}
+ \end{scriptsize}
+\end{table}
+
+\clearpage
+
+\section{Miscellaneous}
 \setcounter{figure}{0}  
+
+One alternative hypothesis for children's anticipatory gazes is that they simply grow bored and start looking away at a constant rate after a turn begins. This data plotted here show a hypothetical group of participants who begin to lose interest (at a linear rate) after one second of a turn (gray dots) compared to participants' real data from Experiment 2 (black dots). This pattern suggests that, though children do look away with time, their looks away are not simply driven by boredom.
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/boredom-hypothesis.png}
+\end{center}
+\caption{Proportion participants looking at the current speaker: hypothetical boredom-driven data (gray dots) versus real data from Experiment 2 (black dots).} 
+\label{fig:boredomhypothesis}
+\end{figure}
+
+\bigskip
+
+The design for Experiment 2 does not fully cross puppet pair (e.g., robots, blue puppets) with linguistic condition (e.g., ``words only'' and ``no speech''). Even though each puppet pair is associated with different conversation clips across children (e.g. robots talking about kitties, birthday parties, or pancakes), robots were only associated with ``words only'' speech, merpeople were only associated with ``prosody only'' speech, and the puppets with fancy clothes were only associated with the ``no speech'' condition. We did this to increase the pragmatic felicity of the experiments for the older children (i.e., robots make robot sounds, merpeople's voices are muffled under water, the fancy-clothed puppets are in a room with main other voices). It is therefore fair to point out a possible confound between linguistic condition and puppet pair. Thankfully, we also ran a short follow-up study at the museum with 3--5-year-olds in which each child only saw one video---the normal speech conversation about birthday parties---with a randomly assigned puppet pair performing the conversation. Five children watched each puppet pair, for a total of 30 children across the six pairs. This experiment holds all things constant except for the appearance of the puppets. We then used a mixed effects logistic regression of children's anticipatory switches (yes or no at each transition), with puppet pair (robots/merpeople/fancy dress/other-3; Figure \ref{fig:speakers}) as a fixed effect and participant and turn transition as random effects. In four versions of this model we systematically varied the reference level to check for differences between every puppet pair, finding no significant affects of puppet type on switching rate. We take this as evidence that, although we did not fully cross puppet pairs and linguistic conditions in Experiment 2, it was unlikely to have had strong effects on children's looking rates above and beyond the intended effects of linguistic condition.
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/all-puppetdyads-bars.png}
+\end{center}
+\caption{Proportion gaze switches across puppet pairs when linguistic condition and conversation are held constant.} 
+\label{fig:pairconfound}
+\end{figure}
 
 \end{document}
