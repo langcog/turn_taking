@@ -1,8 +1,9 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/MacPorts 2015_5)
+This is BibTeX, Version 0.99d (TeX Live 2012)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CasillasFrank-Anticip.aux
 The style file: elsarticle-harv.bst
 Database file #1: anticip.bib
+Warning--I didn't find a database entry for "magyari12"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty pages in casillas2013
 Warning--empty pages in hedberg2010
@@ -10,36 +11,36 @@ Warning--empty pages in TiceHenetz11
 Warning--empty pages in ELAN
 You've used 64 entries,
             2990 wiz_defined-function locations,
-            1001 strings with 15694 characters,
-and the built_in function-call counts, 41428 in all, are:
-= -- 3151
-> -- 1509
+            1001 strings with 15824 characters,
+and the built_in function-call counts, 41460 in all, are:
+= -- 3149
+> -- 1517
 < -- 42
-+ -- 597
-- -- 515
-* -- 4388
-:= -- 5997
++ -- 602
+- -- 518
+* -- 4393
+:= -- 6002
 add.period$ -- 184
 call.type$ -- 64
-change.case$ -- 492
+change.case$ -- 493
 chr.to.int$ -- 64
 cite$ -- 68
 duplicate$ -- 3212
-empty$ -- 3180
-format.name$ -- 710
-if$ -- 7752
+empty$ -- 3179
+format.name$ -- 713
+if$ -- 7754
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 605
 newline$ -- 327
 num.names$ -- 266
-pop$ -- 1193
+pop$ -- 1196
 preamble$ -- 1
-purify$ -- 424
+purify$ -- 425
 quote$ -- 0
-skip$ -- 952
+skip$ -- 953
 stack$ -- 0
-substring$ -- 1771
+substring$ -- 1770
 swap$ -- 2212
 text.length$ -- 6
 text.prefix$ -- 0
@@ -48,5 +49,5 @@ type$ -- 558
 warning$ -- 4
 while$ -- 284
 width$ -- 0
-write$ -- 898
-(There were 4 warnings)
+write$ -- 897
+(There were 5 warnings)
