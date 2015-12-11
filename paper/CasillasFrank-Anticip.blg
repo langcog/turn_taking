@@ -3,51 +3,51 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CasillasFrank-Anticip.aux
 The style file: elsarticle-harv.bst
 Database file #1: anticip.bib
-Warning--I didn't find a database entry for "magyari12"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty pages in casillas2012
 Warning--empty pages in casillas2013
 Warning--empty pages in hedberg2010
 Warning--empty pages in TiceHenetz11
 Warning--empty pages in ELAN
 You've used 64 entries,
             2990 wiz_defined-function locations,
-            1001 strings with 15824 characters,
-and the built_in function-call counts, 41460 in all, are:
-= -- 3149
+            1000 strings with 15815 characters,
+and the built_in function-call counts, 41498 in all, are:
+= -- 3153
 > -- 1517
 < -- 42
 + -- 602
 - -- 518
-* -- 4393
-:= -- 6002
-add.period$ -- 184
+* -- 4399
+:= -- 6006
+add.period$ -- 183
 call.type$ -- 64
 change.case$ -- 493
 chr.to.int$ -- 64
-cite$ -- 68
-duplicate$ -- 3212
-empty$ -- 3179
+cite$ -- 69
+duplicate$ -- 3215
+empty$ -- 3184
 format.name$ -- 713
-if$ -- 7754
+if$ -- 7764
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 605
-newline$ -- 327
+missing$ -- 606
+newline$ -- 326
 num.names$ -- 266
-pop$ -- 1196
+pop$ -- 1198
 preamble$ -- 1
 purify$ -- 425
 quote$ -- 0
-skip$ -- 953
+skip$ -- 955
 stack$ -- 0
 substring$ -- 1770
-swap$ -- 2212
+swap$ -- 2214
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 558
-warning$ -- 4
+warning$ -- 5
 while$ -- 284
 width$ -- 0
-write$ -- 897
+write$ -- 896
 (There were 5 warnings)
