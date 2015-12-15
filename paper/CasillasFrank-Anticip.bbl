@@ -12,14 +12,6 @@
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
 %Type = Article
-\bibitem[{Bakker et~al.(2011)Bakker, Kochukhova and von Hofsten}]{bakker2011}
-\bibinfo{author}{Bakker, M.}, \bibinfo{author}{Kochukhova, O.},
-  \bibinfo{author}{von Hofsten, C.}, \bibinfo{year}{2011}.
-\newblock \bibinfo{title}{Development of social perception: A conversation
-  study of 6-, 12-and 36-month-old children}.
-\newblock \bibinfo{journal}{Infant Behavior and Development}
-  \bibinfo{volume}{34}, \bibinfo{pages}{363--370}.
-%Type = Article
 \bibitem[{Barr et~al.(2013)Barr, Levy, Scheepers and Tily}]{barr2013}
 \bibinfo{author}{Barr, D.J.}, \bibinfo{author}{Levy, R.},
   \bibinfo{author}{Scheepers, C.}, \bibinfo{author}{Tily, H.J.},
@@ -100,13 +92,12 @@
 \newblock \bibinfo{title}{Turn taking, timing, and planning in early language
   acquisition}.
 \newblock \bibinfo{journal}{Journal of Child Language} .
-%Type = Article
+%Type = Inproceedings
 \bibitem[{Casillas and Frank(2012)}]{casillas2012}
 \bibinfo{author}{Casillas, M.}, \bibinfo{author}{Frank, M.C.},
   \bibinfo{year}{2012}.
 \newblock \bibinfo{title}{Cues to turn boundary prediction in adults and
-  preschoolers}.
-\newblock \bibinfo{journal}{Proceedings of SemDial} .
+  preschoolers}, in: \bibinfo{booktitle}{Proceedings of SemDial}.
 %Type = Inproceedings
 \bibitem[{Casillas and Frank(2013)}]{casillas2013}
 \bibinfo{author}{Casillas, M.}, \bibinfo{author}{Frank, M.C.},
@@ -162,7 +153,7 @@
 \bibitem[{Fitneva(2012)}]{fitneva2012}
 \bibinfo{author}{Fitneva, S.}, \bibinfo{year}{2012}.
 \newblock \bibinfo{title}{Beyond answers: questions and children's learning},
-  in: \bibinfo{editor}{de~Ruiter, J.P.} (Ed.), \bibinfo{booktitle}{Questions:
+  in: \bibinfo{editor}{De~Ruiter, J.P.} (Ed.), \bibinfo{booktitle}{Questions:
   {F}ormal, {F}unctional, and {I}nteractional {P}erspectives}.
   \bibinfo{publisher}{Cambridge University Press, Cambridge, UK}, pp.
   \bibinfo{pages}{165--178}.
@@ -239,15 +230,6 @@
 \newblock \bibinfo{journal}{PloS one} \bibinfo{volume}{8},
   \bibinfo{pages}{e71569}.
 %Type = Article
-\bibitem[{von Hofsten et~al.(2009)von Hofsten, Uhlig, Adell and
-  Kochukhova}]{hofsten2009}
-\bibinfo{author}{von Hofsten, C.}, \bibinfo{author}{Uhlig, H.},
-  \bibinfo{author}{Adell, M.}, \bibinfo{author}{Kochukhova, O.},
-  \bibinfo{year}{2009}.
-\newblock \bibinfo{title}{How children with autism look at events}.
-\newblock \bibinfo{journal}{Research in Autism Spectrum Disorders}
-  \bibinfo{volume}{3}, \bibinfo{pages}{556--569}.
-%Type = Article
 \bibitem[{Holler and Kendrick(2015)}]{holler2015}
 \bibinfo{author}{Holler, J.}, \bibinfo{author}{Kendrick, K.H.},
   \bibinfo{year}{2015}.
@@ -278,6 +260,16 @@
 \bibinfo{author}{Jusczyk, P.W.}, \bibinfo{year}{2000}.
 \newblock \bibinfo{title}{The Discovery of Spoken Language}.
 \newblock \bibinfo{publisher}{MIT press}.
+%Type = Article
+\bibitem[{Jusczyk et~al.(1995)Jusczyk, Hohne, Mandel and Strange}]{jusczyk1995}
+\bibinfo{author}{Jusczyk, P.W.}, \bibinfo{author}{Hohne, E.},
+  \bibinfo{author}{Mandel, D.}, \bibinfo{author}{Strange, W.},
+  \bibinfo{year}{1995}.
+\newblock \bibinfo{title}{Picking up regularities in the sound structure of the
+  native language}.
+\newblock \bibinfo{journal}{Speech perception and linguistic experience:
+  Theoretical and methodological issues in cross-language speech research} ,
+  \bibinfo{pages}{91--119}.
 %Type = Article
 \bibitem[{Kamide et~al.(2003)Kamide, Altmann and Haywood}]{kamide2003}
 \bibinfo{author}{Kamide, Y.}, \bibinfo{author}{Altmann, G.},
@@ -446,6 +438,16 @@
   babies}.
 \newblock \bibinfo{journal}{Journal of Child Language} \bibinfo{volume}{4},
   \bibinfo{pages}{1--22}.
+%Type = Article
+\bibitem[{Soderstrom et~al.(2003)Soderstrom, Seidl, Kemler~Nelson and
+  Jusczyk}]{soderstrom2003}
+\bibinfo{author}{Soderstrom, M.}, \bibinfo{author}{Seidl, A.},
+  \bibinfo{author}{Kemler~Nelson, D.G.}, \bibinfo{author}{Jusczyk, P.W.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{The prosodic bootstrapping of phrases: Evidence from
+  prelinguistic infants}.
+\newblock \bibinfo{journal}{Journal of Memory and Language}
+  \bibinfo{volume}{49}, \bibinfo{pages}{249--267}.
 %Type = Article
 \bibitem[{Speer and Ito(2009)}]{speer2009}
 \bibinfo{author}{Speer, S.R.}, \bibinfo{author}{Ito, K.}, \bibinfo{year}{2009}.
