@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_5) (preloaded format=pdflatex 2015.10.22)  16 DEC 2015 13:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_5) (preloaded format=pdflatex 2015.10.22)  16 DEC 2015 16:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -408,7 +408,7 @@ peech $\OML/cmm/m/it/12 ^^L$\OT1/cmr/m/n/12 =1.594, \OT1/cmr/m/it/12 SE\OT1/cmr
 /m/n/12 =0.721,
  []
 
-[27] [28] [29] [30] [31] [32] [33] [34] (./CasillasFrank-Anticip.bbl
+[27] [28] [29] [30] [31] [32] [33] (./CasillasFrank-Anticip.bbl
 Underfull \hbox (badness 3291) in paragraph at lines 25--34
 []\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lme4
 :
@@ -425,175 +425,174 @@ Overfull \hbox (14.03893pt too wide) in paragraph at lines 25--34
 /\OT1/cmr/m/n/12 .
  []
 
-[35] [36] [37]
+[34] [35] [36]
 Missing character: There is no Â in font cmr12!
 Missing character: There is no ’ in font cmr12!
- [38] [39] [40]) [41]
-<figures/E1-chi-randrun-t-vals-absolute.png, id=162, 1304.875pt x 1304.875pt>
+ [37] [38] [39]) [40]
+<figures/E1-chi-randrun-t-vals-absolute.png, id=159, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E1-chi-randrun-t-vals-absolute.png used on inp
-ut line 595.
+ut line 589.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E1-adu-randrun-t-vals-absolute.png, id=163, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-t-vals-absolute.png, id=160, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-t-vals-absolute.png used on inp
-ut line 597.
+ut line 591.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E1-chi-randrun-betas-absolute.png, id=164, 1304.875pt x 1304.875pt>
+<figures/E1-chi-randrun-betas-absolute.png, id=161, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E1-chi-randrun-betas-absolute.png used on inpu
-t line 603.
+t line 597.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E1-adu-randrun-betas-absolute.png, id=165, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-betas-absolute.png, id=162, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-betas-absolute.png used on inpu
-t line 605.
+t line 599.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E1-chi-randrun-SEs-absolute.png, id=166, 1304.875pt x 1304.875pt>
+<figures/E1-chi-randrun-SEs-absolute.png, id=163, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E1-chi-randrun-SEs-absolute.png used on input 
-line 611.
+line 605.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E1-adu-randrun-SEs-absolute.png, id=167, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-SEs-absolute.png, id=164, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-SEs-absolute.png used on input 
-line 613.
+line 607.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
- [42 <./figures/E1-chi-randrun-t-vals-absolute.png> <./figures/E1-adu-randrun-t
--vals-absolute.png> <./figures/E1-chi-randrun-betas-absolute.png> <./figures/E1
--adu-randrun-betas-absolute.png>]
-[43 <./figures/E1-chi-randrun-SEs-absolute.png> <./figures/E1-adu-randrun-SEs-a
-bsolute.png>]
-<figures/E2-chi-randrun-t-vals-absolute.png, id=181, 1304.875pt x 2007.5pt>
+ [41 <./figures/E1-chi-randrun-t-vals-absolute.png> <./figures/E1-adu-randrun-t
+-vals-absolute.png>] [42 <./figures/E1-chi-randrun-betas-absolute.png> <./figur
+es/E1-adu-randrun-betas-absolute.png> <./figures/E1-chi-randrun-SEs-absolute.pn
+g> <./figures/E1-adu-randrun-SEs-absolute.png>]
+<figures/E2-chi-randrun-t-vals-absolute.png, id=177, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-t-vals-absolute.png used on inp
-ut line 623.
+ut line 617.
 (pdftex.def)             Requested size: 171.60095pt x 263.98608pt.
 
-<figures/E2-adu-randrun-t-vals-absolute.png, id=182, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-t-vals-absolute.png, id=178, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-t-vals-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-t-vals-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-t-vals-absolute.png used on inp
-ut line 625.
+ut line 619.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E2-chi-randrun-betas-absolute.png, id=183, 1304.875pt x 2007.5pt>
+<figures/E2-chi-randrun-betas-absolute.png, id=179, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-betas-absolute.png used on inpu
-t line 631.
+t line 625.
 (pdftex.def)             Requested size: 171.60095pt x 263.98608pt.
 
-<figures/E2-adu-randrun-betas-absolute.png, id=184, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-betas-absolute.png, id=180, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-betas-absolute.png used on inpu
-t line 633.
+t line 627.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
 
-<figures/E2-chi-randrun-SEs-absolute.png, id=185, 1304.875pt x 2007.5pt>
+<figures/E2-chi-randrun-SEs-absolute.png, id=181, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-SEs-absolute.png used on input 
-line 639.
+line 633.
 (pdftex.def)             Requested size: 171.60095pt x 263.98608pt.
 
-<figures/E2-adu-randrun-SEs-absolute.png, id=186, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-SEs-absolute.png, id=182, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-SEs-absolute.png used on input 
-line 641.
+line 635.
 (pdftex.def)             Requested size: 171.60095pt x 171.59096pt.
- [44
+ [43
 
  <./figures/E2-chi-randrun-t-vals-absolute.png> <./figures/E2-adu-randrun-t-val
-s-absolute.png>] [45 <./figures/E2-chi-randrun-betas-absolute.png> <./figures/E
-2-adu-randrun-betas-absolute.png>] [46 <./figures/E2-chi-randrun-SEs-absolute.p
+s-absolute.png>] [44 <./figures/E2-chi-randrun-betas-absolute.png> <./figures/E
+2-adu-randrun-betas-absolute.png>] [45 <./figures/E2-chi-randrun-SEs-absolute.p
 ng> <./figures/E2-adu-randrun-SEs-absolute.png>]
-<figures/E1-child-randvsreal-ttest-agebylg.png, id=202, 1304.875pt x 602.25pt>
+<figures/E1-child-randvsreal-ttest-agebylg.png, id=199, 1304.875pt x 602.25pt>
 File: figures/E1-child-randvsreal-ttest-agebylg.png Graphic file (type png)
 
 <use figures/E1-child-randvsreal-ttest-agebylg.png>
 Package pdftex.def Info: figures/E1-child-randvsreal-ttest-agebylg.png used on 
-input line 652.
+input line 646.
 (pdftex.def)             Requested size: 312.00119pt x 144.00076pt.
 
-<figures/E2-child-randvsreal-ttest-muffledages.png, id=203, 1706.375pt x 602.25
+<figures/E2-child-randvsreal-ttest-muffledages.png, id=200, 1706.375pt x 602.25
 pt>
 File: figures/E2-child-randvsreal-ttest-muffledages.png Graphic file (type png)
 
  <use figures/E2-child-randvsreal-ttest-muffledages.png>
 Package pdftex.def Info: figures/E2-child-randvsreal-ttest-muffledages.png used
- on input line 660.
+ on input line 654.
 (pdftex.def)             Requested size: 350.99762pt x 123.87558pt.
 
-<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=204, 2007.5pt x 602.
+<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=201, 2007.5pt x 602.
 25pt>
 File: figures/E2-child-randvsreal-ttest-normaltypesages.png Graphic file (type 
 png)
  <use figures/E2-child-randvsreal-ttest-normaltypesages.png>
 Package pdftex.def Info: figures/E2-child-randvsreal-ttest-normaltypesages.png 
-used on input line 668.
+used on input line 662.
 (pdftex.def)             Requested size: 350.99762pt x 105.29424pt.
- [47
+ [46
 
  <./figures/E1-child-randvsreal-ttest-agebylg.png> <./figures/E2-child-randvsre
 al-ttest-muffledages.png>]
-Overfull \hbox (50.10114pt too wide) in paragraph at lines 682--709
+Overfull \hbox (50.10114pt too wide) in paragraph at lines 676--703
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[48 <./figures/E2-child-randvsreal-ttest-normaltypesages.png>] [49]
-<figures/boredom-hypothesis.png, id=219, 1505.625pt x 602.25pt>
+[47 <./figures/E2-child-randvsreal-ttest-normaltypesages.png>] [48]
+<figures/boredom-hypothesis.png, id=215, 1505.625pt x 602.25pt>
 File: figures/boredom-hypothesis.png Graphic file (type png)
 
 <use figures/boredom-hypothesis.png>
-Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 723.
+Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 717.
 
 (pdftex.def)             Requested size: 350.99762pt x 140.39844pt.
- [50
+ [49
 
  <./figures/boredom-hypothesis.png>]
-<figures/all-puppetdyads-bars.png, id=225, 903.375pt x 702.625pt>
+<figures/all-puppetdyads-bars.png, id=221, 903.375pt x 702.625pt>
 File: figures/all-puppetdyads-bars.png Graphic file (type png)
 
 <use figures/all-puppetdyads-bars.png>
-Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 73
-5.
+Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 72
+9.
 (pdftex.def)             Requested size: 350.99762pt x 273.00414pt.
- [51 <./figures/all-puppetdyads-bars.png>] (./CasillasFrank-Anticip.aux) ) 
+ [50 <./figures/all-puppetdyads-bars.png>] (./CasillasFrank-Anticip.aux) ) 
 Here is how much of TeX's memory you used:
- 5476 strings out of 495004
- 80762 string characters out of 6181262
+ 5475 strings out of 495004
+ 80754 string characters out of 6181262
  139440 words of memory out of 5000000
- 8592 multiletter control sequences out of 15000+600000
+ 8591 multiletter control sequences out of 15000+600000
  18154 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  44i,9n,47p,2153b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -616,10 +615,10 @@ al/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti7.pfb></opt/local/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></opt/local/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></opt/local/share/texmf-te
 xlive/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (51 pages, 5544988 bytes).
+Output written on CasillasFrank-Anticip.pdf (50 pages, 5542748 bytes).
 PDF statistics:
- 292 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
+ 289 PDF objects out of 1000 (max. 8388607)
+ 171 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  116 words of extra memory for PDF output out of 10000 (max. 10000000)
 
