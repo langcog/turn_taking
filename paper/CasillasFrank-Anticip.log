@@ -1,15 +1,29 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_5) (preloaded format=pdflatex 2015.10.22)  16 DEC 2015 16:39
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  8 JAN 2016 20:34
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**\input CasillasFrank-Anticip.tex
-(./CasillasFrank-Anticip.tex (./elsarticle.cls
+**CasillasFrank-Anticip.tex
+(./CasillasFrank-Anticip.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
+ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
+rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
+kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
+ polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
+lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
+welsh, loaded.
+(./elsarticle.cls
 Document Class: elsarticle 2009/09/17, 1.20b: Elsevier Ltd
 \@bls=\dimen102
-(/opt/local/share/texmf-texlive/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/opt/local/share/texmf-texlive/tex/latex/base/size12.clo
-File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -23,31 +37,31 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen103
 )
-(/opt/local/share/texmf-texlive/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/opt/local/share/texmf-texlive/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/opt/local/share/texmf-texlive/tex/latex/graphics/graphics.sty
-Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/opt/local/share/texmf-texlive/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/opt/local/share/texmf-texlive/tex/latex/latexconfig/graphics.cfg
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 94.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/opt/local/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count87
@@ -55,16 +69,16 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen104
 \Gin@req@width=\dimen105
 )
-(/opt/local/share/texmf-texlive/tex/latex/psnfss/pifont.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
 LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
 
-(/opt/local/share/texmf-texlive/tex/latex/psnfss/upzd.fd
+(/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/upzd.fd
 File: upzd.fd 2001/06/04 font definitions for U/pzd.
 )
 LaTeX Font Info:    Try loading font information for U+psy on input line 64.
 
-(/opt/local/share/texmf-texlive/tex/latex/psnfss/upsy.fd
+(/usr/local/texlive/2012/texmf-dist/tex/latex/psnfss/upsy.fd
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 ))
 \c@tnote=\count88
@@ -86,7 +100,7 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 \@@sep=\skip44
 
 (./CasillasFrank-Anticip.spl)
-(/opt/local/share/texmf-texlive/tex/latex/natbib/natbib.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip45
 \bibsep=\skip46
@@ -98,7 +112,7 @@ LaTeX Info: Redefining \cite on input line 694.
 
 \appnamewidth=\dimen109
 )
-(/opt/local/share/texmf-texlive/tex/latex/lineno/lineno.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count95
 \output=\toks17
@@ -116,18 +130,18 @@ Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \bframebox=\box30
 LaTeX Info: Redefining \\ on input line 3056.
 )
-(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
 
-(/opt/local/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \@emptytoks=\toks18
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
-(/opt/local/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen115
 \WF@size=\dimen116
 \c@WF@wrappedlines=\count102
@@ -135,29 +149,38 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \WF@everypar=\toks19
 Package: wrapfig 2003/01/31  v 3.6
 )
-(/opt/local/share/texmf-texlive/tex/latex/subfig/subfig.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
-(/opt/local/share/texmf-texlive/tex/latex/caption/caption.sty
-Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2012/02/19 v3.2f Customizing captions (AR)
 
-(/opt/local/share/texmf-texlive/tex/latex/caption/caption3.sty
-Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 57.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2012/01/12 v1.4b caption3 kernel (AR)
 \captionmargin=\dimen117
 \captionmargin@=\dimen118
 \captionwidth=\dimen119
-\caption@tempdima=\dimen120
-\caption@indent=\dimen121
-\caption@parindent=\dimen122
-\caption@hangindent=\dimen123
+\caption@indent=\dimen120
+\caption@parindent=\dimen121
+\caption@hangindent=\dimen122
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
 )
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\vskip \abovecaptionski
+p \footnotesize \sbox \@tempboxa {#1: #2}\ifdim \wd \@tempboxa >\hsize #1: #2\p
+ar \else \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@tempboxa \hfil }\
+fi \vskip \belowcaptionskip .
 \c@ContinuedFloat=\count103
 Package caption Info: wrapfig package is loaded.
 )
 \c@KVtest=\count104
 \sf@farskip=\skip47
-\sf@captopadj=\dimen124
+\sf@captopadj=\dimen123
 \sf@capskip=\skip48
 \sf@nearskip=\skip49
 \c@subfigure=\count105
@@ -168,21 +191,20 @@ Package caption Info: wrapfig package is loaded.
 \c@lotdepth=\count110
 \sf@top=\skip50
 \sf@bottom=\skip51
-)
-(/opt/local/share/texmf-texlive/tex/latex/tipa/tipa.sty
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/tipa/tipa.sty
 Package: tipa 2002/08/08 TIPA version 1.1
 
-(/opt/local/share/texmf-texlive/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(/opt/local/share/texmf-texlive/tex/latex/tipa/t3enc.def
+(/usr/local/texlive/2012/texmf-dist/tex/latex/tipa/t3enc.def
 File: t3enc.def 2001/12/31 T3 encoding
 )
-(/opt/local/share/texmf-texlive/tex/latex/base/ot1enc.def
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ot1enc.def
 File: ot1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding OT1 on input line 48.
+LaTeX Font Info:    Redeclaring font encoding OT1 on input line 43.
 )))
-(/opt/local/share/texmf-texlive/tex/latex/float/float.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count111
 \float@exts=\toks20
@@ -190,14 +212,14 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks21
 \@floatcapt=\box33
 )
-(/opt/local/share/texmf-texlive/tex/latex/tools/longtable.sty
-Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip52
 \LTright=\skip53
 \LTpre=\skip54
 \LTpost=\skip55
 \LTchunksize=\count112
-\LTcapwidth=\dimen125
+\LTcapwidth=\dimen124
 \LT@head=\box34
 \LT@firsthead=\box35
 \LT@foot=\box36
@@ -208,54 +230,66 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count116
 \LT@p@ftn=\toks22
 )
-(/opt/local/share/texmf-texlive/tex/latex/placeins/placeins.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count117
+\rotFPtop=\skip56
+\rotFPbot=\skip57
+\rot@float@box=\box38
+\rot@mess@toks=\toks23
 )
 (./CasillasFrank-Anticip.aux)
 \openout1 = `CasillasFrank-Anticip.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 16.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 17.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 17.
 
-(/opt/local/share/texmf-texlive/tex/latex/tipa/t3cmr.fd
+(/usr/local/texlive/2012/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    ... okay on input line 17.
 
-(/opt/local/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count117
-\scratchdimen=\dimen126
-\scratchbox=\box38
-\nofMPsegments=\count118
-\nofMParguments=\count119
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count120
-\MPscratchDim=\dimen127
-\MPnumerator=\count121
-\makeMPintoPDFobject=\count122
-\everyMPtoPDFconversion=\toks24
-) (/opt/local/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+\scratchcounter=\count118
+\scratchdimen=\dimen125
+\scratchbox=\box39
+\nofMPsegments=\count119
+\nofMParguments=\count120
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count121
+\MPscratchDim=\dimen126
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
+\everyMPtoPDFconversion=\toks25
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
@@ -264,22 +298,22 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/opt/local/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
-(/opt/local/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/kvdefinekeys.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
 ))
-(/opt/local/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
-(/opt/local/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -291,7 +325,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 
-(/opt/local/share/texmf-texlive/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -300,40 +334,41 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: longtable package is loaded.
 
-(/opt/local/share/texmf-texlive/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2011/09/12 v1.3 longtable captions (AR)
 )
+Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 47.
+LaTeX Font Info:    Try loading font information for U+msa on input line 48.
 
-(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 47.
+LaTeX Font Info:    Try loading font information for U+msb on input line 48.
 
-(/opt/local/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 
-{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [
-6] [7]
-<figures/FIG-FL-stim.png, id=37, 848.16875pt x 477.785pt>
+{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4] [5]
+[6] [7] <figures/FIG-FL-stim.png, id=37, 848.16875pt x 477.785pt>
 File: figures/FIG-FL-stim.png Graphic file (type png)
 
 <use figures/FIG-FL-stim.png>
-Package pdftex.def Info: figures/FIG-FL-stim.png used on input line 123.
+Package pdftex.def Info: figures/FIG-FL-stim.png used on input line 124.
 (pdftex.def)             Requested size: 234.00238pt x 131.81776pt.
  [8] [9 <./figures/FIG-FL-stim.png>] [10] [11]
 [12] <figures/FIG-AnticipCriteria.png, id=53, 2085.7925pt x 697.60625pt>
 File: figures/FIG-AnticipCriteria.png Graphic file (type png)
 
 <use figures/FIG-AnticipCriteria.png>
-Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 161
+Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 162
 .
 (pdftex.def)             Requested size: 272.99881pt x 91.29874pt.
  [13 <./figures/FIG-AnticipCriteria.png>]
-Overfull \hbox (15.06186pt too wide) in paragraph at lines 177--192
+Overfull \hbox (15.06186pt too wide) in paragraph at lines 178--193
  [] 
  []
 
@@ -343,7 +378,7 @@ File: figures/E1-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
 <use figures/E1-samples-by-lang-groups-trans-types.png>
 Package pdftex.def Info: figures/E1-samples-by-lang-groups-trans-types.png used
- on input line 199.
+ on input line 200.
 (pdftex.def)             Requested size: 390.0pt x 195.00294pt.
 
 
@@ -357,12 +392,12 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: figures/FIG-ShuffledWindows.png Graphic file (type png)
 
 <use figures/FIG-ShuffledWindows.png>
-Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 267
+Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 268
 .
 (pdftex.def)             Requested size: 312.00119pt x 125.5251pt.
  [17 <./figures/FIG-ShuffledWindows.png>]
 [18] [19]
-Overfull \hbox (3.45564pt too wide) in paragraph at lines 323--324
+Overfull \hbox (3.45564pt too wide) in paragraph at lines 324--325
 \OT1/cmr/m/n/12 helped par-tic-i-pants make pre-dic-tions about up-com-ing turn
  struc-ture (Rossano
  []
@@ -371,36 +406,41 @@ Overfull \hbox (3.45564pt too wide) in paragraph at lines 323--324
 File: figures/FIG-EN-stim.png Graphic file (type png)
 
 <use figures/FIG-EN-stim.png>
-Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 335.
+Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 336.
 (pdftex.def)             Requested size: 390.0pt x 198.604pt.
  [21 <./figures/FIG-EN-stim.png>] [22] [23]
-Overfull \hbox (9.75685pt too wide) in paragraph at lines 368--369
+Overfull \hbox (9.75685pt too wide) in paragraph at lines 369--370
 \OT1/cmr/m/it/12 only\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 prosody only\OT1/cmr/m/
 n/12 , and \OT1/cmr/m/it/12 no speech\OT1/cmr/m/n/12 ) and tran-si-tion type (q
 uestion/non-question)[]
  []
 
 [24]
-<figures/E2-samples-by-lang-groups-trans-types_mod.png, id=105, 1710.39pt x 599
-.23875pt>
-File: figures/E2-samples-by-lang-groups-trans-types_mod.png Graphic file (type 
-png)
- <use figures/E2-samples-by-lang-groups-trans-types_mod.png>
-Package pdftex.def Info: figures/E2-samples-by-lang-groups-trans-types_mod.png 
-used on input line 422.
-(pdftex.def)             Requested size: 390.0pt x 136.63333pt.
+<figures/E2-samples-by-lang-groups-trans-types.png, id=105, 2007.5pt x 602.25pt
+>
+File: figures/E2-samples-by-lang-groups-trans-types.png Graphic file (type png)
+
+ <use figures/E2-samples-by-lang-groups-trans-types.png>
+Package pdftex.def Info: figures/E2-samples-by-lang-groups-trans-types.png used
+ on input line 423.
+(pdftex.def)             Requested size: 390.0pt x 116.99257pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25] [26 <./figures/E2-samples-by-lang-groups-trans-types_mod.png>]
-Overfull \hbox (0.14456pt too wide) in paragraph at lines 496--497
+[25] [26 <./figures/E2-samples-by-lang-groups-trans-types.png>]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5 on input line 492.
+
+[27]
+Overfull \hbox (0.14456pt too wide) in paragraph at lines 497--498
 []\OT1/cmr/m/n/12 Adults' an-tic-i-pa-tory gaze switches showed ef-fects of gap
  du-ra-tion ($\OML/cmm/m/it/12 ^^L$\OT1/cmr/m/n/12 =4.75,
  []
 
 
-Overfull \hbox (16.92538pt too wide) in paragraph at lines 496--497
+Overfull \hbox (16.92538pt too wide) in paragraph at lines 497--498
 \OML/cmm/m/it/12 ^^L$\OT1/cmr/m/n/12 =1.256, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12
  =0.563, \OT1/cmr/m/it/12 t\OT1/cmr/m/n/12 =2.229, \OT1/cmr/m/it/12 p$\OML/cmm/
 m/it/12 <$\OT1/cmr/m/n/12 .05 and \OT1/cmr/m/it/12 words only \OT1/cmr/m/n/12 s
@@ -408,7 +448,7 @@ peech $\OML/cmm/m/it/12 ^^L$\OT1/cmr/m/n/12 =1.594, \OT1/cmr/m/it/12 SE\OT1/cmr
 /m/n/12 =0.721,
  []
 
-[27] [28] [29] [30] [31] [32] [33] (./CasillasFrank-Anticip.bbl
+[28] [29] [30] [31] [32] [33] (./CasillasFrank-Anticip.bbl
 Underfull \hbox (badness 3291) in paragraph at lines 25--34
 []\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lme4
 :
@@ -561,20 +601,12 @@ used on input line 662.
  [46
 
  <./figures/E1-child-randvsreal-ttest-agebylg.png> <./figures/E2-child-randvsre
-al-ttest-muffledages.png>]
-Overfull \hbox (50.10114pt too wide) in paragraph at lines 676--703
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[47 <./figures/E2-child-randvsreal-ttest-normaltypesages.png>] [48]
-<figures/boredom-hypothesis.png, id=215, 1505.625pt x 602.25pt>
+al-ttest-muffledages.png>] [47 <./figures/E2-child-randvsreal-ttest-normaltypes
+ages.png>] [48] <figures/boredom-hypothesis.png, id=215, 1505.625pt x 602.25pt>
 File: figures/boredom-hypothesis.png Graphic file (type png)
 
 <use figures/boredom-hypothesis.png>
-Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 717.
+Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 718.
 
 (pdftex.def)             Requested size: 350.99762pt x 140.39844pt.
  [49
@@ -584,38 +616,43 @@ Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 717.
 File: figures/all-puppetdyads-bars.png Graphic file (type png)
 
 <use figures/all-puppetdyads-bars.png>
-Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 72
-9.
+Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 73
+0.
 (pdftex.def)             Requested size: 350.99762pt x 273.00414pt.
- [50 <./figures/all-puppetdyads-bars.png>] (./CasillasFrank-Anticip.aux) ) 
+
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
+[50 <./figures/all-puppetdyads-bars.png>] (./CasillasFrank-Anticip.aux) ) 
 Here is how much of TeX's memory you used:
- 5475 strings out of 495004
- 80754 string characters out of 6181262
- 139440 words of memory out of 5000000
- 8591 multiletter control sequences out of 15000+600000
- 18154 words of font info for 66 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 44i,9n,47p,2153b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
-</opt
-/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/loca
-l/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></opt/local/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/local/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/local/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/local/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb></opt/local/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmss8.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cms
-y7.pfb></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></opt/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></op
-t/local/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></opt/loc
-al/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti7.pfb></opt/local/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></opt/local/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.pfb></opt/local/share/texmf-te
-xlive/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (50 pages, 5542748 bytes).
+ 5536 strings out of 493488
+ 81634 string characters out of 3141326
+ 141040 words of memory out of 3000000
+ 8717 multiletter control sequences out of 15000+200000
+ 18154 words of font info for 66 fonts, out of 3000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 44i,10n,46p,2146b,413s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
+2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2012/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2012/texmf-dis
+t/fonts/type1/public/tipa/tipa10.pfb>
+Output written on CasillasFrank-Anticip.pdf (50 pages, 4504449 bytes).
 PDF statistics:
  289 PDF objects out of 1000 (max. 8388607)
  171 compressed objects within 2 object streams

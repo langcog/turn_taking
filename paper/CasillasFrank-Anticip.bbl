@@ -1,4 +1,4 @@
-\begin{thebibliography}{64}
+\begin{thebibliography}{63}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -229,13 +229,6 @@
   on the gaze of a viewer}.
 \newblock \bibinfo{journal}{PloS one} \bibinfo{volume}{8},
   \bibinfo{pages}{e71569}.
-%Type = Article
-\bibitem[{Holler and Kendrick(2015)}]{holler2015}
-\bibinfo{author}{Holler, J.}, \bibinfo{author}{Kendrick, K.H.},
-  \bibinfo{year}{2015}.
-\newblock \bibinfo{title}{Unaddressed participants' gaze in multi-person
-  interaction}.
-\newblock \bibinfo{journal}{Frontiers in Psychology} \bibinfo{volume}{6}.
 %Type = Book
 \bibitem[{Jaffe et~al.(2001)Jaffe, Beebe, Feldstein, Crown, Jasnow, Rochat and
   Stern}]{jaffe2001}
