@@ -4,50 +4,46 @@ The top-level auxiliary file: CasillasFrank-Anticip.aux
 The style file: elsarticle-harv.bst
 Database file #1: anticip.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Warning--empty pages in casillas2012
-Warning--empty pages in casillas2013
-Warning--empty pages in hedberg2010
-Warning--empty pages in TiceHenetz11
 Warning--empty pages in ELAN
-You've used 66 entries,
+You've used 68 entries,
             2990 wiz_defined-function locations,
-            1014 strings with 16189 characters,
-and the built_in function-call counts, 42755 in all, are:
-= -- 3248
-> -- 1547
-< -- 45
-+ -- 613
-- -- 527
-* -- 4511
-:= -- 6179
-add.period$ -- 188
-call.type$ -- 66
-change.case$ -- 506
-chr.to.int$ -- 66
-cite$ -- 71
-duplicate$ -- 3323
-empty$ -- 3301
-format.name$ -- 725
-if$ -- 8020
+            1028 strings with 16493 characters,
+and the built_in function-call counts, 44782 in all, are:
+= -- 3458
+> -- 1583
+< -- 51
++ -- 629
+- -- 539
+* -- 4680
+:= -- 6421
+add.period$ -- 194
+call.type$ -- 68
+change.case$ -- 520
+chr.to.int$ -- 68
+cite$ -- 69
+duplicate$ -- 3474
+empty$ -- 3450
+format.name$ -- 747
+if$ -- 8466
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 624
-newline$ -- 335
-num.names$ -- 276
-pop$ -- 1238
+missing$ -- 645
+newline$ -- 345
+num.names$ -- 284
+pop$ -- 1269
 preamble$ -- 1
-purify$ -- 435
+purify$ -- 447
 quote$ -- 0
-skip$ -- 999
+skip$ -- 1085
 stack$ -- 0
-substring$ -- 1824
-swap$ -- 2283
-text.length$ -- 7
+substring$ -- 2006
+swap$ -- 2409
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 573
-warning$ -- 5
-while$ -- 294
+type$ -- 591
+warning$ -- 1
+while$ -- 314
 width$ -- 0
-write$ -- 923
-(There were 5 warnings)
+write$ -- 955
+(There was 1 warning)
