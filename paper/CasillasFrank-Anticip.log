@@ -1,22 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  13 JAN 2016 14:48
-entering extended mode
+This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  26 JAN 2016 19:06
  restricted \write18 enabled.
  file:line:error style messages enabled.
- %&-line parsing enabled.
 **CasillasFrank-Anticip.tex
 (./CasillasFrank-Anticip.tex
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
-ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
-rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
-kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
- polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
-lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
-welsh, loaded.
+LuaTeX adaptation of babel <v3.8m-luatex-1.5> and hyphenation patterns for engl
+ish, dumylang, nohyphenation, loaded.
 (./elsarticle.cls
 Document Class: elsarticle 2009/09/17, 1.20b: Elsevier Ltd
 \@bls=\dimen102
@@ -64,6 +53,28 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX detected.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/luatex-loader.sty
+Package: luatex-loader 2010/03/09 v0.4 Lua module loader (HO)
+
+(/usr/local/texlive/2012/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua))
+\pdftexcmds@toks=\toks15
+)
 \Gread@gobject=\count87
 ))
 \Gin@req@height=\dimen104
@@ -86,7 +97,7 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 \c@cnote=\count90
 \c@ead=\count91
 \c@author=\count92
-\@eadauthor=\toks15
+\@eadauthor=\toks16
 \c@affn=\count93
 \absbox=\box26
 \keybox=\box27
@@ -95,7 +106,7 @@ File: upsy.fd 2001/06/04 font definitions for U/psy.
 \els@boxa=\box28
 \els@boxb=\box29
 \leftMargin=\dimen108
-\@enLab=\toks16
+\@enLab=\toks17
 \@sep=\skip43
 \@@sep=\skip44
 
@@ -108,14 +119,12 @@ LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count94
 )
 \splwrite=\write3
-\openout3 = `CasillasFrank-Anticip.spl'.
-
 \appnamewidth=\dimen109
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count95
-\output=\toks17
+\output=\toks18
 \linenoprevgraf=\count96
 \linenumbersep=\dimen110
 \linenumberwidth=\dimen111
@@ -135,7 +144,7 @@ Package: amssymb 2009/06/22 v3.00
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
-\@emptytoks=\toks18
+\@emptytoks=\toks19
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
@@ -146,7 +155,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \WF@size=\dimen116
 \c@WF@wrappedlines=\count102
 \WF@box=\box31
-\WF@everypar=\toks19
+\WF@everypar=\toks20
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/subfig/subfig.sty
@@ -207,9 +216,9 @@ LaTeX Font Info:    Redeclaring font encoding OT1 on input line 43.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count111
-\float@exts=\toks20
+\float@exts=\toks21
 \float@box=\box32
-\@float@everytoks=\toks21
+\@float@everytoks=\toks22
 \@floatcapt=\box33
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/tools/longtable.sty
@@ -228,7 +237,7 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LT@rows=\count114
 \c@LT@tables=\count115
 \c@LT@chunks=\count116
-\LT@p@ftn=\toks22
+\LT@p@ftn=\toks23
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
@@ -243,11 +252,9 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \rotFPtop=\skip56
 \rotFPbot=\skip57
 \rot@float@box=\box38
-\rot@mess@toks=\toks23
+\rot@mess@toks=\toks24
 )
 (./CasillasFrank-Anticip.aux)
-\openout1 = `CasillasFrank-Anticip.aux'.
-
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
@@ -275,30 +282,13 @@ LaTeX Font Info:    ... okay on input line 17.
 \scratchbox=\box39
 \nofMPsegments=\count119
 \nofMParguments=\count120
-\everyMPshowfont=\toks24
+\everyMPshowfont=\toks25
 \MPscratchCnt=\count121
 \MPscratchDim=\dimen126
 \MPnumerator=\count122
 \makeMPintoPDFobject=\count123
-\everyMPtoPDFconversion=\toks25
-) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+\everyMPtoPDFconversion=\toks26
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -315,10 +305,6 @@ Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
 )))
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
@@ -353,32 +339,34 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
  [4] [5]
-[6] [7] <figures/FIG-FL-stim.png, id=37, 848.16875pt x 477.785pt>
+[6] [7] [8] [9] [10] [11] [12] [13] [14]
+<figures/FIG-FL-stim.png, id=59, 848.16875pt x 477.785pt>
 File: figures/FIG-FL-stim.png Graphic file (type png)
 
 <use figures/FIG-FL-stim.png>
 Package pdftex.def Info: figures/FIG-FL-stim.png used on input line 116.
 (pdftex.def)             Requested size: 234.00238pt x 131.81776pt.
- [8] [9 <./figures/FIG-FL-stim.png>] [10] [11]
-[12] <figures/FIG-AnticipCriteria.png, id=53, 2085.7925pt x 697.60625pt>
+ [15] [16 <./figures/FIG-FL-stim.png>] [17]
+[18] [19] [20] [21] [22] [23]
+<figures/FIG-AnticipCriteria.png, id=88, 2085.7925pt x 697.60625pt>
 File: figures/FIG-AnticipCriteria.png Graphic file (type png)
 
 <use figures/FIG-AnticipCriteria.png>
 Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 154
 .
 (pdftex.def)             Requested size: 272.99881pt x 91.29874pt.
- [13 <./figures/FIG-AnticipCriteria.png>]
-Overfull \hbox (15.06186pt too wide) in paragraph at lines 170--185
+ [24 <./figures/FIG-AnticipCriteria.png>]
+Overfull \hbox (15.06186pt too wide) in paragraph at lines 171--186
  [] 
  []
 
 
-<figures/E1-samples-by-lang-groups-trans-types.png, id=60, 1204.5pt x 602.25pt>
+<figures/E1-samples-by-lang-groups-trans-types.png, id=93, 1204.5pt x 602.25pt>
 File: figures/E1-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
 <use figures/E1-samples-by-lang-groups-trans-types.png>
 Package pdftex.def Info: figures/E1-samples-by-lang-groups-trans-types.png used
- on input line 192.
+ on input line 194.
 (pdftex.def)             Requested size: 390.0pt x 195.00294pt.
 
 
@@ -387,71 +375,85 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14] [15 <./figures/E1-samples-by-lang-groups-trans-types.png>] [16]
-<figures/FIG-ShuffledWindows.png, id=75, 2544.50626pt x 1023.825pt>
+[25] [26] [27 <./figures/E1-samples-by-lang-groups-trans-types.png>] [28]
+[29] <figures/FIG-ShuffledWindows.png, id=115, 2544.50626pt x 1023.825pt>
 File: figures/FIG-ShuffledWindows.png Graphic file (type png)
 
 <use figures/FIG-ShuffledWindows.png>
-Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 260
+Package pdftex.def Info: figures/FIG-ShuffledWindows.png used on input line 266
 .
 (pdftex.def)             Requested size: 312.00119pt x 125.5251pt.
- [17 <./figures/FIG-ShuffledWindows.png>]
-[18]
-Overfull \hbox (4.95702pt too wide) in paragraph at lines 287--288
-[]\OT1/cmr/m/n/12 Second, chil-dren made more an-tic-i-pa-tory switches over-al
-l in En-glish videos,
+ [30] [31 <./figures/FIG-ShuffledWindows.png>] [32] [33] [34]
+Overfull \hbox (4.95702pt too wide) in paragraph at lines 293--294
+[][]\OT1/cmr/m/n/12 Sec-ond, chil-dren made more an-tic-i-pa-tory switches over
+-all in En-glish videos,
  []
 
-[19]
-Overfull \hbox (3.45564pt too wide) in paragraph at lines 304--305
+[35] [36]
+Overfull \hbox (3.45564pt too wide) in paragraph at lines 310--311
 \OT1/cmr/m/n/12 helped par-tic-i-pants make pre-dic-tions about up-com-ing turn
  struc-ture (Rossano
  []
 
-[20] <figures/FIG-EN-stim.png, id=90, 705.63625pt x 359.3425pt>
+[37] <figures/FIG-EN-stim.png, id=143, 705.63625pt x 359.3425pt>
 File: figures/FIG-EN-stim.png Graphic file (type png)
 
 <use figures/FIG-EN-stim.png>
-Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 316.
+Package pdftex.def Info: figures/FIG-EN-stim.png used on input line 322.
 (pdftex.def)             Requested size: 390.0pt x 198.604pt.
- [21] [22 <./figures/FIG-EN-stim.png>] [23]
-[24]
-Overfull \hbox (13.0207pt too wide) in paragraph at lines 370--371
+ [38] [39 <./figures/FIG-EN-stim.png>] [40]
+[41] [42] [43]
+Overfull \hbox (13.0207pt too wide) in paragraph at lines 404--405
 \OT1/cmr/m/it/12 only\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 prosody only\OT1/cmr/m/
 n/12 , and \OT1/cmr/m/it/12 no speech\OT1/cmr/m/n/12 ) and tran-si-tion type (q
-uestion/non-question)[],
+ues-tion/non-question)[],
  []
 
-[25]
-<figures/E2-samples-by-lang-groups-trans-types.png, id=109, 2007.5pt x 602.25pt
->
+[44]
+<figures/E2-samples-by-lang-groups-trans-types.png, id=168, 1405.25pt x 1204.5p
+t>
 File: figures/E2-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
  <use figures/E2-samples-by-lang-groups-trans-types.png>
 Package pdftex.def Info: figures/E2-samples-by-lang-groups-trans-types.png used
- on input line 403.
-(pdftex.def)             Requested size: 390.0pt x 116.99257pt.
- [26 <./figures/E2-samples-by-lang-groups-trans-types.png>]
-Overfull \hbox (17.53589pt too wide) in paragraph at lines 416--417
+ on input line 408.
+(pdftex.def)             Requested size: 390.0pt x 334.28027pt.
+ [45] [46 <./figures/E2-samples-by-lang-groups-trans-types.png>] [47]
+Overfull \hbox (17.53589pt too wide) in paragraph at lines 426--427
 \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =1.18, \OT1/cmr/m/it/12 z\OT1/cmr/m/n/12 =3.
 978, \OT1/cmr/m/it/12 p$\OML/cmm/m/it/12 <$\OT1/cmr/m/n/12 .001) and lan-guage 
 con-di-tion (for \OT1/cmr/m/it/12 nor-mal \OT1/cmr/m/n/12 speech $\OML/cmm/m/it
-/12 ^^L$\OT1/cmr/m/n/12 =1.203,
+/12 $\OT1/cmr/m/n/12 =1.203,
  []
 
 
-Overfull \hbox (17.10193pt too wide) in paragraph at lines 416--417
+Overfull \hbox (17.10193pt too wide) in paragraph at lines 426--427
 \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =0.536, \OT1/cmr/m/it/12 z\OT1/cmr/m/n/12 =2
 .245, \OT1/cmr/m/it/12 p$\OML/cmm/m/it/12 <$\OT1/cmr/m/n/12 .05 and \OT1/cmr/m/
-it/12 words only \OT1/cmr/m/n/12 speech $\OML/cmm/m/it/12 ^^L$\OT1/cmr/m/n/12 =
-1.561, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =0.709, \OT1/cmr/m/it/12 z\OT1/cmr/m/
-n/12 =2.203,
+it/12 words only \OT1/cmr/m/n/12 speech $\OML/cmm/m/it/12 $\OT1/cmr/m/n/12 =1.
+561, \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =0.709, \OT1/cmr/m/it/12 z\OT1/cmr/m/n/
+12 =2.203,
  []
 
-[27] [28] [29] [30] [31] [32] [33] [34] (./CasillasFrank-Anticip.bbl
+[48]
+Overfull \hbox (0.73471pt too wide) in paragraph at lines 434--496
+[][][]  
+ []
+
+[49]
+Overfull \vbox (3.54993pt too high) has occurred while \output is active []
+
+
+[50] [51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61] [62]
+Overfull \hbox (24.13751pt too wide) in paragraph at lines 565--566
+\OT1/cmr/m/n/12 ported by an ERC Ad-vanced Grant to Stephen C. Levin-son (26948
+4-INTERACT),
+ []
+
+(./CasillasFrank-Anticip.bbl [63]
 Underfull \hbox (badness 3291) in paragraph at lines 40--49
-[]\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lme4
-:
+[][]\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., Walker, S., 2014.  lm
+e4:
  []
 
 
@@ -465,209 +467,209 @@ Overfull \hbox (14.03893pt too wide) in paragraph at lines 40--49
 /\OT1/cmr/m/n/12 .
  []
 
-[35] [36] [37] [38]
-Missing character: There is no Â in font cmr12!
-Missing character: There is no ’ in font cmr12!
- [39] [40]) [41] [42
+[64] [65] [66] [67] [68] [69] [70] [71] [72] [73]) [74] [75
 
-]
-<figures/E1-chi-randrun-z-vals-absolute.png, id=165, 1304.875pt x 1304.875pt>
+] [76]
+<figures/E1-chi-randrun-z-vals-absolute.png, id=273, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-z-vals-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-z-vals-absolute.png>
 Package pdftex.def Info: figures/E1-chi-randrun-z-vals-absolute.png used on inp
-ut line 583.
+ut line 595.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E1-adu-randrun-z-vals-absolute.png, id=166, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-z-vals-absolute.png, id=274, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-z-vals-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-z-vals-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-z-vals-absolute.png used on inp
-ut line 585.
+ut line 597.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E1-chi-randrun-betas-absolute.png, id=167, 1304.875pt x 1304.875pt>
+<figures/E1-chi-randrun-betas-absolute.png, id=275, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E1-chi-randrun-betas-absolute.png used on inpu
-t line 593.
+t line 605.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E1-adu-randrun-betas-absolute.png, id=168, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-betas-absolute.png, id=276, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-betas-absolute.png used on inpu
-t line 595.
+t line 607.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E1-chi-randrun-SEs-absolute.png, id=169, 1304.875pt x 1304.875pt>
+<figures/E1-chi-randrun-SEs-absolute.png, id=277, 1304.875pt x 1304.875pt>
 File: figures/E1-chi-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E1-chi-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E1-chi-randrun-SEs-absolute.png used on input 
-line 603.
+line 615.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E1-adu-randrun-SEs-absolute.png, id=170, 1304.875pt x 1304.875pt>
+<figures/E1-adu-randrun-SEs-absolute.png, id=278, 1304.875pt x 1304.875pt>
 File: figures/E1-adu-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E1-adu-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E1-adu-randrun-SEs-absolute.png used on input 
-line 605.
+line 617.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E2-chi-randrun-z-vals-absolute.png, id=171, 1304.875pt x 2007.5pt>
+<figures/E2-chi-randrun-z-vals-absolute.png, id=279, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-z-vals-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-z-vals-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-z-vals-absolute.png used on inp
-ut line 613.
+ut line 625.
 (pdftex.def)             Requested size: 241.34134pt x 371.2898pt.
 
-<figures/E2-adu-randrun-z-vals-absolute.png, id=172, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-z-vals-absolute.png, id=280, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-z-vals-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-z-vals-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-z-vals-absolute.png used on inp
-ut line 615.
+ut line 627.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E2-chi-randrun-betas-absolute.png, id=173, 1304.875pt x 2007.5pt>
+<figures/E2-chi-randrun-betas-absolute.png, id=281, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-betas-absolute.png used on inpu
-t line 623.
+t line 635.
 (pdftex.def)             Requested size: 241.34134pt x 371.2898pt.
 
-<figures/E2-adu-randrun-betas-absolute.png, id=174, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-betas-absolute.png, id=282, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-betas-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-betas-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-betas-absolute.png used on inpu
-t line 625.
+t line 637.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
 
-<figures/E2-chi-randrun-SEs-absolute.png, id=175, 1304.875pt x 2007.5pt>
+<figures/E2-chi-randrun-SEs-absolute.png, id=283, 1304.875pt x 2007.5pt>
 File: figures/E2-chi-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E2-chi-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E2-chi-randrun-SEs-absolute.png used on input 
-line 633.
+line 645.
 (pdftex.def)             Requested size: 241.34134pt x 371.2898pt.
 
-<figures/E2-adu-randrun-SEs-absolute.png, id=176, 1304.875pt x 1304.875pt>
+<figures/E2-adu-randrun-SEs-absolute.png, id=284, 1304.875pt x 1304.875pt>
 File: figures/E2-adu-randrun-SEs-absolute.png Graphic file (type png)
 
 <use figures/E2-adu-randrun-SEs-absolute.png>
 Package pdftex.def Info: figures/E2-adu-randrun-SEs-absolute.png used on input 
-line 635.
+line 647.
 (pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
- [43] [44 <./figures/E1-chi-randrun-z-vals-absolute.png> <./figures/E1-adu-rand
-run-z-vals-absolute.png>] [45 <./figures/E1-chi-randrun-betas-absolute.png> <./
-figures/E1-adu-randrun-betas-absolute.png>] [46 <./figures/E1-chi-randrun-SEs-a
-bsolute.png> <./figures/E1-adu-randrun-SEs-absolute.png>] [47 <./figures/E2-chi
+ [77] [78 <./figures/E1-chi-randrun-z-vals-absolute.png> <./figures/E1-adu-rand
+run-z-vals-absolute.png>] [79 <./figures/E1-chi-randrun-betas-absolute.png> <./
+figures/E1-adu-randrun-betas-absolute.png>] [80 <./figures/E1-chi-randrun-SEs-a
+bsolute.png> <./figures/E1-adu-randrun-SEs-absolute.png>] [81 <./figures/E2-chi
 -randrun-z-vals-absolute.png> <./figures/E2-adu-randrun-z-vals-absolute.png>] [
-48 <./figures/E2-chi-randrun-betas-absolute.png> <./figures/E2-adu-randrun-beta
-s-absolute.png>] [49 <./figures/E2-chi-randrun-SEs-absolute.png> <./figures/E2-
+82 <./figures/E2-chi-randrun-betas-absolute.png> <./figures/E2-adu-randrun-beta
+s-absolute.png>] [83 <./figures/E2-chi-randrun-SEs-absolute.png> <./figures/E2-
 adu-randrun-SEs-absolute.png>]
-[50
+[84
 
-] [51]
-<figures/E1-child-randvsreal-ttest-agebylg.png, id=221, 1304.875pt x 602.25pt>
+] [85] [86] [87]
+<figures/E1-child-randvsreal-ttest-agebylg.png, id=334, 1304.875pt x 602.25pt>
 File: figures/E1-child-randvsreal-ttest-agebylg.png Graphic file (type png)
 
 <use figures/E1-child-randvsreal-ttest-agebylg.png>
 Package pdftex.def Info: figures/E1-child-randvsreal-ttest-agebylg.png used on 
-input line 696.
+input line 710.
 (pdftex.def)             Requested size: 521.07332pt x 240.50058pt.
 
-<figures/E2-child-randvsreal-ttest-muffledages.png, id=222, 1706.375pt x 602.25
+<figures/E2-child-randvsreal-ttest-muffledages.png, id=335, 1706.375pt x 602.25
 pt>
 File: figures/E2-child-randvsreal-ttest-muffledages.png Graphic file (type png)
 
  <use figures/E2-child-randvsreal-ttest-muffledages.png>
 Package pdftex.def Info: figures/E2-child-randvsreal-ttest-muffledages.png used
- on input line 705.
+ on input line 719.
 (pdftex.def)             Requested size: 521.07332pt x 183.91112pt.
 
-<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=223, 2007.5pt x 602.
+<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=336, 2007.5pt x 602.
 25pt>
 File: figures/E2-child-randvsreal-ttest-normaltypesages.png Graphic file (type 
 png)
  <use figures/E2-child-randvsreal-ttest-normaltypesages.png>
 Package pdftex.def Info: figures/E2-child-randvsreal-ttest-normaltypesages.png 
-used on input line 714.
+used on input line 728.
 (pdftex.def)             Requested size: 521.07332pt x 156.32399pt.
- [52] [53 <./figures/E1-child-randvsreal-ttest-agebylg.png>] [54 <./figures/E2-
-child-randvsreal-ttest-muffledages.png>] [55 <./figures/E2-child-randvsreal-tte
-st-normaltypesages.png>] <figures/boredom-hypothesis.png, id=240, 1505.625pt x 
+ [88] [89 <./figures/E1-child-randvsreal-ttest-agebylg.png>] [90 <./figures/E2-
+child-randvsreal-ttest-muffledages.png>] [91 <./figures/E2-child-randvsreal-tte
+st-normaltypesages.png>] <figures/boredom-hypothesis.png, id=353, 1505.625pt x 
 602.25pt>
 File: figures/boredom-hypothesis.png Graphic file (type png)
 
 <use figures/boredom-hypothesis.png>
-Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 728.
+Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 742.
 
 (pdftex.def)             Requested size: 370.49881pt x 148.2004pt.
- [56
+ [92
 
  <./figures/boredom-hypothesis.png>]
-[57
+[93] [94
 
-] <figures/all-puppetdyads-bars.png, id=248, 903.375pt x 702.625pt>
+] [95]
+<figures/all-puppetdyads-bars.png, id=367, 903.375pt x 702.625pt>
 File: figures/all-puppetdyads-bars.png Graphic file (type png)
 
 <use figures/all-puppetdyads-bars.png>
-Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 76
-6.
+Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 78
+0.
 (pdftex.def)             Requested size: 370.49881pt x 288.1746pt.
- [58 <./figures/all-puppetdyads-bars.png>]
-Overfull \hbox (32.90134pt too wide) in paragraph at lines 776--802
+ [96] [97 <./figures/all-puppetdyads-bars.png>]
+Overfull \hbox (32.90134pt too wide) in paragraph at lines 791--817
  [] 
  []
 
-[59
+[98
 
 ] (./CasillasFrank-Anticip.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- ) 
-Here is how much of TeX's memory you used:
- 5572 strings out of 493488
- 82127 string characters out of 3141326
- 144405 words of memory out of 3000000
- 8753 multiletter control sequences out of 15000+200000
- 18513 words of font info for 67 fonts, out of 3000000 for 9000
- 957 hyphenation exceptions out of 8191
- 44i,12n,46p,2154b,461s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pf
-b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2012/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2012/tex
-mf-dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (59 pages, 4507482 bytes).
-PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
- 193 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ )
+
+Here is how much of LuaTeX's memory you used:
+ 5894 strings out of 494982
+ 100000,154059 words of node,token memory allocated
+ 452 words of node memory still in use:
+   2 hlist, 1 vlist, 1 rule, 2 glue, 48 glue_spec, 1 write nodes
+   avail lists: 2:25,3:269,4:2360,5:280,6:4793,7:303,9:473,10:403
+ 9062 multiletter control sequences out of 65536+200000
+ 77 fonts using 3036675 bytes
+ 44i,12n,46p,2137b,464s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
+exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2012/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2012/texmf
+-dist/fonts/type1/public/tipa/tipa10.pfb>
+Output written on CasillasFrank-Anticip.pdf (98 pages, 4470300 bytes).
+
+PDF statistics: 446 PDF objects out of 1000 (max. 8388607)
+ 278 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

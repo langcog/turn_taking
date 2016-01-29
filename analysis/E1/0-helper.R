@@ -14,7 +14,7 @@ library(car)
 # Misc helper functions
 ################################################################################
 # Stat summary functions
-tstat <- function(m) fixef(m)/sqrt(diag(vcov(m)))
+zstat <- function(m) fixef(m)/sqrt(diag(vcov(m)))
 SEstat <- function(m) sqrt(diag(vcov(m)))
 
 # Add some style elements for ggplot2
@@ -167,7 +167,7 @@ smoothLD <- function(dt) {
 ################################################################################
 # Random run plot functions
 ################################################################################
-combine.runs <- function(betas, ses, ts, fits,
+combine.runs <- function(betas, ses, zs, fits,
 	modelfiles, infofiles, realm, reali) {
 	# Random run info
 	for (file in modelfiles) {
@@ -185,7 +185,7 @@ combine.runs <- function(betas, ses, ts, fits,
 		# ts
 		insert <- data.frame(t(data$t))
 		colnames(insert) <- data$Predictor
-		ts[Run == run, (data$Predictor) := insert]
+		zs[Run == run, (data$Predictor) := insert]
 	}
 	for (file in infofiles) {
 		data <- fread(paste(model.path, file, sep=""))
@@ -210,33 +210,16 @@ combine.runs <- function(betas, ses, ts, fits,
 	# ts
 	insert <- data.frame(t(realmodel$t))
 	colnames(insert) <- realmodel$Predictor
-	ts[Run == 0, (realmodel$Predictor) := insert]
+	zs[Run == 0, (realmodel$Predictor) := insert]
 	# fits
 	fits[Run == 0, LogLik := realinfo$LogLik]
 	fits[Run == 0, AIC := realinfo$AIC]
 	fits[Run == 0, Error := realinfo$Error]
 
 	# Return the filled in DTs as a list
-	setDTs <- list(B=betas, SE=ses, T=ts, F=fits)
+	setDTs <- list(B=betas, SE=ses, Z=zs, F=fits)
 	return(setDTs)
 }
-
-# combine.runs <- function(DT, filelist, name) {
-	# curr.row <- 1
-	# for (file in filelist) {
-		# # Read in a file
-		# data <- fread(paste(processed.data.path, file, sep=""))
-		# # Add the data to the big data table
-		# DT[curr.row, names(DT) := data]
-		# curr.row <- curr.row + 1
-	# }
-	# setkeyv(DT, "Run")
-	# # Write it out
-	# write.csv(DT, paste(processed.data.path,
-		# name, ".random.runs.csv",sep=""), row.names=FALSE)
-	# # Return it
-	# return(DT)
-# }
 
 getSig <- function(meltdf, type, value) {
 	variables <- unique(meltdf$variable)

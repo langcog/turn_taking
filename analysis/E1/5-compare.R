@@ -34,9 +34,9 @@ aduSE <- data.table(Run = aruns)
 for (var in aduvars) {
 	aduSE[,c(as.character(var)) := rep(0, nrow(aduSE))]	
 }
-aduT <- data.table(Run = aruns)
+aduZ <- data.table(Run = aruns)
 for (var in aduvars) {
-	aduT[,c(as.character(var)) := rep(0, nrow(aduT))]	
+	aduZ[,c(as.character(var)) := rep(0, nrow(aduZ))]	
 }
 chiB <- data.table(Run = cruns)
 for (var in chivars) {
@@ -46,9 +46,9 @@ chiSE <- data.table(Run = cruns)
 for (var in chivars) {
 	chiSE[,c(as.character(var)) := rep(0, nrow(chiSE))]	
 }
-chiT <- data.table(Run = cruns)
+chiZ <- data.table(Run = cruns)
 for (var in chivars) {
-	chiT[,c(as.character(var)) := rep(0, nrow(chiT))]	
+	chiZ[,c(as.character(var)) := rep(0, nrow(chiZ))]	
 }
 # Model fit table
 aduFit <- data.table(Run = aruns,
@@ -60,10 +60,10 @@ chiFit <- data.table(Run = cruns,
 	AIC = rep(0, length(cruns)),
 	Error = rep("", length(cruns)))
 
-aduruns <- combine.runs(aduB, aduSE, aduT, aduFit,
+aduruns <- combine.runs(aduB, aduSE, aduZ, aduFit,
 	adu.r.m.files, adu.r.i.files, "adu.max.m-0.csv", "adu.max.i-0.csv")
 aduruns[[4]]$ErrorBin <- ifelse(aduruns[[4]]$Error == "", 0, 1)
-chiruns <- combine.runs(chiB, chiSE, chiT, chiFit,
+chiruns <- combine.runs(chiB, chiSE, chiZ, chiFit,
 	chi.r.m.files, chi.r.i.files, "chi.max.m-0.csv", "chi.max.i-0.csv")
 chiruns[[4]]$ErrorBin <- ifelse(chiruns[[4]]$Error == "", 0, 1)
 
@@ -77,25 +77,46 @@ chiruns <- lapply(chiruns, merge, chinoerrors, by="Run")
 ### Adults ###
 aduBetas <- melt(aduruns[[1]], names(aduruns[[1]])[1])
 aduSEs <- melt(aduruns[[2]], names(aduruns[[2]])[1])
-aduTs <- melt(aduruns[[3]], names(aduruns[[3]])[1])
+aduZs <- melt(aduruns[[3]], names(aduruns[[3]])[1])
 aduFits <- melt(aduruns[[4]], names(aduruns[[4]])[1])
 aduLL <- aduFits[variable == "LogLik"]
 aduAIC <- aduFits[variable == "AIC"]
 
 chiBetas <- melt(chiruns[[1]], names(chiruns[[1]])[1])
 chiSEs <- melt(chiruns[[2]], names(chiruns[[2]])[1])
-chiTs <- melt(chiruns[[3]], names(chiruns[[3]])[1])
+chiZs <- melt(chiruns[[3]], names(chiruns[[3]])[1])
 chiFits <- melt(chiruns[[4]], names(chiruns[[4]])[1])
 chiLL <- chiFits[variable == "LogLik"]
 chiAIC <- chiFits[variable == "AIC"]
 
-# Run, then run loop below
+aduBetas$variable <- factor(aduBetas$variable, labels=c(
+	"(Intercept)", "LgCond", "Type", "Duration",
+	"LgCond*Type", "LgCond*Duration", "Type*Duration",
+	"LgCond*Type*Duration"))
+aduSEs$variable <- factor(aduSEs$variable, labels=c(
+	"(Intercept)", "LgCond", "Type", "Duration",
+	"LgCond*Type", "LgCond*Duration", "Type*Duration",
+	"LgCond*Type*Duration"))
+aduZs$variable <- factor(aduZs$variable, labels=c(
+	"(Intercept)", "LgCond", "Type", "Duration",
+	"LgCond*Type", "LgCond*Duration", "Type*Duration",
+	"LgCond*Type*Duration"))
 
-# Group 1: Adult B & t (normal vals)
-valtypes <- c("betas", "t-vals")
+chiBetas$variable <- factor(chiBetas$variable, labels=c(
+	"(Intercept)", "Age", "LgCond", "Type", "Duration",
+	"Age*LgCond", "Age*Type", "LgCond*Type", "Age*LgCond*Type"))
+chiSEs$variable <- factor(chiSEs$variable, labels=c(
+	"(Intercept)", "Age", "LgCond", "Type", "Duration",
+	"Age*LgCond", "Age*Type", "LgCond*Type", "Age*LgCond*Type"))
+chiZs$variable <- factor(chiZs$variable, labels=c(
+	"(Intercept)", "Age", "LgCond", "Type", "Duration",
+	"Age*LgCond", "Age*Type", "LgCond*Type", "Age*LgCond*Type"))
+
+# Group 1: Adult B & z (normal vals)
+valtypes <- c("betas", "z-vals")
 testtypes <- c("normal", "normal")
 groups <- c("adu", "adu")
-graphdists <- list(B=aduBetas,T=aduTs)
+graphdists <- list(B=aduBetas,Z=aduZs)
 for (i in 1:length(graphdists)) {
 	valtype <- valtypes[i]
 	tograph <- graphdists[[i]]
@@ -107,7 +128,7 @@ for (i in 1:length(graphdists)) {
 		if (valtype == "SEs") {
 			ymax <- sd(melt.rand95$value)*10						
 		} else {
-			ymax <- max(melt.rand95$value)*1.75			
+			ymax <- max(melt.rand95$value)*2			
 		}
 		ymin <- 0
 	} else {
@@ -115,7 +136,7 @@ for (i in 1:length(graphdists)) {
 			variable != "(Intercept)")$value.l), na.rm=T)
 		umax <- max(abs(subset(melt.rand95,
 			variable != "(Intercept)")$value.u), na.rm=T)
-		ymax <- ifelse(lmax > umax, lmax, umax)*1.75
+		ymax <- ifelse(lmax > umax, lmax, umax)*2.5
 		ymin <- -(ymax)
 	}
 	melt.real <- subset(tograph, Run == 0)
@@ -150,36 +171,35 @@ for (i in 1:length(graphdists)) {
 	if (test == "absolute") {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -189,42 +209,41 @@ for (i in 1:length(graphdists)) {
 	} else {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -234,16 +253,16 @@ for (i in 1:length(graphdists)) {
 	}
 }
 
-# Group 2: Adults B, SE, & t (absolute vals)
-valtypes <- c("betas", "SEs", "t-vals")
+# Group 2: Adults B, SE, & z (absolute vals)
+valtypes <- c("betas", "SEs", "z-vals")
 testtypes <- c("absolute", "absolute", "absolute")
 groups <- c("adu", "adu", "adu")
-# Make B and t absolute (SE is already all positive)
+# Make B and z absolute (SE is already all positive)
 aduBetas.abs <- copy(aduBetas)
 aduBetas.abs[, value := abs(value)]
-aduTs.abs <- copy(aduTs)
-aduTs.abs[, value := abs(value)]
-graphdists <- list(B= aduBetas.abs,SE=aduSEs,T=aduTs.abs)
+aduZs.abs <- copy(aduZs)
+aduZs.abs[, value := abs(value)]
+graphdists <- list(B= aduBetas.abs,SE=aduSEs,Z=aduZs.abs)
 for (i in 1:length(graphdists)) {
 	valtype <- valtypes[i]
 	tograph <- graphdists[[i]]
@@ -253,9 +272,9 @@ for (i in 1:length(graphdists)) {
 	melt.rand95 <- getSig(melt.rand, test, valtype)
 	if (test == "absolute") {
 		if (valtype == "SEs") {
-			ymax <- sd(melt.rand95$value)*10						
+			ymax <- sd(melt.rand95$value)*12						
 		} else {
-			ymax <- max(melt.rand95$value)*1.75			
+			ymax <- max(melt.rand95$value)*2.5			
 		}
 		ymin <- 0
 	} else {
@@ -298,36 +317,35 @@ for (i in 1:length(graphdists)) {
 	if (test == "absolute") {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -337,42 +355,41 @@ for (i in 1:length(graphdists)) {
 	} else {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -382,11 +399,11 @@ for (i in 1:length(graphdists)) {
 	}
 }
 
-# Group 3: Child B, SE, t (normal vals)
-valtypes <- c("betas", "t-vals")
+# Group 3: Child B, SE, z (normal vals)
+valtypes <- c("betas", "z-vals")
 testtypes <- c("normal", "normal")
 groups <- c("chi", "chi")
-graphdists <- list(B=chiBetas,T=chiTs)
+graphdists <- list(B=chiBetas,Z=chiZs)
 for (i in 1:length(graphdists)) {
 	valtype <- valtypes[i]
 	tograph <- graphdists[[i]]
@@ -398,7 +415,7 @@ for (i in 1:length(graphdists)) {
 		if (valtype == "SEs") {
 			ymax <- sd(melt.rand95$value)*10						
 		} else {
-			ymax <- max(melt.rand95$value)*1.75			
+			ymax <- max(melt.rand95$value)*2.5			
 		}
 		ymin <- 0
 	} else {
@@ -406,7 +423,7 @@ for (i in 1:length(graphdists)) {
 			variable != "(Intercept)")$value.l), na.rm=T)
 		umax <- max(abs(subset(melt.rand95,
 			variable != "(Intercept)")$value.u), na.rm=T)
-		ymax <- ifelse(lmax > umax, lmax, umax)*1.75
+		ymax <- ifelse(lmax > umax, lmax, umax)*2.5
 		ymin <- -(ymax)
 	}
 	melt.real <- subset(tograph, Run == 0)
@@ -441,36 +458,35 @@ for (i in 1:length(graphdists)) {
 	if (test == "absolute") {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -480,42 +496,41 @@ for (i in 1:length(graphdists)) {
 	} else {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -525,15 +540,15 @@ for (i in 1:length(graphdists)) {
 	}
 }
 
-# Group 4: Child B, SE, t (normal vals)
-valtypes <- c("betas", "SEs", "t-vals")
+# Group 4: Child B, SE, z (absolute vals)
+valtypes <- c("betas", "SEs", "z-vals")
 testtypes <- c("absolute", "absolute", "absolute")
 groups <- c("chi", "chi", "chi")
 chiBetas.abs <- copy(chiBetas)
 chiBetas.abs[, value := abs(value)]
-chiTs.abs <- copy(chiTs)
-chiTs.abs[, value := abs(value)]
-graphdists <- list(B= chiBetas.abs,SE=chiSEs,T= chiTs.abs)
+chiZs.abs <- copy(chiZs)
+chiZs.abs[, value := abs(value)]
+graphdists <- list(B= chiBetas.abs,SE=chiSEs,Z=chiZs.abs)
 for (i in 1:length(graphdists)) {
 	valtype <- valtypes[i]
 	tograph <- graphdists[[i]]
@@ -545,7 +560,7 @@ for (i in 1:length(graphdists)) {
 		if (valtype == "SEs") {
 			ymax <- sd(melt.rand95$value)*10						
 		} else {
-			ymax <- max(melt.rand95$value)*1.75			
+			ymax <- max(melt.rand95$value)*2.5			
 		}
 		ymin <- 0
 	} else {
@@ -588,36 +603,35 @@ for (i in 1:length(graphdists)) {
 	if (test == "absolute") {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -627,42 +641,41 @@ for (i in 1:length(graphdists)) {
 	} else {
 		a1 <- ggplot(melt.rand, aes(variable,value)) +
 			coord_flip() +
-			geom_jitter(color="gray") +
-			geom_boxplot(outlier.shape=NA, alpha=0) +
+			geom_jitter(color="gray60") +
+			geom_boxplot(outlier.shape=NA, alpha=0, lwd=2) +
 			geom_point(data=melt.real,
 				aes(variable,value),
-				color="black", size=10) +
+				color="black", size=12) +
 			geom_point(data=melt.real,
 				aes(variable,value),
 				color="white", size=8) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.l),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="black", size=6, shape=17) +
+				color="black", size=8, shape=17) +
 			geom_point(data=melt.rand95,
 				aes(variable,value.u),
-				color="gray20", size=4, shape=17) +
+				color="black", size=4, shape=17) +
 			geom_text(data=melt.real.perc,
 				aes(variable, textloc), size=18,
 				label=melt.real.perc$percent) +
 			xlab("Modeled predictor") +
 			ylab(paste("Absolute ", substr(valtype, 1,
 				nchar(valtype)-1), " estimate", sep="")) +
-		#	ggtitle("Beta values by predictor: lts") +
 			ylim(ymin, ymax) +
 		    plot.style + theme(
 		    panel.background = element_rect(fill = "transparent",colour = NA),
-		  	axis.text.x = element_text(size=40, color="gray40"),
-			axis.text.y = element_text(size=40, color="gray40"),
-			axis.title.x = element_text(size=40, color="gray20"),
+		  	axis.text.x = element_text(size=40, color="black"),
+			axis.text.y = element_text(size=40, color="black"),
+			axis.title.x = element_text(size=40, color="black"),
 			axis.title.y = element_blank(),
 		    plot.background = element_rect(fill = "transparent",colour = NA),
-		    strip.text.x = element_text(size=40, color="gray20"),
+		    strip.text.x = element_text(size=40, color="black"),
 		    plot.margin=unit(c(5,5,5,5),"mm"))
 			png(paste(plot.path, group, "-", "randrun-",
 				valtype, "-", test, ".png", sep=""),
@@ -776,3 +789,30 @@ png(paste(plot.path, "chi-AIC-dist.png", sep=""),
 print(cfit2)
 dev.off()
 
+### Non-converging models
+aduruns <- combine.runs(aduB, aduSE, aduZ, aduFit,
+	adu.r.m.files, adu.r.i.files, "adu.max.m-0.csv", "adu.max.i-0.csv")
+aduruns[[4]]$ErrorBin <- ifelse(aduruns[[4]]$Error == "", 0, 1)
+chiruns <- combine.runs(chiB, chiSE, chiZ, chiFit,
+	chi.r.m.files, chi.r.i.files, "chi.max.m-0.csv", "chi.max.i-0.csv")
+chiruns[[4]]$ErrorBin <- ifelse(chiruns[[4]]$Error == "", 0, 1)
+
+aduZs <- melt(aduruns[[3]], names(aduruns[[3]])[1])
+chiZs <- melt(chiruns[[3]], names(chiruns[[3]])[1])
+
+aduZs$Error <- rep(1, nrow(aduZs))
+aduZs$Error[which(aduZs$Run %in% adunoerrors$Run)] <- 0
+chiZs$Error <- rep(1, nrow(chiZs))
+chiZs$Error[which(chiZs$Run %in% chinoerrors$Run)] <- 0
+
+aggregate(value ~ variable + Error, aduZs, mean)
+aggregate(value ~ variable + Error, aduZs, median)
+aggregate(value ~ variable + Error, aduZs, sd)
+aggregate(value ~ variable + Error, aduZs, min)
+aggregate(value ~ variable + Error, aduZs, max)
+
+aggregate(value ~ variable + Error, chiZs, mean)
+aggregate(value ~ variable + Error, chiZs, median)
+aggregate(value ~ variable + Error, chiZs, sd)
+aggregate(value ~ variable + Error, chiZs, min)
+aggregate(value ~ variable + Error, chiZs, max)

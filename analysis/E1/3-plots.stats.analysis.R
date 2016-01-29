@@ -23,7 +23,7 @@ subject.info <- fread(paste(info.path,"SubjectInfo.csv",sep=""))
 
 # Color and line palettes
 stoplightPalette <- c("dodgerblue3", "firebrick2")
-stoplightPalette2 <- c("gray26", "dodgerblue3", "firebrick2")
+stoplightPalette2 <- c("dodgerblue3", "firebrick2", "gray26")
 stoplightPalette3 <- c("dodgerblue3", "firebrick2")
 lines <- c("solid", "dashed")
 lines2 <- c("longdash", "dotted")
@@ -82,25 +82,40 @@ switch.all <- switch.all %>%
 write.csv(switch.all, paste(processed.data.path,
 	"SwitchAll.csv", sep=""), row.names=FALSE)
 
+# Needed for plotting below
+conf.interval <- 0.95
+switch.real <- filter(switch.all, Sample == "Transition") %>%
+               select(-Sample)
+
 ################################################################################
 # Create plots
 ################################################################################
 ###### DIFF BETWEEN RANDOM AND TRANSITION SAMPLE SETS ##########################
-mean.agg <- aggregate(Switch ~ LgGroup + Sample + Age, switch.all, mean)
+# Mean + vars
+mean.agg <- group_by(switch.all, LgGroup, Sample, Age) %>%
+	summarise(mean = mean(Switch))
 langs <- mean.agg$LgGroup
 ages <- mean.agg$Age
 samples <- mean.agg$Sample
-means <- mean.agg$Switch
-errs <- aggregate(Switch ~ LgGroup + Sample + Age, switch.all, sem)$Switch
-linecolors <- c(
-	"black", "black",
-	"green2", "red",
-	"black", "black",
-	"green2", "red",
-	"black", "black",
-	"green2", "red",
-	"black", "black",
-	"green2", "red")
+means <- mean.agg$mean
+# SE
+err.agg <- group_by(switch.all, LgGroup, Sample, Age) %>%
+	summarise(se = sem(Switch))
+errs <- err.agg$se
+# SD
+sd.agg <- group_by(switch.all, LgGroup, Sample, Age) %>%
+	summarise(sd = sd(Switch))
+sds <- sd.agg$sd
+# N
+sampszs <- switch.all %>%
+    group_by(LgGroup, Sample, Age) %>%
+    summarise(Switch = n())
+names(sampszs)[names(sampszs) == "Switch"] <- "n"
+ciMult <- qt(conf.interval/2 + .5, sampszs$n-1)
+cis <- errs * ciMult
+# Line colors
+linecolors <- paste(langs, samples)
+linecolors[grep("Random", linecolors)] <- "Random"
 
 df <- data.frame(
     Age = factor(ages),
@@ -108,16 +123,17 @@ df <- data.frame(
     Language = factor(langs),
     m = means,
     se = errs,
+    ci = cis,
     LnColors = factor(linecolors)
 )
 df$Sample <- factor(df$Sample, levels=rev(levels(df$Sample)))
 df$Language <- factor(df$Language, labels=c("English", "Non-English"))
 
-limits <- aes(ymax = m + se, ymin= m - se)
+limits <- aes(ymax = m + ci, ymin= m - ci)
 dodge <- position_dodge(width=0.9)
 
-p1 <- qplot(Age,m,facets = . ~ Language, group=Sample, ylim=c(-0.1,0.6),
-    ymin= m - se, ymax= m + se, color=LnColors, linetype=Sample,
+p1 <- qplot(Age,m,facets = . ~ Language, group=Sample, ylim=c(-0.1,0.8),
+    ymin= m - ci, ymax= m + ci, color=LnColors, linetype=Sample,
     xlab="Age (years)",ylab="Proportion gaze switches",
     position=position_dodge(width=.1), data=df) +
 	geom_line(size=2, position=position_dodge(width=.1)) +
@@ -132,7 +148,7 @@ p1 <- qplot(Age,m,facets = . ~ Language, group=Sample, ylim=c(-0.1,0.6),
 	axis.title.y = element_text(size=30, color="gray20"),
     plot.background = element_rect(fill = "transparent",colour = NA),
     strip.text.x = element_text(size=30, color="gray20"),
-    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.justification=c(1,0), legend.position=c(0.75,0.73),
     legend.title = element_text(colour="gray20", size=24),
     legend.text = element_text(colour="gray20", size=26),
     legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
@@ -147,22 +163,34 @@ dev.off()
 
 
 ###### DIFF BETWEEN RANDOM AND TRANSITION w/ TYPE  #############################
-mean.agg <- aggregate(Switch ~ LgGroup + Sample + Type + Age, switch.all, mean)
+# Mean + vars
+mean.agg <- group_by(switch.all, LgGroup, Sample, Type, Age) %>%
+summarise(mean = mean(Switch))
 langs <- mean.agg$LgGroup
 ages <- mean.agg$Age
 samples <- mean.agg$Sample
 types <- mean.agg$Type
-means <- mean.agg$Switch
-errs <- aggregate(Switch ~ LgGroup + Sample + Type + Age, switch.all, sem)$Switch
-linecolors <- c(
-	"Random (both)", "Random (both)",
-	"English", "Non-English",
-	"Random (both)", "Random (both)",
-	"English", "Non-English",
-	"Random (both)", "Random (both)",
-	"English", "Non-English",
-	"Random (both)", "Random (both)",
-	"English", "Non-English")
+means <- mean.agg$mean
+# SE
+err.agg <- group_by(switch.all, LgGroup, Sample, Type, Age) %>%
+summarise(se = sem(Switch))
+errs <- err.agg$se
+# SD
+sd.agg <- group_by(switch.all, LgGroup, Sample, Type, Age) %>%
+summarise(sd = sd(Switch))
+sds <- sd.agg$sd
+# N
+sampszs <- switch.all %>%
+    group_by(LgGroup, Sample, Type, Age) %>%
+    summarise(Switch = n())
+names(sampszs)[names(sampszs) == "Switch"] <- "n"
+ciMult <- qt(conf.interval/2 + .5, sampszs$n-1)
+cis <- errs * ciMult
+# Line colors
+linecolors <- paste(langs, samples)
+linecolors[grep("Random", linecolors)] <- "Random (both)"
+linecolors[grep("^E", linecolors)] <- "English"
+linecolors[grep("^NE", linecolors)] <- "Non-English"
 
 df <- data.frame(
     Age = factor(ages),
@@ -171,16 +199,17 @@ df <- data.frame(
     Language = factor(langs),
     m = means,
     se = errs,
+    ci = cis,
     Condition = factor(linecolors)
 )
 df$Sample <- factor(df$Sample, levels=rev(levels(df$Sample)))
 df$Language <- factor(df$Language, labels=c("English", "Non-English"))
 
-limits <- aes(ymax = m + se, ymin= m - se)
+limits <- aes(ymax = m + ci, ymin= m - ci)
 dodge <- position_dodge(width=0.9)
 
 p2 <- qplot(Age,m,facets = . ~ Language, group=interaction(Sample,Type),
-	ylim=c(-0.1,0.6), ymin= m - se, ymax= m + se,
+	ylim=c(-0.1,0.8), ymin= m - ci, ymax= m + ci,
 	color=Condition, linetype=Type,
     xlab="Age (years)",ylab="Proportion gaze switches",
     position=position_dodge(width=.1), data=df) +
@@ -197,7 +226,7 @@ p2 <- qplot(Age,m,facets = . ~ Language, group=interaction(Sample,Type),
 	axis.title.y = element_text(size=30, color="gray20", vjust=2),
     plot.background = element_rect(fill = "transparent",colour = NA),
     strip.text.x = element_text(size=30, color="gray20"),
-#    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.justification=c(1,0), legend.position=c(0.75, 0.45),
     legend.title = element_text(colour="gray20", size=24),
     legend.text = element_text(colour="gray20", size=26),
     legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
@@ -212,32 +241,44 @@ dev.off()
 
 
 ###### BY CONDITION & CONDENSED AGE & Q-EFFECTS SWITCHES #######################
-switch.real <- filter(switch.all, Sample == "Transition") %>%
-               select(-Sample)
-errs.agg <- aggregate(Switch ~ Type + LgGroup + Age,
-    switch.real, sem)
-errs <- errs.agg$Switch
-means.agg <- aggregate(Switch ~ Type + LgGroup + Age,
-    switch.real, mean)
-means <- means.agg$Switch
-ages <- means.agg$Age
-langs <- means.agg$LgGroup
-types <- means.agg$Type
+# Mean + vars
+mean.agg <- group_by(switch.real, Type, LgGroup, Age) %>%
+summarise(mean = mean(Switch))
+langs <- mean.agg$LgGroup
+ages <- mean.agg$Age
+types <- mean.agg$Type
+means <- mean.agg$mean
+# SE
+err.agg <- group_by(switch.real, Type, LgGroup, Age) %>%
+summarise(se = sem(Switch))
+errs <- err.agg$se
+# SD
+sd.agg <- group_by(switch.real, Type, LgGroup, Age) %>%
+summarise(sd = sd(Switch))
+sds <- sd.agg$sd
+# N
+sampszs <- switch.real %>%
+    group_by(Type, LgGroup, Age) %>%
+    summarise(Switch = n())
+names(sampszs)[names(sampszs) == "Switch"] <- "n"
+ciMult <- qt(conf.interval/2 + .5, sampszs$n-1)
+cis <- errs * ciMult
 
 df <- data.frame(
     Age = factor(ages),
     Language = factor(langs),
     Transition = factor(types),
     m = means,
-    se = errs
+    se = errs,
+    ci = cis
 )
 df$Language <- factor(df$Language, labels=c("English", "Non-English"))
 df$Transition <- factor(df$Transition, labels=c("Question", "Non-Question"))
 
-limits <- aes(ymax = m + se, ymin= m - se)
+limits <- aes(ymax = m + ci, ymin= m - ci)
 
-p3 <- qplot(Age,m,facets = . ~ Language, group=Transition, ylim=c(-0.1,0.6),
-    ymin= m - se, ymax= m + se, color= Language, linetype=Transition,
+p3 <- qplot(Age,m,facets = . ~ Language, group=Transition, ylim=c(-0.1,0.8),
+    ymin= m - ci, ymax= m + ci, color= Language, linetype=Transition,
     xlab="Age (years)",ylab="Proportion gaze switches",
     position=position_dodge(width=.1), data=df) +
 	geom_line(size=2, position=position_dodge(width=.1)) +
@@ -252,14 +293,14 @@ p3 <- qplot(Age,m,facets = . ~ Language, group=Transition, ylim=c(-0.1,0.6),
 	axis.title.y = element_text(size=30, color="gray20"),
     plot.background = element_rect(fill = "transparent",colour = NA),     
     strip.text.x = element_text(size=30, color="gray20"),
-    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.justification=c(1,0), legend.position=c(0.79, 0.73),
     legend.title = element_text(colour="gray20", size=24),
     legend.text = element_text(colour="gray20", size=26),
     legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
     legend.key = element_rect(fill = "transparent", colour = "transparent"),
     legend.background = element_rect(fill="transparent"),
     plot.margin=unit(c(10,10,10,10),"mm"))
-png(paste(plot.path, "transitions-by-conditions-uncorrected.png", sep=""),
+png(paste(plot.path, "transitions-by-conditions.png", sep=""),
     width=1100,height=600,units="px", bg = "transparent")
 print(p3)
 dev.off()
@@ -294,7 +335,7 @@ ll.cm <- logLik(chi.max)
 chi.max.m <- data.frame(
 	B = fixef(chi.max),
 	SE = SEstat(chi.max),
-	t = tstat(chi.max))
+	z = zstat(chi.max))
 chi.max.m <- cbind(Predictor = rownames(chi.max.m), chi.max.m)
 rownames(chi.max.m) <- NULL
 chi.max.i <- data.frame(
@@ -316,7 +357,7 @@ ll.am <- logLik(adu.max)
 adu.max.m <- data.frame(
 	B = fixef(adu.max),
 	SE = SEstat(adu.max),
-	t = tstat(adu.max))
+	z = zstat(adu.max))
 adu.max.m <- cbind(Predictor = rownames(adu.max.m), adu.max.m)
 rownames(adu.max.m) <- NULL
 adu.max.i <- data.frame(
@@ -333,6 +374,21 @@ write.csv(adu.max.i, paste(
 write.csv(adu.max.r, paste(
 	model.path, "adu.max.r-0.csv", sep=""),
 	row.names=FALSE)
+
+# Post hoc test of difference from random in 3-year-olds
+switch.3 <- filter(switch.all, Age == "3") %>%
+	mutate(Age = as.numeric(Age))
+sw3 <- aggregate(Switch ~ Subject + Sample + LgGroup, switch.3, mean)
+sw3t <- aggregate(Switch ~ Subject + Sample + LgGroup + Type, switch.3, mean)
+e3 <- subset(sw3, LgGroup == "E")
+rande3 <- subset(e3, Sample == "Random")
+reale3 <- subset(e3, Sample == "Transition")
+tteste3 <- t.test(rande3$Switch, reale3$Switch)
+e3t <- subset(sw3t, LgGroup == "E" & Type == "Q")
+rande3t <- subset(e3t, Sample == "Random")
+reale3t <- subset(e3t, Sample == "Transition")
+tteste3t <- t.test(rande3t$Switch, reale3t$Switch)
+
 
 # Overall random rate comparison by age, transition type, and condition
 switch.all.A <- filter(switch.all, Age == "A")
@@ -667,3 +723,4 @@ png(paste(plot.path, "child-randvsreal-ttest-agebylg.png", sep=""),
     width=1300,height=600,units="px", bg = "transparent")
 print(lgages)
 dev.off()
+

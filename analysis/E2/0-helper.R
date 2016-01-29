@@ -13,7 +13,7 @@ library(car)
 # Misc helper functions (from Mike)
 ################################################################################
 # Stat summary functions
-tstat <- function(m) fixef(m)/sqrt(diag(vcov(m)))
+zstat <- function(m) fixef(m)/sqrt(diag(vcov(m)))
 SEstat <- function(m) sqrt(diag(vcov(m)))
 
 # Add some style elements for ggplot2
@@ -66,6 +66,12 @@ getstars <- function(x) {
     if (x < .001) {return("***")}
     if (x < .01) {return("**")}
     if (x < .05) {return("*")}
+}
+
+factorizeDF <- function(df) {
+	idxs <- sapply(df, is.character)
+	df[idxs] <- lapply(df[idxs], as.factor)
+	return(df)
 }
 
 ################################################################################
@@ -175,7 +181,7 @@ smoothLD <- function(dt) {
 ################################################################################
 # Random run plot functions
 ################################################################################
-combine.runs <- function(betas, ses, ts, fits,
+combine.runs <- function(betas, ses, zs, fits,
 	modelfiles, infofiles, realm, reali) {
 	# Random run info
 	for (file in modelfiles) {
@@ -193,7 +199,7 @@ combine.runs <- function(betas, ses, ts, fits,
 		# ts
 		insert <- data.frame(t(data$t))
 		colnames(insert) <- data$Predictor
-		ts[Run == run, (data$Predictor) := insert]
+		zs[Run == run, (data$Predictor) := insert]
 	}
 	for (file in infofiles) {
 		data <- fread(paste(model.path, file, sep=""))
@@ -218,33 +224,16 @@ combine.runs <- function(betas, ses, ts, fits,
 	# ts
 	insert <- data.frame(t(realmodel$t))
 	colnames(insert) <- realmodel$Predictor
-	ts[Run == 0, (realmodel$Predictor) := insert]
+	zs[Run == 0, (realmodel$Predictor) := insert]
 	# fits
 	fits[Run == 0, LogLik := realinfo$LogLik]
 	fits[Run == 0, AIC := realinfo$AIC]
 	fits[Run == 0, Error := realinfo$Error]
 
 	# Return the filled in DTs as a list
-	setDTs <- list(B=betas, SE=ses, T=ts, F=fits)
+	setDTs <- list(B=betas, SE=ses, Z=zs, F=fits)
 	return(setDTs)
 }
-
-# combine.runs <- function(DT, filelist, name) {
-	# curr.row <- 1
-	# for (file in filelist) {
-		# # Read in a file
-		# data <- fread(paste(processed.data.path, file, sep=""))
-		# # Add the data to the big data table
-		# DT[curr.row, names(DT) := data]
-		# curr.row <- curr.row + 1
-	# }
-	# setkeyv(DT, "Run")
-	# # Write it out
-	# write.csv(DT, paste(processed.data.path,
-		# name, ".random.runs.csv",sep=""), row.names=FALSE)
-	# # Return it
-	# return(DT)
-# }
 
 getSig <- function(meltdf, type, value) {
 	variables <- unique(meltdf$variable)
@@ -330,4 +319,81 @@ getDiffs <- function(intlev1, intlev2, avgs, subs, newname) {
 	newlev <- cbind(infocols, newlev)
 	newlev[, Variable := rep(newname, nrow(newlev))]
 	return(newlev)
+}
+
+################################################################################
+# Boredom hypothesis
+################################################################################
+findFixations <- function(df) {
+	# Create a data frame with as many rows as we could possibly need. We'll
+	# prune the unused rows before returning. This is supposed to be much more
+	# efficient than building a data frame row by row.
+	n <- nrow(df)
+	fixations <- data.frame(
+		Subject=rep("", n),
+		Segment=rep("", n),
+    	Version=rep("", n),
+    	Condition=rep("", n),
+    	Conversation=rep("", n),
+    	Target=rep("", n),
+    	TSSOnset=rep(NA, n),
+    	TSSOffset=rep(NA, n),
+    	stringsAsFactors=FALSE)
+    fix_idx <- 1
+    subjects <- unique(df$Subject)
+	for (sub in subjects) {
+		print(sub)
+		version <- unlist(strsplit(sub, "[-_.]"))[2]
+		subdata <- which(df$Subject == sub)
+		segments <- unique(df[subdata, ]$Segment)
+		for (seg in segments) {
+			print(seg)
+			segdata <- which(df[subdata, ]$Segment == seg) + subdata[1] - 1
+			if (length(segdata) <= 1) {
+				next
+			}
+			cond <- as.character(subset(vid.info, Segment == seg)$Condition)
+			conv <- as.character(subset(vid.info, Segment == seg)$Conversation)
+			smoothLD <- df[segdata, Look.Dir]
+			timeSecSeg <- df[segdata, TimeSecSeg]
+			msDur <- df[segdata, MS.Increment]
+			startidx <- 1
+			curfix <- smoothLD[startidx]
+			for (i in 2:length(segdata)) {
+				if (smoothLD[i] != curfix) {
+					# NOTE: The columns of the data frame are set by index, and NOT BY NAME.
+					# We're using a list to give the fields names, but the order MUST match
+					# the order of the columns in the data frame defined above.
+					fixations[fix_idx, ] <- list(
+						Subject=sub,
+						Segment=seg,
+						Version=version,
+						Condition=cond,
+						Conversation=conv,
+						Target=curfix,
+						TSSOnset=timeSecSeg[startidx],
+						TSSOffset=timeSecSeg[i-1] + msDur[i-1])
+					startidx <- i
+					curfix <- smoothLD[startidx]
+					fix_idx <- fix_idx + 1
+				}
+			}
+			# By this point, there is always at least one fixation. We add the final
+			# fixation unconditionally.
+			# its duration.
+			fixations[fix_idx, ] <- list(
+				Subject=sub,
+				Segment=seg,
+				Version=version,
+				Condition=cond,
+				Conversation=conv,
+				Target=curfix,
+				TSSOnset=timeSecSeg[startidx],
+				TSSOffset=timeSecSeg[i] + msDur[i])
+			fix_idx <- fix_idx + 1
+		}
+	}
+	fixations <- fixations[1:fix_idx-1, ]
+	# We need to convert the character columns to factors.
+	return(factorizeDF(fixations))
 }

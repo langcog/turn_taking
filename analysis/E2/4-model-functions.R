@@ -13,8 +13,6 @@ library(data.table)
 processed.data.path <- "processed_data/" #"../../data/E1/processed_data/"
 model.path <- "processed_data/models/"
 switch.all <- fread(paste(processed.data.path,"SwitchAll.csv",sep=""))
-chi.coef <- fread(paste(processed.data.path,"chi.coefs-0.csv",sep=""))
-adu.coef <- fread(paste(processed.data.path,"adu.coefs-0.csv",sep=""))
 
 run.models <- function(ns) {
     # Split the data into adults and children for separate models
@@ -45,7 +43,7 @@ run.models <- function(ns) {
 			chi.max.r.m <- data.frame(
 				B = fixef(chi.max.r),
 				SE = SEstat(chi.max.r),
-				t = tstat(chi.max.r))
+				z = zstat(chi.max.r))
 			chi.max.r.m <- cbind(Predictor = rownames(chi.max.r.m), chi.max.r.m)
 			rownames(chi.max.r.m) <- NULL
 				
@@ -94,7 +92,7 @@ run.models <- function(ns) {
 			adu.max.r.m <- data.frame(
 				B = fixef(adu.max.r),
 				SE = SEstat(adu.max.r),
-				t = tstat(adu.max.r))
+				z = zstat(adu.max.r))
 			adu.max.r.m <- cbind(Predictor = rownames(adu.max.r.m), adu.max.r.m)
 			rownames(adu.max.r.m) <- NULL
 				

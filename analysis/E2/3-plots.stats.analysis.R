@@ -25,8 +25,8 @@ vid.info <- fread(paste(info.path,"VideoSegmentInfo.csv",sep=""))
 # Color and line palettes
 stoplightPalette <- c("dodgerblue3", "forestgreen",
 	"green3", "firebrick2")
-stoplightPalette2 <- c("gray26", "firebrick2",
-     "forestgreen", "dodgerblue3", "green3")
+stoplightPalette2 <- c("firebrick2", "forestgreen",
+	"dodgerblue3", "gray26", "green3")
 stoplightPalette3 <- c("dodgerblue3", "forestgreen",
 	"green3", "firebrick2")
 lines <- c("solid", "dashed")
@@ -74,9 +74,8 @@ switch.all <- rbind(switch.final, switch.final.r)
 gap.info <- gap.info %>%
             filter(Exclude == 0) %>%
             select(Gap, Duration, Type, QType, Segment) %>%
-            left_join(select(vid.info, Segment, Condition), by = "Segment") %>%
-            mutate(Type = ifelse(QType == "wh" &
-            	Condition == "muffled", "S", Type))
+            left_join(select(vid.info, Segment, Condition), by = "Segment")
+gap.info[which(Condition == "muffled" & QType == "wh"),]$Type <- "S"
 
 sub.info <- select(subject.info, Subject, Age) %>%
             filter(Age != "NA")
@@ -90,32 +89,41 @@ write.csv(switch.all, paste(processed.data.path,
 	"SwitchAll.csv", sep=""), row.names=FALSE)
 
 
+# Needed for plotting below
+conf.interval <- 0.95
+switch.real <- filter(switch.all, Sample == "Transition") %>%
+               select(-Sample)
+
 ################################################################################
 # Create plots
 ################################################################################
 ###### DIFF BETWEEN RANDOM AND TRANSITION SAMPLE SETS ##########################
-mean.agg <- aggregate(Switch ~ Condition + Sample + Age, switch.all, mean)
+# Mean + vars
+mean.agg <- group_by(switch.all, Condition, Sample, Age) %>%
+	summarise(mean = mean(Switch))
 conds <- mean.agg$Condition
 ages <- mean.agg$Age
 ages[ages == "21"] <- "A"
 samples <- mean.agg$Sample
-means <- mean.agg$Switch
-errs <- aggregate(Switch ~ Condition + Sample + Age, switch.all, sem)$Switch
-linecolors <- c(
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red",
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red",
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red",
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red",
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red",
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red",
-	"black", "black", "black", "black",
-	"blue", "green1", "green2", "red")
+means <- mean.agg$mean
+# SE
+err.agg <- group_by(switch.all, Condition, Sample, Age) %>%
+	summarise(se = sem(Switch))
+errs <- err.agg$se
+# SD
+sd.agg <- group_by(switch.all, Condition, Sample, Age) %>%
+	summarise(sd = sd(Switch))
+sds <- sd.agg$sd
+# N
+sampszs <- switch.all %>%
+    group_by(Condition, Sample, Age) %>%
+    summarise(Switch = n())
+names(sampszs)[names(sampszs) == "Switch"] <- "n"
+ciMult <- qt(conf.interval/2 + .5, sampszs$n-1)
+cis <- errs * ciMult
+# Line colors
+linecolors <- paste(conds, samples)
+linecolors[grep("Random", linecolors)] <- "Random"
 
 df <- data.frame(
     Age = factor(ages),
@@ -123,17 +131,18 @@ df <- data.frame(
     Sample = factor(samples),
     LnColors = factor(linecolors),
     m = means,
-    se = errs
+    se = errs,
+    ci = cis
 )
 df$Condition <- factor(df$Condition, labels=c("No speech", "Prosody only",
     "Normal speech", "Words only"))
 df$Condition <- factor(df$Condition, levels=c("Normal speech", "Prosody only",
     "Words only", "No speech"))
 
-limits <- aes(ymax = m + se, ymin= m - se)
+limits <- aes(ymax = m + ci, ymin= m - ci)
 
-p1 <- qplot(Age,m,facets = . ~ Condition, group=Sample, ylim=c(-0.1,0.6),
-    ymin= m - se, ymax= m + se, color=LnColors, linetype=Sample,
+p1 <- qplot(Age,m,facets = . ~ Condition, group=Sample, ylim=c(-0.1,0.8),
+    ymin= m - ci, ymax= m + ci, color=LnColors, linetype=Sample,
     xlab="Age (years)",ylab="Proportion gaze switches",
     position=position_dodge(width=.1), data=df) +
 	geom_line(size=2, position=position_dodge(width=.1)) +
@@ -148,7 +157,7 @@ p1 <- qplot(Age,m,facets = . ~ Condition, group=Sample, ylim=c(-0.1,0.6),
 	axis.title.y = element_text(size=30, color="gray20"),
     plot.background = element_rect(fill = "transparent",colour = NA),
     strip.text.x = element_text(size=30, color="gray20"),
-    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.justification=c(1,0), legend.position=c(0.87,0.75),
     legend.title = element_text(colour="gray20", size=24),
     legend.text = element_text(colour="gray20", size=26),
     legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
@@ -163,27 +172,46 @@ dev.off()
 
 
 ###### DIFF BETWEEN RANDOM AND TRANSITION w/ TYPE  #############################
-mean.agg <- aggregate(Switch ~ Condition + Sample + Type + Age, switch.all, mean)
-langs <- mean.agg$Condition
+# Mean + vars
+mean.agg <- group_by(switch.all, Condition, Sample, Type, Age) %>%
+	summarise(mean = mean(Switch))
+conds <- mean.agg$Condition
 ages <- mean.agg$Age
 ages[ages == "21"] <- "A"
 samples <- mean.agg$Sample
 types <- mean.agg$Type
-means <- mean.agg$Switch
-errs <- aggregate(Switch ~ Condition + Sample + Type + Age, switch.all, sem)$Switch
-linecolors <- rep(c(
-	"Random (all)", "Random (all)",
-	"Random (all)", "Random (all)",
-	"No speech", "Prosody only",
-	"Normal speech", "Words only"),14)
+means <- mean.agg$mean
+# SE
+err.agg <- group_by(switch.all, Condition, Sample, Type, Age) %>%
+	summarise(se = sem(Switch))
+errs <- err.agg$se
+# SD
+sd.agg <- group_by(switch.all, Condition, Sample, Type, Age) %>%
+	summarise(sd = sd(Switch))
+sds <- sd.agg$sd
+# N
+sampszs <- switch.all %>%
+    group_by(Condition, Sample, Type, Age) %>%
+    summarise(Switch = n())
+names(sampszs)[names(sampszs) == "Switch"] <- "n"
+ciMult <- qt(conf.interval/2 + .5, sampszs$n-1)
+cis <- errs * ciMult
+# Line colors
+linecolors <- paste(conds, samples)
+linecolors[grep("Random", linecolors)] <- "Random (all)"
+linecolors[grep("^normal", linecolors)] <- "Normal speech"
+linecolors[grep("^robot", linecolors)] <- "Words only"
+linecolors[grep("^muffled", linecolors)] <- "Prosody only"
+linecolors[grep("^babble", linecolors)] <- "No speech"
 
 df <- data.frame(
     Age = factor(ages),
     Sample = factor(samples),
     Type = factor(types),
-    Condition = factor(langs),
+    Condition = factor(conds),
     m = means,
     se = errs,
+    ci = cis,
     ConditionL = factor(linecolors)
 )
 df$Sample <- factor(df$Sample, levels=rev(levels(df$Sample)))
@@ -195,18 +223,19 @@ df$Condition <- factor(df$Condition, levels=c("Normal speech", "Prosody only",
 df$ConditionL <- factor(df$ConditionL, levels=c("Normal speech", "Prosody only",
     "Words only", "No speech", "Random (all)"))
 
-limits <- aes(ymax = m + se, ymin= m - se)
+limits <- aes(ymax = m + ci, ymin= m - ci)
 dodge <- position_dodge(width=0.9)
 
 p2 <- qplot(Age,m,facets = . ~ Condition, group=interaction(Sample,Type),
-	ylim=c(-0.1,0.6), ymin= m - se, ymax= m + se,
+	ylim=c(-0.1,0.8), ymin= m - ci, ymax= m + ci,
 	color= ConditionL, linetype=Type,
     xlab="Age (years)",ylab="Proportion gaze switches",
     position=position_dodge(width=.1), data=df) +
+    facet_wrap(~Condition) +
 	geom_line(size=2, position=position_dodge(width=.1)) +
 	geom_pointrange(size=1, position=position_dodge(width=.1)) +
     scale_colour_manual(name="Condition",
-    	values=c("firebrick2", "forestgreen", "green3", "dodgerblue3", "gray26")) +
+    	values=c("dodgerblue3", "forestgreen", "green3", "firebrick2", "gray26")) +
     scale_linetype_manual(name="Sample", values=lines) +
     plot.style + theme(
     panel.background = element_rect(fill = "transparent",colour = NA),
@@ -216,7 +245,7 @@ p2 <- qplot(Age,m,facets = . ~ Condition, group=interaction(Sample,Type),
 	axis.title.y = element_text(size=30, color="gray20", vjust=2),
     plot.background = element_rect(fill = "transparent",colour = NA),
     strip.text.x = element_text(size=30, color="gray20"),
-#    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.justification=c(1,0), legend.position=c(0.74,0.2),
     legend.title = element_text(colour="gray20", size=24),
     legend.text = element_text(colour="gray20", size=26),
     legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
@@ -224,32 +253,44 @@ p2 <- qplot(Age,m,facets = . ~ Condition, group=interaction(Sample,Type),
     legend.background = element_rect(fill="transparent"),
     plot.margin=unit(c(10,10,10,10),"mm"))
 png(paste(plot.path, "samples-by-lang-groups-trans-types.png", sep=""),
-    width=2000,height=600,units="px", bg = "transparent")
+    width=1400,height=1200,units="px", bg = "transparent")
 print(p2)
 dev.off()    
 ################################################################################
 
 
 ###### BY CONDITION & CONDENSED AGE & Q-EFFECTS SWITCHES #######################
-switch.real <- filter(switch.all, Sample == "Transition") %>%
-               select(-Sample)
-errs.agg <- aggregate(Switch ~ Type + Condition + Age,
-    switch.real, sem)
-errs <- errs.agg$Switch
-means.agg <- aggregate(Switch ~ Type + Condition + Age,
-    switch.real, mean)
-means <- means.agg$Switch
-ages <- means.agg$Age
+# Mean + vars
+mean.agg <- group_by(switch.real, Type, Condition, Age) %>%
+	summarise(mean = mean(Switch))
+means <- mean.agg$mean
+ages <- mean.agg$Age
 ages[ages == "21"] <- "A"
-conds <- means.agg$Condition
-types <- means.agg$Type
+conds <- mean.agg$Condition
+types <- mean.agg$Type
+# SE
+err.agg <- group_by(switch.real, Type, Condition, Age) %>%
+	summarise(se = sem(Switch))
+errs <- err.agg$se
+# SD
+sd.agg <- group_by(switch.real, Type, Condition, Age) %>%
+	summarise(sd = sd(Switch))
+sds <- sd.agg$sd
+# N
+sampszs <- switch.real %>%
+    group_by(Type, Condition, Age) %>%
+    summarise(Switch = n())
+names(sampszs)[names(sampszs) == "Switch"] <- "n"
+ciMult <- qt(conf.interval/2 + .5, sampszs$n-1)
+cis <- errs * ciMult
 
 df <- data.frame(
     Age = factor(ages),
     Condition = factor(conds),
     Transition = factor(types),
     m = means,
-    se = errs
+    se = errs,
+    ci = cis
 )
 df$Condition <- factor(df$Condition, labels=c("No speech", "Prosody only",
     "Normal speech", "Words only"))
@@ -257,10 +298,10 @@ df$Transition <- factor(df$Transition, labels=c("Question", "Non-Question"))
 df$Condition <- factor(df$Condition, levels=c("Normal speech", "Prosody only",
     "Words only", "No speech"))
 
-limits <- aes(ymax = m + se, ymin= m - se)
+limits <- aes(ymax = m + ci, ymin= m - ci)
 
-p3 <- qplot(Age,m,facets = . ~ Condition, group=Transition, ylim=c(-0.1,0.6),
-    ymin= m - se, ymax= m + se, color=Condition, linetype=Transition,
+p3 <- qplot(Age,m,facets = . ~ Condition, group=Transition, ylim=c(-0.1,0.8),
+    ymin= m - ci, ymax= m + ci, color=Condition, linetype=Transition,
     xlab="Age (years)",ylab="Proportion gaze switches",
     position=position_dodge(width=.1), data=df) +
 	geom_line(size=2, position=position_dodge(width=.1)) +
@@ -275,14 +316,14 @@ p3 <- qplot(Age,m,facets = . ~ Condition, group=Transition, ylim=c(-0.1,0.6),
 	axis.title.y = element_text(size=30, color="gray20"),
     plot.background = element_rect(fill = "transparent",colour = NA),     
     strip.text.x = element_text(size=30, color="gray20"),
-    legend.justification=c(1,0), legend.position=c(1,0),
+    legend.justification=c(1,0), legend.position=c(0.9,0.75),
     legend.title = element_text(colour="gray20", size=24),
     legend.text = element_text(colour="gray20", size=26),
     legend.key.width = unit(4, "lines"), legend.key.height = unit(2, "lines"),
     legend.key = element_rect(fill = "transparent", colour = "transparent"),
     legend.background = element_rect(fill="transparent"),
     plot.margin=unit(c(10,10,10,10),"mm"))
-png(paste(plot.path, "transitions-by-conditions-uncorrected.png", sep=""),
+png(paste(plot.path, "transitions-by-conditions.png", sep=""),
     width=2000,height=600,units="px", bg = "transparent")
 print(p3)
 dev.off()
@@ -295,8 +336,6 @@ dev.off()
 switch.real <- switch.real %>%
 	mutate(Condition = as.factor(Condition),
 		   Type = as.factor(Type))
-switch.real$Cond2 <- ifelse((switch.real$Condition == "normal" |
-	switch.real$Condition == "robot"),"lexical", "non-lexical")
 switch.real.C <- filter(switch.real, Age != 21) %>%
                  mutate(Age = as.numeric(Age))
 switch.real.A <- filter(switch.real, Age == 21)
@@ -314,15 +353,13 @@ chi.max <- glmer(Switch ~ Age * Condition * Type + Duration +
 adu.max <- glmer(Switch ~ Condition * Type + Duration + 
     (Type+Condition|Subject) + (1|Gap), data=switch.real.A,
     family=binomial, control = glmerControl(optimizer="bobyqa"))
-#	Notes:
-#		- Interaction with Duration does not improve model but does increase AIC
 
 # Export the model values for use in the random runs
 ll.cm <- logLik(chi.max)
 chi.max.m <- data.frame(
 	B = fixef(chi.max),
 	SE = SEstat(chi.max),
-	t = tstat(chi.max))
+	z = zstat(chi.max))
 chi.max.m <- cbind(Predictor = rownames(chi.max.m), chi.max.m)
 rownames(chi.max.m) <- NULL
 chi.max.i <- data.frame(
@@ -344,7 +381,7 @@ ll.am <- logLik(adu.max)
 adu.max.m <- data.frame(
 	B = fixef(adu.max),
 	SE = SEstat(adu.max),
-	t = tstat(adu.max))
+	z = zstat(adu.max))
 adu.max.m <- cbind(Predictor = rownames(adu.max.m), adu.max.m)
 rownames(adu.max.m) <- NULL
 adu.max.i <- data.frame(
@@ -363,22 +400,42 @@ write.csv(adu.max.r, paste(
 	row.names=FALSE)
 
 
-# Post hoc test of difference from random in 1- and 2-year-olds'
-# performance in the lex-only and pros-only conditions
-# u3.r <- subset(switch.final.r, Age < 3)
-# u3.a <- subset(switch.final, Age < 3)
-# u3.lex.r <- subset(u3.r, Condition == "robot")
-# u3.lex.a <- subset(u3.a, Condition == "robot")
-# u3.pro.r <- subset(u3.r, Condition == "muffled")
-# u3.pro.a <- subset(u3.a, Condition == "muffled")
+# Post hoc test of difference from random in 1-3-year-olds
+switch.1 <- filter(switch.all, Age == 1)
+sw1 <- aggregate(Switch ~ Subject + Sample + Condition, switch.1, mean)
+sw1t <- aggregate(Switch ~ Subject + Sample + Condition + Type, switch.1, mean)
+n1 <- subset(sw1, Condition == "normal")
+randn1 <- subset(n1, Sample == "Random")
+realn1 <- subset(n1, Sample == "Transition")
+ttestn1 <- t.test(randn1$Switch, realn1$Switch)
+n1q <- subset(sw1t, Condition == "normal" & Type == "Q")
+randn1q <- subset(n1q, Sample == "Random")
+realn1q <- subset(n1q, Sample == "Transition")
+ttestn1q <- t.test(randn1q$Switch, realn1q$Switch)
 
-# u3.lex.r.agg <- aggregate(Switch ~ Subject, u3.lex.r, mean)
-# u3.lex.a.agg <- aggregate(Switch ~ Subject, u3.lex.a, mean)
-# u3.pro.r.agg <- aggregate(Switch ~ Subject, u3.pro.r, mean)
-# u3.pro.a.agg <- aggregate(Switch ~ Subject, u3.pro.a, mean)
+switch.2 <- filter(switch.all, Age == 2)
+sw2 <- aggregate(Switch ~ Subject + Sample + Condition, switch.2, mean)
+sw2t <- aggregate(Switch ~ Subject + Sample + Condition + Type, switch.2, mean)
+n2 <- subset(sw2, Condition == "normal")
+randn2 <- subset(n2, Sample == "Random")
+realn2 <- subset(n2, Sample == "Transition")
+ttestn2 <- t.test(randn2$Switch, realn2$Switch)
+n2q <- subset(sw2t, Condition == "normal" & Type == "Q")
+randn2q <- subset(n2q, Sample == "Random")
+realn2q <- subset(n2q, Sample == "Transition")
+ttestn2q <- t.test(randn2q$Switch, realn2q$Switch)
 
-# ttest1 <- t.test(u3.lex.r.agg$Switch, u3.lex.a.agg$Switch)
-# ttest2 <- t.test(u3.pro.r.agg$Switch, u3.pro.a.agg$Switch)
+switch.3 <- filter(switch.all, Age == 3)
+sw3 <- aggregate(Switch ~ Subject + Sample + Condition, switch.3, mean)
+sw3t <- aggregate(Switch ~ Subject + Sample + Condition + Type, switch.3, mean)
+n3 <- subset(sw3, Condition == "normal")
+randn3 <- subset(n3, Sample == "Random")
+realn3 <- subset(n3, Sample == "Transition")
+ttestn3 <- t.test(randn3$Switch, realn3$Switch)
+n3q <- subset(sw3t, Condition == "normal" & Type == "Q")
+randn3q <- subset(n3q, Sample == "Random")
+realn3q <- subset(n3q, Sample == "Transition")
+ttestn3q <- t.test(randn3q$Switch, realn3q$Switch)
 
 # Overall random rate comparison by age, transition type, and condition
 switch.all.A <- filter(switch.all, Age == 21)
@@ -966,13 +1023,13 @@ rand.data.C.ages <- rand.data.C[Variable == "ConditionMB:54" |
 	Variable == "ConditionMB:61" | Variable == "ConditionMB:62" |
 	Variable == "ConditionMB:63" | Variable == "ConditionMB:64"]
 real.data.C.ages$Variable <- factor(
-	real.data.C.ages$Variable, labels=c("Muffled: Age 5 - Age 4",
-	"Muffled: Age 6 - Age 1", "Muffled: Age 6 - Age 2",
-	"Muffled: Age 6 - Age 3", "Muffled: Age 6 - Age 4"))
+	real.data.C.ages$Variable, labels=c("Prosody: Age 5 - Age 4",
+	"Prosody: Age 6 - Age 1", "Prosody: Age 6 - Age 2",
+	"Prosody: Age 6 - Age 3", "Prosody: Age 6 - Age 4"))
 rand.data.C.ages$Variable <- factor(
-	rand.data.C.ages$Variable, labels=c("Muffled: Age 5 - Age 4",
-	"Muffled: Age 6 - Age 1", "Muffled: Age 6 - Age 2",
-	"Muffled: Age 6 - Age 3", "Muffled: Age 6 - Age 4"))
+	rand.data.C.ages$Variable, labels=c("Prosody: Age 5 - Age 4",
+	"Prosody: Age 6 - Age 1", "Prosody: Age 6 - Age 2",
+	"Prosody: Age 6 - Age 3", "Prosody: Age 6 - Age 4"))
 
 real.data.C.ages[, GreaterThan := 0]
 variables.C <- unique(real.data.C.ages$Variable)

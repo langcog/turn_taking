@@ -5,45 +5,45 @@ The style file: elsarticle-harv.bst
 Database file #1: anticip.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty pages in ELAN
-You've used 68 entries,
+You've used 71 entries,
             2990 wiz_defined-function locations,
-            1028 strings with 16493 characters,
-and the built_in function-call counts, 44782 in all, are:
-= -- 3458
-> -- 1583
-< -- 51
-+ -- 629
-- -- 539
-* -- 4680
-:= -- 6421
-add.period$ -- 194
-call.type$ -- 68
-change.case$ -- 520
-chr.to.int$ -- 68
-cite$ -- 69
-duplicate$ -- 3474
-empty$ -- 3450
-format.name$ -- 747
-if$ -- 8466
+            1042 strings with 16933 characters,
+and the built_in function-call counts, 46323 in all, are:
+= -- 3579
+> -- 1621
+< -- 54
++ -- 644
+- -- 551
+* -- 4820
+:= -- 6653
+add.period$ -- 203
+call.type$ -- 71
+change.case$ -- 538
+chr.to.int$ -- 71
+cite$ -- 72
+duplicate$ -- 3607
+empty$ -- 3578
+format.name$ -- 766
+if$ -- 8756
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 645
-newline$ -- 345
-num.names$ -- 284
-pop$ -- 1269
+missing$ -- 668
+newline$ -- 360
+num.names$ -- 296
+pop$ -- 1319
 preamble$ -- 1
-purify$ -- 447
+purify$ -- 463
 quote$ -- 0
-skip$ -- 1085
+skip$ -- 1125
 stack$ -- 0
-substring$ -- 2006
-swap$ -- 2409
+substring$ -- 2064
+swap$ -- 2488
 text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 591
+type$ -- 618
 warning$ -- 1
-while$ -- 314
+while$ -- 326
 width$ -- 0
-write$ -- 955
+write$ -- 997
 (There was 1 warning)

@@ -1,4 +1,4 @@
-\begin{thebibliography}{68}
+\begin{thebibliography}{71}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -352,6 +352,13 @@
   \bibinfo{publisher}{Wiley-Blackwell, Malden, MA}, pp.
   \bibinfo{pages}{103--130}.
 %Type = Article
+\bibitem[{Levinson(2016)}]{levinson2016}
+\bibinfo{author}{Levinson, S.C.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Turn-taking in {H}uman {C}ommunication -- {O}rigins
+  and {I}mplications for {L}anguage {P}rocessing}.
+\newblock \bibinfo{journal}{Trends in Cognitive Sciences} \bibinfo{volume}{20},
+  \bibinfo{pages}{6--14}.
+%Type = Article
 \bibitem[{Magyari et~al.(2014)Magyari, Bastiaansen, De~Ruiter and
   Levinson}]{magyari2014}
 \bibinfo{author}{Magyari, L.}, \bibinfo{author}{Bastiaansen, M.C.M.},
@@ -534,6 +541,13 @@
   \bibinfo{booktitle}{Proceedings of the 33rd Annual Meeting of the {C}ognitive
   {S}cience {S}ociety}, pp. \bibinfo{pages}{838--843}.
 %Type = Article
+\bibitem[{Toda and Fogel(1993)}]{toda1993}
+\bibinfo{author}{Toda, S.}, \bibinfo{author}{Fogel, A.}, \bibinfo{year}{1993}.
+\newblock \bibinfo{title}{Infant response to the still-face situation at 3 and
+  6 months}.
+\newblock \bibinfo{journal}{Developmental Psychology} \bibinfo{volume}{29},
+  \bibinfo{pages}{532}.
+%Type = Article
 \bibitem[{Torreira et~al.(2015)Torreira, B{\"o}gels and
   Levinson}]{torreira2015}
 \bibinfo{author}{Torreira, F.}, \bibinfo{author}{B{\"o}gels, S.},
@@ -542,6 +556,13 @@
   spoken interaction}.
 \newblock \bibinfo{journal}{Journal of Phonetics} \bibinfo{volume}{52},
   \bibinfo{pages}{46--57}.
+%Type = Phdthesis
+\bibitem[{Weisleder(2012)}]{weisleder2012}
+\bibinfo{author}{Weisleder, A.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Richer language experience leads to faster
+  understanding: {L}inks between language input, processing efficiency, and
+  vocabulary growth}.
+\newblock Ph.D. thesis. Stanford University.
 %Type = Inproceedings
 \bibitem[{Wittenburg et~al.(2006)Wittenburg, Brugman, Russel, Klassmann and
   Sloetjes}]{ELAN}
