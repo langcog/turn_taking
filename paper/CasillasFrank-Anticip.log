@@ -1,4 +1,4 @@
-This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  26 JAN 2016 19:06
+This is LuaTeX, Version beta-0.70.2-2012062819 (TeX Live 2012) (format=lualatex 2012.6.30)  1 FEB 2016 11:55
  restricted \write18 enabled.
  file:line:error style messages enabled.
 **CasillasFrank-Anticip.tex
@@ -356,12 +356,13 @@ Package pdftex.def Info: figures/FIG-AnticipCriteria.png used on input line 154
 .
 (pdftex.def)             Requested size: 272.99881pt x 91.29874pt.
  [24 <./figures/FIG-AnticipCriteria.png>]
+[25]
 Overfull \hbox (15.06186pt too wide) in paragraph at lines 171--186
  [] 
  []
 
 
-<figures/E1-samples-by-lang-groups-trans-types.png, id=93, 1204.5pt x 602.25pt>
+<figures/E1-samples-by-lang-groups-trans-types.png, id=97, 1204.5pt x 602.25pt>
 File: figures/E1-samples-by-lang-groups-trans-types.png Graphic file (type png)
 
 <use figures/E1-samples-by-lang-groups-trans-types.png>
@@ -375,8 +376,8 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[25] [26] [27 <./figures/E1-samples-by-lang-groups-trans-types.png>] [28]
-[29] <figures/FIG-ShuffledWindows.png, id=115, 2544.50626pt x 1023.825pt>
+[26] [27 <./figures/E1-samples-by-lang-groups-trans-types.png>] [28] [29]
+<figures/FIG-ShuffledWindows.png, id=115, 2544.50626pt x 1023.825pt>
 File: figures/FIG-ShuffledWindows.png Graphic file (type png)
 
 <use figures/FIG-ShuffledWindows.png>
@@ -418,7 +419,11 @@ File: figures/E2-samples-by-lang-groups-trans-types.png Graphic file (type png)
 Package pdftex.def Info: figures/E2-samples-by-lang-groups-trans-types.png used
  on input line 408.
 (pdftex.def)             Requested size: 390.0pt x 334.28027pt.
- [45] [46 <./figures/E2-samples-by-lang-groups-trans-types.png>] [47]
+ [45]
+Overfull \vbox (10.78027pt too high) has occurred while \output is active []
+
+
+[46 <./figures/E2-samples-by-lang-groups-trans-types.png>] [47]
 Overfull \hbox (17.53589pt too wide) in paragraph at lines 426--427
 \OT1/cmr/m/it/12 SE\OT1/cmr/m/n/12 =1.18, \OT1/cmr/m/it/12 z\OT1/cmr/m/n/12 =3.
 978, \OT1/cmr/m/it/12 p$\OML/cmm/m/it/12 <$\OT1/cmr/m/n/12 .001) and lan-guage 
@@ -631,18 +636,14 @@ Overfull \hbox (32.90134pt too wide) in paragraph at lines 791--817
 
 [98
 
-] (./CasillasFrank-Anticip.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+] (./CasillasFrank-Anticip.aux) )
 
 Here is how much of LuaTeX's memory you used:
  5894 strings out of 494982
  100000,154059 words of node,token memory allocated
  452 words of node memory still in use:
    2 hlist, 1 vlist, 1 rule, 2 glue, 48 glue_spec, 1 write nodes
-   avail lists: 2:25,3:269,4:2360,5:280,6:4793,7:303,9:473,10:403
+   avail lists: 2:25,3:269,4:2185,5:223,6:4035,7:303,9:480,10:352
  9062 multiletter control sequences out of 65536+200000
  77 fonts using 3036675 bytes
  44i,12n,46p,2137b,464s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -666,7 +667,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2012/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2012/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2012/texmf
 -dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (98 pages, 4470300 bytes).
+Output written on CasillasFrank-Anticip.pdf (98 pages, 4471747 bytes).
 
 PDF statistics: 446 PDF objects out of 1000 (max. 8388607)
  278 compressed objects within 3 object streams
