@@ -1,4 +1,4 @@
-\begin{thebibliography}{81}
+\begin{thebibliography}{82}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -80,7 +80,15 @@
 \newblock \bibinfo{title}{Neural signatures of response planning occur midway
   through an incoming question in conversation}.
 \newblock {\it \bibinfo{journal}{Scientific Reports}\/},  {\it
-  \bibinfo{volume}{5}\/}.
+  \bibinfo{volume}{5}\/}, \bibinfo{pages}{Article number: 12881}.
+%Type = Article
+\bibitem[{B{\"o}gels \& Torreira(2015)}]{bogelstorreira2015}
+\bibinfo{author}{B{\"o}gels, S.}, \& \bibinfo{author}{Torreira, F.}
+  (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Listeners use intonational phrase boundaries to
+  project turn ends in spoken interaction}.
+\newblock {\it \bibinfo{journal}{Journal of Phonetics}\/},  {\it
+  \bibinfo{volume}{52}\/}, \bibinfo{pages}{46--57}.
 %Type = Article
 \bibitem[{Bruner(1985)}]{bruner1985}
 \bibinfo{author}{Bruner, J.} (\bibinfo{year}{1985}).
@@ -97,40 +105,45 @@
 \bibitem[{Carlson et~al.(2005)Carlson, Hirschberg \& Swerts}]{carlson2005}
 \bibinfo{author}{Carlson, R.}, \bibinfo{author}{Hirschberg, J.}, \&
   \bibinfo{author}{Swerts, M.} (\bibinfo{year}{2005}).
-\newblock \bibinfo{title}{Cues to upcoming swedish prosodic boundaries:
+\newblock \bibinfo{title}{Cues to upcoming {S}wedish prosodic boundaries:
   Subjective judgment studies and acoustic correlates}.
 \newblock {\it \bibinfo{journal}{Speech Communication}\/},  {\it
   \bibinfo{volume}{46}\/}, \bibinfo{pages}{326--333}.
 %Type = Article
-\bibitem[{Casillas et~al.(In press)Casillas, Bobb \& Clark}]{casillas2016}
+\bibitem[{Casillas et~al.(2016)Casillas, Bobb \& Clark}]{casillas2016}
 \bibinfo{author}{Casillas, M.}, \bibinfo{author}{Bobb, S.~C.}, \&
-  \bibinfo{author}{Clark, E.~V.} (\bibinfo{year}{In press}).
+  \bibinfo{author}{Clark, E.~V.} (\bibinfo{year}{2016}).
 \newblock \bibinfo{title}{Turn taking, timing, and planning in early language
   acquisition}.
-\newblock {\it \bibinfo{journal}{Journal of Child Language}\/}, .
+\newblock {\it \bibinfo{journal}{Journal of Child Language}\/},  (pp.
+  \bibinfo{pages}{1--28}).
 %Type = Inproceedings
 \bibitem[{Casillas \& Frank(2012)}]{casillas2012}
 \bibinfo{author}{Casillas, M.}, \& \bibinfo{author}{Frank, M.~C.}
   (\bibinfo{year}{2012}).
 \newblock \bibinfo{title}{Cues to turn boundary prediction in adults and
   preschoolers}.
-\newblock In {\it \bibinfo{booktitle}{Proceedings of SemDial}\/} (pp.
-  \bibinfo{pages}{61--69}).
+\newblock In \bibinfo{editor}{S.~Brown-Schmidt}, \bibinfo{editor}{J.~Ginzburg},
+  \& \bibinfo{editor}{S.~Larsson} (Eds.), {\it \bibinfo{booktitle}{Proceedings
+  of SemDial (SeineDial): The 16th Workshop on the Semantics and Pragmatics of
+  Dialogue}\/} (pp. \bibinfo{pages}{61--69}).
 %Type = Inproceedings
 \bibitem[{Casillas \& Frank(2013)}]{casillas2013}
 \bibinfo{author}{Casillas, M.}, \& \bibinfo{author}{Frank, M.~C.}
   (\bibinfo{year}{2013}).
 \newblock \bibinfo{title}{The development of predictive processes in children's
   discourse understanding}.
-\newblock In {\it \bibinfo{booktitle}{Proceedings of the 35th Annual Meeting of
-  the Cognitive Science Society}\/} (pp. \bibinfo{pages}{299--304}).
+\newblock In \bibinfo{editor}{M.~Knauff}, \bibinfo{editor}{M.~Pauen},
+  \bibinfo{editor}{N.~Sebanz}, \& \bibinfo{editor}{I.~Wachsmuth} (Eds.), {\it
+  \bibinfo{booktitle}{Proceedings of the 35th Annual Meeting of the Cognitive
+  Science Society}\/} (pp. \bibinfo{pages}{299--304}).
 %Type = Article
 \bibitem[{Cutler et~al.(1997)Cutler, Dahan \& Van~Donselaar}]{cutler1997}
 \bibinfo{author}{Cutler, A.}, \bibinfo{author}{Dahan, D.}, \&
   \bibinfo{author}{Van~Donselaar, W.} (\bibinfo{year}{1997}).
 \newblock \bibinfo{title}{Prosody in the comprehension of spoken language: A
   literature review}.
-\newblock {\it \bibinfo{journal}{Language and speech}\/},  {\it
+\newblock {\it \bibinfo{journal}{Language and {S}peech}\/},  {\it
   \bibinfo{volume}{40}\/}, \bibinfo{pages}{141--201}.
 %Type = Article
 \bibitem[{De~Ruiter et~al.(2006)De~Ruiter, Mitterer \& Enfield}]{de-ruiter2006}
@@ -163,7 +176,7 @@
 \newblock \bibinfo{title}{Some signals and rules for taking speaking turns in
   conversations.}
 \newblock {\it \bibinfo{journal}{Journal of Personality and Social
-  Psychology}\/},  {\it \bibinfo{volume}{23}\/}, \bibinfo{pages}{283}.
+  Psychology}\/},  {\it \bibinfo{volume}{23}\/}, \bibinfo{pages}{283--292}.
 %Type = Incollection
 \bibitem[{Ervin-Tripp(1979)}]{ervin-tripp1979}
 \bibinfo{author}{Ervin-Tripp, S.} (\bibinfo{year}{1979}).
@@ -202,14 +215,13 @@
 %Type = Book
 \bibitem[{Garvey(1984)}]{garvey1984}
 \bibinfo{author}{Garvey, C.} (\bibinfo{year}{1984}).
-\newblock {\it \bibinfo{title}{Children's Talk}\/} volume~\bibinfo{volume}{21}.
+\newblock {\it \bibinfo{title}{Children's Talk: Volume 21}\/}.
 \newblock \bibinfo{publisher}{Harvard University Press}.
 %Type = Article
 \bibitem[{Garvey \& Berninger(1981)}]{garvey1981}
 \bibinfo{author}{Garvey, C.}, \& \bibinfo{author}{Berninger, G.}
   (\bibinfo{year}{1981}).
-\newblock \bibinfo{title}{Timing and turn taking in children's conversations
-  1}.
+\newblock \bibinfo{title}{Timing and turn taking in children's conversations}.
 \newblock {\it \bibinfo{journal}{Discourse Processes}\/},  {\it
   \bibinfo{volume}{4}\/}, \bibinfo{pages}{27--57}.
 %Type = Article
@@ -226,7 +238,7 @@
 \bibinfo{author}{Griffin, Z.~M.}, \& \bibinfo{author}{Bock, K.}
   (\bibinfo{year}{2000}).
 \newblock \bibinfo{title}{What the eyes say about speaking}.
-\newblock {\it \bibinfo{journal}{Psychological science}\/},  {\it
+\newblock {\it \bibinfo{journal}{Psychological {S}cience}\/},  {\it
   \bibinfo{volume}{11}\/}, \bibinfo{pages}{274--279}.
 %Type = Article
 \bibitem[{Hart \& Risley(1992)}]{hart1992}
@@ -236,7 +248,7 @@
   {P}ersisting differences in family-child interactions observed in natural
   home environments.}
 \newblock {\it \bibinfo{journal}{Developmental Psychology}\/},  {\it
-  \bibinfo{volume}{28}\/}, \bibinfo{pages}{1096}.
+  \bibinfo{volume}{28}\/}, \bibinfo{pages}{1096--1105}.
 %Type = Inproceedings
 \bibitem[{Hedberg et~al.(2010)Hedberg, Sosa, G{\"o}rg{\"u}l{\"u} \&
   Mameni}]{hedberg2010}
@@ -245,8 +257,8 @@
   (\bibinfo{year}{2010}).
 \newblock \bibinfo{title}{The prosody and meaning of {W}h-questions in
   {A}merican {E}nglish}.
-\newblock In {\it \bibinfo{booktitle}{Speech Prosody 2010}\/} (pp.
-  \bibinfo{pages}{100045:1--4}).
+\newblock In {\it \bibinfo{booktitle}{The Proceedings of Speech Prosody}\/}
+  (pp. \bibinfo{pages}{100045:1--4}).
 %Type = Article
 \bibitem[{Henning et~al.(2005)Henning, Striano \& Lieven}]{henning2005}
 \bibinfo{author}{Henning, A.}, \bibinfo{author}{Striano, T.}, \&
@@ -315,6 +327,13 @@
 \newblock {\it \bibinfo{journal}{Speech perception and linguistic experience:
   Theoretical and methodological issues in cross-language speech research}\/},
   (pp. \bibinfo{pages}{91--119}).
+%Type = Article
+\bibitem[{Kail(1991)}]{kail1991}
+\bibinfo{author}{Kail, R.} (\bibinfo{year}{1991}).
+\newblock \bibinfo{title}{Developmental change in speed of processing during
+  childhood and adolescence.}
+\newblock {\it \bibinfo{journal}{Psychological Bulletin}\/},  {\it
+  \bibinfo{volume}{109}\/}, \bibinfo{pages}{490}.
 %Type = Article
 \bibitem[{Kamide et~al.(2003)Kamide, Altmann \& Haywood}]{kamide2003}
 \bibinfo{author}{Kamide, Y.}, \bibinfo{author}{Altmann, G.}, \&
@@ -497,7 +516,7 @@
   (\bibinfo{year}{1987}).
 \newblock \bibinfo{title}{Communication within infant social games.}
 \newblock {\it \bibinfo{journal}{Developmental Psychology}\/},  {\it
-  \bibinfo{volume}{23}\/}, \bibinfo{pages}{241}.
+  \bibinfo{volume}{23}\/}, \bibinfo{pages}{241--248}.
 %Type = Incollection
 \bibitem[{Rossano et~al.(2009)Rossano, Brown \& Levinson}]{rossano2009}
 \bibinfo{author}{Rossano, F.}, \bibinfo{author}{Brown, P.}, \&
@@ -554,7 +573,7 @@
   (\bibinfo{year}{1998}).
 \newblock \bibinfo{title}{Can prosody aid the automatic classification of
   dialog acts in conversational speech?}
-\newblock {\it \bibinfo{journal}{Language and Speech}\/},  {\it
+\newblock {\it \bibinfo{journal}{Language and {S}peech}\/},  {\it
   \bibinfo{volume}{41}\/}, \bibinfo{pages}{443--492}.
 %Type = Article
 \bibitem[{Snow(1977)}]{snow1977}
@@ -624,8 +643,10 @@
 \bibinfo{author}{{Tice (Casillas)}, M.}, \& \bibinfo{author}{Henetz, T.}
   (\bibinfo{year}{2011}).
 \newblock \bibinfo{title}{Turn-boundary projection: Looking ahead}.
-\newblock In {\it \bibinfo{booktitle}{Proceedings of the 33rd Annual Meeting of
-  the {C}ognitive {S}cience {S}ociety}\/} (pp. \bibinfo{pages}{838--843}).
+\newblock In \bibinfo{editor}{L.~Carlson}, \bibinfo{editor}{C.~Hšlscher}, \&
+  \bibinfo{editor}{T.~Shipley} (Eds.), {\it \bibinfo{booktitle}{Proceedings of
+  the 33rd Annual Meeting of the {C}ognitive {S}cience {S}ociety}\/} (pp.
+  \bibinfo{pages}{838--843}).
 %Type = Article
 \bibitem[{Toda \& Fogel(1993)}]{toda1993}
 \bibinfo{author}{Toda, S.}, \& \bibinfo{author}{Fogel, A.}
@@ -633,7 +654,7 @@
 \newblock \bibinfo{title}{Infant response to the still-face situation at 3 and
   6 months}.
 \newblock {\it \bibinfo{journal}{Developmental Psychology}\/},  {\it
-  \bibinfo{volume}{29}\/}, \bibinfo{pages}{532}.
+  \bibinfo{volume}{29}\/}, \bibinfo{pages}{532--538}.
 %Type = Incollection
 \bibitem[{Tomasello \& Brooks(1999)}]{tomasello1999}
 \bibinfo{author}{Tomasello, M.}, \& \bibinfo{author}{Brooks, P.~J.}
@@ -643,14 +664,6 @@
 \newblock In \bibinfo{editor}{M.~Barrett} (Ed.), {\it \bibinfo{booktitle}{The
   development of language}\/} (pp. \bibinfo{pages}{161--190}).
 \newblock \bibinfo{publisher}{Psychology Press}.
-%Type = Article
-\bibitem[{Torreira et~al.(2015)Torreira, B{\"o}gels \& Levinson}]{torreira2015}
-\bibinfo{author}{Torreira, F.}, \bibinfo{author}{B{\"o}gels, S.}, \&
-  \bibinfo{author}{Levinson, S.~C.} (\bibinfo{year}{2015}).
-\newblock \bibinfo{title}{Intonational phrasing is necessary for turn-taking in
-  spoken interaction}.
-\newblock {\it \bibinfo{journal}{Journal of Phonetics}\/},  {\it
-  \bibinfo{volume}{52}\/}, \bibinfo{pages}{46--57}.
 %Type = Phdthesis
 \bibitem[{Weisleder(2012)}]{weisleder2012}
 \bibinfo{author}{Weisleder, A.} (\bibinfo{year}{2012}).
@@ -667,7 +680,7 @@
   responsiveness.}
 \newblock {\it \bibinfo{journal}{Canadian Journal of Psychology/Revue
   Canadienne de Psychologie}\/},  {\it \bibinfo{volume}{43}\/},
-  \bibinfo{pages}{230}.
+  \bibinfo{pages}{230--246}.
 %Type = Inproceedings
 \bibitem[{Wittenburg et~al.(2006)Wittenburg, Brugman, Russel, Klassmann \&
   Sloetjes}]{ELAN}

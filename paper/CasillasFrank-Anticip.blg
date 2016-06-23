@@ -5,44 +5,44 @@ The style file: model5-names.bst
 Database file #1: anticip.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 81 entries,
+You've used 82 entries,
             3390 wiz_defined-function locations,
-            1154 strings with 19256 characters,
-and the built_in function-call counts, 58439 in all, are:
-= -- 4411
-> -- 2338
-< -- 61
-+ -- 1980
-- -- 660
-* -- 6212
-:= -- 7602
-add.period$ -- 251
-call.type$ -- 81
-change.case$ -- 651
-chr.to.int$ -- 81
-cite$ -- 81
-duplicate$ -- 4319
-empty$ -- 4273
-format.name$ -- 911
-if$ -- 10991
+            1165 strings with 19654 characters,
+and the built_in function-call counts, 59794 in all, are:
+= -- 4525
+> -- 2370
+< -- 63
++ -- 1982
+- -- 670
+* -- 6393
+:= -- 7770
+add.period$ -- 254
+call.type$ -- 82
+change.case$ -- 662
+chr.to.int$ -- 82
+cite$ -- 82
+duplicate$ -- 4396
+empty$ -- 4384
+format.name$ -- 927
+if$ -- 11246
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 788
-newline$ -- 428
-num.names$ -- 338
-pop$ -- 1947
+missing$ -- 805
+newline$ -- 433
+num.names$ -- 348
+pop$ -- 1954
 preamble$ -- 1
-purify$ -- 539
+purify$ -- 543
 quote$ -- 0
-skip$ -- 1681
+skip$ -- 1696
 stack$ -- 0
-substring$ -- 2418
-swap$ -- 3135
+substring$ -- 2603
+swap$ -- 3223
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 711
+type$ -- 720
 warning$ -- 0
-while$ -- 377
+while$ -- 393
 width$ -- 0
-write$ -- 1158
+write$ -- 1172

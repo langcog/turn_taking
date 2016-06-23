@@ -1,0 +1,950 @@
+\documentclass[authoryear, 12pt]{elsarticle}
+
+\usepackage{graphicx}
+\usepackage{lineno}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{tipa}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage[section]{placeins}
+\usepackage{rotating}
+%\usepackage{apacite}
+
+%\linespread{2}
+\journal{}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{The development of children's ability to track and predict turn structure in conversation}
+
+\author[MPI]{Marisa Casillas\corref{cor1}}
+\address[MPI]{Max Planck Institute for Psycholinguistics, Nijmegen}
+%\address[StanfordLX]{Department of Linguistics, Stanford University}
+\cortext[cor1]{Corresponding author. \\ Address: Wundtlaan 1, 6525 XD, Nijmegen, The Netherlands\\ Email: marisa.casillas@mpi.nl \\Telephone: +31 024 3521 566; Fax: +31 024 3521 213}
+
+\author[StanfordPSY]{Michael C. Frank}
+
+\address[StanfordPSY]{Department of Psychology, Stanford University}
+
+\begin{abstract}
+Children begin developing turn-taking skills in infancy but take several years to fluidly integrate their growing knowledge of language into their turn-taking behavior. In two eye-tracking experiments, we measured children's anticipatory gaze to upcoming responders while controlling linguistic cues to turn structure. In Experiment 1, we showed English and non-English conversations to English-speaking adults and children. In Experiment 2, we phonetically controlled lexicosyntactic and prosodic cues in English-only speech. Children spontaneously made anticipatory gaze switches by age two and continued improving through age six. In both experiments, children and adults made more anticipatory switches after hearing questions. Consistent with prior findings on adult turn prediction, prosodic information alone did not increase children's anticipatory gaze shifts. But, unlike prior work with adults, lexical information alone was not sufficient either---children's performance was best overall with lexicosyntax and prosody together. Our findings support an account in which turn tracking and turn prediction emerge in infancy and then gradually become integrated with children's online linguistic processing.
+\end{abstract}
+
+\begin{keyword}
+Turn taking \sep Conversation \sep Development \sep Questions \sep Eye-tracking \sep Anticipation
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
+\section*{Introduction}
+\label{sec:intro}
+
+Spontaneous conversation is a universal context for using and learning language. Like other types of human interaction, it is organized at its core by the roles and goals of its participants. But what sets conversation apart is its structure: sequences of interconnected, communicative actions that take place across alternating turns at talk. Sequential, turn-based structures in conversation are strikingly uniform across language communities and linguistic modalities. Turn-taking behaviors are also cross-culturally consistent in their basic features and the details of their implementation \citep{de-vos2015, dingemanse2013, stivers2009}.
+
+Children participate in sequential coordination (proto-turn taking) with their caregivers starting at three months of age---before they can rely on any linguistic cues \citep[see, among others, ][]{bateson1975, hilbrink2015, jaffe2001, snow1977}. However, infant turn taking is different from adult turn taking in several ways: it is heavily scaffolded by caregivers, has different inter-turn timing, and lacks semantic content \citep{hilbrink2015, jaffe2001}. But children's early, turn-structured social interactions are presumably a critical precursor to their later conversational turn taking, establishing the protocol by which children come to use language with others. How then do children integrate linguistic knowledge with these preverbal turn-taking abilities?
+
+In this study, we investigate when children begin to make predictions about upcoming turn structure in conversation and how online linguistic processing becomes integrated into their predictions as they grow older. We first give a basic review of turn-taking research and the state of current knowledge about adult turn prediction. We then discuss recent work on the development of turn-taking skills before presenting the details of the present study.
+
+\subsection*{Adult turn taking}
+
+Turn taking itself is not unique to conversation. Many other human activities are organized around sequential turns at action. Traffic intersections and computer network communication both use turn-taking systems. Children's early games (e.g., give-and-take, peek-a-boo) have built-in, predictable turn structure \citep{ratner1978, ross1987}. Even monkeys take turns: Non-human primates such as marmosets and Campbell's monkeys vocalize contingently with each other in both natural and lab-controlled environments \citep{lemasson2011, takahashi2013}. In all these cases, turn taking serves as a protocol for interaction, allowing the participants to coordinate with each other through sequences of contingent action.
+
+Conversational turn taking distinguishes itself from other turn-taking behaviors by the complexity of the sequencing involved. Conversational turns come grouped into semantically-contingent sequences of action. The groups can span turn-by-turn exchanges (e.g., simple question--response, ``How are you?''--``Fine.'') or sequence-by-sequence exchanges (e.g., reciprocals, ``How are you?''--``Fine, and you?''--``Great!''). Compared to other turn-taking behaviors, the possible sequence and action types in everyday talk are diverse and unpredictable.
+
+% Sequences of action drive the conversation forward into the next, relevant sequences of talk (e.g., ''And you?''--``Great!''--``Why's that?''; \citealp{schegloff2007}). To take a turn, participants need to make predictions about what conversational content will be relevant next. In some cases, relevant next turns are somewhat obvious (e.g., question--response) while, in other cases, there are multiple relevant next actions to choose from or no obvious next action at all (e.g., after a closing).
+
+Despite this complexity, conversational turn taking is precise in its timing. Across a diverse sample of conversations in 10 languages, one study found a consistent average inter-turn silence of 0--200 msec at points of speaker switch \citep{stivers2009}. Experimental results and current models of speech production suggest that it takes approximately 600 msec to produce a content word, and even longer to produce a simple utterance \citep{griffin2000, levelt1989}. In order to achieve 200 msec turn transitions, speakers must begin formulating their response before the prior turn has ended \citep{levinson2013, levinson2016}. Moreover, to formulate their response early on, speakers must track and anticipate what types of response might become relevant next. They also need to predict the content and form of upcoming speech so that they can launch their articulation at exactly the right moment. Prediction thus plays a key role in timely turn taking.
+
+Adults have a lot of information at their disposal to help make accurate predictions. Lexical, syntactic, and prosodic information (e.g., \textit{wh}-words, subject-auxiliary inversion, and list intonation) can all inform addressees about upcoming linguistic structure \citep{de-ruiter2006, duncan1972, ford1996, bogelstorreira2015}. Non-verbal cues (e.g., gaze, posture, and pointing) often appear at turn-boundaries and can sometimes act as late indicators of an upcoming speaker switch \citep{rossano2009, stivers2010}. Additionally, the sequential context of a turn can make the next action obvious: answers after questions, thanks or denial after compliments, etc. \citep{schegloff2007}.
+
+Prior work suggests that adult listeners primarily use lexicosyntactic information to accurately predict upcoming turn structure. De Ruiter and colleagues \citeyearpar{de-ruiter2006} asked participants to listen to snippets of spontaneous conversation and to press a button whenever they anticipated that the current speaker was about to finish his or her turn. The speech snippets were controlled for the amount of linguistic information present; some were normal, but others had flattened pitch, low-pass filtered speech, or further manipulations. With pitch-flattened speech, the timing of participants' button responses was comparable to their timing with the full linguistic signal. But when no lexical information was available, participants responded significantly earlier within the turn. The authors concluded that lexicosyntactic information\footnote{The ``lexicosyntactic'' condition only included flattened pitch and so was not exclusively lexicosyntactic---the speech would still have residual prosodic structure, including syllable duration and intensity.} was necessary and possibly sufficient for turn-end projection, while intonation was neither necessary nor sufficient. Congruent evidence comes from studies varying the predictability of lexicosyntactic and pragmatic content: adults anticipate turn ends better when they can more accurately predict the exact words that will come next (\citealp{magyari2012}; see also \citealp{magyari2014}). They can also identify speech acts within the first word of an utterance \citep{gisladottir2015}, allowing them to start planning their response at the first moment possible \citep{bogels2015}.
+
+Despite this body of evidence, the role of prosody for adult turn prediction is still a matter of debate. De Ruiter and colleagues' (2006) experiment focused on the role of intonation, which is only a partial index of prosody. Prosody is tied closely to the syntax of an utterance, so the two linguistic signals are difficult to control independently \citep{ford1996}. \citet*{bogelstorreira2015} used a combination of button-press and verbal responses to investigate the relationship between lexicosyntactic and prosodic cues in turn-end prediction. Critically, their stimuli were cross-spliced so that each item had full prosodic cues to accompany the lexicosyntax. Because of the splicing, they were able to create items that had syntactically-complete units with no intonational phrase boundary at the end. Participants never verbally responded or pressed the ``turn-end'' button when hearing a syntactically-complete phrase without an intonational phrase boundary. And when intonational phrase boundaries were embedded within multi-utterance turns, participants were tricked into pressing the ``turn-end'' button 29\% of the time. These findings suggest that listeners actually do rely on prosodic cues to execute a response, and that their use of prosodic cues interacts with their predictions about the unfolding syntactic structure (see also de \citet{de-ruiter2006}:525). These experimental findings corroborate other corpus and experimental work promoting a combination of cues (lexicosyntactic, prosodic, and pragmatic) as key for accurate turn-end prediction \citep{duncan1972, ford1996, hirvenkari2013}.
+
+\subsection*{Turn taking in development}
+
+% Adults accurately and spontaneously make predictions about upcoming turn structure. Their predictions rely on a sophisticated body of knowledge about linguistic structure, non-verbal signals, and social actions. Knowing this, we could expect that children's acquisition of turn-taking skills is closely tied to their knowledge about language, gaze, gesture, and social cues. But children's turn taking starts early in infancy, long before their first words or gestures emerge. So a primary role for lexicosyntactic cues doesn't fit well with children's pre-verbal turn taking.
+
+The majority of work on children's early turn taking has focused on observations of spontaneous interaction. Children's first turn-like structures appear as early as two to three months after birth, in proto-conversation with their caregivers \citep{bruner1975, bruner1985, snow1977}. During proto-conversations, caregivers treat their infants as capable of making meaningful contributions: they take every look, vocalization, arm flail, and burp as ``utterances'' in the joint discourse \citep{bateson1975, jaffe2001, snow1977}. Infants catch onto the structure of proto-conversations quickly. By three to four months they notice disturbances to the contingency of their caregivers' response and, in reaction, change the rate and quality of their vocalizations \citep{k-bloom1988, masataka1993, toda1993}.
+
+% Infants at this age also notice changes to social contingency outside of turn structure. In the Still Face paradigm, caregivers interact with their infants and then suddenly halt, taking on a neutral expression with a sustained gaze. When faced with this sudden disappearance of social contingency, infants three months and older try a range of methods to reinitiate the interaction, such as vocalization, reaching, and smiling before looking away or getting upset \citep{rochat1998, toda1993}.
+
+The timing of children's responses to their caregivers' speech shows a non-linear pattern. Infants' contingent vocalizations in the first few months of life show very fast timing (though with a lot of vocal overlap). But by nine months, their timing slows down considerably, only to gradually speed up again after 12 months \citep{hilbrink2015}. For children, taking turns with brief transitions between speakers is more difficult than avoiding speaker overlap; children's incidence of overlap is nearly adult-like by nine months, but the timing of their non-overlapped (i.e., gapped) responses remains longer than the adult 200 msec standard for the next few years \citep{casillas2016, garvey1984, garvey1981, ervin-tripp1979}. This puzzling pattern is likely due to children's linguistic development: taking turns on time is easier when their response is a simple vocalization rather than a linguistic utterance. Integrating language into the turn-taking system may therefore be a major factor in children's delayed responses \citep{casillas2016}.
+
+Before children manage to fully integrate linguistic processing into their turn-taking behaviors (for both turn prediction and production), they can rely on non-verbal interactional cues, including silence, eye gaze, body orientation, and gesture, to identify the boundaries of social actions. For example, with little to no linguistic knowledge, children are often able to infer desired responses to offers and requests by taking account of their interlocutor's non-verbal communicative behavior, the structure of routine events, and the affordances of the current interactional context \citep{reddy13, nomikou11, shatz78}. With respect to turn taking in particular, children's spontaneous vocalizations during interaction demonstrate a sensitivity to short inter-speaker gaps from infancy \citep{hilbrink2015}. Thus, before children can anticipate turn structure by integrating linguistic cues from unfolding speech, they might react to silence as a cue to upcoming speaker change. Interactional silence itself may then serve as one of children's first cues to turn structure, giving them information about when to respond before they can rely on language.
+
+As children's language competence and speed of processing increases \citep{kail1991}, they become better equipped to use linguistic cues in making predictions about upcoming turn structure. Studies of early linguistic development point to a possible early advantage for prosody over lexicosyntax in children's turn-taking predictions. Infants can distinguish their native language's rhythm type from others soon after birth \citep{mehler1988, nazzi2003}. They also show preference for the typical stress patterns of their native language over others by 6--9 months (e.g., iambic vs. trochaic), and can use prosodic information to segment the speech stream into smaller chunks from 8 months onward \citep{johnson2001, morgan1995}. Four- to five-month-olds also prefer pauses in speech to be inserted at prosodic boundaries, and by 6 months infants can use prosodic markers to pick out sub-clausal syntactic units, both of which are useful for extracting turn structure from ongoing speech \citep{jusczyk1995, soderstrom2003}. In comparison, children show at best a very limited lexical inventory before their first birthday \citep{bergelson2013, shi2010}.
+
+%If response planning (i.e., language production) is the primary hurdle in young children's spontaneous turn taking, we should find evidence that children understand turn-taking behaviors before they are able to produce the behaviors themselves. This hypothesis has been recently explored in experimental settings, but results are mixed. One study found that 12-month-olds make more predictive gaze shifts to a responder while watching human verbal conversation compared to conversation-like interactions with objects \citep{bakker2011}, but another only found a similar effect at 36 months \citep{hofsten2009}. However, neither of these two studies had baselines to which the turn-relevant looking behavior could be compared. A baseline measurement is critical because there may be developmental differences in gaze shifting between conversational participants, even if the shifting is not related to turn structure. Such developmental differences could produce artifactual changes in measures of turn-contingent shifting.
+
+% Children begin to develop specific expectations about conversational behavior before they begin to speak. Sometime between four and six months, children begin to attend differently to face-to-face and back-to-back conversation; six-month-olds follow conversational speakers more with their gaze when at least one speaker is looking at the other \citep{augusti2010}. At ten months, infants expect people to look and talk at other people, and not to objects \citep{beier2012}. At twelve months infants expect to see responses to verbal (but not non-speech) utterances in face-to-face contexts \citep{thorgrimsson2015}.
+
+% Prior work has focused mainly on lexicosyntax and intonation, and not on prosody proper (\citealp{de-ruiter2006}; \citealp{keitel2013}, but see \citealp{bogelstorreira2015}), even though infants seem to acquire the basic rhythmic properties of the prosodic signal first \citep{mehler1988, moon1993, nazzi2003}.
+
+Keitel and colleagues \citeyearpar{keitel2013} were one of the first to explore how children use linguistic cues to predict upcoming turn structure. They asked 6-, 12-, 24-, and 36-month-old infants, and adult participants to watch short videos of conversation and tracked their eye movements at points of speaker change. They showed their participants two types of videos---one normal and one with flattened pitch---to test the role of intonation in participants' anticipatory predictions about upcoming speech. Comparing children's anticipatory gaze frequency to a random baseline, they found that only 36-month-olds and adults made anticipatory gaze switches more often than expected by chance, and that only 36-month-olds were affected by flattened intonation contours. This finding led Keitel and colleagues to conclude that children's ability to predict upcoming turn structure relies on their ability to comprehend the stimuli lexicosemantically. They also suggest that intonation might play a secondary role in turn prediction, but only after children acquire more sophisticated, adult-like language comprehension skills (also see \citealp{keitel2015}).
+
+Although the Keitel et al. \citeyearpar{keitel2013} study constitutes a substantial advance over previous work in this domain, it has some limitations. Because these limitations directly inform our own study design, we review them in some detail. First, their estimates of baseline gaze frequency (``random'' in their terminology) were not random. Instead, they used gaze switches during ongoing speech as a baseline. But ongoing speech is the period in which switching is least likely to occur \citep{hirvenkari2013}---their baseline thus maximizes the chance of finding a difference in gaze frequency at turn transitions compared to the baseline. A more conservative baseline would compare participants' looking behavior at turn transitions to their looking behavior during randomly selected windows of time throughout the stimulus, including turn transitions. We follow this conservative approach in the current study.
+
+Second, the conversation stimuli \citet{keitel2013} used were somewhat unusual. The average gap between turns was 900 msec, a duration much longer than typical adult timing, which averages around 200 msec \citep{stivers2009}. The speakers in the videos were also asked to minimize their movements while performing scripted, adult-directed conversation, which would have created a somewhat unnatural interaction. Additionally, to produce more naturalistic conversation, it would have been ideal to localize the sound sources for the two voices in the video (i.e., to have the voices come out of separate left and right speakers). But both voices were recorded and played back on the same audio channel, which may have made it difficult to distinguish the two talkers. Again, we attempt to address these issues in our current study. Despite these minor methodological drawbacks, the Keitel et al. \citeyearpar{keitel2013} study still demonstrates interesting age-based differences in children's predictions about upcoming turn structure. Our current work takes these findings as a starting point.\footnote{But also see \citet{casillas2012, casillas2013}.}
+
+
+\subsection*{The current study}
+
+Our goal in the current study is to find out when children begin to make predictions about upcoming turn structure and to understand how their predictions are affected by linguistic cues to turn taking across development. We present two experiments in which we measured children's anticipatory gaze to responders while they watched conversation videos with natural (people speaking English vs. non-English; Experiment 1) and non-natural (puppets with phonetically manipulated speech; Experiment 2) control over the presence of lexical and prosodic cues. We tested children across a wide range of ages (Experiment 1: 3--5 years; Experiment 2: 1--6 years), with adult control participants in each experiment. We additionally tested for the use of one non-verbal cue: inter-turn silence.
+
+We highlight four primary findings: first, although children and adults use linguistic cues to make predictions about upcoming turn structure, they do so primarily to predict speaker transitions after questions (a ``speech act'' effect). This intriguing effect, which has not been reported previously, suggests that participants track unfolding speech for cues to upcoming speaker change, which may affect how they use linguistic cues more generally for anticipatory processing in conversation. Second, we find that children make more predictions than expected by chance starting at age two, but that this effect is small at first, and continues to improve through age six, along with children's use of linguistic cues to anticipate answers after question turns. Third, children and adults often used inter-turn silence (a non-verbal cue to turn structure) to make more predictive gaze switches to the responder, suggesting that non-verbal cues are useful for predicting turn structure early on and continue to be important in adulthood. Finally, we find no evidence for an early prosodic advantage in children's anticipations and, further, no evidence that lexical cues alone are comparable to the full linguistic signal in aiding children's predictions (as is proposed for adults; \citealp{de-ruiter2006}). Anticipation is strongest for stimuli with the full range of linguistic cues. Our findings support an account in which turn prediction emerges in infancy and becomes integrated with online linguistic processing gradually, possibly because of children's increased linguistic knowledge and speed of processing with development.
+
+\section*{Experiment 1}
+\label{sec:exp1}
+
+We recorded participants' eye movements as they watched six short videos of two-person (dyadic) conversation that were interspersed with attention-getting filler videos. Each conversation video featured an improvised discourse in one of five languages (English, German, Hebrew, Japanese, and Korean). Participants saw two videos in English and one in every other language. The participants, all native English speakers, were only expected to understand the two videos in English. We showed participants non-English videos to limit their access to lexical information while maintaining their access to other cues to turn boundaries (e.g., non-English prosody, gaze, in-breaths, phrase final lengthening). Using this method, we analyzed children and adult's anticipatory looks from the current speaker to the upcoming speaker at points of turn transition in English and non-English videos.
+
+\subsection*{Methods}
+\label{sec:methods1}
+
+\subsubsection*{Participants}
+
+We recruited 74 children ages 3;0--5;11 and 11 undergraduate adults to participate in the experiment. We recruited adult participants through the Stanford University Psychology participant database. Adult participants were either paid or received course credit for their time. Our child sample included 19 three-year-olds, 32 four-year-olds, and 23 five-year-olds, all enrolled in a local nursery school and all of whom volunteered their time. All participants were native English speakers. Approximately one-third (N$=$25) of the children's parents and teachers reported that their child regularly heard a second (and sometimes third or further) language, but only one child frequently heard a language that was used in our non-English video stimuli, and we excluded his data from the analyses.\footnote{Multilingual children may make predictions about upcoming turn structure differently from their monolingual peers due to their more varied experiences with linguistic cues to turn taking. We are unable to test this hypothesis here due to the variability in multilingual language input and the diverse set of languages being learned in our sample. The same applies to Experiment 2.} None of the adult participants reported fluency in a second language.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{figures/FIG-FL-stim.png}
+\end{center}
+\caption{Example frame from a conversation video used in Experiment 1.}
+\label{fig:speakers}
+\end{figure}
+
+\subsubsection*{Materials}
+
+\textit{Video recordings}. We recorded pairs of talkers while they conversed in a sound-attenuated booth (Figure \ref{fig:speakers}). Each talker was a native speaker of the language being recorded, and each talker pair was male-female. Using a Marantz PMD 660 solid state field recorder, we captured audio from two lapel microphones, one attached to each participant, while simultaneously recording video from the built-in camera of a MacBook laptop computer. The talkers were volunteers and were acquainted with their recording partner ahead of time.
+
+Each recording session began with a 20-minute warm-up period of spontaneous conversation during which the pair talked for five minutes on four topics (favorite foods, entertainment, hometown layout, and pets). Then we asked talkers to choose a new topic---one relevant to young children (e.g., riding a bike, eating breakfast)---and to improvise a dialogue on that topic. We asked them to speak as if they were on a children's television show in order to elicit child-friendly speech toward each other. We recorded until the talkers achieved at least 30 seconds of uninterrupted discourse with enthusiastic, child-friendly speech. Most talker pairs took less than five minutes to complete the task, usually by agreeing on a rough script at the start. We encouraged talkers to ask at least a few questions to each other during the improvisation. The resulting conversations were therefore not entirely spontaneous, but were as close as possible while still remaining child-oriented in topic, prosodic pattern, and lexicosyntactic construction.\footnote{All of the non-English talkers were fluent in English as a second language, and some fluently spoke three or more languages. We chose male-female pairs as a natural way of creating contrast between the two talker voices.}
+
+After recording, we combined the audio and video recordings by hand, and cropped each one to the (approximate) 30-second interval with the most turn activity. Because we recorded the conversations in stereo, the male and female voices came out of separate speakers during video playback. This gave each voice in the videos a localized source (from the left or right loudspeaker). We coded each turn transition in the videos for language condition (English vs. non-English), inter-turn gap duration (in milliseconds), and transition type (question vs. non-question). Each non-English turn was coded as a question or non-question from a monolingual English-speaker's perspective, i.e., turns that ``sound like'' questions and turns that do not. We asked five native American English speakers to listen to the audio recording for each non-English turn and judge whether it sounded like a question. We marked non-English turns as questions when at least 4 of the 5 listeners (80\%) said that the turn ``sounded like a question''. Thus, ``question'' cues in the non-English condition only \textit{resembled} native English question cues, and were therefore likely harder to identify than cues to questionhood in the English condition. However, since participants did not speak the non-English languages and would only ever treat ``question-sounding'' turns as questions, we proceeded with these analyses to see how pervasive question effects were---could they show up even without lexical access? If participants primarily rely on prosodic cues to question turns, it's possible that even non-English prosody can elicit anticipatory gaze switches for question-like turns.
+
+Because the conversational stimuli were recorded semi-spontaneously, the duration of turn transitions and the number of speaker transitions in each video was variable. We measured the duration of each turn transition from the audio recording associated with each video. We excluded turn transitions longer than 550 msec and shorter than 90 msec from analysis, additionally excluding overlapped transitions.\footnote{Overlap occurs when a responder begins a new turn before the current turn is finished. When overlap occurs, observers cannot switch their gaze in anticipation of the response because the response began earlier than expected. Participants expect conversations to proceed with ``one speaker at a time'' \citep{sacks1974}. They would therefore still be fixated on the prior speaker when the overlap started, and would have to switch their gaze \textit{reactively} to the responder.} This left approximately equal numbers of turn transitions available for analysis in the English (N$=$20) and non-English (N$=$16) videos. On average, the inter-turn gaps for English videos (mean$=$318, median$=$302, stdev$=$112 msec) were slightly longer than for non-English videos (mean$=$286, median$=$251, stdev$=$122 msec).
+
+Questions made up exactly half of the turn transitions in the English (N$=$10) and non-English (N$=$8) videos. In the English videos, inter-turn gaps were slightly shorter for questions (mean$=$310, median$=$293, stdev$=$112 msec) than non-questions (mean$=$325, median$=$315, stdev$=$118 msec). Non-English videos did not show a large difference in transition time for questions (mean$=$270, median$=$257, stdev$=$116 msec) and non-questions (mean$=$302, median$=$252, stdev$=$134 msec).
+
+\subsubsection*{Procedure}
+Participants sat in front of an SMI 120Hz corneal reflection eye-tracker mounted beneath a large flatscreen display. The display and eye-tracker were secured to a table with an ergonomic arm that allowed the experimenter to position the whole apparatus at a comfortable height and approximately 60 cm from the viewer. We placed stereo speakers on the table, to the left and right of the display.
+
+Before the experiment started, we warned adult participants that they would see videos in several languages and that, though they weren't expected to understand the content of non-English videos, we \textit{would} ask them to answer general, non-language-based questions about the conversations. Then after each video we asked participants one of the following randomly-assigned questions: ``Which speaker talked more?'', ``Which speaker asked the most questions?'', ``Which speaker seemed more friendly?'', and ``Did the speakers' level of enthusiasm shift during the conversation?'' We also asked if the participants could understand any of what was said after each video. The participants responded verbally while an experimenter noted their responses.
+
+Children were less inclined to simply sit and watch videos of conversation in languages they didn't speak, so we used a different procedure to keep them engaged: the experimenter started each session by asking the child about what languages he or she could speak, and about what other languages he or she had heard of. Then the experimenter expressed her own enthusiasm for learning about new languages, and invited the child to watch a video about ``new and different languages'' together. If the child agreed to watch, the experimenter and the child sat together in front of the display, with the child centered in front of the tracker and the experimenter off to the side. Each conversation video was preceded and followed by a 15--30 second attention-getting filler video (e.g., running puppies, singing muppets, flying bugs). If the child began to look bored, the experimenter would talk during the fillers, either commenting on the previous conversation (``That was a neat language!'') or giving the language name for the next conversation (``This next one is called Hebrew. Let's see what it's like.'') The experimenter's comments reinforced the video-watching as a joint task.
+
+All participants (child and adult) completed a five-point calibration routine before the first video started. We used a dancing Elmo for the children's calibration image. During the experiment, participants watched all six 30-second conversation videos. The first and last conversations were in American English and the intervening conversations were Hebrew, Japanese, German, and Korean. The presentation order of the non-English videos was shuffled into four lists, which participants were assigned to randomly. The entire experiment, including instructions, took 10--15 minutes.
+
+\subsubsection*{Data preparation and coding}
+\label{sec:algorithm}
+
+To determine whether participants predicted upcoming turn transitions, we needed to define a set of criteria for what counted as an anticipatory gaze shift. Prior work using similar experimental procedures has found that adults and children make anticipatory gaze shifts to upcoming talkers within a wide time frame; the earliest shifts occur before the end of the prior turn, and the latest occur after the onset of the response turn, with most shifts occurring in the inter-turn gap (Keitel et al., 2013; Hirvenkari, 2013; Tice and Henetz, \citeyear{TiceHenetz11}). Following prior work, we measured how often our participants shifted their gaze from the prior to the upcoming speaker \textit{before} the shift in gaze could have been initiated in reaction to the onset of the speaker's response. In doing so, we assumed that it takes participants 200 msec to plan an eye movement, following standards from adult anticipatory processing studies \citep[e.g., ][]{kamide2003}.
+
+We checked each participant's gaze at each turn transition for three characteristics (Figure \ref{fig:criterion}): (1) that the participant fixated on the prior speaker for at least 100 msec at the end of the prior turn, (2) that immediately thereafter the participant switched to fixate on the upcoming speaker for at least 100 ms, and (3) that the switch in gaze was initiated within the first 200 msec of the response turn, or earlier. These criteria guarantee that we only counted gaze shifts when: (1) participants were tracking the previous speaker, (2) switched their gaze to track the upcoming speaker, and (3) did so before they could have simply reacted to the onset of speech in the response. Under the assumption that it takes at least 200 msec to plan an eye movement, gaze shifts initiated within the first 200 msec of the response (or earlier) were planned \textit{before} participants could react to the onset of speech itself.
+
+As mentioned, most anticipatory switches happen in the inter-turn gap, but we also allowed anticipatory gaze switches that occurred in the final syllables of the prior turn. Early switches are consistent with the distribution of responses in explicit turn-boundary prediction tasks. For example, in a button press task, adult participants anticipated turn ends approximately 200 msec in advance of the turn's end, and anticipatory responses to pitch-flattened stimuli came even earlier \citep{de-ruiter2006}. We therefore allowed switches to occur as early as 200 msec before the end of the prior turn. Again, because it takes 200 msec to plan an eye movement, we counted anticipatory switches, at the latest, 200 msec after the onset of speech. Therefore, for very early and very late switches, our requirement of 100 msec of fixation on each speaker would sometimes extend outside of the gaze launch window boundaries (200 msec before and after the inter-turn gap; dark gray boxes Figure \ref{fig:criterion}). The maximally available fixation window was therefore 100 msec before and after the earliest and latest possible switch point (300 msec before and after the inter-turn gap). We did not count switches made during the fixation window as anticipatory. We \textit{did} count switches made during the inter-turn gap. The period of time from the beginning of the possible fixation window on the prior speaker to the end of the possible fixation window on the responder was our total analysis window (300 msec $+$ the inter-turn gap $+$ 300 msec).
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/FIG-AnticipCriteria.png}
+\end{center}
+\caption{Schematic summary of the criteria for anticipatory gaze shifts from speaker A to speaker B during a turn transition. FIX = hypothetical fixation on speaker A or speaker B; dashed lines = hypothetical saccadic time.}
+\label{fig:criterion}
+\end{figure}
+
+\paragraph{Predictions}
+We expected participants to show greater anticipation in the English videos than in the non-English videos because of their increased access to linguistic information in English. We also predicted that anticipation would be greater following questions compared to non-questions; questions have early cues to upcoming turn transition (e.g., \textit{wh-}words, subject-auxiliary inversion) and also make a next response immediately relevant. Our third prediction was that anticipatory looks would increase with development, along with children's increased linguistic competence and speed of processing. Finally, we predicted that transitions with longer inter-turn gaps would show greater anticipation because longer gaps provide (a) more time to make a gaze switch and (b) are themselves a cue to possible upcoming speaker switch.
+
+\subsection*{Results}
+\label{sec:results1}
+
+Participants looked at the screen most of the time during video playback (81\% and 91\% on average for children and adults, respectively). They primarily kept their eyes on the person who was currently speaking in both English and non-English videos: they gazed at the current speaker between 38\% and 63\% of the time, looking back at the addressee between 15\% and 20\% of the time (Table \ref{tab:e1_look}). Even three-year-olds looked more at the current speaker than anything else, whether or not the videos were in a language they could understand. Children looked at the current speaker less than adults did during the non-English videos. Despite this, their looks to the addressee did not increase substantially in the non-English videos, indicating that their looks away were probably related to boredom rather than confusion about ongoing turn structure. Overall, participants' pattern of gaze to current speakers demonstrated that they performed basic turn tracking during the videos, regardless of language. Figure \ref{fig:E1-randvsreal} shows participants' anticipatory gaze rates across age, language condition, and transition type.
+
+\linespread{1}
+\begin{table}[t]
+\begin{center}
+  \begin{tabular}{llcccc}
+    \hline
+    Age group & Condition & Speaker & Addressee & Other onscreen & Offscreen\\
+    \hline
+    3 & English & 0.61 & 0.16 & 0.14 & 0.08 \\
+    4 & English & 0.60 & 0.15 & 0.11 & 0.13 \\
+    5 & English & 0.57 & 0.15 & 0.16 & 0.12 \\
+    Adult & English & 0.63 & 0.16 & 0.16 & 0.05 \\
+    3 & Non-English & 0.38 & 0.17 & 0.20 & 0.25 \\
+    4 & Non-English & 0.43 & 0.19 & 0.21 & 0.18 \\
+    5 & Non-English & 0.40 & 0.16 & 0.26 & 0.18 \\
+    Adult & Non-English & 0.58 & 0.20 & 0.16 & 0.07 \\
+%   Overall & & 0.49 & 0.17 & 0.18 & 0.16 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \caption{Average proportion of gaze to the current speaker and addressee during periods of talk across ages in Experiment 1.}
+\label{tab:e1_look}
+\end{table}
+%\linespread{2}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=1\textwidth]{figures/E1-samples-by-lang-groups-trans-types.png}
+\end{center}
+\caption{Anticipatory gaze rates across language condition and transition type for the real and randomly permuted datasets. Vertical bars represent 95\% confidence intervals.}
+\label{fig:E1-randvsreal}
+\end{figure}
+
+\linespread{1}
+\begin{table}[h!]
+\begin{small}
+\begin{center}
+  \begin{tabular}{lcccl}
+  \textbf{\textit{Children}} &&&& \\
+    \hline
+			           &  Estimate & Std. Error & \textit{z} value & Pr($>$$|$\textit{z}$|$) \\
+    \hline
+    (Intercept)   													& -0.604	& 1.242	& -0.486  & 0.627		\\
+    Age             												& -0.002	& 0.261	& -0.009  & 0.993		\\
+    LgCond$=$\textit{non-English} 						& -3.65		& 1.16	& -3.146  & 0.002 **	\\
+    TType$=$\textit{non-Question}      					& -2.95		& 1.13	& -2.61	  & 0.009 **	\\
+    GapDuration      											&  2.247	& 3.194	&  0.704  & 0.482		\\
+    Age*LgCond$=$\textit{non-English} 					&  0.5		& 0.212	&  2.353  & 0.019 *	\\
+    Age*TType$=$\textit{non-Question} 					&  0.009	& 0.196	&  0.044  & 0.965		\\
+    LgCond$=$\textit{non-English}*						&  2.692	& 1.347	&  1.999  & 0.046 *	\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Age*GapDuration												& -0.577	& 0.627	& -0.921  & 0.357		\\
+    LgCond$=$\textit{non-English}*GapDuration		&  1.143	& 2.287	&  0.5	  & 0.617		\\
+    TType$=$\textit{non-Question}*GapDuration			&  5.519	& 2.282	&  2.418  & 0.016 *	\\
+    Age*LgCond$=$\textit{non-English}*					& -0.433	& 0.304	& -1.426  & 0.154		\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    \hline
+  &&&& \\
+  \textbf{\textit{Adults}} &&&& \\
+    \hline
+           &  Estimate & Std. Error & \textit{z} value & Pr($>$$|$\textit{z}$|$) \\
+    \hline
+    (Intercept)														& -0.584   & 0.64  & -0.913 & 0.361			\\
+    LgCond$=$\textit{non-English}							& -0.059   & 0.751 & -0.079 & 0.937			\\
+    TType$=$\textit{non-Question}							& -3.298   & 0.933 & -3.536 & 0.0004 ***	\\
+    GapDuration														&  0.132   & 1.766 &  0.075 & 0.941			\\
+    LgCond$=$\textit{non-English}*						&  1.234   & 0.629 &  1.961 & 0.0498 *		\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    LgCond$=$\textit{non-English}*GapDuration		& -1.519   & 2.192 & -0.693 & 0.488			\\
+    TType$=$\textit{non-Question}*GapDuration			&  7.116   & 2.195 &  3.241 & 0.001 **		\\
+    \hline
+  \end{tabular}
+\end{center}
+  \end{small}
+  \caption{Model output for participants' anticipatory gaze switches in Experiment 1.}
+\label{tab:E1-models}
+\end{table}
+%\linespread{2}
+
+\subsubsection*{Statistical models}
+\label{sec:models1}
+
+We identified anticipatory gaze switches for all 36 usable turn transitions, based on the criteria outlined above, and analyzed them for effects of language, transition type, and age with two mixed-effects logistic regressions \citep{lme4, R}. We built one model each for children and adults. We modeled children and adults separately because effects of age are only pertinent to the children's data.
+
+The child model included condition (English vs. non-English)\footnote{Because each non-English language was represented by a single stimulus, we cannot treat individual languages as factors. Gaze behavior might be best for non-native languages that have the most structural overlap with participants' native language: English speakers can make predictions about the strength of upcoming Swedish prosodic boundaries nearly as well as Swedish speakers do, but Chinese speakers are at a disadvantage in the same task \citep{carlson2005}. We would need multiple items from each of the languages to check for similarity effects of specific linguistic features.}, transition type (question vs. non-question), age (3, 4, 5; numeric; intercept as age=0), and duration of the inter-turn gap (seconds, e.g., 0.441) as predictors, with two-way interactions between gap duration and the other simple fixed effects (language condition, transition type, and age) and a three-way interaction between language condition, transition type, and age.  We included the two-way interactions with gap duration in case the effect of inter-turn silence changes with age or linguistic cueing (e.g., if children older children rely less on silence as a cue).\footnote{We test these two-way interactions with gap duration in all of the models reported in this paper. Higher-order interactions with gap duration usually resulted in model non-convergence due to distributional sparsity when three or more predictor values were considered, so we did not include them.} We also included random effects of item (turn transition) and participant, with maximal random slopes of condition, transition type, and their interaction for participants \citep{barr2013}.\footnote{The models we report in this paper are all qualitatively unchanged by the exclusion of their random slopes. We have left the random slopes in because of minor participant-level variation in the predictors modeled.}
+
+The adult model included fixed effects of condition, transition type, and their interaction, plus two-way interactions between gap duration and the other simple fixed effects (language condition and transition type, as in the child model). The adult model also included random effects of item and participant with maximal random slopes of condition, transition type, and their interaction for participant.
+
+Children's anticipatory gaze switches showed effects of language condition (\textit{$\beta$}=-3.65, \textit{SE}=1.16, \textit{z}=-3.15, \textit{p}$<$.01) and transition type (\textit{$\beta$}=-2.95, \textit{SE}=1.13, \textit{z}=-2.61, \textit{p}$<$.01) with additional effects of an age-by-language condition interaction (\textit{$\beta$}=0.5, \textit{SE}=0.212, \textit{z}=2.35, \textit{p}$<$.05), a language condition-by-transition type interaction (\textit{$\beta$}=2.69, \textit{SE}=1.35, \textit{z}=1.99, \textit{p}$<$.05), and a transition type-gap duration interaction (\textit{$\beta$}=5.52, \textit{SE}=2.28, \textit{z}=2.42, \textit{p}$<$.05). There were no significant effects of age or gap duration alone (\textit{$\beta$}=-0.002, \textit{SE}=0.26, \textit{z}=-0.009, \textit{p}$=$.99 and \textit{$\beta$}=2.25, \textit{SE}=3.19, \textit{z}=0.7, \textit{p}$=$.48, respectively).
+
+Adults' anticipatory gaze switches showed an effect of transition type (\textit{$\beta$}=-3.3, \textit{SE}=0.93, \textit{z}=-3.54, \textit{p}$<$.001) and significant interactions between language condition and transition type (\textit{$\beta$}=1.23, \textit{SE}=0.63, \textit{z}=1.96, \textit{p}$<$.05) and transition type and gap duration (\textit{$\beta$}=7.12, \textit{SE}=2.2, \textit{z}=3.24, \textit{p}$<$.01). There were no significant effects of language condition or gap duration alone (\textit{$\beta$}=-0.06, \textit{SE}=0.75, \textit{z}=-0.08, \textit{p}$=$.94 and \textit{$\beta$}=0.13, \textit{SE}=1.77, \textit{z}=0.08, \textit{p}$=$.94, respectively).
+
+
+\subsubsection*{Random baseline comparison}
+\label{sec:randbaseline1}
+
+Our primary analysis (above) makes the assumption that participants' eye movements generally follow the turn structure of the stimulus, i.e., that participants track the current speaker and switch their gaze to the upcoming speaker near turn transitions. As just described, based on this assumption, we used linear mixed effects regressions to see how anticipatory looking is affected by aspects of participant group (e.g., age) and stimulus (e.g., transition type, language condition). But what if the assumption that participants generally track turn structure were wrong? Could these results have emerged if participants' eye movements were \textit{not} linked to turn structure? For example, if participants were randomly looking back and forth between the two speakers, we might still find some anticipatory switching by chance. To test whether our primary results (the regression output above) could have arisen from random switching we conducted a secondary analysis comparing participants' anticipatory gaze at real and randomly shuffled points of turn transition.
+
+We conducted this analysis by running the same regression models on participants' eye-tracking data, only this time calculating their anticipatory gaze switches with respect to randomly permuted turn transition windows. This process involved: (1) randomizing the order and temporal placement of the analysis windows within each stimulus (Figure \ref{fig:shuffling}; ``analysis window'' is as shown in Figure \ref{fig:criterion}) to randomly redistribute the analysis windows across the eye-tracking signal, (2) re-running each participant's eye tracking data through switch identification (described above) on each of the randomly permuted analysis windows, and (3) modeling the anticipatory switches from the randomly permuted data (our random baseline dataset) with the same statistical models we used for the original dataset (Table \ref{tab:E1-models}). Importantly, although the onset time of each transition was shuffled within the eye-tracking signal, the other intrinsic properties of each turn transition (e.g., prior speaker identity, transition type, gap duration, language condition, etc.) stayed constant across each permutation.
+
+\begin{figure}[t!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/FIG-ShuffledWindows.png}
+\end{center}
+\caption{Example of analysis window permutations for a stimulus with five turn transitions. The windows included $\pm$300 msec around the inter-turn gap.}
+\label{fig:shuffling}
+\end{figure}
+
+The random shuffling procedure de-links participants' gaze data from the turn structure in the original stimulus, thereby allowing us to compare turn-related (original) and non-turn-related (randomly permuted) looking behavior using the same eye movement data. We created 5,000 permutations of the original turn transitions, thereby creating 5,000 anticipatory gaze datasets with randomly de-linked gaze data. Because the randomly shuffled turn transitions could occur anywhere in the stimulus (so long as they didn't overlap each other within a single iteration), the resulting turn-transition windows collectively covered the entire stimulus---during speech and silence, during speaker change and speaker continuation, and during all turn transitions in the stimulus, even those excluded in the original analyses (e.g., because they were overlapped). This technique crucially differs from that used by Keitel and colleagues (2013, 2015), which tests anticipatory gaze at turn transitions against anticipatory gaze during speech. Pooled together, our 5,000 anticipatory gaze datasets yielded an average anticipatory switch rate for each participant over all possible starting points in the stimuli: a random baseline. Using this technique we compared participants' anticipatory switches at turn transition windows to their anticipatory switches over the stimulus as a whole. If participants looked randomly back and forth between the speakers, we would have seen similar patterns in both cases.
+
+Rather than simply comparing participants' overall anticipatory switch rates with real and random transition windows, we estimated the likelihood that each of the predictor effects in the original data (e.g., the effect of language condition; Table \ref{tab:E1-models}) could have arisen with random gaze switching: we ran identical statistical models on the real and randomly permuted data sets. This tells us not only whether participants' switches were above chance, but whether the specific underlying effects of their anticipatory gaze patterns (e.g., the effect of language condition) were above that expected by chance. Because these analyses are complex and secondary to the main results, we report their full details in \ref{sec:permutation}.
+
+Our baseline analyses revealed that none of the significant predictors from models of the original, turn-related data can be explained by random looking. For the children's data, the original \textit{z}-values for language condition, transition type, the age-language condition interaction, the transition type-gap duration interaction, and the language condition-transition type interaction were all greater than 95\% of \textit{z}-values from models of the randomly permuted data (99.3\%, 99.1\%, 98.9\%, 97\%, and 96\%, respectively, all \textit{p}$<$.05). Similarly, the adults' data showed significant differentiation from the randomly permuted data for all three significant predictors from the real transition dataset. Transition type, the interaction between transition type and gap duration, and the interaction between language condition and transition type showed \textit{z}-values that exceeded 100\%, 99.8\%, and 95\% of random \textit{z}-values, respectively (all \textit{p}$\leq$.05). See \ref{sec:permutation} for more information on each predictor's random permutation distribution.\footnote{This baseline analysis tests ``random looking'' against ''turn-driven looking'', but it does not test subtypes of turn-driven looking. For example, children might switch their gaze from the current speaker to the addressee out of boredom with the ongoing speech rather than from active anticipation of an upcoming response. We address this hypothesis about ``boredom'' gaze switches vs. ``turn-transition'' gaze switches in \ref{sec:boredlooks}}
+
+
+\subsubsection*{Developmental effects}
+
+The models reported above revealed a significant interaction of age and language condition (Table \ref{tab:E1-models}) that was unlikely be due to random gaze switching (Figure \ref{fig:E1-randvsreal}). To further explore this effect, we compared the effect of language condition across age groups: using the permuted datasets described above, we extracted the average difference score for the two language conditions (English minus non-English) for each participant, computing an overall average for each random permutation of the data. Then, within each permutation, we made pairwise comparisons of the average difference scores across participant age groups. This process yielded a distribution of random permutation-based difference scores that we could then compare to the difference score in the actual data. Details are given in \ref{sec:pairwisedev}.
+
+These analyses revealed that, while 3- and 4-year olds showed similarly-sized effects of language condition, 5-year-olds had a significantly smaller effect of language condition, compared to both younger age groups. The difference in the language condition effect between 5-year-olds and 3-year-olds was greater than would be expected by chance (99.52\% of the randomly permuted data sets; \textit{p}$<$.01). Similarly, the difference in the language condition effect between 5-year-olds and 4-year-olds was greater than would be expected by chance (99.96\% of the data sets; \textit{p}$<$.001). See Figure \ref{fig:E1-lgageinteraction} for each difference score distribution.
+
+When does spontaneous turn prediction emerge developmentally? We tested whether the youngest age group (3-year-olds) already exceeded chance in their anticipatory gaze switches by comparing children's real gaze rates to the random baseline in the English condition with two-tailed \textit{t}-tests. We used the English condition because we are most interested in finding out when children begin to make spontaneous turn predictions for natural speech. We found that three-year-olds made anticipatory gaze switches significantly above chance, when all transitions were considered (\textit{t}(22.824)$=$-4.147, \textit{p}$<$.001) as well as for question transitions alone (\textit{t}(21.677)$=$-5.268, \textit{p}$<$.001).
+
+\subsection*{Discussion}
+\label{sec:discussion1}
+
+Children and adults spontaneously tracked the turn structure of the conversations, making anticipatory gaze switches at an above-chance rate across all ages and conditions. Children's anticipatory gaze rates were affected by language condition, transition type, age, and gap duration (Table \ref{tab:E1-models}), none of which could be explained by a baseline of random gaze switching (\ref{sec:permutation}; Figure \ref{fig:E1-ChiTs}). These data show a number of important features that bear on our questions of interest.
+
+First, both adults' and children's anticipations were strongly affected by transition type. Both groups made more anticipatory switches after hearing questions, compared to non-questions, especially for the English stimuli compared to the non-English stimuli. Overall, participants made few anticipatory switches after non-questions, even in the English videos when they had full linguistic access. Prior work using online, metalinguistic tasks has shown that participants can use linguistic cues to accurately predict upcoming turn ends \citep{bogelstorreira2015, magyari2012, de-ruiter2006}. The current results add a new dimension to our understanding of how listeners make predictions about turn ends: both children and adults spontaneously monitor the linguistic structure of unfolding turns for cues to imminent responses.
+
+Second, children made more anticipatory switches overall in English videos, compared to non-English videos. This effect suggests that linguistic access is important for children's ability to anticipate upcoming turn structure, consistent with prior work on turn-end prediction in adults (\citealp{de-ruiter2006}; \citealp{magyari2012}) and children \citep{keitel2013}.
+
+Third, we saw that older children made anticipatory switches more reliably than younger children, but only in the non-English videos. In the English videos, children anticipated well at all ages, especially after hearing questions. This interaction between age and language condition suggests that the 5-year-olds were able to leverage anticipatory cues in the non-English videos in a way that 3- and 4-year-olds could not, possibly by shifting more attention to the non-English prosodic or non-verbal cues. Prior work on children's turn-structure anticipation has proposed that children's turn-end predictions rely primarily on lexicosemantic structure (and not, e.g., prosody) as they get older \citep{keitel2013}. The current results suggest more flexibility in children's predictions; when they do not have access to lexical information, older children and adults find alternative cues to turn taking behavior.
+
+Finally, children and adults made more anticipatory switches in transitions with longer inter-turn gaps, though this effect was limited to non-question turns (Table \ref{tab:E1-models}). This finding suggests that gap duration indeed serves as a cue to upcoming turn structure; while short gaps may be perceived as within-turn pauses \citep{mannel2009}, long gaps could instead be indicative of between-turn pauses (where speaker transition occurs). Participants might use long silences to retroactively assign turn boundaries and anticipate speaker switches that were otherwise not anticipated (in this case, because the preceding turn was not a question). An alternative explanation for effects of gap duration is that longer inter-turn gaps result in longer analysis windows, which gives participants more time to make an anticipatory gaze. However, if participants are generally more likely to make a switch at question transitions (as our results suggest), and if question-driven switches aren't already at ceiling when gaps are short, we would expect that longer gaps would benefit questions more than non-questions---the opposite pattern from what the data show here. We take this as evidence that inter-turn silence may be most useful when participants have limited ability to make predictions about upcoming speaker transitions.
+
+In Experiment 2, we followed up on these findings, improving on two aspects of the design: first, our language manipulation in this first experiment was too coarse to provide data regarding specific linguistic information channels (e.g., the effect of prosodic information alone). In Experiment 2, we compared lexicosyntactic and prosodic cues with phonetically altered speech and used puppets to eliminate non-verbal cues to turn taking. Second, we were not able to pinpoint the emergence of anticipatory switching because the youngest age group in our sample was already able to make anticipatory switches at above-chance rates. In Experiment 2, we explored a wider developmental range.
+
+% Adults' anticipatory gaze rates were also affected by transition type, language condition, and gap duration (Table \ref{tab:E1-models}), none of which could be easily explained by a baseline of random gaze switching (Figure \ref{fig:E1-AduTs}). Like children, adults made more anticipatory switches after hearing questions compared to non-questions, suggesting that anticipation mattered more to them when an immediate response was expected. Also like children, the advantage for questions was driven % by lexical access such that adults must have relied on lexicosyntactic cues to questionhood in picking out turns that potentially require an immediate response, though this effect was only marginally divergent from the distribution of randomly permuted data (\textit{p}$=$.053; Figure \ref{fig:E1-AduTs}). Finally, adults' anticipation rates were also affected by gap duration, but more so for questions than non-questions (Table \ref{tab:E1-models}), suggesting that adults were less likely overall to make switches at non-questions, and so did not benefit from extra time to do so.
+
+% Children and adults' predictions alike were benefited by access to lexical information (English) and speech act status (questionhood), suggesting that linguistic cues, particularly lexical ones, facilitate their spontaneous predictions about upcoming turn structure through the identification of turns with immediate responses. Children's anticipatory gaze rates for questions and non-questions in English was stable across ages and comparable to adult behavior (Figure \ref{fig:E1-randvsreal}), suggesting that they can identify questions in native stimuli with adult-like competence by age three. Although participants' ability to recognize questions was facilitated by lexical access (i.e., English vs. non-English), the prosody in the non-English videos was non-native, and so the experimental design can not conclusively show which linguistic cues children relied on in the English videos to identify question turns. Relatedly, though lexical access clearly facilitated participants' anticipatory gaze rate, it was not necessary for participants---especially adults---in order to exceed chance switching rates (Figure \ref{fig:E1-randvsreal}), suggesting that participants use non-lexical cues (e.g., prosody, non-verbal behavior) to make anticipatory eye movements at least some of the time.
+
+\section*{Experiment 2}
+\label{sec:exp2}
+
+Experiment 2 used English-only stimuli, controlled for lexical and prosodic information, eliminated non-verbal cues, and tested children from a wider age range. To tease apart the role of lexical and prosodic information, we phonetically manipulated the speech signal for pitch, syllable duration, and lexical access. By testing 1- to 6-year-olds we hoped to find the developmental onset of turn-predictive gaze. We also hoped to measure changes in the relative roles of prosody and lexicosyntax across development.
+
+Non-verbal gestural cues in Experiment 1 could have helped participants make predictions about upcoming turn structure \citep{rossano2009, stivers2010}. Since our focus here is on linguistic cues, we eliminated all gaze and gestural signals in Experiment 2 by replacing the videos of human actors with videos of puppets. Puppets are less realistic and expressive than human actors, but they create a natural context for having somewhat motionless talkers in the videos. Additionally, the prosody-controlled condition (described below) included small but global changes to syllable duration that would have required complex video manipulation or precise re-enactment with human talkers, neither of which was feasible. For these reasons, we decided to use puppet videos rather than human videos in the final stimuli. As in the first experiment, we recorded participants' eye movements as they watched six short videos of dyadic conversation, and then analyzed their anticipatory glances from the current speaker to the upcoming speaker at points of turn transition.
+
+\subsection*{Methods}
+\label{sec:methods2}
+
+\subsubsection*{Participants}
+We recruited 27 undergraduate adults and 129 children ages 1;0--6;11 to participate in our experiment. Adult participants were recruited again via the Stanford University Psychology participant database and were either paid or received course credit for their time. We recruited our child participants from the Children's Discovery Museum in San Jose, California\footnote{We ran Experiment 2 at a local children's museum because it gave us access to children with a wider range of ages. Participants were volunteers.}, targeting approximately 20 children for each of the six one-year age groups (range: 20--23). All participants were native English speakers, though some parents (N$=$27) reported that their child heard a second (and sometimes third) language at home. None of the adult participants reported fluency in a second language.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/FIG-EN-stim.png}
+\end{center}
+\caption{The six puppet pairs (and associated audio conditions). Each pair was linked to three distinct conversations from the same condition across the three experiment versions.}
+\label{fig:puppets}
+\end{figure}
+
+\subsubsection*{Materials}
+We created 18 short videos of improvised, child-friendly conversation (Figure \ref{fig:puppets}). To eliminate non-verbal cues to turn transition and to control the types of linguistic information available in the stimuli we first audio-recorded improvised conversations, then phonetically manipulated those recordings to limit the availability of prosodic and lexical information, and finally recorded video to accompany the manipulated audio, featuring puppets as talkers.
+
+\textit{Audio recordings}. The recording session was set up in the same way as the first experiment, but with a shorter warm up period (5--10 minutes) and a pre-determined topic for the child-friendly improvisation (`riding bikes', `pets', `breakfast', `birthday cake', `rainy days', or `the library'). All of the talkers were native English speakers, and were recorded in male-female pairs. As before, we asked talkers to speak ``as if they were on a children's television show'' and to ask at least a few questions during the improvisation. We cut each audio recording down to the (approximate) 20-second interval with the most turn activity. The 20-second clips were then phonetically manipulated and used in the final video stimuli.
+
+\textit{Audio Manipulation}. We created four versions of each audio conversation: \textit{normal}, \textit{words only}, \textit{prosody only}, and \textit{no speech}. That is, one version with a full linguistic signal (\textit{normal}), and three with incomplete linguistic information (hereafter ``partial cue'' conditions). The \textit{normal} conversations were the unmanipulated, original audio clips.
+
+The \textit{words only} conversations were manipulated to have robot-like speech: we flattened the intonation contours to each talker's average pitch (F$_{0}$) and we reset the duration of every nucleus and coda to each talker's average nucleus and coda duration.\footnote{We excluded hyper-lengthened words like [w\textipa{aU:}] `woooow!'.} We made duration and pitch manipulations using PSOLA resynthesis in Praat \citep{Praat}. Thus, the \textit{words only} versions of the conversations had no pitch or durational cues to upcoming turn boundaries, but did have intact lexicosyntactic cues (and some residual phonetic correlates of prosody, e.g., intensity).
+
+We created the \textit{prosody only} conversations by low-pass filtering the original recording at 500 Hz with a 50 Hz Hanning window (following de Ruiter et al., 2006). This manipulation creates a ``muffled speech'' effect because low-pass filtering removes most of the phonetic information used to distinguish between phonemes. The \textit{prosody only} versions of the conversations lacked lexical information, but retained their intonational and rhythmic cues to upcoming turn boundaries.
+
+The \textit{no speech} condition served as a non-linguistic baseline. For this condition, we replaced the original audio clip for the conversation with multi-talker babble: we overlaid multiple child-oriented conversations (excluding the original one), and then cropped the result to the duration of the original conversation clip. Thus, the \textit{no speech} conversation lacked any linguistic information to upcoming turn boundaries---the only cue to turn taking was the opening and closing of the puppets' mouths.
+
+Finally, because low-pass filtering removes significant acoustic energy, the \textit{prosody only} conversations were much quieter than the other three conditions. Our last step was to downscale the intensity of the audio tracks in the three other conditions to match the volume of the \textit{prosody only} clips. We referred to the conditions as ``normal'', ``robot'', ``mermaid'', and ``birthday party'' speech when interacting with participants.
+
+\textit{Video recordings}. We created puppet video recordings to match the manipulated 20-second audio clips. The puppets were minimally expressive; the puppeteer could only control the opening and closing of their mouths, and the puppets' heads, eyes, arms, and bodies stayed still. Puppets were positioned side-by-side, looking in the same direction to eliminate shared gaze as a cue to turn structure \citep{thorgrimsson2015}. We took care to match the puppets' mouth movements to the syllable onsets as closely as possible, specifically avoiding mouth movement before the onset of a turn. We then added the manipulated audio clips to the puppet video recordings by hand with video editing software.
+
+We used three pairs of puppets for the \textit{normal} condition---`red', `blue' and `yellow'---and one pair of puppets for each partial cue condition: `robots', `merpeople', and `party-goers' (Figure \ref{fig:puppets}). We randomly assigned half of the conversation topics (`birthday cake', `pets', and `breakfast') to the \textit{normal} condition, and half to the partial cue conditions (`riding bikes', `rainy days', and `the library'). We then created three versions of the experiment, so that each of the six puppet pairs was associated with three different conversation topics across the different versions of the experiment (18 videos in total; 6 videos per experiment version). We ensured that the position of the talkers (left and right) was counterbalanced in each version by flipping the video and audio channels as needed.
+
+As before, the duration of turn transitions and the number of speaker changes across videos was variable because the conversations were recorded semi-spontaneously. We measured turn transitions from the audio signal of the \textit{normal}, \textit{words only}, and \textit{prosody only} conditions. There was no audio from the original conversation in the \textit{no speech} condition videos, so we measured turn transitions from puppets' mouth movements in the video signal, using ELAN video annotation software \citep{ELAN}.
+
+There were 85 turn transitions for analysis after excluding transitions longer than 550 msec and shorter than 90 msec. The remaining turn transitions had more questions than non-questions (N$=$47 and N$=$38, respectively), with transitions distributed somewhat evenly across conditions, keeping in mind that there were three \textit{normal} videos and only one video for each partial cue condition in each experiment version: \textit{normal} (N$=$36), \textit{words only} (N$=$13), \textit{prosody only} (N$=$17), and \textit{no speech} (N$=$19). Inter-turn gaps for questions (mean$=$366, median$=$438, stdev$=$138 msec) were longer than those for non-questions (mean$=$305, median$=$325, stdev$=$94 msec) on average, but gap duration was overall comparable across conditions: \textit{normal} (mean$=$334, median$=$321, stdev$=$130 msec), \textit{words only} (mean$=$347, median$=$369, stdev$=$ 115 msec), \textit{prosody only} (mean$=$365, median$=$369, stdev$=$104 msec), and \textit{no words} (mean$=$319, median$=$329, stdev$=$136 msec).
+
+\subsection*{Procedure}
+We used the same experimental apparatus and procedure as in the first experiment. Each participant watched six puppet videos in random order, with 15--30 second filler videos placed in-between (e.g., running puppies, moving balls, flying bugs). Three of the puppet videos had \textit{normal} audio while the other three had \textit{words only}, \textit{prosody only}, and \textit{no speech} audio. As before, the experimenter immediately began each session with calibration and then stimulus presentation. Participants were given no instruction about how to watch the videos or what their purpose was, they were simply encouraged to watch the ``(fun/nice) puppet videos''. The entire experiment took less than five minutes.
+
+\linespread{1}
+\begin{table}[t]
+\begin{center}
+  \begin{tabular}{llcccc}
+    \hline
+    Age group & Speaker & Addressee & Other onscreen & Offscreen\\
+    \hline
+    1 & 0.44 & 0.14 & 0.23 & 0.19 \\
+    2 & 0.50 & 0.13 & 0.24 & 0.14 \\
+    3 & 0.47 & 0.12 & 0.25 & 0.16 \\
+    4 & 0.48 & 0.11 & 0.29 & 0.12 \\
+    5 & 0.54 & 0.11 & 0.20 & 0.14 \\
+    6 & 0.60 & 0.12 & 0.18 & 0.10 \\
+    Adult & 0.69 & 0.12 & 0.09 & 0.10 \\
+%   Overall & 0.53 & 0.12 & 0.21 & 0.13 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \caption{Average proportion of gaze to the current speaker and addressee during periods of talk across ages in Experiment 2.}
+\label{tab:look_e2}
+\end{table}
+%\linespread{2}
+
+\linespread{1}
+\begin{table}
+\begin{center}
+  \begin{tabular}{llcccc}
+    \hline
+    Condition & Speaker & Addressee & Other onscreen & Offscreen\\
+    \hline
+    Normal 			& 0.58 & 0.12 & 0.17 & 0.13 \\
+    Words only 		& 0.54 & 0.11 & 0.24 & 0.10 \\
+    Prosody only 	& 0.48 & 0.12 & 0.26 & 0.15 \\
+    No speech 		& 0.44 & 0.13 & 0.26 & 0.18 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \caption{Average proportion of gaze to the current speaker and addressee during periods of talk across conditions in Experiment 2.}
+\label{tab:look_e2b}
+\end{table}
+%\linespread{2}
+
+% Average prop gaze to the current speaker across conditions for one-year-olds
+%                           speaker addressee other-screen offscreen
+%Normal   		  0.4737582 0.1366432    0.2003952 0.1892035
+%Words only    0.3977261 0.1283417    0.3112005 0.1627317
+%Prosody only 0.4290202 0.1611453    0.2558657 0.1539688
+%No speech    0.3786925 0.1228615    0.2356423 0.2628037
+
+\subsubsection*{Data preparation and coding}
+We coded each turn transition for its linguistic condition (\textit{normal}, \textit{words only}, \textit{prosody only}, and \textit{no speech}) and transition type (question/non-question)\footnote{We coded \textit{wh-}questions as ``non-questions'' for the \textit{prosody only} videos. Polar questions often have a final rising intonational contour, but \textit{wh-}questions do not  \citep{hedberg2010}.}, and identified anticipatory gaze switches to the upcoming speaker using the methods from Experiment 1.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/E2-samples-by-lang-groups-trans-types.png}
+\end{center}
+\caption{Anticipatory gaze rates across language condition and transition type for the real and randomly permuted datasets. Vertical bars represent 95\% confidence intervals.}
+\label{fig:E2-randvsreal}
+\end{figure}
+
+\subsection*{Results}
+\label{sec:results2}
+
+Participants' pattern of gaze indicated that they performed basic turn tracking across all ages and in all conditions. Participants looked at the screen most of the time during video playback (82\% and 86\% average for children and adults, respectively), primarily looking at the person who was currently speaking (Tables \ref{tab:look_e2} and \ref{tab:look_e2b}). They tracked the current speaker in every condition---even one-year-olds looked more at the current speaker than at anything else in the three partial cue conditions (40\% for \textit{words only}, 43\% for \textit{prosody only}, and 39\% for \textit{no speech}). There was a steady overall increase in looks to the current speaker with age and added linguistic information (Tables \ref{tab:look_e2} and \ref{tab:look_e2b}). Looks to the addressee also decreased with age, but the change was minimal. Figure \ref{fig:E2-randvsreal} shows participants' anticipatory gaze rates across age, the four language conditions, and transition type.
+
+\subsubsection*{Statistical models}
+\label{sec:models2}
+
+We identified anticipatory gaze switches for all 85 usable turn transitions, and analyzed them for effects of language condition, transition type, and age with two mixed-effects logistic regressions. We again built separate models for children and adults because effects of age were only pertinent to the children's data. The child model included condition (\textit{normal}/\textit{prosody only}/\textit{words only}/\textit{no speech}; with \textit{no speech} as the reference level), transition type (question vs. non-question), age (1, 2, 3, 4, 5, 6; numeric, intercept as age=0), and duration of the inter-turn gap (in seconds) as predictors, with full interactions between language condition, transition type, and age and two-way interactions between gap duration and the other basic fixed effects (age, linguistic condition, and transition type).  We also included random effects of participant and item (turn transition), with maximal random slopes of transition type for participant. The adult model included condition, transition type, their interactions, gap duration, and two-way interactions between gap duration and condition and transition type, with participant and item as random effects and maximal random slopes of condition and transition type for participant.
+
+Children's anticipatory gaze switches showed an effect of gap duration (\textit{$\beta$}=3.85, \textit{SE}=1.73, \textit{z}=2.22, \textit{p}$<$.05), a two-way interaction of age and language condition (for \textit{prosody only} speech compared to the \textit{no speech} reference level; \textit{$\beta$}=0.38, \textit{SE}=0.19, \textit{z}=1.97, \textit{p}$<$.05), a marginal two-way interaction of language condition and gap duration (for \textit{prosody only} speech compared to the \textit{no speech} reference level; \textit{$\beta$}=-4.77, \textit{SE}=2.63, \textit{z}=-1.82, \textit{p}$=$.07), and a three-way interaction of age, transition type, and language condition (for \textit{normal} speech compared to the \textit{no speech} reference level; \textit{$\beta$}=-0.35, \textit{SE}=0.17, \textit{z}=-2.05, \textit{p}$<$.05). There were no significant effects of age or transition type alone (Table \ref{tab:E2-chimodels}; \textit{$\beta$}=-0.05, \textit{SE}=0.14, \textit{z}=-0.38, \textit{p}$=$.7 and \textit{$\beta$}=-1.22, \textit{SE}=0.96, \textit{z}=-1.27, \textit{p}$=$.2, respectively)
+
+Adults' anticipatory gaze switches showed a significant effect of language condition (for \textit{words only} speech compared to the \textit{no speech} reference level; \textit{$\beta$}=3.79, \textit{SE}=1.62, \textit{z}=2.34, \textit{p}$<$.05) and a marginal two-way interaction between language condition and transition type (for \textit{words only} speech compared to the \textit{no speech} reference level; \textit{$\beta$}=-1.68, \textit{SE}=0.89, \textit{z}=-1.89, \textit{p}$=$.06). There was no significant effect of transition type alone (Table \ref{tab:E2-adumodels}; \textit{$\beta$}=-0.02, \textit{SE}=1.44, \textit{z}=-0.02, \textit{p}$=$.99).
+
+
+\subsubsection*{Random baseline comparison}
+\label{sec:randbaseline2}
+
+Using the same technique described in Experiment 1, we created and modeled random permutations of participants' anticipatory gaze switches. These analyses revealed that the significant predictors from models of the original, turn-related data were unlikely to be explained by random looking. In the children's data, the original model's \textit{z}-values for gap duration, the two-way interaction of age and language condition (\textit{prosody only}) and the three-way interaction of age, transition type, and language condition (\textit{normal} speech) were all greater than 93\% of the randomly permuted \textit{z}-values (95.6\%, 94\%, and 93.3\%, respectively, \textit{p}$=$.04, .06, and .07). Similarly, the adults' data showed significant differentiation from the randomly permuted data for the effect of language condition (\textit{words only} speech; greater than 98.3\% of random \textit{z}-values, \textit{p}$<$.02). See \ref{sec:permutation} for more information on each predictor's random permutation distribution.
+
+\linespread{1}
+\begin{minipage}[t]{0.95\linewidth}
+\begin{footnotesize}
+\begin{longtable}{lcccl}
+  \textbf{\textit{Children}} &&&& \\
+    \hline
+           &  Estimate & Std. Error & \textit{z} value & Pr($>$$|$\textit{z}$|$) \\
+    \hline
+    (Intercept)											& -3.452		& 0.76	& -4.543	& 5.55e-06 ***	\\
+    Age														& -0.054		& 0.143	& -0.379	& 0.705				\\
+    TType$=$\textit{non-Question}				& -1.217		& 0.958	& -1.27		& 0.204				\\
+    GapDuration											&  3.852		& 1.735	&  2.221	& 0.026 *			\\
+    Age*TType$=$\textit{non-Question}		&  0.152		& 0.141	&  1.081	& 0.28				\\
+    Age*GapDuration									&  0.214		& 0.266	&  0.805	& 0.421				\\
+    TType$=$\textit{non-Question}*			&  0.995		& 2.134	&  0.466	& 0.641				\\
+    \hspace*{5mm} GapDuration &&&& \\
+	\hline
+    Condition$=$\textit{normal}					&  0.54		& 0.742	&  0.728	& 0.467					\\
+    Age*Condition$=$\textit{normal}			&  0.125		& 0.103	&  1.221	& 0.222				\\
+    Condition$=$\textit{normal}*				&  0.908		& 0.748	&  1.215	& 0.224				\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Age*Condition$=$\textit{normal}*			& -0.355		& 0.173	& -2.051	& 0.04 *			\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Condition$=$\textit{normal}*				& -0.431		& 1.67	& -0.258	& 0.797				\\
+    \hspace*{5mm} GapDuration &&&& \\
+	\hline
+    Condition$=$\textit{prosody}				&  0.549		& 1.452	&  0.378	& 0.705				\\
+    Age*Condition$=$\textit{prosody}			&  0.375		& 0.191	&  1.967	& 0.049 *			\\
+    Condition$=$\textit{prosody}*				&  1.076		& 1.105	&  0.974	& 0.33				\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Age*Condition$=$\textit{prosody}*		& -0.296		& 0.235	& -1.257	& 0.209				\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Condition$=$\textit{prosody}*				& -4.767		& 2.625	& -1.816	& 0.069 (.)			\\
+    \hspace*{5mm} GapDuration &&&& \\
+	\hline
+    Condition$=$\textit{words}				&  0.684		& 1.06	&  0.645	& 0.519					\\
+    Age*Condition$=$\textit{words}		&  0.127		& 0.136	&  0.934	& 0.350					\\
+    Condition$=$\textit{words}*				& -1.244		& 1.031	& -1.207	& 0.228					\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Age*Condition$=$\textit{words}*		&  0.111		& 0.225	&  0.495	& 0.621					\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Condition$=$\textit{words}*				& -2.285		& 2.232	& -1.024	& 0.306					\\
+    \hspace*{5mm} GapDuration &&&& \\
+    \hline
+    &&&& \\
+  \caption{Model output for children's anticipatory gaze switches in Experiment 2.}
+\label{tab:E2-chimodels}
+\end{longtable}
+\end{footnotesize}
+\end{minipage}
+%\linespread{2}
+
+\linespread{1}
+\begin{minipage}[t]{0.95\linewidth}
+\begin{footnotesize}
+\begin{longtable}{lcccl}
+  \textbf{\textit{Adults}} &&&& \\
+    \hline
+           &  Estimate & Std. Error & \textit{z} value & Pr($>$$|$\textit{z}$|$) \\
+    \hline
+    (Intercept)										& -3.117		& 1.176	& -2.649	& 0.008 **				\\
+    TType$=$\textit{non-Question}			& -0.022		& 1.44	& -0.015	& 0.988					\\
+    GapDuration										&  4.073		& 2.947	&  1.382	& 0.167					\\
+    TType$=$\textit{non-Question}*		&  1.304		& 3.859	&  0.338	& 0.735					\\
+    \hspace*{5mm} GapDuration &&&& \\
+	\hline
+    Condition$=$\textit{normal}				&  0.39		& 1.316	&  0.296	& 0.767						\\
+    Condition$=$\textit{normal}*			& -0.709		& 0.754	& -0.94		& 0.347					\\
+   \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Condition$=$\textit{normal}*			&  2.1			& 3.336	&  0.629	& 0.529					\\
+    \hspace*{5mm} GapDuration &&&& \\
+	\hline
+    Condition$=$\textit{prosody}			&  0.757		& 2.193	&  0.345	& 0.73					\\
+    Condition$=$\textit{prosody}*			&  0.386		& 1.065	&  0.362	& 0.717					\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Condition$=$\textit{prosody}*			& -1.118		& 4.543	& -0.246	& 0.805					\\
+    \hspace*{5mm} GapDuration &&&& \\
+	\hline
+    Condition$=$\textit{words}				&  3.792		& 1.621	&  2.338	& 0.019 *				\\
+    Condition$=$\textit{words}*				& -1.678		& 0.889	& -1.888	& 0.059 (.)				\\
+    \hspace*{5mm} TType$=$\textit{non-Question} &&&& \\
+    Condition$=$\textit{words}*				& -5.653		& 3.861	& -1.464	& 0.143					\\
+    \hspace*{5mm} GapDuration &&&& \\
+    \hline
+    &&&& \\
+  \caption{Model output for adults' anticipatory gaze switches in Experiment 2.}
+\label{tab:E2-adumodels}
+\end{longtable}
+\end{footnotesize}
+\end{minipage}
+%\linespread{2}
+
+\subsubsection*{Developmental effects}
+
+Our main goal in extending the age range to 1- and 2-year-olds in Experiment 2 was to find the age of emergence for spontaneous predictions about upcoming turn structure. As in Experiment 1, we used two-tailed \textit{t}-tests to compare children's real gaze rates to the random baseline rates in the \textit{normal} speech condition (in which the speech stimulus is most like what children hear every day). We tested real gaze rates against baseline rates for three age groups: one-, two-, and three-year-olds. Two- and three-year-old children made anticipatory gaze switches significantly above chance both when all transitions were considered (2-year-olds: \textit{t}(26.193)$=$-4.137, \textit{p}$<$.001; 3-year-olds: \textit{t}(22.757)$=$-2.662, \textit{p}$<$.05) and for question transitions alone (2-year-olds: \textit{t}(25.345)$=$-4.269, \textit{p}$<$.001; 3-year-olds: \textit{t}(21.555)$=$-3.03, \textit{p}$<$.01). One-year-olds, however, only made anticipatory gaze shifts marginally above chance for turn transitions overall and for question turns alone (overall: \textit{t}(24.784)$=$-2.049, \textit{p}$=$.051; questions: \textit{t}(25.009)$=$-2.03, \textit{p}$=$.053).
+
+We also tested the two baseline linguistic conditions against each other---\textit{no speech} and \textit{normal speech}---to find out when linguistic information made a difference in children's anticipations. Because, as we have seen, children primarily show linguistic effects in question-answer turn transitions, we investigated the use of linguistic cues across age by testing anticipation separately for question and non-question turns. Compared to the \textit{no speech} condition, children made significantly more anticipatory switches in the \textit{normal} speech condition for questions at ages 6, 4, and 3, and also marginally at age 2 (6-year-olds: \textit{t}(36.919)$=$3.8019, \textit{p}$<$.001; 4-year-olds: \textit{t}(41.449)$=$2.9777, \textit{p}$<$.01; 3-year-olds: \textit{t}(35.724)$=$2.4286, \textit{p}$<$.05; 2-year-olds: \textit{t}(41.078)$=$1.8018, \textit{p}$=$.079). Children's anticipatory switches for questions did not significantly differ in the \textit{no speech} and \textit{normal} speech conditions at ages 5 or 1 (5-year-olds: \textit{t}(29.406)$=$1.2783, \textit{p}$=$.211; 1-year-olds: \textit{t}(35.907)$=$0.4961, \textit{p}$=$.623). In contrast, children's anticipatory switch rates for non-question turns were not significantly different between the \textit{no speech} and \textit{normal} speech conditions at any age (all \textit{p}$>$0.09). Thus, consistent with the regression results, children were more likely to show an effect of linguistic content as they got older, but only for question transitions.
+
+The regression models for the children's data also revealed two significant interactions with age. The first was a significant interaction of age and language condition (for \textit{prosody only} compared to the \textit{no speech} reference level), suggesting a different age effect between the two linguistic conditions. As in Experiment 1, we explored each age interaction by extracting an average difference score over participants for the effect of language condition (\textit{no speech} vs. \textit{prosody only}) within each random permutation of the data, making pairwise comparisons between the six age groups. These tests revealed that children's anticipation in the \textit{prosody only} condition significantly improved at ages five and six compared to the \textit{no speech} baseline (with difference scores greater than 95\% of the random data scores; \textit{p}$<$.05). See Figure \ref{fig:E2-lgageinteraction} for these \textit{prosody only} difference score distributions.
+
+The second age-based interaction was a three-way interaction of age, transition type, and language condition (for \textit{normal} speech compared to the \textit{no speech} baseline). We again created pairwise comparisons of the average difference scores for the transition type-language condition interaction across age groups in each random permutation of the data, finding that the effect of transition type in the \textit{normal} speech condition became larger with age, with significant improvements by age 4 over ages 1 and 2 (99.9\% and 98.86\%, respectively), by age 5 over age 4 (97.54\%), and by age 6 over ages 1, 2, and 5 (99.5\%, 97.36\%, and 95.04\%), all significantly different from chance (\textit{p}$<$.05). See Figure \ref{fig:E2-lgagetypeinteraction} for these \textit{normal} speech difference score distributions.
+
+\subsection*{Discussion}
+\label{sec:discussion2}
+
+The core aims of Experiment 2 were to gain better traction on the individual roles of prosody and lexicosyntax in children's turn predictions, and to find the age of emergence for spontaneous turn anticipation. Many of our results replicate the findings from Experiment 1: participants often made more anticipatory switches when they had access to linguistic information and, when they did, tended to make more anticipatory switches for questions compared to non-questions.
+
+As in Experiment 1, children and adults spontaneously tracked the turn structure of the conversations. Participants made anticipatory gaze switches at above-chance rates starting at age two for both questions and non-questions. Longer gaps had a broader impact on participants' anticipations in this second experiment; we saw that, overall, longer inter-turn gaps resulted in more anticipatory switches, with the \textit{no speech} condition showing equal or stronger effects of gap duration than all other conditions.
+
+As before, participants made far more anticipations for questions than for non-question turns---at least for those two years old and older. But these effects were different for the conditions with partial linguistic information: \textit{prosody only} and \textit{words only}. In the \textit{prosody only} condition, performance was initially low for young children and increased significantly with age. In the \textit{words only} condition, children age two and older showed robust switching for questions (much like in \textit{normal} speech), but never rose above chance for non-question turns (Figure \ref{fig:E2-randvsreal}), with no significant differences from the \textit{no speech} baseline. These findings do not support an early role for prosody or lexical information alone in children's spontaneous predictions about turn structure. They also give no support for the idea that lexical information is sufficient on its own to support children's anticipatory switching. They do underscore the developing relationship between the online use of linguistic cues, inter-turn silence, and speech act in spontaneous predictions about upcoming turn structure.
+
+\section*{General Discussion}
+\label{sec:gendisc}
+
+Children begin to develop conversational turn-taking skills long before their first words emerge \citep{bateson1975, hilbrink2015, jaffe2001, snow1977}. As they become fast and knowledgeable language users, they also become able to make accurate predictions about upcoming turn structure. Until recently, we have had very little data on how children weave language into their already-existing turn-taking behaviors. In two experiments investigating children's anticipatory gaze to upcoming speakers, we found evidence that turn prediction develops early in childhood and that, when spontaneous predictions begin, they are primarily driven by participants' expectation of an immediate response in the next turn (e.g., after questions). In making predictions about upcoming turn structure, children used a combination of lexical and prosodic cues; neither signal alone was sufficient to support increased anticipatory gaze. We also found no early advantage for prosody over lexicosyntax; children's anticipatory switch rates in the \textit{prosody only} condition were initially low, but showed significant gains by age five. We discuss these findings with respect to the role of linguistic processing and inter-turn silence for predicting upcoming turn structure, the importance of questions in predictions about conversation, and children's developing competence as conversationalists.
+
+\subsection*{Predicting upcoming turn structure}
+
+Prior work with adults has found a consistent role for lexicosyntax in predicting upcoming turn structure \citep{de-ruiter2006, magyari2012}, whereas the role of prosody is still under debate \citep{duncan1972, ford1996, bogelstorreira2015}. Knowing that children comprehend more about prosody than lexicosyntax early on (see \citealp{speer2009} for a review), we thought it possible that young children would instead show an advantage for prosody in their predictions about turn structure in conversation. Our results suggest that, on the contrary, exclusively presenting prosodic information to children limits their spontaneous predictions about upcoming turn structure until age five.
+
+Thus, using prosody alone to accurately predict turn boundaries in conversation appears to be difficult for adults and children. Prosodic information is continuous, multidimensional, and can index multiple meanings at once---it encodes syntactic structure, speech act, and extralinguistic information without clear one-to-one mappings between form and meaning \citep{cutler1997, shriberg1998, lammertink2015}. For these reasons, prosodic information alone may not be enough for young children to easily make precise temporal predictions about turn structure, and identify question turns in unfolding speech. Therefore, although children show early facility with prosodic discrimination \citep{nazzi2003, soderstrom2003, johnson2001, jusczyk1995, morgan1995, mehler1988}, using prosodic knowledge for turn prediction may be difficult without additional information from lexical or syntactic cues.
+
+Our findings suggest that there is one prosodic cue that is an exception to this rule: inter-turn silence. Generally speaking, participants showed a greater anticipatory switches for longer inter-turn gaps, but the effect of inter-turn gap duration is strongest in our data when upcoming responses are less predictable, whether due to the asymmetrical response expectations for questions vs. non-questions (Experiment 1) or the lack of non-verbal cues and any linguistic information (Experiment 2). Notably, there were no significant interactions of gap duration with participant age. This pattern of results suggests that, when predictive information about upcoming responses is absent, long silences may increase participants' expectation for a speaker change and promote more anticipatory gaze switches. Pauses are detected and related to phrasal structure from early on; 5-month-old infants use pauses to parse intonational phrases \citep{mannel2009}. The lack of interactions between age and gap duration suggests that the use of inter-turn silence remains important for older speakers and the interactions between transition type and gap duration (Experiment 1) and condition and gap duration (Experiment 2; marginal), suggest that this effect is not simply the result of having more time to make a gaze switch. These findings thus suggest that silence is an early and lasting cue for identifying turn structure online when other predictive information is not adequate.
+
+Notably, many other non-linguistic cues encode information about transition type, including gaze and gesture. We did not systematically test those cues here but, like inter-turn silence, they may play a critical role in parsing and making predictions about turn structure when other linguistic information is not sufficient to make accurate predictions.
+
+%Because inter-turn silence works as a backwards-looking cue, it's predictive utility for speaker change is diminished compared to forward-looking linguistic cues (e.g., syntactic constituent completion). However, it is a strategy that can be usefully employed to predict upcoming responses some of the time, even without access to language.
+
+Perhaps surprisingly, we found no evidence that lexical information alone is equivalent to the full linguistic signal in driving children's predictions, as has been shown previously for adults \citep{magyari2012, de-ruiter2006} and as is replicated with adult participants in the current study. Unlike prosodic cues, lexicosyntactic cues are discreet and have much clearer form-to-meaning mappings, with clear lexicosyntactic cues to questionhood that occur early within turns (e.g., \textit{wh}-words, \textit{do}-insertion, and subject-auxiliary inversion). That said, children's lexical and syntactic knowledge is limited for quite some time (\citealp{tomasello1999}, but see also \citealp{bergelson2013, shi2010}). Although our stimuli were made in a child-friendly style, they are still other-directed and fairly complex, with 20--30 seconds of continuous conversational speech.
+
+It is perhaps for this reason that children's performance was always best with the full signal, where lexicosyntactic information was supported by prosodic information and vice versa. Even in adults, B\"{o}gels and Torreira (\citeyear{bogelstorreira2015}) showed that the trade-off in informativity between lexical and prosodic cues is more subtle in semi-natural speech. The present findings are the first to show evidence of a similar effect developmentally.
+
+%Finally, because most anticipatory switches were made following question turns, one could predict that the only lexical and prosodic cues that matter for spontaneous turn prediction are those that cue questionhood. Our linguistic manipulations here were focused on lexical and prosodic information globally, which may have affected lexical and prosodic cues to questionhood asymmetrically; while lexicosyntactic question cues were available on every instance of \textit{wh}- and \textit{yes/no} questions in our stimuli, prosodic question cues were only salient on \textit{yes/no} questions.
+
+\subsection*{The question effect}
+
+In both experiments, anticipatory looking was primarily driven by question transitions, a pattern that has not been previously reported in other anticipatory gaze studies, on children or adults (Keitel et al., 2013; Hirvenkari, 2013; Tice and Henetz, \citeyear{TiceHenetz11}). Questions make an upcoming speaker switch immediately relevant, helping the listener to predict with high certainty what will happen next (i.e., an answer from the addressee), and are often easily identifiable by overt prosodic and lexicosyntactic cues.
+
+Prior work on children's acquisition of questions indicates that they may already have some knowledge of question-answer sequences by the time they begin to speak: questions make up approximately one third of the utterances children hear, before and after the onset of speech, and even into their preschool years, though the type and complexity of questions changes throughout development \citep{casillas2016, fitneva2012, henning2005, shatz1979}.\footnote{There is substantial variation in question frequency by individual and socioeconomic class \citep{hart1992, weisleder2012}.} For the first few years, many of the questions directed to children are ``test'' questions---questions that the caregiver already has the answer to (e.g., ``What does a cat say?''), but this changes as children get older. Questions help caregivers to get their young children's attention and to ensure that information is in common ground, even if the responses are non-verbal or infelicitous \citep{bruner1985, fitneva2012, snow1977}. Moreover, because of their high frequency and relatively limited number of formats, questions, especially \textit{wh}-questions, may be more identifiable and predictable compared to other types of speech acts. So, in addition to having a special interactive status, questions are a frequent, predictable, and core characteristic of many caregiver-child interactions, motivating a general benefit for questions in turn structure anticipation.
+
+Two important routes for future work are then: (1) how does children's ability to monitor for questions in conversation relate to their prior experience with questions? and (2) what is it about questions that makes children and adults more likely to anticipatorily switch their gaze to addressees? If this ``question'' effect exists for all turns that require an immediate response (``adjacency pairs''; \citealp{schegloff2007}), other turn types, such as imperatives, compliments, and complaints should show similar patterns. If the effect is instead about overall predictability of the syntactic frame, children would instead show similar patterns for other frequent frames from child-directed speech (e.g., ``Look at the X''; \citealp{mintz2003}). The recognizability and predictability of syntactic frames is likely to play a role in turn prediction as children become more sophisticated language users, even if the effect is truly about adjacency pairs; for example, rhetorical and tag questions take a very similar form to prototypical polar questions, but usually do not require an answer. So, though it is clear that adults and children anticipate responses more often for questions than non-questions, we do not yet know whether their predictive action is limited to turns formatted as questions, turns with high recognizability and predictability, or turns that project an immediate response from the addressee.
+
+A question effect suggests that participants' spontaneous predictions may be driven by what lies \textit{beyond} the end of the current turn---not just by the upcoming end of the turn itself, as has been focused on in prior work \citep{bogelstorreira2015, keitel2013, magyari2012, de-ruiter2006}. In future work, it will be crucial to measure prediction from a first-person perspective to find out what kinds of predictions are most relevant to addressees in conversation.
+
+One possible scenario is that listeners in spontaneous, first-person conversation use multiple strategies to make predictions about upcoming turn structure: they could semi-passively attend to incoming speech for cues to upcoming speaker transition (e.g., questions and other adjacency pairs) and, when possible upcoming transition is detected, switch into a more precise turn-end prediction mode (\`{a} la \citealp{de-ruiter2006}). A flexible prediction system like this one allows listeners to continuously monitor ongoing conversation for turn-related cues at a low cost while still managing to plan their responses and come in quickly when needed.
+
+To test this hypothesis, we would need to look at prediction from a first-person perspective, which very little work so far has accomplished (present work included). Although third-party measures enable us to measure participants' predictions without any interference from language production, they also limit our knowledge about how the need to give a response might itself play an important role in addressees' prediction strategies. Recent work has shown that shifts in addressee gaze similar to those measured here indeed occur in spontaneous conversation \citep{holler2015}, but much more work is needed to determine how participants make predictions about turn structure in first-person contexts and whether those mechanisms shift at points of imminent speaker change.
+
+\subsection*{Early competence for turn taking?}
+
+One of the core aims of our study was to test whether children show an early competence for turn taking, as is proposed by studies of spontaneous mother-infant proto-conversation and theories about the mechanisms underlying human interaction in general \citep{hilbrink2015, levinson2006}. We found evidence that young children make spontaneous predictions about upcoming turn structure: definitely by age two and marginally by age one.
+
+These results contrast with Keitel and colleagues' \citeyearpar{keitel2013} finding that children cannot anticipate upcoming turn structure at above-chance rates until age three. The current study used an appreciably more conservative random baseline than the one used in Keitel and colleagues' study. Therefore, this difference in age of emergence more likely stems from our use of a more engaging speech style, stereo speech playback, and more typical turn transition durations. The child-friendly style of speech in particular may have helped in two ways: keeping children more engaged with the stimuli and using less syntactically complex and more prosodically exaggerated speech \citep{fernald1989, werker1989, snow1977} compared to what they would get with adult-adult conversation.
+
+To be clear, young children's ``above chance'' performance was often still far from adult-like predictive behavior---turn prediction (and the concurrent use of linguistic cues from unfolding speech) increased only gradually with age. Children at ages one and two were still very close to chance in their anticipations and, even at age six, children were not fully adult-like in their predictions. This indicates that young children may at first rely primarily on non-verbal cues, like inter-turn silence, to anticipate turn transitions but that, by adulthood, listeners use both verbal and non-verbal cues to make predictions. Relatedly, adult listeners may be more expert in flexibly adapting to the turn-relevant cues present at any moment, e.g., responding to non-English prosodic cues in Experiment 1.
+
+Taken together, our data suggest that turn-taking skills do begin to emerge in infancy, but that children cannot consistently make effective predictions until they can identify question turns in unfolding speech and react to them quickly. This finding leads us to wonder how participant role (first- instead of third-person) and differences in early interactional experience (e.g., frequent vs. infrequent question-asking from caregivers) feed into this early predictive skill. It also bridges prior work showing a predisposition for turn taking in infancy (e.g., \citealp{bateson1975, hilbrink2015, jaffe2001, snow1977}) with children's apparently \textit{late} acquisition of adult-like competence for turn taking in spontaneous conversation \citep{casillas2016, garvey1984, garvey1981, ervin-tripp1979}. It also reinforces the idea that it takes children several years to fully integrate linguistic information into their turn-taking systems \citep{casillas2016,garvey1981}.
+
+What makes the integration of linguistic information so gradual? We suspect that two slow-developing processes---children's linguistic knowledge (e.g., \textit{wh}-words, subject-auxiliary inversion) and their speed of processing for linguistic information (e.g., parsing and retrieval)---both contribute to their ability to make predictions about turn structure in unfolding speech. Children may be able to integrate predictive cues for turn taking from the start, but their knowledge of these cues and their speed in parsing and recognizing them may be too slow at first for use in online prediction. This account falls in line with the early and continued use of non-verbal cues  found in the current study, but more work is needed to tease these developmental threads apart.
+
+\subsection*{Limitations and future work}
+
+There are at least two major limitations to our work: speech naturalness and participant role. Following prior work \citep{de-ruiter2006, keitel2013}, we used phonetically manipulated speech in Experiment 2. This decision resulted in speech sounds that children don't usually hear in their natural environment. Many prior studies have used phonetically-altered speech with infants and young children \citep[cf.][]{jusczyk2000}, but few of them have done so in a conversational context. Future work could instead carefully script speech or cross-splice sub-parts of turns to control for the presence of linguistic cues for turn transition (see, e.g., \citealp{bogelstorreira2015}).
+
+The prediction measure used in our studies is based on an observer's view of conversation but, because participants' role in the interaction could affect their online predictions about turn taking, an ideal measure would instead capture first-person predictions. If conversational participants' predictions are partly shaped by their need to respond, first-person measures of spontaneous turn prediction will be key to revealing how participants distribute their attention over verbal and non-verbal cues while taking part in everyday interaction, the implications of which relate to theories of online language processing for both language learning and everyday talk.
+
+That said, the third-person paradigm used in the present study still has much to tell us about turn prediction. The task is natural and intuitive in that no instruction is required, which means that it captures spontaneous predictive behavior and can be used with participants of all ages. Frequencies of anticipatory gaze switching appear to be stable across language communities where similar tasks have been tested \citep{keitel2013, keitel2015, holler2015, hirvenkari2013}---even from a first-person perspective---so the task is one that measures robust predictive behavior relevant to conversational processing across languages. It also lends itself to many possibilities for controlling the presence of individual verbal and non-verbal cues and has a clear method for assessing random switching baselines across the entire stimulus. Also, if it is the case that response preparation interferes with our ability to see prediction at the ends of incoming turns \citep{levinson2016}, third-person paradigms are one of the only ways to measure prediction processes in isolation.
+
+The current findings also make predictions about what we would see in first-person paradigms. For example, a focus on possible upcoming speaker transitions is even more important when the participants themselves may need to respond; we would thus expect question-like effects to occur in first-person paradigms, and perhaps even be amplified compared to third-person paradigms. If so, participants' use of linguistic information would still subserve this goal, with prediction at a premium. Regarding development, the same facts about the complexity of prosody-based prediction and children's initial limited lexical inventories would still hold, as would the use of silence and non-verbal cues to assess and predict turn structure in the absence of clear predictive linguistic information. The paradigm presented here thus has important contributions to make in our understanding of how participants attend to and make predictions about conversational interaction.
+
+
+\subsection*{Conclusions}
+
+Conversation plays a central role in children's language learning. It is the driving force behind what children say and what they hear. Adults use linguistic information to accurately predict turn structure in conversation, which facilitates their online comprehension and allows them to respond relevantly and on time. The present study offers new findings regarding the role of speech acts and linguistic processing in online turn prediction, and has given evidence that turn prediction emerges by age two, increases with age, and is driven by the ability to identify and react to question turns in unfolding speech. However, children's successful integration of online linguistic processing and online predictions about upcoming turn structure develops gradually. When participants can't use predictive linguistic cues (because they are absent, unfamiliar, or are processed too late), children and adults alike rely on retroactive cues such as inter-turn silence to predict upcoming speaker change. Using language to make predictions about upcoming interactive content takes time to develop and, for participants of all ages appears to be primarily driven by participants' expectations about what will happen next, beyond the end of the current turn.
+
+\section*{Acknowledgements}
+
+We gratefully acknowledge the parents and children at Bing Nursery School and the Children's Discovery Museum of San Jose. This work was supported by an ERC Advanced Grant to Stephen C. Levinson (269484-INTERACT), an NSF Graduate Research Fellowship and NSF Dissertation Improvement Grant to MC, and a Merck Foundation fellowship to MCF. Earlier versions of these data and analyses were presented to conference audiences \citep{casillas2012, casillas2013}. We also thank Tania Henetz, Francisco Torreira, Stephen C. Levinson, and Eve V. Clark for their feedback on earlier versions of this work. The analysis code for this project can be found on GitHub at https://github.com/langcog/turn\_taking/.
+
+\bibliographystyle{model5-names}
+\biboptions{authoryear}
+\bibliography{anticip}
+\clearpage
+
+\appendix
+
+\section{Permutation Analyses}
+\label{sec:permutation}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+How can we be sure that our primary dependent measure (anticipatory gaze switching) actually relates to turn transitions? Even if children were gazing back and forth randomly during the experiment, we would have still captured some false hits---switches that ended up in the turn-transition windows by chance.
+
+We estimated the baseline probability of making an anticipatory switch by randomly permuting the placement of the transition windows within each stimulus (Figure \ref{fig:shuffling}). We then used the switch identification procedure from Experiments 1 and 2 to find out how often participants made ``anticipatory'' switches within these randomly permuted windows. This procedure de-links participants' gaze data from turn structure by randomly re-assigning the onset time of each turn-transition in each permutation. We created 5,000 of these permutations for each experiment to get an anticipatory switch baselines over all possible starting points.
+
+Importantly, the randomized windows were not allowed to overlap with each other, keeping true to the original stimuli. We also made sure that the properties of each turn transition stayed constant across permutations. So, while ``transition window A'' might start 2 seconds into Random Permutation 1 and 17 seconds into Random Permutation 2, it maintained the same prior speaker identity, transition type, gap duration, language condition, etc., across both permutations.
+
+We then re-ran the statistical models from the original data on each of the random permutations, e.g., using Experiment 1's original model structure to analyze the anticipatory switches from each random permutation of the Experiment 1 looking data. We could then calculate the proportion of random data \textit{z}-values exceeded by the original \textit{z}-value for each predictor. We used the absolute value of all \textit{z}-values to conduct a two-tailed test. If the original effect of a predictor exceeded 95\% of the random model effects for that same predictor, we deemed that predictor's effect to be significantly different from the random baseline (i.e., \textit{p}$<$.05).
+
+For example, children's ``language condition'' effect from Experiment 1 had a \textit{z}-value of $|$3.65$|$, which is greater than 99.3\% of all $|$\textit{z}-value$|$ estimates from Experiment 1's random permutation models (i.e., \textit{p}$=$.007). It is therefore highly unlikely that the effect of language condition in the original model came from random gaze shifting.
+
+We used this procedure to derive the random-baseline comparison values in the main text (above). However, we ran into two issues along the way: first, we had to report \textit{z}-values rather than beta estimates of each effect. Second, we had to exclude a substantial portion of the models, especially in Experiment 2 because of model non-convergence. We address each of these issues below.
+
+\subsection{Beta, standard error, and z estimates}
+We reported \textit{z}-values in the main text rather than beta estimates because the standard errors in the randomly permuted data models were much higher than for the original data. The distributions for each predictor's beta estimate, standard error, and \textit{z}-value for adults and children in each experiment are shown in the graphs below (Figures \ref{fig:E1-ChiTs}--\ref{fig:E2-AduSEs}). In each plot, the gray dots represent the absolute value of the 5,000 randomly permuted model estimates for the estimate type plotted (beta, standard error, or \textit{z}), the white circles represent the model estimates from the original data, and the black triangles represent the 95th percentile for each random distribution.
+
+\begin{sidewaysfigure}[!htb]
+  \centering
+  \textbf{Experiment 1: \textit{z}-value estimates}\par\medskip
+  \subfloat[Children]{\includegraphics[width=0.44\textwidth]{figures/E1-chi-randrun-z-vals-absolute.png}\label{fig:E1-ChiTs}}
+  \hfill
+  \subfloat[Adults]{\includegraphics[width=0.44\textwidth]{figures/E1-adu-randrun-z-vals-absolute.png}\label{fig:E1-AduTs}}
+  \caption{Random-permutation and original $|$\textit{z}-values$|$ for predictors of anticipatory gaze rates in Experiment 1.}
+\label{fig:E1-Ts}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+  \centering
+  \textbf{Experiment 1: \textit{$\beta$} estimates}\par\medskip
+  \subfloat[Children]{\includegraphics[width=0.44\textwidth]{figures/E1-chi-randrun-betas-absolute.png}\label{fig:E1-ChiBs}}
+  \hfill
+  \subfloat[Adults]{\includegraphics[width=0.44\textwidth]{figures/E1-adu-randrun-betas-absolute.png}\label{fig:E1-AduBs}}
+  \caption{Random-permutation and original $|$\textit{$\beta$}-values$|$ for predictors of gaze rates in Experiment 1.}
+\label{fig:E1-Bs}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+  \centering
+  \textbf{Experiment 1: \textit{SE} estimates}\par\medskip
+  \subfloat[Children]{\includegraphics[width=0.44\textwidth]{figures/E1-chi-randrun-SEs-absolute.png}\label{fig:E1-ChiSEs}}
+  \hfill
+  \subfloat[Adults]{\includegraphics[width=0.44\textwidth]{figures/E1-adu-randrun-SEs-absolute.png}\label{fig:E1-AduSEs}}
+  \caption{Random-permutation and original \textit{SE}-values for predictors of anticipatory gaze rates in Experiment 1.}
+\label{fig:E1-SEs}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+  \centering
+  \textbf{Experiment 2: \textit{z} estimates}\par\medskip
+  \subfloat[Children]{\includegraphics[width=0.44\textwidth]{figures/E2-chi-randrun-z-vals-absolute.png}\label{fig:E2-ChiTs}}
+  \hfill
+  \subfloat[Adults]{\includegraphics[width=0.44\textwidth]{figures/E2-adu-randrun-z-vals-absolute.png}\label{fig:E2-AduTs}}
+  \caption{Random-permutation and original $|$\textit{z}-values$|$ for predictors of anticipatory gaze rates in Experiment 2.}
+\label{fig:E2-Ts}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+  \centering
+  \textbf{Experiment 2: \textit{$\beta$} estimates}\par\medskip
+  \subfloat[Children]{\includegraphics[width=0.44\textwidth]{figures/E2-chi-randrun-betas-absolute.png}\label{fig:E2-ChiBs}}
+  \hfill
+  \subfloat[Adults]{\includegraphics[width=0.44\textwidth]{figures/E2-adu-randrun-betas-absolute.png}\label{fig:E2-AduBs}}
+  \caption{Random-permutation and original $|$\textit{$\beta$}-values$|$ for predictors of anticipatory gaze rates in Experiment 2.}
+\label{fig:E2-Bs}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+  \centering
+  \textbf{Experiment 2: \textit{SE} estimates}\par\medskip
+  \subfloat[Children]{\includegraphics[width=0.44\textwidth]{figures/E2-chi-randrun-SEs-absolute.png}\label{fig:E2-ChiSEs}}
+  \hfill
+  \subfloat[Adults]{\includegraphics[width=0.44\textwidth]{figures/E2-adu-randrun-SEs-absolute.png}\label{fig:E2-AduSEs}}
+  \caption{Random-permutation and original \textit{SE}-values for predictors of anticipatory gaze rates in Experiment 2.}
+\label{fig:E2-SEs}
+\end{sidewaysfigure}
+
+\clearpage
+
+\subsection{Non-convergent models}
+In comparing the real and randomly permuted datasets, we excluded the output of random-permutation models that gave convergence warnings to remove erratic model estimates from our analyses. Non-convergent models made up 13--14\% of the random permutation models in Experiment 1 and 46--49\% of the random permutation models in Experiment 2. The \textit{z}-values for each predictor in the converging and non-converging models from Experiment 1 are shown in Table \ref{tab:nonconv_e1}.
+
+Although many of the non-converging models show estimates within range of the converging models (e.g., with a mean difference of only 0.096 in median \textit{z}-value across predictors), they also show many radically outlying estimates (e.g., showing a mean difference of 146.7 in mean \textit{z}-value across predictors). Similar patterns were obtained in the non-converging models for Experiment 2 and persisted across multiple attempts with different optimizers.
+
+We suspect that the issue derives from data sparsity in some of the random permutations. This problem is known to occur when there are limited numbers of binary observations in each of a design matrix's bins \citep{allison2004}. We could instead use zero-inflated poisson or negative binomial regression models to allow for overdispersion in our data \citep{allison2012}. However, these would give us baselines for the normal, convergent model, which is not the aim of this analysis.
+
+\linespread{1}
+\begin{sidewaystable}[!htbp]
+  \begin{scriptsize}
+\centering
+  \begin{tabular}{lllllllllll}
+    & Mean$_{C}$ & Mean$_{NC}$ & Median$_{C}$ & Median$_{NC}$ & \textit{SD}$_{C}$ & \textit{SD}$_{NC}$ & Min$_{C}$ & Min$_{NC}$ & Max$_{C}$ & Max$_{NC}$ \\
+    \hline
+	\textbf{\textit{Children}} &&&&& \\
+    \hline
+		(Intercept)			&	-1.56	&	-901.93	&	-1.59	&	-1.94	&	0.98	&	1945.68	&	-4.89	&	-11942.58	&	2.16	&	1840.2 \\
+		Age					&	-0.2	&	-26.08	&	-0.21	&	-0.28	&	0.92	&	193.6	&	-4.06	&	-1151.44	&	3.57	&	751.7 \\
+		LgCond				&	-0.54	&	-313.61	&	-0.56	&	-0.77	&	1.04	&	1281.84	&	-4.55	&	-7781.18	&	3.51	&	4341.3 \\
+		TType				&	-0.03	&	-22.27	&	-0.03	&	0.01	&	1.05	&	1099.5	&	-3.42	&	-7137.95	&	3.56	&	5034.84 \\
+		GapDur				&	0.42	&	511.04	&	0.45	&	0.61	&	1.09	&	3555.2	&	-3.86	&	-15899.54	&	3.88	&	21151.4 \\
+		Age*LgCond			&	0.18	&	6.46	&	0.18	&	0.23	&	0.91	&	160.59	&	-3.35	&	-791.57		&	3.69	&	950.17 \\
+		Age*TType			&	0.02	&	-7.08	&	-0.01	&	-0.05	&	0.9		&	152.2	&	-3.45	&	-815.06		&	3.43	&	741.38 \\
+		LgCond*TType		&	0.18	&	-5.76	&	0.2		&	0.21	&	0.97	&	1129.35	&	-3.26	&	-6230.78	&	3.4		&	5997.59 \\
+		Age*GapDur			&	-0.11	&	-24.39	&	-0.08	&	-0.12	&	0.99	&	536.89	&	-4.08	&	-2897.34	&	2.87	&	2602.11 \\
+		LgCond*GapDur		&	0.22	&	475.09	&	0.2		&	0.4		&	1.12	&	2988.88	&	-3.83	&	-14231.85	&	4.02	&	17307.34 \\
+		Ttype*GapDur		&	-0.02	&	-37.07	&	-0.03	&	-0.12	&	1.13	&	2824.93	&	-4.51	&	-16493.61	&	4.73	&	14994.45 \\
+		Age*LgCond*TType	&	-0.1	&	-2.92	&	-0.11	&	-0.21	&	0.93	&	241.44	&	-3.34	&	-1434.96	&	3.02	&	1333.34 \\
+    \hline
+	\textbf{\textit{Adults}} &&&&& \\
+    \hline
+		(Intercept)		&	-1.85	&	-135.7	&	-1.9	&	-1.96	&	0.96	&	707.63	&	-4.48		&	-8056.34	&	1.61	&	654.56 \\
+		LgCond			&	-0.35	&	-57.44	&	-0.37	&	-0.5	&	1.09	&	625.12	&	-3.8		&	-6033.9		&	3.68	&	5343.37 \\
+		TType			&	-0.06	&	9.59	&	-0.06	&	0		&	1.09	&	403.93	&	-3.54		&	-4131.97	&	3.34	&	3793.07 \\
+		GapDur			&	0.31	&	97.73	&	0.32	&	0.38	&	1.12	&	1159.99	&	-3.11		&	-7149.74	&	3.89	&	10669.09 \\
+		LgCond*TType	&	0.18	&	31.6	&	0.18	&	0.22	&	1.03	&	560.99	&	-2.87		&	-7722.35	&	3.9		&	4377.92 \\
+		LgCond*GapDur	&	0.19	&	77.34	&	0.21	&	0.18	&	1.12	&	1047.37	&	-4.18		&	-7713.96	&	3.71	&	7764.19 \\
+		Ttype*GapDur	&	0		&	-50.12	&	0.01	&	-0.07	&	1.11	&	1065.37	&	-3.42		&	-10640.42	&	3.64	&	7868.74 \\
+    \hline
+  \end{tabular}
+  \caption{Estimated \textit{z}-values for each predictor in converging (\textit{C}) and non-converging (\textit{NC}) child and adult models from Experiment 1. }
+\label{tab:nonconv_e1}
+ \end{scriptsize}
+\end{sidewaystable}
+%\linespread{2}
+
+
+
+%\linespread{1}
+%\begin{sidewaystable}[!htbp]
+%  \begin{scriptsize}
+%\centering
+%  \begin{tabular}{lllllllllll}
+%    & Mean$_{C}$ & Mean$_{NC}$ & Median$_{C}$ & Median$_{NC}$ & \textit{SD}$_{C}$ & \textit{SD}$_{NC}$ & Min$_{C}$ & Min$_{NC}$ & Max$_{C}$ & Max$_{NC}$ \\
+%    \hline
+%	\textbf{\textit{Children}} &&&&& \\
+%    \hline
+%		(Intercept)		&	-3.05	&	-2800.55	&	-3.07	&	-1496.47	&	0.84	&	3130.77		&	-5.75	&	-15569.16	&	0.26	&	-0.34 \\
+%		Age			&	0.75	&	81.43		&	0.76	&	1.44		&	1.11	&	224.08		&	-3.33	&	-793.12		&	4.27	&	1094.44 \\
+%		LgCond(Pros)		&	0.25	&	391.42		&	0.23	&	0.59		&	1.08	&	4135.69		&	-3.21	&	-135300.8	&	3.81	&	11272.92 \\
+%		LgCond(Norm)		&	0.12	&	165.95		&	0.1	&	0.2		&	1.05	&	1544.35		&	-3.59	&	-6994.53	&	3.67	&	12125.92 \\
+%		LgCond(Lex)		&	0.01	&	-320.01		&	-0.04	&	-0.33		&	1.19	&	2842.73		&	-3.37	&	-22569.54	&	4.18	&	10000.98 \\
+%		TType			&	-0.37	&	-389.38		&	-0.38	&	-0.75		&	1.09	&	1832.78		&	-3.78	&	-9806.93	&	3.04	&	8548.36 \\
+%		GapDur			&	0.36	&	843.66		&	0.38	&	0.74		&	1.05	&	3702.7		&	-3.52	&	-24538.48	&	3.77	&	24284.02 \\
+%		Age*LgCond(Pros)	&	-0.04	&	6.36		&	-0.04	&	-0.08		&	1.06	&	551.96		&	-3.04	&	-1483.99	&	3.11	&	21619.1 \\
+%		Age*LgCond(Norm)	&	-0.04	&	-15.15		&	-0.06	&	-0.2		&	1.11	&	173.55		&	-3.44	&	-816.8	&	&	3.48	&	1008.44 \\
+%		Age*LgCond(Lex)		&	0.04	&	1.65		&	0.01	&	0.11		&	1.18	&	244.02		&	-3.76	&	-1406.31	&	3.86	&	1167.23 \\
+%		Age*TType		&	0.04	&	2.05		&	0.03	&	0.02		&	1.09	&	204.49		&	-4.19	&	-958.44		&	3.73	&	1194.13 \\
+%		LgCond(Pros)*TType	&	-0.07	&	57.09		&	-0.07	&	-0.19		&	0.96	&	3402.56		&	-3.46	&	-9987.18	&	2.89	&	132110.78 \\
+%		LgCond(Norm)*TType	&	0.05	&	-0.15		&	0.06	&	0.03		&	1.01	&	1161.34		&	-4	&	-6401.71	&	3.52	&	5301.89 \\
+%		LgCond(Lex)*TType	&	-0.13	&	-64.62		&	-0.12	&	-0.18		&	1.08	&	1705.68		&	-3.8	&	-9255.27	&	3.18	&	10020.13 \\
+%		Age*GapDur		&	-0.21	&	-56.54		&	-0.24	&	-0.4		&	1.1	&	405.89		&	-3.73	&	-1958.19	&	3.27	&	1777.06 \\
+%		LgCond(Pros)*GapDur	&	-0.14	&	-635		&	-0.12	&	-0.27		&	1.1	&	5604.19		&	-3.9	&	-26632.24	&	3.28	&	24770.67 \\
+%		LgCond(Norm)*GapDur	&	0.27	&	529.45		&	0.29	&	0.48		&	1.08	&	3739.49		&	-3.37	&	-26880.55	&	3.99	&	24169.51 \\
+%		LgCond(Lex)*GapDur	&	0.14	&	-378.79		&	0.19	&	0.63		&	1.19	&	68742.57	&	-4.53	&	-3282549.89	&	3.45	&	53088.85 \\
+%		TType*GapDur		&	0.5	&	1361.03		&	0.5	&	0.94		&	1.13	&	4678.69		&	-2.85	&	-19023.27	&	4.3	&	28029.73 \\
+%		Age*LgCond(Pros)*TType	&	-0.24	&	-68.05		&	-0.25	&	-0.38		&	1.05	&	593.7		&	-3.37	&	-21989.44	&	2.72	&	1431.64 \\
+%		Age*LgCond(Norm)*TType	&	-0.11	&	-17.34		&	-0.12	&	-0.22		&	1.11	&	248.73		&	-3.78	&	-1136.43	&	3.75	&	1206.99 \\
+%		Age*LgCond(Lex)*TType	&	-0.08	&	-11.56		&	-0.08	&	0		&	1.15	&	349.91		&	-3.75	&	-1565.3		&	3.85	&	1702.72 \\
+%    \hline
+%	\textbf{\textit{Adults}} &&&&& \\
+%    \hline
+%		(Intercept)		&	-1.61	&	-457.88		&	-1.72	&	-1.76	&	0.79	&	1989.16		&	-3.36	&	-43709.32	&	1.1	&	907.26 \\
+%		LgCond(Pros)		&	0	&	944.53		&	-0.06	&	-0.05	&	1.01	&	43362.61	&	-2.51	&	-336814.65	&	3.45	&	1425038.89 \\
+%		LgCond(Norm)		&	-0.26	&	-6.07		&	-0.23	&	-0.23	&	1	&	1160.02		&	-3.4	&	-11796.29	&	2.39	&	18948.21 \\
+%		LgCond(Lex)		&	0.09	&	-4007.34	&	-0.01	&	-0.09	&	1.04	&	47289.25	&	-2.55	&	-1255648.45	&	3.3	&	186209.69 \\
+%		TType			&	-0.06	&	-15.67		&	-0.06	&	-0.1	&	1.03	&	1341.86		&	-3.07	&	-17433.35	&	3.02	&	16583.07 \\
+%		GapDur			&	0.37	&	216.75		&	0.43	&	0.43	&	0.97	&	2083.86		&	-2.39	&	-18593.61	&	3.06	&	27075.55 \\
+%		LgCond(Pros)*TType	&	0.03	&	-705.9		&	0.11	&	0.05	&	0.96	&	26567.05	&	-3.91	&	-873190.15	&	3.03	&	75193.36 \\
+%		LgCond(Norm)*TType	&	0.02	&	-70.87		&	-0.04	&	-0.03	&	1.04	&	1034.96		&	-2.66	&	-20885.3	&	3.05	&	6980.78 \\
+%		LgCond(Lex)*TType	&	0.04	&	916.68		&	0.04	&	0	&	1.06	&	9636.18		&	-3.22	&	-31426.17	&	3.61	&	194241.2 \\
+%		LgCond(Pros)*GapDur	&	-0.1	&	-3700.6		&	-0.12	&	-0.14	&	1.04	&	107644.13	&	-3.34	&	-3422355.79	&	2.95	&	582760.84 \\
+%		LgCond(Norm)*GapDur	&	0.13	&	29469.75	&	0.11	&	0.1	&	1	&	1461329.4	&	-2.71	&	-27108.45	&	3.15	&	72670835.07 \\
+%		LgCond(Lex)*GapDur	&	-0.16	&	5777.75		&	-0.12	&	-0.01	&	1.07	&	96011.19	&	-3.17	&	-1140956.82	&	2.52	&	2450843.03 \\
+%		TType*GapDur		&	0.03	&	110.05		&	0.02	&	0.09	&	1.05	&	3223.11		&	-3.84	&	-44017.73	&	2.93	&	43175.22 \\
+%    \hline
+%  \end{tabular}
+%  \caption{Estimated \textit{z}-values for each predictor in converging (\textit{C}) and non-converging (\textit{NC}) child and adult models from Experiment 2. }
+%\label{tab:nonconv_e2}
+% \end{scriptsize}
+%\end{sidewaystable}
+%%\linespread{2}
+
+
+
+
+\section{Pairwise developmental tests}
+\label{sec:pairwisedev}
+\setcounter{figure}{0}
+Experiments 1 and 2 both showed effects of age in interaction with linguistic condition and transition type. To explore these effects in more depth, in each permutation we recorded the average difference score for each participant, for each predictor that interacted with age (e.g., English minus non-English anticipatory switches for each participant). We then used these values to compute an average difference score over the participants in each age group (e.g., age 3, 4, and 5) within each random permutation. This averaging process produces 5,000 baseline-derived difference scores for each age group.
+
+We then made pairwise age comparisons of the difference scores (e.g., the linguistic condition effect in 3-year-olds vs. 4-year-olds), computing the percent of random-permutation difference scores exceeded by the real-data difference score. If the real-data difference score exceeded 95\% of the random-data age difference scores, we deemed it to be an age effect significantly different from chance, e.g., a significant difference between ages three and four in the effect of linguistic condition. This procedure is essentially a two-tailed \textit{t}-test, adapted for use with the randomly permuted baseline data.
+
+In each of the plots below, the black dot represents the real data value for the effect being shown (the difference score). The effect sizes from the 5,000 randomly permuted data sets are shown as a distribution. The percentage displayed is the percentage of random permutation difference scores exceeded by the original data differences score (taking the absolute value of all data points for a two-tailed test). Comparisons marked with 95\% or higher are significant at the \textit{p}$<$0.05 level.
+
+\begin{sidewaysfigure}[!htb]
+\begin{center}
+\textbf{Experiment 1: Age and linguistic condition}\par\medskip
+\includegraphics[width=0.95\textwidth]{figures/E1-child-randvsreal-ttest-agebylg.png}
+\end{center}
+\caption{Pairwise comparisons of the language condition effect across ages in Experiment 1.}
+\label{fig:E1-lgageinteraction}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+\begin{center}
+\textbf{Experiment 2: Age and the \textit{prosody only} condition}\par\medskip
+\includegraphics[width=0.95\textwidth]{figures/E2-child-randvsreal-ttest-muffledages.png}
+\end{center}
+\caption{Significant pairwise comparisons of the \textit{prosody only}-\textit{no speech} linguisitic condition effect, across ages in Experiment 2. Non-significant comparisons are not shown.}
+\label{fig:E2-lgageinteraction}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[!htb]
+\begin{center}
+\textbf{Experiment 2: Age, transition type, and \textit{normal} speech}\par\medskip
+\includegraphics[width=0.95\textwidth]{figures/E2-child-randvsreal-ttest-normaltypesages.png}
+\end{center}
+\caption{Significant pairwise comparisons of the \textit{normal speech}-\textit{no speech} language condition effect for transition type, across ages, in Experiment 2. Non-significant comparisons are not shown.}
+\label{fig:E2-lgagetypeinteraction}
+\end{sidewaysfigure}
+
+\section{Boredom-driven anticipatory looking}
+\label{sec:boredlooks}
+\setcounter{figure}{0}
+
+One alternative hypothesis for children's anticipatory gazes is that they look at the current speaker at the start of each turn, but then grow bored and start looking away at a constant rate. Even though this alternative hypothesis does not predict the primary effects in our data (e.g., the difference between questions and non-questions), we cannot rule out the possibility that a portion of participants' saccades come from boredom.
+
+The data plotted here show a hypothetical group of boredom-driven participants (gray dots) and participants from the actual data in Experiment 2 (black dots). The hypothetical boredom-driven participants look away from the current speaker at a linear rate, beginning one second after the start of a turn.
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.95\textwidth]{figures/boredom-hypothesis.png}
+\end{center}
+\caption{Proportion of participants (hypothetical boredom-driven$=$gray; actual Experiment 2$=$black) looking at the current speaker, split by turn duration. Vertical bars indicate standard error in the experimental data.}
+\label{fig:boredomhypothesis}
+\end{figure}
+
+If children's switches away from the current speaker were purely driven by boredom, they would switch away equally quickly on long and short turns. Therefore, their crossover point---the point in time at which 50\% of the children have switched away from the current speaker---would be the same for all turns, no matter the length of the turn. This pattern is demonstrated in the hypothetical boredom-driven crossover points, which always occur 2.5 seconds after the start of speech (gray vertical lines; Figure \ref{fig:boredomhypothesis}).
+
+In children's \textit{actual} looking data we see that crossover points increase with turn duration: 2.0, 2.9, and 3.6 seconds after the start of speech for turns with durations of 1--2, 2--3, and 3--4 seconds, respectively (black vertical lines; Figure \ref{fig:boredomhypothesis}). This pattern suggests that, though children do look away as the turn is unfolding, their looks away are not simply driven by boredom.
+
+Are the looks away in Figure \ref{fig:boredomhypothesis} still too early to count as ``turn-transition'' anticipation? It is true that children start looking away after one second has passed, but then only gradually. Some of these early looks away may be boredom-driven, but it is equally plausible that some of them are turn-driven. Early predictive behavior is common in turn-taking studies with adults, in both constrained turn-taking tasks \citep{de-ruiter2006, gisladottir2015, bogelstorreira2015} and in spontaneous conversation \citep{holler2015, bogels2015}. Although this same pattern has yet to be established for children's turn predictions, the looking behavior here is at least consistent with adult response patterns in previous work. Additionally, because our analysis windows in the main study only overlapped with the pre-gap utterance by 300 msec (Figure \ref{fig:criterion}), our primary results are unlikely to capture any of these very early or early boredom-driven gaze switches, which makes them unproblematic either way in the current analysis.
+
+We therefore conclude that the boredom-driven effects in our data are unlikely to change our primary results, though we acknowledge that characterizing different gaze switching strategies in this kind of data is an important avenue for future work.
+
+\clearpage
+
+\section{Puppet pair and linguistic condition}
+\label{sec:puppetconfound}
+\setcounter{figure}{0}
+The design for Experiment 2 does not fully cross puppet pair (e.g., robots, blue puppets) with linguistic condition (e.g., \textit{words only} and \textit{no speech}). Even though each puppet pair is associated with different conversation clips across children (e.g., robots talking about kitties, birthday parties, and pancakes), the robot puppets themselves were exclusively associated with the \textit{words only} condition. Similarly, merpeople were exclusively associated with \textit{prosody only} speech, and the puppets wearing dressy clothes were exclusively associated with the \textit{no speech} condition. We designed the experiment this way to increase its pragmatic felicity for older children (i.e., robots make robot sounds, merpeople's voices are muffled under the water, the party-going puppets are in a `party' room with many other voices). There is therefore a confound between linguistic condition and puppet pair; for example, children could have made fewer anticipatory switches in the \textit{prosody only} condition because the puppets were less interesting. To test whether puppet pair drove the condition-based differences found in Experiment 2, we ran a short follow-up study.
+
+\newpage
+\noindent \textbf{Methods}
+\medskip
+
+\noindent We recruited 30 children between ages 3;0 and 5;11 from the Children's Discovery Museum of San Jose, California to participate in our experiment. All participants were native English speakers. Children were randomly assigned to one of six videos (five children per video).
+
+\medskip
+\noindent \textit{Materials}. We created 6 short videos from the stimulus recordings made for Experiment 2. Each video featured a puppet pair (red/blue/yellow/robot/ merpeople/party-goer; Figure \ref{fig:puppets}). Puppets in all six videos performed the exact same conversation recording (`birthday party'; Experiment 2) with normal, unmanipulated speech. This experiment therefore holds all things constant across stimuli except for the appearance of the puppets.
+
+\medskip
+\noindent \textit{Procedure}. We used the same experimental apparatus and procedure as in Experiments 1 and 2. Each participant was randomly assigned to watch only one of the six puppet videos. Five children watched each video. As in Experiment 2, the experimenter immediately began each session with calibration and then stimulus presentation because no special instructions were required. The entire experiment took less than three minutes.
+
+\medskip
+\noindent \textit{Data preparation}. We identified anticipatory gaze switches to the upcoming speaker using the same method as in Experiments 1 and 2.
+
+\bigskip
+\noindent \textbf{Results and discussion}
+\medskip
+
+\noindent We modeled children's anticipatory switches (yes or no at each transition) with mixed effects logistic regression, including puppet pair (robots/mer- people/party-goers/other-3) as a fixed effect and participant and turn transition as random effects. We grouped the red, blue, and yellow puppets together because they collectively represented the puppets used in the \textit{normal} speech condition---this follow-up experiment is meant to test whether the condition-based differences from Experiment 2 arose from the puppets used in each condition.
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.95\textwidth]{figures/all-puppetdyads-bars.png}
+\end{center}
+\caption{Proportion gaze switches across puppet pairs when linguistic condition and conversation are held constant.}
+\label{fig:pairconfound}
+\end{figure}
+
+\clearpage
+
+\linespread{1}
+\begin{table}
+\begin{center}
+  \begin{tabular}{llcccc}
+%    \hline
+           &  Estimate & Std. Error & \textit{z} value & Pr($>$$|$\textit{z}$|$) \\
+    \hline
+		 \footnotesize{\textit{Reference level: normal-condition puppets}} &&&& \\
+    \hline
+     (Intercept) 							& -0.148	& 0.328		& -0.451		& 0.652 \\
+     Puppets$=$\textit{mermaid} 	& -0.076	& 0.655		& -0.116		& 0.908 \\
+     Puppets$=$\textit{robot} 		& -0.071	& 0.653		& -0.109		& 0.913 \\
+     Puppets$=$\textit{party} 		& -0.782	& 0.687		& -1.138		& 0.255 \\
+    \hline
+		 \footnotesize{\textit{Reference level: mer-puppets}} &&&& \\
+    \hline
+     (Intercept) 							& -0.224	& 0.568		& -0.394		& 0.694 \\
+     Puppets$=$\textit{robot} 		& 0.0048	& 0.801		& 0.006			& 0.995 \\
+     Puppets$=$\textit{party} 		& -0.706	& 0.827		& -0.854		& 0.393 \\
+    \hline
+		 \footnotesize{\textit{Reference level: robot puppets}} &&&& \\
+    \hline
+     (Intercept) 							& -0.219	& 0.566		& -0.387		& 0.699 \\
+     Puppets$=$\textit{party} 		& -0.711	& 0.827		& -0.860		& 0.390 \\
+    \hline
+		 \footnotesize{\textit{Reference level: party-goer puppets}} &&&& \\
+    \hline
+     (Intercept) 							& -0.93		& 0.607		& -1.533		& 0.125 \\
+  \end{tabular}
+\end{center}
+  \caption{Model output for children's anticipatory gaze switches with reference levels varied to show all possible pairwise differences between puppet pairs.}
+\label{tab:control_exp}
+\end{table}
+%\linespread{2}
+
+In four versions of this model, we systematically varied the reference level of the puppet pair to check for any cross-condition differences. We found no significant effects of puppet pair on switching rate (all \textit{p}$>$0.25; Table \ref{tab:control_exp}).
+
+We take this finding as evidence that our decision to not fully cross puppet pairs and linguistic conditions in Experiment 2 was unlikely to have affected children's anticipatory gaze rates above and beyond the intended effects of linguistic condition.
+
+\end{document}
