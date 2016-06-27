@@ -1,0 +1,71 @@
+\begin{thebibliography}{7}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Incollection
+\bibitem[{Allison(2004)}]{allison2004}
+\bibinfo{author}{Allison, P.~D.} (\bibinfo{year}{2004}).
+\newblock \bibinfo{title}{Convergence problems in logistic regression}.
+\newblock In \bibinfo{editor}{M.~Altman}, \bibinfo{editor}{J.~Gill}, \&
+  \bibinfo{editor}{M.~{McD}onald} (Eds.), {\it \bibinfo{booktitle}{Numerical
+  Issues in Statistical Computing for the Social Scientist}\/} (pp.
+  \bibinfo{pages}{247--262}).
+\newblock \bibinfo{publisher}{Wiley-Interscience: New York, NY}.
+%Type = Book
+\bibitem[{Allison(2012)}]{allison2012}
+\bibinfo{author}{Allison, P.~D.} (\bibinfo{year}{2012}).
+\newblock {\it \bibinfo{title}{Logistic {R}egression {U}sing {SAS}: {T}heory
+  and {A}pplication}\/}.
+\newblock \bibinfo{publisher}{SAS Institute}.
+%Type = Article
+\bibitem[{B{\"o}gels et~al.(2015)B{\"o}gels, Magyari \& Levinson}]{bogels2015}
+\bibinfo{author}{B{\"o}gels, S.}, \bibinfo{author}{Magyari, L.}, \&
+  \bibinfo{author}{Levinson, S.~C.} (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Neural signatures of response planning occur midway
+  through an incoming question in conversation}.
+\newblock {\it \bibinfo{journal}{Scientific Reports}\/},  {\it
+  \bibinfo{volume}{5}\/}, \bibinfo{pages}{Article number: 12881}.
+%Type = Article
+\bibitem[{B{\"o}gels \& Torreira(2015)}]{bogelstorreira2015}
+\bibinfo{author}{B{\"o}gels, S.}, \& \bibinfo{author}{Torreira, F.}
+  (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Listeners use intonational phrase boundaries to
+  project turn ends in spoken interaction}.
+\newblock {\it \bibinfo{journal}{Journal of Phonetics}\/},  {\it
+  \bibinfo{volume}{52}\/}, \bibinfo{pages}{46--57}.
+%Type = Article
+\bibitem[{De~Ruiter et~al.(2006)De~Ruiter, Mitterer \& Enfield}]{de-ruiter2006}
+\bibinfo{author}{De~Ruiter, J.~P.}, \bibinfo{author}{Mitterer, H.}, \&
+  \bibinfo{author}{Enfield, N.~J.} (\bibinfo{year}{2006}).
+\newblock \bibinfo{title}{Projecting the end of a speaker's turn: A cognitive
+  cornerstone of conversation}.
+\newblock {\it \bibinfo{journal}{Language}\/},  {\it \bibinfo{volume}{82}\/},
+  \bibinfo{pages}{515--535}.
+%Type = Article
+\bibitem[{G{\'\i}slad{\'o}ttir et~al.(2015)G{\'\i}slad{\'o}ttir, Chwilla \&
+  Levinson}]{gisladottir2015}
+\bibinfo{author}{G{\'\i}slad{\'o}ttir, R.}, \bibinfo{author}{Chwilla, D.}, \&
+  \bibinfo{author}{Levinson, S.~C.} (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Conversation electrified: {ERP} correlates of speech
+  act recognition in underspecified utterances.}
+\newblock {\it \bibinfo{journal}{PloS one}\/},  {\it \bibinfo{volume}{10}\/},
+  \bibinfo{pages}{e0120068}.
+%Type = Article
+\bibitem[{Holler \& Kendrick(2015)}]{holler2015}
+\bibinfo{author}{Holler, J.}, \& \bibinfo{author}{Kendrick, K.~H.}
+  (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Unaddressed participants' gaze in multi-person
+  interaction}.
+\newblock {\it \bibinfo{journal}{Frontiers in Psychology}\/},  {\it
+  \bibinfo{volume}{6}\/}.
+
+\end{thebibliography}

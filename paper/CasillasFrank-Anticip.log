@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 JUN 2016 20:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 JUN 2016 20:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -435,19 +435,19 @@ Overfull \hbox (0.40987pt too wide) in paragraph at lines 558--559
 g-yari & De Ruiter,
  []
 
-[36] [37] [38] [39] [40] [41] [42] (./CasillasFrank-Anticip.bbl [43]
-Underfull \hbox (badness 10000) in paragraph at lines 40--49
+[36] [37] [38] [39] [40] [41] [42] [43] (./CasillasFrank-Anticip.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 25--34
 []\OT1/cmr/m/n/12 Bates, D., Maech-ler, M., Bolker, B., & Walker, S. (2014).
  []
 
 
-Underfull \hbox (badness 2922) in paragraph at lines 40--49
+Underfull \hbox (badness 2922) in paragraph at lines 25--34
 \OT1/cmr/m/it/12 lme4: Lin-ear mixed-effects mod-els us-ing Eigen and S4\OT1/cm
 r/m/n/12 .  URL:
  []
 
 
-Overfull \hbox (10.77507pt too wide) in paragraph at lines 40--49
+Overfull \hbox (10.77507pt too wide) in paragraph at lines 25--34
 \OT1/cmtt/m/n/12 https://github.com/lme4/lme4/http://lme4.r-forge.r-project.org
 /
  []
@@ -457,207 +457,38 @@ Missing character: There is no Â in font cmr12!
 Missing character: There is no ’ in font cmr12!
  [47] [48] [49]
 Missing character: There is no š in font cmr12!
- [50]) [51] [52
-
-]
-<figures/E1-chi-randrun-z-vals-absolute.png, id=198, 1304.875pt x 1304.875pt>
-File: figures/E1-chi-randrun-z-vals-absolute.png Graphic file (type png)
-
-<use figures/E1-chi-randrun-z-vals-absolute.png>
-Package pdftex.def Info: figures/E1-chi-randrun-z-vals-absolute.png used on inp
-ut line 648.
-(pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
-
-<figures/E1-adu-randrun-z-vals-absolute.png, id=199, 1304.875pt x 1304.875pt>
-File: figures/E1-adu-randrun-z-vals-absolute.png Graphic file (type png)
-
-<use figures/E1-adu-randrun-z-vals-absolute.png>
-Package pdftex.def Info: figures/E1-adu-randrun-z-vals-absolute.png used on inp
-ut line 650.
-(pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
-
-<figures/E1-chi-randrun-betas-absolute.png, id=200, 1304.875pt x 1304.875pt>
-File: figures/E1-chi-randrun-betas-absolute.png Graphic file (type png)
-
-<use figures/E1-chi-randrun-betas-absolute.png>
-Package pdftex.def Info: figures/E1-chi-randrun-betas-absolute.png used on inpu
-t line 658.
-(pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
-
-<figures/E1-adu-randrun-betas-absolute.png, id=201, 1304.875pt x 1304.875pt>
-File: figures/E1-adu-randrun-betas-absolute.png Graphic file (type png)
-
-<use figures/E1-adu-randrun-betas-absolute.png>
-Package pdftex.def Info: figures/E1-adu-randrun-betas-absolute.png used on inpu
-t line 660.
-(pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
-
-<figures/E1-chi-randrun-SEs-absolute.png, id=202, 803.0pt x 803.0pt>
-File: figures/E1-chi-randrun-SEs-absolute.png Graphic file (type png)
-
-<use figures/E1-chi-randrun-SEs-absolute.png>
-Package pdftex.def Info: figures/E1-chi-randrun-SEs-absolute.png used on input 
-line 668.
-(pdftex.def)             Requested size: 241.34134pt x 241.34296pt.
-
-<figures/E1-adu-randrun-SEs-absolute.png, id=203, 803.0pt x 803.0pt>
-File: figures/E1-adu-randrun-SEs-absolute.png Graphic file (type png)
-
-<use figures/E1-adu-randrun-SEs-absolute.png>
-Package pdftex.def Info: figures/E1-adu-randrun-SEs-absolute.png used on input 
-line 670.
-(pdftex.def)             Requested size: 241.34134pt x 241.34296pt.
-
-<figures/E2-chi-randrun-z-vals-absolute.png, id=204, 1304.875pt x 2007.5pt>
-File: figures/E2-chi-randrun-z-vals-absolute.png Graphic file (type png)
-
-<use figures/E2-chi-randrun-z-vals-absolute.png>
-Package pdftex.def Info: figures/E2-chi-randrun-z-vals-absolute.png used on inp
-ut line 678.
-(pdftex.def)             Requested size: 241.34134pt x 371.2898pt.
-
-<figures/E2-adu-randrun-z-vals-absolute.png, id=205, 1304.875pt x 1304.875pt>
-File: figures/E2-adu-randrun-z-vals-absolute.png Graphic file (type png)
-
-<use figures/E2-adu-randrun-z-vals-absolute.png>
-Package pdftex.def Info: figures/E2-adu-randrun-z-vals-absolute.png used on inp
-ut line 680.
-(pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
-
-<figures/E2-chi-randrun-betas-absolute.png, id=206, 1304.875pt x 2007.5pt>
-File: figures/E2-chi-randrun-betas-absolute.png Graphic file (type png)
-
-<use figures/E2-chi-randrun-betas-absolute.png>
-Package pdftex.def Info: figures/E2-chi-randrun-betas-absolute.png used on inpu
-t line 688.
-(pdftex.def)             Requested size: 241.34134pt x 371.2898pt.
-
-<figures/E2-adu-randrun-betas-absolute.png, id=207, 1304.875pt x 1304.875pt>
-File: figures/E2-adu-randrun-betas-absolute.png Graphic file (type png)
-
-<use figures/E2-adu-randrun-betas-absolute.png>
-Package pdftex.def Info: figures/E2-adu-randrun-betas-absolute.png used on inpu
-t line 690.
-(pdftex.def)             Requested size: 241.34134pt x 241.33836pt.
-
-<figures/E2-chi-randrun-SEs-absolute.png, id=208, 521.95pt x 803.0pt>
-File: figures/E2-chi-randrun-SEs-absolute.png Graphic file (type png)
-
-<use figures/E2-chi-randrun-SEs-absolute.png>
-Package pdftex.def Info: figures/E2-chi-randrun-SEs-absolute.png used on input 
-line 698.
-(pdftex.def)             Requested size: 241.34134pt x 371.29591pt.
-
-<figures/E2-adu-randrun-SEs-absolute.png, id=209, 803.0pt x 803.0pt>
-File: figures/E2-adu-randrun-SEs-absolute.png Graphic file (type png)
-
-<use figures/E2-adu-randrun-SEs-absolute.png>
-Package pdftex.def Info: figures/E2-adu-randrun-SEs-absolute.png used on input 
-line 700.
-(pdftex.def)             Requested size: 241.34134pt x 241.34296pt.
- [53] [54 <./figures/E1-chi-randrun-z-vals-absolute.png> <./figures/E1-adu-rand
-run-z-vals-absolute.png>] [55 <./figures/E1-chi-randrun-betas-absolute.png> <./
-figures/E1-adu-randrun-betas-absolute.png>] [56 <./figures/E1-chi-randrun-SEs-a
-bsolute.png> <./figures/E1-adu-randrun-SEs-absolute.png>] [57 <./figures/E2-chi
--randrun-z-vals-absolute.png> <./figures/E2-adu-randrun-z-vals-absolute.png>] [
-58 <./figures/E2-chi-randrun-betas-absolute.png> <./figures/E2-adu-randrun-beta
-s-absolute.png>] [59 <./figures/E2-chi-randrun-SEs-absolute.png> <./figures/E2-
-adu-randrun-SEs-absolute.png>]
-[60
-
-] [61]
-<figures/E1-child-randvsreal-ttest-agebylg.png, id=249, 803.0pt x 370.38374pt>
-File: figures/E1-child-randvsreal-ttest-agebylg.png Graphic file (type png)
-
-<use figures/E1-child-randvsreal-ttest-agebylg.png>
-Package pdftex.def Info: figures/E1-child-randvsreal-ttest-agebylg.png used on 
-input line 825.
-(pdftex.def)             Requested size: 521.07332pt x 240.36226pt.
-
-<figures/E2-child-randvsreal-ttest-muffledages.png, id=250, 803.0pt x 283.0575p
-t>
-File: figures/E2-child-randvsreal-ttest-muffledages.png Graphic file (type png)
-
- <use figures/E2-child-randvsreal-ttest-muffledages.png>
-Package pdftex.def Info: figures/E2-child-randvsreal-ttest-muffledages.png used
- on input line 834.
-(pdftex.def)             Requested size: 521.07332pt x 183.69148pt.
-
-<figures/E2-child-randvsreal-ttest-normaltypesages.png, id=251, 803.0pt x 240.9
-pt>
-File: figures/E2-child-randvsreal-ttest-normaltypesages.png Graphic file (type 
-png)
- <use figures/E2-child-randvsreal-ttest-normaltypesages.png>
-Package pdftex.def Info: figures/E2-child-randvsreal-ttest-normaltypesages.png 
-used on input line 843.
-(pdftex.def)             Requested size: 521.07332pt x 156.33318pt.
- [62] [63 <./figures/E1-child-randvsreal-ttest-agebylg.png>] [64 <./figures/E2-
-child-randvsreal-ttest-muffledages.png>] [65 <./figures/E2-child-randvsreal-tte
-st-normaltypesages.png>] <figures/boredom-hypothesis.png, id=264, 1505.625pt x 
-602.25pt>
-File: figures/boredom-hypothesis.png Graphic file (type png)
-
-<use figures/boredom-hypothesis.png>
-Package pdftex.def Info: figures/boredom-hypothesis.png used on input line 859.
-
-(pdftex.def)             Requested size: 370.49881pt x 148.2004pt.
- [66
-
- <./figures/boredom-hypothesis.png>]
-Overfull \hbox (6.32367pt too wide) in paragraph at lines 869--870
-[]\OT1/cmr/m/n/12 Are the looks away in Fig-ure C.1[] still too early to count 
-as ``turn-transition''
- []
-
-[67] [68
-
-] <figures/all-puppetdyads-bars.png, id=276, 903.375pt x 702.625pt>
-File: figures/all-puppetdyads-bars.png Graphic file (type png)
-
-<use figures/all-puppetdyads-bars.png>
-Package pdftex.def Info: figures/all-puppetdyads-bars.png used on input line 90
-3.
-(pdftex.def)             Requested size: 370.49881pt x 288.1746pt.
- [69] [70 <./figures/all-puppetdyads-bars.png>]
-Overfull \hbox (32.90134pt too wide) in paragraph at lines 914--940
- [] 
- []
-
-[71
-
-] (./CasillasFrank-Anticip.aux) ) 
+ [50]) [51] (./CasillasFrank-Anticip.aux) ) 
 Here is how much of TeX's memory you used:
- 5661 strings out of 493089
- 83815 string characters out of 6134842
- 152043 words of memory out of 5000000
- 9020 multiletter control sequences out of 15000+600000
- 18513 words of font info for 67 fonts, out of 8000000 for 9000
+ 5510 strings out of 493089
+ 79158 string characters out of 6134842
+ 151458 words of memory out of 5000000
+ 8888 multiletter control sequences out of 15000+600000
+ 17134 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,12n,47p,1995b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
-i12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.p
-fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/tipa/tipa10.pfb>
-Output written on CasillasFrank-Anticip.pdf (71 pages, 4766498 bytes).
+ 44i,11n,44p,1995b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/tipa/ti
+pa10.pfb>
+Output written on CasillasFrank-Anticip.pdf (51 pages, 1500195 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
+ 254 PDF objects out of 1000 (max. 8388607)
+ 170 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

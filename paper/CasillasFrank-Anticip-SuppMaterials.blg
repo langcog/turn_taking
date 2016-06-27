@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: CasillasFrank-Anticip-SuppMaterials.aux
+The style file: model5-names.bst
+Database file #1: anticip.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 7 entries,
+            3390 wiz_defined-function locations,
+            735 strings with 6696 characters,
+and the built_in function-call counts, 4943 in all, are:
+= -- 370
+> -- 168
+< -- 5
++ -- 127
+- -- 48
+* -- 528
+:= -- 655
+add.period$ -- 22
+call.type$ -- 7
+change.case$ -- 53
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 369
+empty$ -- 385
+format.name$ -- 70
+if$ -- 930
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 67
+newline$ -- 51
+num.names$ -- 30
+pop$ -- 156
+preamble$ -- 1
+purify$ -- 43
+quote$ -- 0
+skip$ -- 134
+stack$ -- 0
+substring$ -- 240
+swap$ -- 263
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 60
+warning$ -- 0
+while$ -- 31
+width$ -- 0
+write$ -- 113

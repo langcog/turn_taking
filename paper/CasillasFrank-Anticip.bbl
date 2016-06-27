@@ -1,4 +1,4 @@
-\begin{thebibliography}{82}
+\begin{thebibliography}{80}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -11,21 +11,6 @@
 \providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
-%Type = Incollection
-\bibitem[{Allison(2004)}]{allison2004}
-\bibinfo{author}{Allison, P.~D.} (\bibinfo{year}{2004}).
-\newblock \bibinfo{title}{Convergence problems in logistic regression}.
-\newblock In \bibinfo{editor}{M.~Altman}, \bibinfo{editor}{J.~Gill}, \&
-  \bibinfo{editor}{M.~{McD}onald} (Eds.), {\it \bibinfo{booktitle}{Numerical
-  Issues in Statistical Computing for the Social Scientist}\/} (pp.
-  \bibinfo{pages}{247--262}).
-\newblock \bibinfo{publisher}{Wiley-Interscience: New York, NY}.
-%Type = Book
-\bibitem[{Allison(2012)}]{allison2012}
-\bibinfo{author}{Allison, P.~D.} (\bibinfo{year}{2012}).
-\newblock {\it \bibinfo{title}{Logistic {R}egression {U}sing {SAS}: {T}heory
-  and {A}pplication}\/}.
-\newblock \bibinfo{publisher}{SAS Institute}.
 %Type = Article
 \bibitem[{Barr et~al.(2013)Barr, Levy, Scheepers \& Tily}]{barr2013}
 \bibinfo{author}{Barr, D.~J.}, \bibinfo{author}{Levy, R.},
